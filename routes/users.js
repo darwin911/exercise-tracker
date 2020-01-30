@@ -1,5 +1,6 @@
 const router = require('express').Router();
 let User = require('../models/user.model');
+const { hash, compare } = require('../auth');
 
 router.route('/').get((req, res) => {
   User.find()
@@ -13,14 +14,44 @@ router.route('/:id').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/add').post((req, res) => {
-  const username = req.body.username;
+router.route('/login').post(async (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  console.log('email:', email, 'password:', password);
 
-  const newUser = new User({ username });
+  let user = await User.findOne({ email });
+  console.log('user:', user);
+
+  if (user) {
+    const isAuthenticated = await compare(password, user.passwordDigest);
+
+    if (isAuthenticated) {
+      const userData = {
+        id: user.id,
+        username: user.username,
+        email: user.email
+      };
+      res.json(userData);
+    } else {
+      console.log('invalid credentials');
+      res.status(401).json({ error: 'Invalid Credentials' });
+    }
+  } else {
+    console.log('here!');
+    res.status(401).json({ error: 'Invalid Credentials' });
+  }
+});
+
+router.route('/register').post(async (req, res) => {
+  const username = req.body.username;
+  const email = req.body.email;
+  const passwordDigest = await hash(req.body.password);
+
+  const newUser = new User({ username, email, passwordDigest });
 
   newUser
     .save()
-    .then(() => res.json('User addeed!'))
+    .then(() => res.json('User registered!'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
