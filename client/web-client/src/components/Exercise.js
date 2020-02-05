@@ -1,13 +1,12 @@
 import React from 'react';
+import { deleteExercise } from '../helper';
 
 export const Exercise = ({ exercise }) => {
   const { _id, username, note, duration, date } = exercise;
 
   const handleDelete = async id => {
-    const response = await fetch(`http://localhost:5000/exercises/${id}`, {
-      method: 'DELETE'
-    });
-    console.log(await response.json());
+    const resp = await deleteExercise(id);
+    console.log(resp);
   };
 
   return (
