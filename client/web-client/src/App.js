@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Exercise } from './components/Exercise';
+import { getExercises } from './helper';
 
 function App() {
   const [exercises, setExercises] = useState([]);
 
-  const loadExercises = () => {
-    fetch('http://localhost:5000/exercises')
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        setExercises(data);
-      })
-      .catch(err => console.error('Error: ' + err));
+  const loadExercises = async () => {
+    const dbExercises = await getExercises();
+    setExercises(dbExercises);
   };
 
   useEffect(() => {
