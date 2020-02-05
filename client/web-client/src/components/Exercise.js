@@ -1,5 +1,6 @@
 import React from 'react';
 import { deleteExercise } from '../helper';
+import moment from 'moment';
 
 export const Exercise = ({ exercise }) => {
   const { _id, username, note, duration, date } = exercise;
@@ -14,8 +15,8 @@ export const Exercise = ({ exercise }) => {
       <p>Username: {username}</p>
       <p>ID: {_id}</p>
       <p>Note: {note}</p>
-      <p>Duration: {duration}</p>
-      <p>Date: {date}</p>
+      <p>Duration: {duration} mins</p>
+      <p>Date: {moment(date).format('h:mm a | MMM Do')}</p>
       <button onClick={() => handleDelete(_id)}>Delete</button>
     </div>
   );
