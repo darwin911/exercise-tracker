@@ -22,7 +22,7 @@ const addExercise = async data => {
 
 const deleteExercise = async id => {
   try {
-    const resp = axios.delete(`${BASE_URL}/exercises/${id}`);
+    const resp = await axios.delete(`${BASE_URL}/exercises/${id}`);
     return resp.data;
   } catch (err) {
     console.error(err);
