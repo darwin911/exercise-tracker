@@ -21,10 +21,14 @@ function App() {
       <h1>Exercise Tracker</h1>
       {exercises &&
         exercises.map(exercise => (
-          <Exercise key={exercise._id} exercise={exercise} />
+          <Exercise
+            key={exercise._id}
+            exercise={exercise}
+            setExercises={setExercises}
+          />
         ))}
 
-      <AddExercise />
+      <AddExercise setExercises={setExercises} />
     </div>
   );
 }

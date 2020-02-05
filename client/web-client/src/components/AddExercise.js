@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { addExercise } from '../helper';
 
-export const AddExercise = () => {
+export const AddExercise = ({ setExercises }) => {
   const [duration, setDuration] = useState(null);
   const [note, setNote] = useState('');
 
@@ -16,8 +16,10 @@ export const AddExercise = () => {
     };
 
     const resp = await addExercise(obj);
-    console.log(resp);
+
+    setExercises(prevState => [...prevState, obj]);
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor='duration'>Duration: </label>

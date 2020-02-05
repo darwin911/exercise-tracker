@@ -2,12 +2,15 @@ import React from 'react';
 import { deleteExercise } from '../helper';
 import moment from 'moment';
 
-export const Exercise = ({ exercise }) => {
+export const Exercise = ({ exercise, setExercises }) => {
   const { _id, username, note, duration, date } = exercise;
 
   const handleDelete = async id => {
     const resp = await deleteExercise(id);
-    console.log(resp);
+
+    setExercises(prevState => [
+      ...prevState.filter(exercise => exercise._id !== id)
+    ]);
   };
 
   return (
