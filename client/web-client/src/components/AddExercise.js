@@ -24,12 +24,14 @@ export const AddExercise = ({ setExercises }) => {
     <form onSubmit={handleSubmit}>
       <label htmlFor='user'>User: </label>
       <select required name='user'>
+        <option value=''>--Select User--</option>
         {['Darwin', 'Felix'].map(user => (
           <option key={user} value={user}>
             {user}
           </option>
         ))}
       </select>
+      <br />
       <label htmlFor='duration'>Duration: </label>
       <input
         type='number'
