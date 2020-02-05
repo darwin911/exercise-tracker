@@ -24,6 +24,7 @@ export const AddExercise = () => {
       <input
         type='number'
         name='duration'
+        min={1}
         max={360}
         onChange={e => setDuration(e.target.value)}
       />
