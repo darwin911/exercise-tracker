@@ -19,9 +19,10 @@ function App() {
   return (
     <div className='App'>
       <h1>Exercise Tracker</h1>
-      {exercises.map(exercise => (
-        <Exercise key={exercise._id} exercise={exercise} />
-      ))}
+      {exercises &&
+        exercises.map(exercise => (
+          <Exercise key={exercise._id} exercise={exercise} />
+        ))}
 
       <AddExercise />
     </div>
