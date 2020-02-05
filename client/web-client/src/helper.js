@@ -11,6 +11,15 @@ const getExercises = async () => {
   }
 };
 
+const addExercise = async data => {
+  try {
+    const resp = await axios.post(`${BASE_URL}/exercises/add`, data);
+    return resp.data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 const deleteExercise = async id => {
   try {
     const resp = axios.delete(`${BASE_URL}/exercises/${id}`);
@@ -20,4 +29,4 @@ const deleteExercise = async id => {
   }
 };
 
-export { getExercises, deleteExercise };
+export { getExercises, addExercise, deleteExercise };
