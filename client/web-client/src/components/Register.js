@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { registerUser } from '../helper';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 export const Register = ({ setIsLoggedIn }) => {
+  const history = useHistory();
+
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -12,7 +14,10 @@ export const Register = ({ setIsLoggedIn }) => {
     console.log('handleRegister');
 
     const registerResponse = await registerUser({ username, email, password });
-    if (registerResponse) setIsLoggedIn(true);
+    if (registerResponse) {
+      setIsLoggedIn(true);
+      history.push('/');
+    }
   };
 
   return (

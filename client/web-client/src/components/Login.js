@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { loginUser } from '../helper';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 export const Login = ({ setIsLoggedIn }) => {
+  let history = useHistory();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -11,7 +13,10 @@ export const Login = ({ setIsLoggedIn }) => {
     console.log('handleLogin');
 
     const loginResponse = await loginUser({ email, password });
-    if (loginResponse) setIsLoggedIn(true);
+    if (loginResponse) {
+      setIsLoggedIn(true);
+      history.push('/');
+    }
   };
 
   return (
