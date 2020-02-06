@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { hash } = require('../auth');
 
 const Schema = mongoose.Schema;
 
@@ -18,12 +19,16 @@ const userSchema = new Schema(
     },
     passwordDigest: {
       type: String,
-      required: true,
       select: false
     }
   },
   { timestamps: true }
 );
+
+userSchema.methods.setPassword = async function(password) {
+  const digest = await hash(password);
+  this.passwordDigest = digest;
+};
 
 const User = mongoose.model('User', userSchema);
 

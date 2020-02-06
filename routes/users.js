@@ -42,9 +42,10 @@ router.route('/login').post(async (req, res) => {
 router.route('/register').post(async (req, res) => {
   const username = req.body.username;
   const email = req.body.email;
-  const passwordDigest = await hash(req.body.password);
+  const password = req.body.password;
 
-  const newUser = new User({ username, email, passwordDigest });
+  const newUser = new User({ username, email });
+  await newUser.setPassword(password);
 
   newUser
     .save()
