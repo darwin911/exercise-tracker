@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { hash } = require('../auth');
+const { hash, compare } = require('../auth');
 
 const Schema = mongoose.Schema;
 
@@ -24,6 +24,11 @@ const userSchema = new Schema(
   },
   { timestamps: true }
 );
+
+userSchema.methods.isValidPassword = async function(password) {
+  const isValid = await compare(password, this.passwordDigest);
+  return isValid;
+};
 
 userSchema.methods.setPassword = async function(password) {
   const digest = await hash(password);

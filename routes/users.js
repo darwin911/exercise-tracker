@@ -1,6 +1,5 @@
 const router = require('express').Router();
 let User = require('../models/user.model');
-const { hash, compare } = require('../auth');
 
 router.route('/').get((req, res) => {
   User.find()
@@ -21,7 +20,7 @@ router.route('/login').post(async (req, res) => {
   let user = await User.findOne({ email }).select('+passwordDigest');
 
   if (user) {
-    const isAuthenticated = await compare(password, user.passwordDigest);
+    const isAuthenticated = await user.isValidPassword(password);
 
     if (isAuthenticated) {
       const userData = {
