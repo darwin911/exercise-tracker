@@ -7,7 +7,7 @@ import { Login } from './components/Login';
 import { Register } from './components/Register';
 import { Switch, Route } from 'react-router-dom';
 
-function App() {
+export const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [exercises, setExercises] = useState([]);
 
@@ -45,6 +45,4 @@ function App() {
       </Route>
     </Switch>
   );
-}
-
-export default App;
+};
