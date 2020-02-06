@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-const BASE_URL = `http://localhost:5000`;
-// const BASE_URL = `https://exercise-tracker-express.herokuapp.com`;
+// const BASE_URL = `http://localhost:5000`;
+const BASE_URL = `https://exercise-tracker-express.herokuapp.com`;
+
+// Exercises
 
 const getExercises = async () => {
   try {
@@ -30,4 +32,15 @@ const deleteExercise = async id => {
   }
 };
 
-export { getExercises, addExercise, deleteExercise };
+// Authentication
+
+const loginUser = async data => {
+  try {
+    const resp = await axios.post(`${BASE_URL}/users/login`, data);
+    return resp.data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export { getExercises, addExercise, deleteExercise, loginUser };
