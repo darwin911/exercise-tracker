@@ -43,4 +43,13 @@ const loginUser = async data => {
   }
 };
 
-export { getExercises, addExercise, deleteExercise, loginUser };
+const registerUser = async data => {
+  try {
+    const resp = await axios.post(`${BASE_URL}/users/register`, data);
+    return resp.data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export { getExercises, addExercise, deleteExercise, loginUser, registerUser };
