@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
+import { loginUser } from '../helper';
 
 export const Login = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = e => {
+  const handleLogin = async e => {
     e.preventDefault();
     console.log('handleLogin');
+
+    const loginResponse = await loginUser({ email, password });
+    if (loginResponse) setIsLoggedIn(true);
   };
 
   return (
