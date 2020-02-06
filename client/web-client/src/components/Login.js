@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { loginUser } from '../helper';
+import { Link } from 'react-router-dom';
 
 export const Login = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState('');
@@ -32,6 +33,9 @@ export const Login = ({ setIsLoggedIn }) => {
         />
         <button>Submit</button>
       </form>
+      <p>
+        Don't have an account? <Link to='/register'>Register</Link>
+      </p>
     </div>
   );
 };
