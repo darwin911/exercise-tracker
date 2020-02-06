@@ -5,7 +5,7 @@ import { AddExercise } from './components/AddExercise';
 import { getExercises } from './helper';
 import { Login } from './components/Login';
 import { Register } from './components/Register';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 
 export const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -25,6 +25,7 @@ export const App = () => {
       <Route exact path='/'>
         <div className='App'>
           <h1>Exercise Tracker</h1>
+          <hr />
           {exercises &&
             exercises.map(exercise => (
               <Exercise
@@ -35,6 +36,10 @@ export const App = () => {
             ))}
 
           <AddExercise setExercises={setExercises} />
+          <hr />
+          <Link to='/login' onClick={() => setIsLoggedIn(false)}>
+            Logout
+          </Link>
         </div>
       </Route>
       <Route path='/login'>
