@@ -14,22 +14,14 @@ router.route('/:id').get((req, res) => {
 });
 
 router.route('/login').post(async (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-
+  const { email, password } = req.body;
   let user = await User.findOne({ email });
-
   if (user) {
     const isAuthenticated = await user.isValidPassword(password);
-
     if (isAuthenticated) {
       const userData = await user.toJSON();
-      res.json(userData);
-    } else {
-      console.log('invalid credentials');
-      res.status(401).json({ error: 'Invalid Credentials' });
+      return res.json(userData);
     }
-  } else {
     res.status(401).json({ error: 'Invalid Credentials' });
   }
 });
