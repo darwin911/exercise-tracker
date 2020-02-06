@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { hash, compare } = require('../auth');
+const { hash, compare, encode } = require('../auth');
 
 const Schema = mongoose.Schema;
 
@@ -38,8 +38,18 @@ userSchema.methods.toJSON = async function() {
   return {
     id: this._id,
     username: this.username,
-    email: this.email
+    email: this.email,
+    token: await this.generateJWT()
   };
+};
+
+userSchema.methods.generateJWT = async function() {
+  const data = {
+    id: this._id,
+    username: this.username,
+    passwordDigest: this.passwordDigest
+  };
+  return await encode(data);
 };
 
 const User = mongoose.model('User', userSchema);
