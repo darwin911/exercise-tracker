@@ -18,7 +18,7 @@ router.route('/login').post(async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  let user = await User.findOne({ email });
+  let user = await User.findOne({ email }).select('+passwordDigest');
 
   if (user) {
     const isAuthenticated = await compare(password, user.passwordDigest);
@@ -35,7 +35,6 @@ router.route('/login').post(async (req, res) => {
       res.status(401).json({ error: 'Invalid Credentials' });
     }
   } else {
-    console.log('here!');
     res.status(401).json({ error: 'Invalid Credentials' });
   }
 });
