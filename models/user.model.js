@@ -34,6 +34,14 @@ userSchema.methods.setPassword = async function(password) {
   this.passwordDigest = digest;
 };
 
+userSchema.methods.toJSON = async function() {
+  return {
+    id: this._id,
+    username: this.username,
+    email: this.email
+  };
+};
+
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
