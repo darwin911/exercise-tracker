@@ -26,6 +26,9 @@ export const App = () => {
         <div className='App'>
           <h1>Exercise Tracker</h1>
           <hr />
+
+          {user && <p>{user ? user.username : 'Guest'}'s Exercises</p>}
+
           {exercises &&
             exercises.map(exercise => (
               <Exercise
