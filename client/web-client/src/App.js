@@ -4,6 +4,8 @@ import { Exercise } from './components/Exercise';
 import { AddExercise } from './components/AddExercise';
 import { getExercises } from './helper';
 import { Login } from './components/Login';
+import { Register } from './components/Register';
+import { Switch, Route } from 'react-router-dom';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -19,9 +21,9 @@ function App() {
   }, [setExercises]);
 
   return (
-    <div className='App'>
-      {isLoggedIn ? (
-        <>
+    <Switch>
+      <Route exact path='/'>
+        <div className='App'>
           <h1>Exercise Tracker</h1>
           {exercises &&
             exercises.map(exercise => (
@@ -33,11 +35,15 @@ function App() {
             ))}
 
           <AddExercise setExercises={setExercises} />
-        </>
-      ) : (
+        </div>
+      </Route>
+      <Route path='/login'>
         <Login setIsLoggedIn={setIsLoggedIn} />
-      )}
-    </div>
+      </Route>
+      <Route path='/register'>
+        <Register setIsLoggedIn={setIsLoggedIn} />
+      </Route>
+    </Switch>
   );
 }
 
