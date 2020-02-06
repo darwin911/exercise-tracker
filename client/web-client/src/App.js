@@ -8,7 +8,7 @@ import { Register } from './components/Register';
 import { Switch, Route, Link } from 'react-router-dom';
 
 export const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
   const [exercises, setExercises] = useState([]);
 
   const loadExercises = async () => {
@@ -37,16 +37,16 @@ export const App = () => {
 
           <AddExercise setExercises={setExercises} />
           <hr />
-          <Link to='/login' onClick={() => setIsLoggedIn(false)}>
+          <Link to='/login' onClick={() => setUser(null)}>
             Logout
           </Link>
         </div>
       </Route>
       <Route path='/login'>
-        <Login setIsLoggedIn={setIsLoggedIn} />
+        <Login setUser={setUser} />
       </Route>
       <Route path='/register'>
-        <Register setIsLoggedIn={setIsLoggedIn} />
+        <Register setUser={setUser} />
       </Route>
     </Switch>
   );

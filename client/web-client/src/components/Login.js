@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { loginUser } from '../helper';
 import { Link, useHistory } from 'react-router-dom';
 
-export const Login = ({ setIsLoggedIn }) => {
+export const Login = ({ setUser }) => {
   let history = useHistory();
 
   const [email, setEmail] = useState('');
@@ -10,11 +10,11 @@ export const Login = ({ setIsLoggedIn }) => {
 
   const handleLogin = async e => {
     e.preventDefault();
-    console.log('handleLogin');
 
-    const loginResponse = await loginUser({ email, password });
-    if (loginResponse) {
-      setIsLoggedIn(true);
+    const authenticatedUser = await loginUser({ email, password });
+
+    if (authenticatedUser) {
+      setUser(authenticatedUser);
       history.push('/');
     }
   };
@@ -29,12 +29,14 @@ export const Login = ({ setIsLoggedIn }) => {
           placeholder='name@email.com'
           autoComplete='off'
           onChange={e => setEmail(e.target.value)}
+          value={email}
         />
         <input
           type='password'
           name='password'
           autoComplete='off'
           onChange={e => setPassword(e.target.value)}
+          value={password}
         />
         <button>Submit</button>
       </form>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { registerUser } from '../helper';
 import { Link, useHistory } from 'react-router-dom';
 
-export const Register = ({ setIsLoggedIn }) => {
+export const Register = ({ setUser }) => {
   const history = useHistory();
 
   const [username, setUsername] = useState('');
@@ -11,11 +11,11 @@ export const Register = ({ setIsLoggedIn }) => {
 
   const handleRegister = async e => {
     e.preventDefault();
-    console.log('handleRegister');
 
-    const registerResponse = await registerUser({ username, email, password });
-    if (registerResponse) {
-      setIsLoggedIn(true);
+    const registeredUser = await registerUser({ username, email, password });
+
+    if (registeredUser) {
+      setUser(registeredUser);
       history.push('/');
     }
   };
@@ -30,6 +30,7 @@ export const Register = ({ setIsLoggedIn }) => {
           placeholder='select a username'
           autoComplete='off'
           onChange={e => setUsername(e.target.value)}
+          value={username}
         />
         <input
           type='email'
@@ -37,12 +38,14 @@ export const Register = ({ setIsLoggedIn }) => {
           placeholder='name@email.com'
           autoComplete='off'
           onChange={e => setEmail(e.target.value)}
+          value={email}
         />
         <input
           type='password'
           name='password'
           autoComplete='off'
           onChange={e => setPassword(e.target.value)}
+          value={password}
         />
         <button>Submit</button>
       </form>
