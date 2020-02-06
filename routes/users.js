@@ -17,7 +17,7 @@ router.route('/login').post(async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  let user = await User.findOne({ email }).select('+passwordDigest');
+  let user = await User.findOne({ email });
 
   if (user) {
     const isAuthenticated = await user.isValidPassword(password);

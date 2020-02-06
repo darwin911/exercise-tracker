@@ -18,8 +18,7 @@ const userSchema = new Schema(
       unique: true
     },
     passwordDigest: {
-      type: String,
-      select: false
+      type: String
     }
   },
   { timestamps: true }
