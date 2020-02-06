@@ -23,11 +23,7 @@ router.route('/login').post(async (req, res) => {
     const isAuthenticated = await user.isValidPassword(password);
 
     if (isAuthenticated) {
-      const userData = {
-        id: user.id,
-        username: user.username,
-        email: user.email
-      };
+      const userData = await user.toJSON();
       res.json(userData);
     } else {
       console.log('invalid credentials');
@@ -46,9 +42,10 @@ router.route('/register').post(async (req, res) => {
   const newUser = new User({ username, email });
   await newUser.setPassword(password);
 
+  const userData = await newUser.toJSON();
   newUser
     .save()
-    .then(() => res.json('User registered!'))
+    .then(() => res.json(userData))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
