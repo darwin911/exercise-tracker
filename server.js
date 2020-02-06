@@ -13,9 +13,12 @@ app.use(express.json());
 app.use(passport.initialize());
 
 const uri = process.env.MONGODB_URI;
-console.log(' --- **  --- URI:', uri, '\n\n');
 // current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true });
+mongoose.connect(uri, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useCreateIndex: true
+});
 
 const connection = mongoose.connection;
 
