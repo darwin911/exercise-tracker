@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { Exercise } from './components/Exercise';
+import { UserExercises } from './components/UserExercises';
 import { AddExercise } from './components/AddExercise';
 import { getExercises, verifyToken } from './helper';
 import { Login } from './components/Login';
@@ -47,16 +47,11 @@ export const App = () => {
           <h1>Exercise Tracker</h1>
           <hr />
 
-          {user && <p>{user ? user.username : 'Guest'}'s Exercises</p>}
-
-          {exercises &&
-            exercises.map(exercise => (
-              <Exercise
-                key={exercise._id}
-                exercise={exercise}
-                setExercises={setExercises}
-              />
-            ))}
+          <UserExercises
+            user={user}
+            exercises={exercises}
+            setExercises={setExercises}
+          />
 
           <AddExercise setExercises={setExercises} />
           <hr />
