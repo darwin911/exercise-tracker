@@ -32,7 +32,6 @@ export const Register = ({ setUser }) => {
               type='text'
               name='username'
               placeholder='select a username'
-              autoComplete='off'
               onChange={e => setUsername(e.target.value)}
               value={username}
               required
@@ -43,6 +42,7 @@ export const Register = ({ setUser }) => {
             <input
               type='email'
               name='email'
+              autoComplete='email'
               placeholder='name@email.com'
               onChange={e => setEmail(e.target.value)}
               value={email}
@@ -54,6 +54,7 @@ export const Register = ({ setUser }) => {
             <input
               type='password'
               name='password'
+              autoComplete='current-password'
               placeholder='p@s5w0rd'
               onChange={e => setPassword(e.target.value)}
               value={password}
