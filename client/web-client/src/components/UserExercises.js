@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Exercise } from './Exercise';
 
 export const UserExercises = ({ user, exercises, setExercises }) => {
   return (
-    <>
+    <div className='user-exercises'>
       {user && <h4>{user ? user.username : 'Guest'}'s Exercises</h4>}
       {exercises.map(exercise => (
         <Exercise
@@ -12,6 +12,6 @@ export const UserExercises = ({ user, exercises, setExercises }) => {
           setExercises={setExercises}
         />
       ))}
-    </>
+    </div>
   );
 };
