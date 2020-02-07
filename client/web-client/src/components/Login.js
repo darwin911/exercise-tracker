@@ -14,6 +14,7 @@ export const Login = ({ setUser }) => {
     const authenticatedUser = await loginUser({ email, password });
 
     if (authenticatedUser) {
+      localStorage.setItem('token', authenticatedUser.token);
       setUser(authenticatedUser);
       history.push('/');
     }

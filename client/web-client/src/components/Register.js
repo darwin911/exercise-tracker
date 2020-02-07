@@ -15,6 +15,7 @@ export const Register = ({ setUser }) => {
     const registeredUser = await registerUser({ username, email, password });
 
     if (registeredUser) {
+      localStorage.setItem('token', registeredUser.token);
       setUser(registeredUser);
       history.push('/');
     }
