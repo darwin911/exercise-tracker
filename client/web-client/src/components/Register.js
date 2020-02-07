@@ -22,36 +22,50 @@ export const Register = ({ setUser }) => {
 
   return (
     <div className='register'>
-      <h1>Register</h1>
-      <form onSubmit={handleRegister}>
-        <input
-          type='text'
-          name='username'
-          placeholder='select a username'
-          autoComplete='off'
-          onChange={e => setUsername(e.target.value)}
-          value={username}
-        />
-        <input
-          type='email'
-          name='email'
-          placeholder='name@email.com'
-          autoComplete='off'
-          onChange={e => setEmail(e.target.value)}
-          value={email}
-        />
-        <input
-          type='password'
-          name='password'
-          autoComplete='off'
-          onChange={e => setPassword(e.target.value)}
-          value={password}
-        />
-        <button>Submit</button>
-      </form>
-      <p>
-        Already have an account? <Link to='/login'>Login!</Link>
-      </p>
+      <div className='container'>
+        <h1>Register</h1>
+        <form onSubmit={handleRegister}>
+          <div className='form-field'>
+            <label htmlFor='username'>Username</label>
+            <input
+              type='text'
+              name='username'
+              placeholder='select a username'
+              autoComplete='off'
+              onChange={e => setUsername(e.target.value)}
+              value={username}
+              required
+            />
+          </div>
+          <div className='form-field'>
+            <label htmlFor='email'>Email</label>
+            <input
+              type='email'
+              name='email'
+              placeholder='name@email.com'
+              onChange={e => setEmail(e.target.value)}
+              value={email}
+              required
+            />
+          </div>
+          <div className='form-field'>
+            <label htmlFor='password'>Password</label>
+            <input
+              type='password'
+              name='password'
+              placeholder='p@s5w0rd'
+              onChange={e => setPassword(e.target.value)}
+              value={password}
+              minLength={3}
+              required
+            />
+          </div>
+          <button>Submit</button>
+        </form>
+        <p>
+          Already have an account? <Link to='/login'>Login!</Link>
+        </p>
+      </div>
     </div>
   );
 };

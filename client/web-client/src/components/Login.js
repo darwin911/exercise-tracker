@@ -21,28 +21,37 @@ export const Login = ({ setUser }) => {
 
   return (
     <div className='login'>
-      <h1>Login</h1>
-      <form onSubmit={handleLogin}>
-        <input
-          type='email'
-          name='email'
-          placeholder='name@email.com'
-          autoComplete='off'
-          onChange={e => setEmail(e.target.value)}
-          value={email}
-        />
-        <input
-          type='password'
-          name='password'
-          autoComplete='off'
-          onChange={e => setPassword(e.target.value)}
-          value={password}
-        />
-        <button>Submit</button>
-      </form>
-      <p>
-        Don't have an account? <Link to='/register'>Register</Link>
-      </p>
+      <div className='container'>
+        <h1>Login</h1>
+        <form onSubmit={handleLogin}>
+          <div className='form-field'>
+            <label htmlFor='email'>Email</label>
+            <input
+              type='email'
+              name='email'
+              placeholder='name@email.com'
+              onChange={e => setEmail(e.target.value)}
+              value={email}
+              required
+            />
+          </div>
+          <div className='form-field'>
+            <label htmlFor='password'>Password</label>
+            <input
+              type='password'
+              name='password'
+              placeholder='p@s5w0rd'
+              onChange={e => setPassword(e.target.value)}
+              value={password}
+              required
+            />
+          </div>
+          <button>Submit</button>
+        </form>
+        <p>
+          Don't have an account? <Link to='/register'>Register</Link>
+        </p>
+      </div>
     </div>
   );
 };
