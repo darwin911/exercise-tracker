@@ -35,6 +35,11 @@ export const App = () => {
     }
   }, [setExercises, setUser]);
 
+  const handleLogout = () => {
+    setUser(null);
+    localStorage.removeItem('token');
+  };
+
   return (
     <Switch>
       <Route exact path='/'>
@@ -55,7 +60,7 @@ export const App = () => {
 
           <AddExercise setExercises={setExercises} />
           <hr />
-          <Link to='/login' onClick={() => setUser(null)}>
+          <Link to='/login' onClick={handleLogout}>
             Logout
           </Link>
         </div>
