@@ -5,9 +5,10 @@ import { AddExercise } from './components/AddExercise';
 import { getExercises } from './helper';
 import { Login } from './components/Login';
 import { Register } from './components/Register';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route, Link, useHistory } from 'react-router-dom';
 
 export const App = () => {
+  const history = useHistory();
   const [user, setUser] = useState(null);
   const [exercises, setExercises] = useState([]);
 
@@ -17,6 +18,7 @@ export const App = () => {
   };
 
   useEffect(() => {
+    if (!user) history.push('/login');
     loadExercises();
   }, [setExercises]);
 
