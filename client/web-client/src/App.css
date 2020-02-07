@@ -1,0 +1,105 @@
+#root {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  color: white;
+  background-color: #323235;
+}
+
+.login,
+.register {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.login .container,
+.register .container {
+  width: 100%;
+  max-width: 90vw;
+  margin: 0 auto;
+}
+
+.login h1,
+.register h1 {
+  font-size: 4em;
+}
+
+.login form .form-field,
+.register form .form-field {
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.login form label,
+.register form label {
+  display: block;
+  font-size: 1.25em;
+  margin-bottom: 0.5rem;
+}
+
+.login form input,
+.login form button,
+.register form input,
+.register form button {
+  border: none;
+  border-radius: 5px;
+  padding: 0.75rem;
+  font-size: 1em;
+}
+
+.login form input::-webkit-input-placeholder,
+.register form input::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.login form input:-ms-input-placeholder,
+.register form input:-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.login form input::-ms-input-placeholder,
+.register form input::-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.login form input::placeholder,
+.register form input::placeholder {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.login form button,
+.register form button {
+  width: 80px;
+  border: 1px solid white;
+}
+
+a {
+  -webkit-transition: color 520ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: color 520ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+a:visited,
+a:link {
+  color: white;
+}
+
+a:hover {
+  color: rgba(116, 202, 252, 0.8);
+}
+/*# sourceMappingURL=App.css.map */
