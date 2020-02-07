@@ -43,6 +43,14 @@ userSchema.methods.toJSON = async function() {
   };
 };
 
+userSchema.methods.toProfileJSON = async function() {
+  return {
+    id: this._id,
+    username: this.username,
+    email: this.email
+  };
+};
+
 userSchema.methods.generateJWT = async function() {
   const data = {
     id: this._id,
