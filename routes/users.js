@@ -1,5 +1,6 @@
 const router = require('express').Router();
 let User = require('../models/user.model');
+const { verify } = require('../auth');
 
 router.route('/').get((req, res) => {
   User.find()
@@ -39,6 +40,15 @@ router.route('/register').post(async (req, res) => {
     .save()
     .then(() => res.json(userData))
     .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/verify').post(async (req, res) => {
+  let token = req.body.token;
+  const verifiedData = await verify(token);
+  const userId = verifiedData.id;
+  const user = await User.findById(userId);
+  const userData = await user.toProfileJSON();
+  res.json(userData);
 });
 
 module.exports = router;
