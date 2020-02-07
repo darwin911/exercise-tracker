@@ -30,6 +30,8 @@ export const App = () => {
     let token = localStorage.getItem('token');
     if (token) {
       loadCredentials(token);
+    } else {
+      history.push('/login');
     }
   }, [history]);
 
