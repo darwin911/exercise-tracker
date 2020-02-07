@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Exercise } from './components/Exercise';
 import { AddExercise } from './components/AddExercise';
-import { getExercises } from './helper';
+import { getExercises, verifyToken } from './helper';
 import { Login } from './components/Login';
 import { Register } from './components/Register';
 import { Switch, Route, Link, useHistory } from 'react-router-dom';
@@ -17,10 +17,23 @@ export const App = () => {
     setExercises(dbExercises);
   };
 
+  const loadCredentials = async token => {
+    const verifiedUser = await verifyToken({ token });
+    if (!verifiedUser) {
+      history.push('/login');
+    } else {
+      setUser(verifiedUser);
+      history.push('/');
+    }
+  };
+
   useEffect(() => {
-    if (!user) history.push('/login');
-    loadExercises();
-  }, [setExercises, history, user]);
+    let token = localStorage.getItem('token');
+    if (token) {
+      loadCredentials(token);
+      loadExercises();
+    }
+  }, [setExercises, setUser]);
 
   return (
     <Switch>
