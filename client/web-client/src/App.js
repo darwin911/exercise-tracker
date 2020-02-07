@@ -53,7 +53,7 @@ export const App = () => {
             setExercises={setExercises}
           />
 
-          <AddExercise setExercises={setExercises} />
+          <AddExercise user={user} setExercises={setExercises} />
           <hr />
           <Link to='/login' onClick={handleLogout}>
             Logout

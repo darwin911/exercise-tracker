@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { addExercise } from '../helper';
 
-export const AddExercise = ({ setExercises }) => {
+export const AddExercise = ({ user, setExercises }) => {
   const [isAdding, setIsAdding] = useState(false);
   const [duration, setDuration] = useState(null);
   const [note, setNote] = useState('');
@@ -25,21 +25,14 @@ export const AddExercise = ({ setExercises }) => {
   if (isAdding) {
     return (
       <form onSubmit={handleSubmit}>
-        <label htmlFor='user'>User: </label>
-        <select required name='user'>
-          <option value=''>--Select User--</option>
-          {['Darwin', 'Felix'].map(user => (
-            <option key={user} value={user}>
-              {user}
-            </option>
-          ))}
-        </select>
+        <p>User: {user.username}</p>
         <br />
         <label htmlFor='duration'>Duration: </label>
         <input
           type='number'
           name='duration'
-          min={1}
+          defaultValue={0}
+          min={0}
           max={360}
           onChange={e => setDuration(e.target.value)}
         />
