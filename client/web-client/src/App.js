@@ -16,26 +16,24 @@ export const App = () => {
     setExercises(dbExercises);
   };
 
-  const loadCredentials = async token => {
-    const verifiedUser = await verifyToken({ token });
-    if (!verifiedUser) {
-      history.push('/login');
-    } else {
-      setUser(verifiedUser);
-      history.push('/');
-    }
-  };
-
   useEffect(() => {
-    console.log('useEffect called');
+    const loadCredentials = async token => {
+      const verifiedUser = await verifyToken({ token });
+      if (!verifiedUser) {
+        history.push('/login');
+      } else {
+        setUser(verifiedUser);
+        history.push('/');
+      }
+    };
+
     let token = localStorage.getItem('token');
     if (token) {
       loadCredentials(token);
     }
-  }, [setUser]);
+  }, [history]);
 
   useEffect(() => {
-    console.log('second effect', user);
     if (user) {
       loadExercises(user.id);
     }
