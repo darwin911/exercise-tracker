@@ -20,7 +20,7 @@ export const App = () => {
   useEffect(() => {
     if (!user) history.push('/login');
     loadExercises();
-  }, [setExercises]);
+  }, [setExercises, history, user]);
 
   return (
     <Switch>
