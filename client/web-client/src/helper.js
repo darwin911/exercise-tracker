@@ -5,9 +5,9 @@ const BASE_URL = `https://exercise-tracker-express.herokuapp.com`;
 
 // Exercises
 
-const getExercises = async () => {
+const getUserExercises = async userId => {
   try {
-    const resp = await axios.get(`${BASE_URL}/exercises`);
+    const resp = await axios.get(`${BASE_URL}/exercises/${userId}`);
     return resp.data;
   } catch (err) {
     console.error(err);
@@ -62,7 +62,7 @@ const verifyToken = async data => {
 };
 
 export {
-  getExercises,
+  getUserExercises,
   addExercise,
   deleteExercise,
   loginUser,

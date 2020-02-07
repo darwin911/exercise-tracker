@@ -1,9 +1,9 @@
 const router = require('express').Router();
 let Exercise = require('../models/exercise.model');
 
-// Find All Exercises
-router.route('/').get((req, res) => {
-  Exercise.find()
+// Get All User Exercises
+router.route('/:userId').get(async (req, res) => {
+  Exercise.find({ userId: req.params.userId })
     .then(exercises => res.json(exercises))
     .catch(err => res.status(400).json('Error: ' + err));
 });

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Exercise } from './Exercise';
+import { AddExercise } from './AddExercise';
 
 export const UserExercises = ({ user, exercises, setExercises }) => {
   return (
@@ -12,6 +13,7 @@ export const UserExercises = ({ user, exercises, setExercises }) => {
           setExercises={setExercises}
         />
       ))}
+      <AddExercise user={user} setExercises={setExercises} />
     </div>
   );
 };

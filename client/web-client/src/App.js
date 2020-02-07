@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { UserExercises } from './components/UserExercises';
-import { AddExercise } from './components/AddExercise';
-import { getExercises, verifyToken } from './helper';
+import { getUserExercises, verifyToken } from './helper';
 import { Login } from './components/Login';
 import { Register } from './components/Register';
 import { Switch, Route, Link, useHistory } from 'react-router-dom';
@@ -12,8 +11,8 @@ export const App = () => {
   const [user, setUser] = useState(null);
   const [exercises, setExercises] = useState([]);
 
-  const loadExercises = async () => {
-    const dbExercises = await getExercises();
+  const loadExercises = async userId => {
+    const dbExercises = await getUserExercises(userId);
     setExercises(dbExercises);
   };
 
@@ -28,12 +27,19 @@ export const App = () => {
   };
 
   useEffect(() => {
+    console.log('useEffect called');
     let token = localStorage.getItem('token');
     if (token) {
       loadCredentials(token);
-      loadExercises();
     }
-  }, [setExercises, setUser]);
+  }, [setUser]);
+
+  useEffect(() => {
+    console.log('second effect', user);
+    if (user) {
+      loadExercises(user.id);
+    }
+  }, [user]);
 
   const handleLogout = () => {
     setUser(null);
@@ -53,7 +59,6 @@ export const App = () => {
             setExercises={setExercises}
           />
 
-          <AddExercise user={user} setExercises={setExercises} />
           <hr />
           <Link to='/login' onClick={handleLogout}>
             Logout
