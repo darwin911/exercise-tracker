@@ -9,13 +9,12 @@ router.route('/').get((req, res) => {
 });
 
 // Add Exercise
-router.route('/add').post((req, res) => {
-  const username = req.body.username;
-  const note = req.body.note;
+router.route('/add').post(async (req, res) => {
+  const { userId, note } = req.body;
   const duration = Number(req.body.duration);
   const date = Date.parse(req.body.date);
 
-  const newExercise = new Exercise({ username, note, duration, date });
+  const newExercise = new Exercise({ userId, date, duration, note });
 
   newExercise
     .save()

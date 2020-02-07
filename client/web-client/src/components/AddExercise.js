@@ -9,14 +9,15 @@ export const AddExercise = ({ user, setExercises }) => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const obj = {
+    const exerciseObj = {
       duration,
+      userId: user.id,
       note,
       date: new Date(),
-      username: 'Darwin'
+      username: user.username
     };
 
-    const newExercise = await addExercise(obj);
+    const newExercise = await addExercise(exerciseObj);
 
     setExercises(prevState => [...prevState, newExercise]);
     setIsAdding(false);
@@ -32,9 +33,10 @@ export const AddExercise = ({ user, setExercises }) => {
           type='number'
           name='duration'
           defaultValue={0}
-          min={0}
+          min={1}
           max={360}
           onChange={e => setDuration(e.target.value)}
+          required
         />
         <br />
         <label htmlFor='note'>Note: </label>
