@@ -8,6 +8,13 @@ body {
   background-color: rgb(50, 50, 53);
 }
 
+input {
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+  font-size: 1em;
+}
+
 .App {
   display: flex;
   flex-direction: column;
@@ -19,7 +26,23 @@ body {
   }
 
   h1 {
-    font-size: 3em;
+    font-size: 2.5em;
+  }
+
+  button {
+    border-radius: 5px;
+    padding: 0.5rem;
+    font-size: 1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .add-exercise {
+    .form-field {
+      margin-bottom: 0.5rem;
+    }
+    button {
+      margin-right: 0.5rem;
+    }
   }
 }
 
@@ -35,7 +58,7 @@ body {
   }
 
   h1 {
-    font-size: 3em;
+    font-size: 2.5em;
   }
 
   form {
@@ -53,9 +76,8 @@ body {
 
     input,
     button {
-      border: none;
       border-radius: 5px;
-      padding: 0.75rem;
+      padding: 0.5rem;
       font-size: 1em;
     }
 
@@ -65,7 +87,6 @@ body {
 
     button {
       width: 80px;
-      border: 1px solid white;
     }
   }
 }

@@ -25,28 +25,32 @@ export const AddExercise = ({ user, setExercises }) => {
 
   if (isAdding) {
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='add-exercise'>
         <p>User: {user.username}</p>
         <br />
-        <label htmlFor='duration'>Duration: </label>
-        <input
-          type='number'
-          name='duration'
-          defaultValue={0}
-          min={1}
-          max={360}
-          onChange={e => setDuration(e.target.value)}
-          required
-        />
+        <div className='form-field'>
+          <label htmlFor='duration'>Duration: </label>
+          <input
+            type='number'
+            name='duration'
+            defaultValue={0}
+            min={1}
+            max={360}
+            onChange={e => setDuration(e.target.value)}
+            required
+          />
+        </div>
         <br />
-        <label htmlFor='note'>Note: </label>
-        <input
-          type='text'
-          name='note'
-          onChange={e => setNote(e.target.value)}
-        />
+        <div className='form-field'>
+          <label htmlFor='note'>Note: </label>
+          <input
+            type='text'
+            name='note'
+            onChange={e => setNote(e.target.value)}
+          />
+        </div>
         <br />
-        <button type='submit'>Add Exercise</button>
+        <button type='submit'>Add</button>
         <button onClick={() => setIsAdding(false)}>Cancel</button>
       </form>
     );

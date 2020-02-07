@@ -58,7 +58,6 @@ export const App = () => {
               setExercises={setExercises}
             />
 
-            <hr />
             <Link to='/login' onClick={handleLogout}>
               Logout
             </Link>

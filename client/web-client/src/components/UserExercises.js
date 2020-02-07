@@ -13,6 +13,7 @@ export const UserExercises = ({ user, exercises, setExercises }) => {
           setExercises={setExercises}
         />
       ))}
+      <hr />
       <AddExercise user={user} setExercises={setExercises} />
     </div>
   );
