@@ -8,6 +8,26 @@ body {
   background-color: #323235;
 }
 
+.App {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.App .container {
+  width: 100%;
+  max-width: 90vw;
+  margin: 0 auto;
+}
+
+.App h1 {
+  font-size: 3em;
+}
+
 .login,
 .register {
   display: -webkit-box;
@@ -31,7 +51,7 @@ body {
 
 .login h1,
 .register h1 {
-  font-size: 4em;
+  font-size: 3em;
 }
 
 .login form .form-field,

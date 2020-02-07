@@ -8,6 +8,21 @@ body {
   background-color: rgb(50, 50, 53);
 }
 
+.App {
+  display: flex;
+  flex-direction: column;
+
+  .container {
+    width: 100%;
+    max-width: 90vw;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 3em;
+  }
+}
+
 .login,
 .register {
   display: flex;
@@ -20,7 +35,7 @@ body {
   }
 
   h1 {
-    font-size: 4em;
+    font-size: 3em;
   }
 
   form {

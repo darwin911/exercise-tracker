@@ -48,19 +48,21 @@ export const App = () => {
     <Switch>
       <Route exact path='/'>
         <div className='App'>
-          <h1>Exercise Tracker</h1>
-          <hr />
+          <div className='container'>
+            <h1>Exercise Tracker</h1>
+            <hr />
 
-          <UserExercises
-            user={user}
-            exercises={exercises}
-            setExercises={setExercises}
-          />
+            <UserExercises
+              user={user}
+              exercises={exercises}
+              setExercises={setExercises}
+            />
 
-          <hr />
-          <Link to='/login' onClick={handleLogout}>
-            Logout
-          </Link>
+            <hr />
+            <Link to='/login' onClick={handleLogout}>
+              Logout
+            </Link>
+          </div>
         </div>
       </Route>
       <Route path='/login'>
