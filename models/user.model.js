@@ -43,7 +43,7 @@ userSchema.methods.toAuthJSON = async function() {
   };
 };
 
-userSchema.methods.toProfileJSON = async function() {
+userSchema.methods.toClient = async function() {
   return {
     id: this._id,
     username: this.username,
