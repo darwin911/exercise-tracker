@@ -57,7 +57,7 @@ router.route('/verify').post(async (req, res) => {
   try {
     const { id } = await verify(req.body.token);
     const user = await User.findById(id);
-    const userData = await user.toProfileJSON();
+    const userData = await user.toClient();
     res.json(userData);
   } catch (error) {
     console.log(error);
