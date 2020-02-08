@@ -16,9 +16,9 @@ export const Login = ({ setUser }) => {
     if (authenticatedUser) {
       localStorage.setItem('token', authenticatedUser.token);
       setUser(authenticatedUser);
-      history.push('/');
+      setIsLoading(false);
     }
-    setIsLoading(false);
+    history.push('/');
   };
 
   return (
