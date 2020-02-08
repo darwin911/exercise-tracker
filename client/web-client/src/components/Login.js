@@ -4,13 +4,13 @@ import { Link, useHistory } from 'react-router-dom';
 
 export const Login = ({ setUser }) => {
   let history = useHistory();
-
+  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = async e => {
     e.preventDefault();
-
+    setIsLoading(true);
     const authenticatedUser = await loginUser({ email, password });
 
     if (authenticatedUser) {
@@ -18,6 +18,7 @@ export const Login = ({ setUser }) => {
       setUser(authenticatedUser);
       history.push('/');
     }
+    setIsLoading(false);
   };
 
   return (
@@ -50,6 +51,7 @@ export const Login = ({ setUser }) => {
             />
           </div>
           <button>Submit</button>
+          {isLoading && <p>Loading...</p>}
         </form>
         <p>
           Don't have an account? <Link to='/register'>Register</Link>
