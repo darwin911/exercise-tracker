@@ -55,6 +55,10 @@ export const AddExercise = ({ user, setExercises }) => {
       </form>
     );
   } else {
-    return <button onClick={() => setIsAdding(true)}>Add Exercise</button>;
+    return (
+      <button className='btn' onClick={() => setIsAdding(true)}>
+        Add Exercise
+      </button>
+    );
   }
 };

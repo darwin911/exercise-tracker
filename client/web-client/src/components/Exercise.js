@@ -18,7 +18,9 @@ export const Exercise = ({ exercise, setExercises }) => {
       <p>Duration: {duration} mins</p>
       <p>Date: {moment(date).format('h:mm a | MMM Do')}</p>
       <p>Note: {note}</p>
-      <button onClick={() => handleDelete(_id)}>Delete</button>
+      <button className='btn delete' onClick={() => handleDelete(_id)}>
+        Delete
+      </button>
     </div>
   );
 };
