@@ -34,7 +34,7 @@ userSchema.methods.setPassword = async function(password) {
   this.passwordDigest = digest;
 };
 
-userSchema.methods.toJSON = async function() {
+userSchema.methods.toAuthJSON = async function() {
   return {
     id: this._id,
     username: this.username,
