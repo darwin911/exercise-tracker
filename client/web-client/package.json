@@ -7,6 +7,7 @@
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
+    "framer-motion": "^1.8.4",
     "moment": "^2.24.0",
     "normalize.css": "^8.0.1",
     "react": "^16.12.0",
@@ -18,7 +19,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deployDev": "npm run build && netlify deploy -d ./build -o",
+    "deployDev": "npm run build && cd build && echo '/login / \n/register /' >> _redirects && netlify deploy -d ./ -o",
     "deployProd": "npm run build && cd build && echo '/login / \n/register /' >> _redirects && netlify deploy --prod -d ./ -o"
   },
   "eslintConfig": {
