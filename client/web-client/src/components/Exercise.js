@@ -27,7 +27,9 @@ export const Exercise = ({ exercise }) => {
       <div className='exercise__left-container'>
         <p className='exercise__date'>{moment(date).format('MMM Do')}</p>
         <p className='exercise__time'>{moment(date).format('h:mm a')}</p>
-        <p className='exercise__duration'>{duration} mins</p>
+        <p className='exercise__duration'>
+          {duration} <span>mins</span>
+        </p>
         <p className='exercise__note'>
           <span role='img' aria-label='Note'>
             📝

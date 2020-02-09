@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { addExercise } from '../helper';
 import { AuthContext } from '../Store';
 import { ADD_EXERCISE } from '../constants';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export const AddExercise = () => {
   const [state, dispatch] = useContext(AuthContext);
@@ -33,8 +34,12 @@ export const AddExercise = () => {
 
   if (isAdding) {
     return (
-      <form onSubmit={handleSubmit} className='add-exercise'>
-        <div className='form-field'>
+      <motion.form
+        onSubmit={handleSubmit}
+        className='add-exercise'
+        initial={{ y: 0 }}
+        animate={{ y: 10 }}>
+        <div className='form-field duration'>
           <label htmlFor='duration'>Duration: </label>
           <input
             type='number'
@@ -46,7 +51,7 @@ export const AddExercise = () => {
             required
           />
         </div>
-        <div className='form-field'>
+        <div className='form-field note'>
           <label htmlFor='note'>Note: </label>
           <input
             type='text'
@@ -55,7 +60,7 @@ export const AddExercise = () => {
             required
           />
         </div>
-        <div className='form-field'>
+        <div className='form-field buttons-container'>
           <button className='btn add' type='submit' disabled={loading}>
             {loading ? <div className='loader' /> : 'Add'}
           </button>
@@ -66,13 +71,17 @@ export const AddExercise = () => {
             Cancel
           </button>
         </div>
-      </form>
+      </motion.form>
     );
   } else {
     return (
-      <button className='btn' onClick={() => setIsAdding(true)}>
+      <motion.button
+        className='btn'
+        onClick={() => setIsAdding(true)}
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}>
         Add Exercise
-      </button>
+      </motion.button>
     );
   }
 };
