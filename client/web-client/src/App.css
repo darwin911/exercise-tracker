@@ -78,10 +78,12 @@ a:hover {
   width: 100%;
   max-width: 90vw;
   margin: 0 auto;
+  padding-top: 1rem;
 }
 
 .App h1 {
   font-size: 2.5em;
+  margin: 0 0 0.5em 0;
 }
 
 .App .btn {
@@ -217,7 +219,7 @@ a {
       -ms-flex-pack: stretch;
           justify-content: stretch;
   border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .exercise:last-of-type {
