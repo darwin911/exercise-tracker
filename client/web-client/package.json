@@ -17,7 +17,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deployDev": "npm run build && netlify deploy -d ./build -o"
   },
   "eslintConfig": {
     "extends": "react-app"
