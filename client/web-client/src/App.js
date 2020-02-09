@@ -14,11 +14,6 @@ export const App = () => {
 
   const history = useHistory();
 
-  const loadExercises = async userId => {
-    const dbExercises = await getUserExercises(userId);
-    dispatch({ type: SET_EXERCISES, payload: dbExercises });
-  };
-
   useEffect(() => {
     const loadCredentials = async token => {
       const verifiedUser = await verifyToken({ token });
@@ -36,13 +31,20 @@ export const App = () => {
     } else {
       history.push('/login');
     }
-  }, [history]);
+  }, [history, dispatch]);
 
   useEffect(() => {
+    const loadExercises = async userId => {
+      const dbExercises = await getUserExercises(userId);
+      dispatch({ type: SET_EXERCISES, payload: dbExercises });
+    };
+
     if (user) {
+      console.log('loading exercises');
+
       loadExercises(user.id);
     }
-  }, [user]);
+  }, [user, dispatch]);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
