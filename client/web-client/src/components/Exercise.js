@@ -3,6 +3,7 @@ import { deleteExercise } from '../helper';
 import moment from 'moment';
 import { AuthContext } from '../Store';
 import { REMOVE_EXERCISE } from '../constants';
+import { motion } from 'framer-motion';
 
 export const Exercise = ({ exercise }) => {
   const dispatch = useContext(AuthContext)[1];
@@ -18,12 +19,15 @@ export const Exercise = ({ exercise }) => {
   };
 
   return (
-    <div className='exercise'>
+    <motion.div
+      className='exercise'
+      initial={{ y: 0 }}
+      animate={{ y: 10 }}
+      exit={{ x: '-100%' }}>
       <div className='exercise__left-container'>
+        <p className='exercise__date'>{moment(date).format('MMM Do')}</p>
+        <p className='exercise__time'>{moment(date).format('h:mm a')}</p>
         <p className='exercise__duration'>{duration} mins</p>
-        <p className='exercise__date'>
-          {moment(date).format('h:mm a | MMM Do')}
-        </p>
         <p className='exercise__note'>
           <span role='img' aria-label='Note'>
             📝
@@ -39,6 +43,6 @@ export const Exercise = ({ exercise }) => {
           {deleting ? <div className='loader' /> : 'Delete'}
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
