@@ -3,4 +3,4 @@ export const REGISTER = 'REGISTER';
 export const SET_USER = 'SET_USER';
 export const CLEAR_USER = 'CLEAR_USER';
 export const LOGOUT = 'LOGOUT';
-export const LOADING_USER = 'LOADING_USER';
+export const LOADING = 'LOADING_USER';

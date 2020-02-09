@@ -1,4 +1,4 @@
-import { SET_USER, CLEAR_USER, LOADING_USER } from './constants';
+import { SET_USER, CLEAR_USER, LOADING } from './constants';
 
 export const Reducer = (state, action) => {
   switch (action.type) {
@@ -13,7 +13,7 @@ export const Reducer = (state, action) => {
         ...state,
         user: null
       };
-    case LOADING_USER:
+    case LOADING:
       return {
         ...state,
         loading: true

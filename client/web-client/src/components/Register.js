@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { registerUser } from '../helper';
 import { Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../Store';
-import { SET_USER, LOADING_USER } from '../constants';
+import { SET_USER, LOADING } from '../constants';
 
 export const Register = () => {
   const [state, dispatch] = useContext(AuthContext);
@@ -14,7 +14,7 @@ export const Register = () => {
 
   const handleRegister = async e => {
     e.preventDefault();
-    dispatch({ type: LOADING_USER });
+    dispatch({ type: LOADING });
 
     const registeredUser = await registerUser({ username, email, password });
 
