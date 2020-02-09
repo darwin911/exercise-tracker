@@ -50,8 +50,12 @@ export const AddExercise = ({ user, setExercises }) => {
           />
         </div>
         <br />
-        <button type='submit'>Add</button>
-        <button onClick={() => setIsAdding(false)}>Cancel</button>
+        <button className='btn' type='submit'>
+          Add
+        </button>
+        <button className='btn delete' onClick={() => setIsAdding(false)}>
+          Cancel
+        </button>
       </form>
     );
   } else {

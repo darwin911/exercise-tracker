@@ -48,6 +48,13 @@ hr {
   }
 
   .add-exercise {
+    p {
+      margin: 0;
+    }
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+
     .form-field {
       margin-bottom: 0.5rem;
     }
