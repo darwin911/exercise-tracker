@@ -1,4 +1,11 @@
-import { SET_USER, CLEAR_USER, LOADING } from './constants';
+import {
+  SET_USER,
+  LOGOUT,
+  LOADING,
+  SET_EXERCISES,
+  REMOVE_EXERCISE,
+  ADD_EXERCISE
+} from './constants';
 
 export const Reducer = (state, action) => {
   switch (action.type) {
@@ -8,11 +15,32 @@ export const Reducer = (state, action) => {
         user: action.payload,
         loading: false
       };
-    case CLEAR_USER:
+    case LOGOUT:
       return {
         ...state,
-        user: null
+        user: null,
+        exercises: [],
+        loading: false
       };
+    case SET_EXERCISES:
+      return {
+        ...state,
+        exercises: action.payload,
+        loading: true
+      };
+    case ADD_EXERCISE:
+      return {
+        ...state,
+        exercises: [...state.exercises, action.payload]
+      };
+    case REMOVE_EXERCISE:
+      return {
+        ...state,
+        exercises: state.exercises.filter(
+          exercise => exercise._id !== action.payload
+        )
+      };
+
     case LOADING:
       return {
         ...state,
