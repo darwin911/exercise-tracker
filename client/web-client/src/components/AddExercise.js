@@ -54,15 +54,17 @@ export const AddExercise = () => {
             onChange={e => setNote(e.target.value)}
           />
         </div>
-        <button className='btn' type='submit' disabled={loading}>
-          {loading ? <div className='loader' /> : 'Add'}
-        </button>
-        <button
-          className='btn delete'
-          onClick={() => setIsAdding(false)}
-          disabled={loading}>
-          Cancel
-        </button>
+        <div className='form-field'>
+          <button className='btn add' type='submit' disabled={loading}>
+            {loading ? <div className='loader' /> : 'Add'}
+          </button>
+          <button
+            className='btn delete'
+            onClick={() => setIsAdding(false)}
+            disabled={loading}>
+            Cancel
+          </button>
+        </div>
       </form>
     );
   } else {

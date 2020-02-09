@@ -98,7 +98,6 @@ a:hover {
 }
 
 .App .add-exercise {
-  padding: 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -116,8 +115,14 @@ a:hover {
   margin-bottom: 0.5rem;
 }
 
-.App .add-exercise button {
+.App .add-exercise .btn {
   margin-right: 0.5rem;
+  font-weight: bolder;
+}
+
+.App .add-exercise .btn.add {
+  color: white;
+  background: #4caf50;
 }
 
 .login,
