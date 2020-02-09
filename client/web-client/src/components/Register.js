@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { registerUser } from '../helper';
 import { Link, useHistory } from 'react-router-dom';
+import { AuthContext } from '../Store';
+import { SET_USER } from '../constants';
 
-export const Register = ({ setUser }) => {
+export const Register = () => {
+  const [state, dispatch] = useContext(AuthContext);
+
   const history = useHistory();
 
   const [username, setUsername] = useState('');
@@ -16,7 +20,7 @@ export const Register = ({ setUser }) => {
 
     if (registeredUser) {
       localStorage.setItem('token', registeredUser.token);
-      setUser(registeredUser);
+      dispatch({ type: SET_USER, payload: registeredUser });
       history.push('/');
     }
   };

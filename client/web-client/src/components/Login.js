@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { loginUser } from '../helper';
 import { Link, useHistory } from 'react-router-dom';
+import { AuthContext } from '../Store';
+import { SET_USER } from '../constants';
 
-export const Login = ({ setUser }) => {
+export const Login = () => {
+  const [state, dispatch] = useContext(AuthContext);
+
   let history = useHistory();
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
@@ -11,11 +15,12 @@ export const Login = ({ setUser }) => {
   const handleLogin = async e => {
     e.preventDefault();
     setIsLoading(true);
+
     const authenticatedUser = await loginUser({ email, password });
 
     if (authenticatedUser) {
+      dispatch({ type: SET_USER, payload: authenticatedUser });
       localStorage.setItem('token', authenticatedUser.token);
-      setUser(authenticatedUser);
       setIsLoading(false);
     }
     history.push('/');
