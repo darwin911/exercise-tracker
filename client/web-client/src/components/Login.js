@@ -2,26 +2,25 @@ import React, { useState, useContext } from 'react';
 import { loginUser } from '../helper';
 import { Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../Store';
-import { SET_USER } from '../constants';
+import { SET_USER, LOADING_USER } from '../constants';
 
 export const Login = () => {
   const [state, dispatch] = useContext(AuthContext);
 
   let history = useHistory();
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = async e => {
     e.preventDefault();
-    setIsLoading(true);
+    dispatch({ type: LOADING_USER });
 
     const authenticatedUser = await loginUser({ email, password });
 
     if (authenticatedUser) {
       dispatch({ type: SET_USER, payload: authenticatedUser });
       localStorage.setItem('token', authenticatedUser.token);
-      setIsLoading(false);
     }
     history.push('/');
   };
@@ -56,7 +55,7 @@ export const Login = () => {
             />
           </div>
           <button>Submit</button>
-          {isLoading && <p>Loading...</p>}
+          {state.loading && <p>Loading...</p>}
         </form>
         <p>
           Don't have an account? <Link to='/register'>Register</Link>
