@@ -121,3 +121,24 @@ a:link {
 a:hover {
   color: rgba(rgb(116, 202, 252), 0.8);
 }
+
+.loader {
+  $size: 0.7em;
+  $borderSize: 0.25rem;
+  border: $borderSize solid #f3f3f3; /* Light grey */
+  border-top: $borderSize solid #344ddb; /* Blue */
+  border-radius: 50%;
+  width: $size;
+  height: $size;
+  margin: 0 auto;
+  animation: spin 0.4s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

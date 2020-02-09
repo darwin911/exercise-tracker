@@ -53,8 +53,9 @@ export const Login = () => {
               required
             />
           </div>
-          <button>Submit</button>
-          {state.loading && <p>Loading...</p>}
+          <button disabled={state.loading}>
+            {state.loading ? <div className='loader' /> : 'Submit'}
+          </button>
         </form>
         <p>
           Don't have an account? <Link to='/register'>Register</Link>

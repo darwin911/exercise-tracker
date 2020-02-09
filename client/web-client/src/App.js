@@ -40,8 +40,6 @@ export const App = () => {
     };
 
     if (user) {
-      console.log('loading exercises');
-
       loadExercises(user.id);
     }
   }, [user, dispatch]);

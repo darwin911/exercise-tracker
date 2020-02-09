@@ -66,8 +66,9 @@ export const Register = () => {
               required
             />
           </div>
-          <button>Submit</button>
-          {state.loading && <p>Loading...</p>}
+          <button disabled={state.loading}>
+            {state.loading ? <div className='loader' /> : 'Submit'}
+          </button>
         </form>
         <p>
           Already have an account? <Link to='/login'>Login!</Link>
