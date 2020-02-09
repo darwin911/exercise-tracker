@@ -31,14 +31,16 @@ export const Reducer = (state, action) => {
     case ADD_EXERCISE:
       return {
         ...state,
-        exercises: [...state.exercises, action.payload]
+        exercises: [...state.exercises, action.payload],
+        loading: false
       };
     case REMOVE_EXERCISE:
       return {
         ...state,
         exercises: state.exercises.filter(
           exercise => exercise._id !== action.payload
-        )
+        ),
+        loading: false
       };
 
     case LOADING:

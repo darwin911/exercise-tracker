@@ -11,9 +11,11 @@ export const AddExercise = () => {
   const [duration, setDuration] = useState(null);
   const [note, setNote] = useState('');
 
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async e => {
     e.preventDefault();
-
+    setLoading(true);
     const exerciseObj = {
       duration,
       userId: user.id,
@@ -26,6 +28,7 @@ export const AddExercise = () => {
 
     dispatch({ type: ADD_EXERCISE, payload: newExercise });
     setIsAdding(false);
+    setLoading(false);
   };
 
   if (isAdding) {
@@ -51,10 +54,13 @@ export const AddExercise = () => {
             onChange={e => setNote(e.target.value)}
           />
         </div>
-        <button className='btn' type='submit'>
-          Add
+        <button className='btn' type='submit' disabled={loading}>
+          {loading ? <div className='loader' /> : 'Add'}
         </button>
-        <button className='btn delete' onClick={() => setIsAdding(false)}>
+        <button
+          className='btn delete'
+          onClick={() => setIsAdding(false)}
+          disabled={loading}>
           Cancel
         </button>
       </form>
