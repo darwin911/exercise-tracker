@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { deleteExercise } from '../helper';
 import moment from 'moment';
 import { AuthContext } from '../Store';
-import { REMOVE_EXERCISE, LOADING } from '../constants';
+import { REMOVE_EXERCISE } from '../constants';
 
 export const Exercise = ({ exercise }) => {
   const dispatch = useContext(AuthContext)[1];
@@ -18,16 +18,22 @@ export const Exercise = ({ exercise }) => {
   };
 
   return (
-    <div>
-      <p>Duration: {duration} mins</p>
-      <p>Date: {moment(date).format('h:mm a | MMM Do')}</p>
-      <p>Note: {note}</p>
-      <button
-        className='btn delete'
-        onClick={() => handleDelete(_id)}
-        disabled={deleting}>
-        {deleting ? <div className='loader' /> : 'Delete'}
-      </button>
+    <div className='exercise'>
+      <div className='exercise__left-container'>
+        <p className='exercise__duration'>{duration} mins</p>
+        <p className='exercise__date'>
+          {moment(date).format('h:mm a | MMM Do')}
+        </p>
+        <p className='exercise__note'>📝 {note}</p>
+      </div>
+      <div className='exercise__right-container'>
+        <button
+          className='btn delete'
+          onClick={() => handleDelete(_id)}
+          disabled={deleting}>
+          {deleting ? <div className='loader' /> : 'Delete'}
+        </button>
+      </div>
     </div>
   );
 };

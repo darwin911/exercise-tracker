@@ -20,6 +20,36 @@ hr {
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+a:visited,
+a:link {
+  color: white;
+}
+
+a:hover {
+  color: rgba(rgb(116, 202, 252), 0.8);
+}
+
+.loader {
+  $size: 0.7em;
+  $borderSize: 0.25rem;
+  border: $borderSize solid #f3f3f3; /* Light grey */
+  border-top: $borderSize solid #344ddb; /* Blue */
+  border-radius: 50%;
+  width: $size;
+  height: $size;
+  margin: 0 auto;
+  animation: spin 0.4s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .App {
   display: flex;
   flex-direction: column;
@@ -113,32 +143,47 @@ a {
   transition: color 520ms cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-a:visited,
-a:link {
-  color: white;
-}
+.exercise {
+  display: flex;
+  justify-content: stretch;
+  // outline: 1px solid rgba(yellow, 0.2);
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
 
-a:hover {
-  color: rgba(rgb(116, 202, 252), 0.8);
-}
+  margin-bottom: 0.5rem;
 
-.loader {
-  $size: 0.7em;
-  $borderSize: 0.25rem;
-  border: $borderSize solid #f3f3f3; /* Light grey */
-  border-top: $borderSize solid #344ddb; /* Blue */
-  border-radius: 50%;
-  width: $size;
-  height: $size;
-  margin: 0 auto;
-  animation: spin 0.4s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
+  &:last-of-type {
+    border: none;
   }
-  100% {
-    transform: rotate(360deg);
+
+  &__duration,
+  &__date,
+  &__note {
+    margin: 0 0 0.5rem;
+  }
+
+  &__duration {
+    font-size: 2em;
+    font-weight: bolder;
+  }
+
+  &__date {
+    font-weight: 300;
+  }
+
+  &__note {
+    font-size: 0.8em;
+    font-style: italic;
+    color: #bbb;
+  }
+
+  &__left-container {
+    flex-grow: 2;
+  }
+
+  &__right-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
