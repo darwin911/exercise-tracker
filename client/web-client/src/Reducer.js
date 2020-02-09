@@ -26,7 +26,7 @@ export const Reducer = (state, action) => {
       return {
         ...state,
         exercises: action.payload,
-        loading: true
+        loading: false
       };
     case ADD_EXERCISE:
       return {

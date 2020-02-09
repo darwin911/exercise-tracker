@@ -6,7 +6,7 @@ import { Login } from './components/Login';
 import { Register } from './components/Register';
 import { Switch, Route, Link, useHistory } from 'react-router-dom';
 import { AuthContext } from './Store';
-import { SET_USER, SET_EXERCISES, LOGOUT } from './constants';
+import { SET_USER, SET_EXERCISES, LOGOUT, LOADING } from './constants';
 
 export const App = () => {
   const [state, dispatch] = useContext(AuthContext);
@@ -35,6 +35,7 @@ export const App = () => {
 
   useEffect(() => {
     const loadExercises = async userId => {
+      dispatch({ type: LOADING });
       const dbExercises = await getUserExercises(userId);
       dispatch({ type: SET_EXERCISES, payload: dbExercises });
     };
