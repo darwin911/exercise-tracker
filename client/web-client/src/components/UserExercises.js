@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Exercise } from './Exercise';
 import { AddExercise } from './AddExercise';
+import { AuthContext } from '../Store';
 
-export const UserExercises = ({ user, exercises, setExercises }) => {
+export const UserExercises = () => {
+  const state = useContext(AuthContext)[0];
+  const { user, exercises } = state;
+
   return (
     <div className='user-exercises'>
       {user && <h4>{user ? user.username : 'Guest'}'s Exercises</h4>}
       {exercises.map(exercise => (
-        <Exercise
-          key={exercise._id}
-          exercise={exercise}
-          setExercises={setExercises}
-        />
+        <Exercise key={exercise._id} exercise={exercise} />
       ))}
       <hr />
-      <AddExercise user={user} setExercises={setExercises} />
+      <AddExercise />
     </div>
   );
 };

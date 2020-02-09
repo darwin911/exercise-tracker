@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import './App.css';
 import { UserExercises } from './components/UserExercises';
 import { getUserExercises, verifyToken } from './helper';
@@ -6,18 +6,17 @@ import { Login } from './components/Login';
 import { Register } from './components/Register';
 import { Switch, Route, Link, useHistory } from 'react-router-dom';
 import { AuthContext } from './Store';
-import { CLEAR_USER, SET_USER } from './constants';
+import { SET_USER, SET_EXERCISES, LOGOUT } from './constants';
 
 export const App = () => {
   const [state, dispatch] = useContext(AuthContext);
   const { user } = state;
 
   const history = useHistory();
-  const [exercises, setExercises] = useState([]);
 
   const loadExercises = async userId => {
     const dbExercises = await getUserExercises(userId);
-    setExercises(dbExercises);
+    dispatch({ type: SET_EXERCISES, payload: dbExercises });
   };
 
   useEffect(() => {
@@ -47,7 +46,7 @@ export const App = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    dispatch({ type: CLEAR_USER });
+    dispatch({ type: LOGOUT });
   };
 
   return (
@@ -58,11 +57,7 @@ export const App = () => {
             <h1>Exercise Tracker</h1>
             <hr />
 
-            <UserExercises
-              user={user}
-              exercises={exercises}
-              setExercises={setExercises}
-            />
+            <UserExercises />
 
             <Link to='/login' onClick={handleLogout}>
               Logout

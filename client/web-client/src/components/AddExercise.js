@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { addExercise } from '../helper';
+import { AuthContext } from '../Store';
+import { ADD_EXERCISE } from '../constants';
 
-export const AddExercise = ({ user, setExercises }) => {
+export const AddExercise = () => {
+  const [state, dispatch] = useContext(AuthContext);
+  const { user } = state;
+
   const [isAdding, setIsAdding] = useState(false);
   const [duration, setDuration] = useState(null);
   const [note, setNote] = useState('');
@@ -19,15 +24,13 @@ export const AddExercise = ({ user, setExercises }) => {
 
     const newExercise = await addExercise(exerciseObj);
 
-    setExercises(prevState => [...prevState, newExercise]);
+    dispatch({ type: ADD_EXERCISE, payload: newExercise });
     setIsAdding(false);
   };
 
   if (isAdding) {
     return (
       <form onSubmit={handleSubmit} className='add-exercise'>
-        <p>User: {user.username}</p>
-        <br />
         <div className='form-field'>
           <label htmlFor='duration'>Duration: </label>
           <input
@@ -40,7 +43,6 @@ export const AddExercise = ({ user, setExercises }) => {
             required
           />
         </div>
-        <br />
         <div className='form-field'>
           <label htmlFor='note'>Note: </label>
           <input
@@ -49,7 +51,6 @@ export const AddExercise = ({ user, setExercises }) => {
             onChange={e => setNote(e.target.value)}
           />
         </div>
-        <br />
         <button className='btn' type='submit'>
           Add
         </button>
