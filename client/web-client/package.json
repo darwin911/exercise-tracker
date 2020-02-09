@@ -18,7 +18,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deployDev": "npm run build && netlify deploy -d ./build -o"
+    "deployDev": "npm run build && netlify deploy -d ./build -o",
+    "deployProd": "npm run build && cd build && echo '/login / \n/register /' >> _redirects && netlify deploy --prod -d ./ -o"
   },
   "eslintConfig": {
     "extends": "react-app"
