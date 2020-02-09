@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './App.css';
 import { UserExercises } from './components/UserExercises';
 import { getUserExercises, verifyToken } from './helper';
 import { Login } from './components/Login';
 import { Register } from './components/Register';
 import { Switch, Route, Link, useHistory } from 'react-router-dom';
+import { AuthContext } from './Store';
+import { CLEAR_USER, SET_USER } from './constants';
 
 export const App = () => {
+  const [state, dispatch] = useContext(AuthContext);
+  const { user } = state;
+
   const history = useHistory();
-  const [user, setUser] = useState(null);
   const [exercises, setExercises] = useState([]);
 
   const loadExercises = async userId => {
@@ -22,7 +26,7 @@ export const App = () => {
       if (!verifiedUser) {
         history.push('/login');
       } else {
-        setUser(verifiedUser);
+        dispatch({ type: SET_USER, payload: verifiedUser });
         history.push('/');
       }
     };
@@ -42,8 +46,8 @@ export const App = () => {
   }, [user]);
 
   const handleLogout = () => {
-    setUser(null);
     localStorage.removeItem('token');
+    dispatch({ type: CLEAR_USER });
   };
 
   return (
@@ -67,10 +71,10 @@ export const App = () => {
         </div>
       </Route>
       <Route path='/login'>
-        <Login setUser={setUser} />
+        <Login />
       </Route>
       <Route path='/register'>
-        <Register setUser={setUser} />
+        <Register />
       </Route>
     </Switch>
   );
