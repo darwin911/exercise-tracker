@@ -67,6 +67,7 @@ export const Register = () => {
             />
           </div>
           <button>Submit</button>
+          {state.loading && <p>Loading...</p>}
         </form>
         <p>
           Already have an account? <Link to='/login'>Login!</Link>
