@@ -52,6 +52,7 @@ export const AddExercise = () => {
             type='text'
             name='note'
             onChange={e => setNote(e.target.value)}
+            required
           />
         </div>
         <div className='form-field'>
