@@ -8,6 +8,17 @@ body {
   background-color: #323235;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  margin: 0;
+}
+
 input {
   border: none;
   border-radius: 5px;
@@ -17,7 +28,7 @@ input {
 
 hr {
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 a:visited,
@@ -83,7 +94,7 @@ a:hover {
 
 .App h1 {
   font-size: 2.5em;
-  margin: 0 0 0.5em 0;
+  margin: 0 0 0.25em 0;
 }
 
 .App .btn {
@@ -211,6 +222,43 @@ a {
   transition: color 520ms cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
+.user-exercises__summary {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  grid-row-gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.user-exercises__summary__heading {
+  color: white;
+}
+
+.user-exercises__summary__total-exercises, .user-exercises__summary__total-mins {
+  font-size: 2.25em;
+}
+
+.user-exercises__summary__total-exercises span, .user-exercises__summary__total-mins span {
+  font-size: 0.5em;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.user-exercises__summary__total-exercises {
+  color: #3ec54a;
+  -ms-grid-column: 2;
+  grid-column: 2;
+  -ms-grid-row: 2;
+  grid-row: 2;
+}
+
+.user-exercises__summary__total-mins {
+  color: grey;
+  -ms-grid-column: 1;
+  grid-column: 1;
+}
+
 .exercise {
   max-width: 400px;
   display: -webkit-box;
@@ -223,10 +271,6 @@ a {
   margin-bottom: 1.5rem;
 }
 
-.exercise:last-of-type {
-  border: none;
-}
-
 .exercise__duration, .exercise__date, .exercise__time, .exercise__note {
   margin: 0;
 }
@@ -235,7 +279,7 @@ a {
   -ms-grid-row: 1;
   -ms-grid-row-span: 2;
   grid-row: 1/3;
-  font-size: 2em;
+  font-size: 1.6em;
   font-weight: bolder;
 }
 
