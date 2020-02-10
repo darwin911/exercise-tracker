@@ -42,7 +42,11 @@ export const Exercise = ({ exercise }) => {
           className='btn delete'
           onClick={() => handleDelete(_id)}
           disabled={deleting}>
-          {deleting ? <div className='loader' /> : 'Delete'}
+          {deleting ? (
+            <div className='loader' />
+          ) : (
+            <i style={{ fontStyle: 'normal' }}>&#x2212;</i>
+          )}
         </button>
       </div>
     </motion.div>
