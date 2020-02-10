@@ -34,6 +34,11 @@ input {
   font-size: 1em;
 }
 
+button {
+  background: #f3f3f3;
+  border: none;
+}
+
 hr {
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
@@ -86,7 +91,6 @@ a:hover {
   }
 
   .btn {
-    border: none;
     border-radius: 4px;
     padding: 0.5rem;
     font-size: 0.8em;
@@ -203,6 +207,7 @@ a {
 
   &__heading {
     color: white;
+    grid-column: 1 / -1;
   }
 
   &__total-exercises,
@@ -218,13 +223,10 @@ a {
 
   &__total-exercises {
     color: $green-alt;
-    grid-column: 2;
-    grid-row: 2;
   }
 
   &__total-mins {
     color: grey;
-    grid-column: 1;
   }
 }
 
