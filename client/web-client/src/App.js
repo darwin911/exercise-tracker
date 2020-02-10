@@ -4,9 +4,10 @@ import { UserExercises } from './components/UserExercises';
 import { getUserExercises, verifyToken } from './helper';
 import { Login } from './components/Login';
 import { Register } from './components/Register';
-import { Switch, Route, Link, useHistory } from 'react-router-dom';
+import { Header } from './components/Header';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import { AuthContext } from './Store';
-import { SET_USER, SET_EXERCISES, LOGOUT, LOADING } from './constants';
+import { SET_USER, SET_EXERCISES, LOADING } from './constants';
 
 export const App = () => {
   const [state, dispatch] = useContext(AuthContext);
@@ -45,25 +46,15 @@ export const App = () => {
     }
   }, [user, dispatch]);
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    dispatch({ type: LOGOUT });
-  };
-
   return (
     <Switch>
       <Route exact path='/'>
         <div className='App'>
-          <div className='container'>
-            <header>
-              <h1 className='main-heading'>Exercise Tracker</h1>
-              <hr />
-              <Link to='/login' onClick={handleLogout} className='btn logout'>
-                Logout
-              </Link>
-            </header>
+          <main className='container'>
+            <Header dispatch={dispatch} />
+            <hr />
             <UserExercises />
-          </div>
+          </main>
         </div>
       </Route>
       <Route path='/login'>
