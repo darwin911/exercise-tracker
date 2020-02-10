@@ -22,6 +22,11 @@ span {
   margin: 0;
 }
 
+input,
+button {
+  font-family: inherit;
+}
+
 input {
   border: none;
   border-radius: 5px;
@@ -75,7 +80,7 @@ a:hover {
     padding-top: 1rem;
   }
 
-  h1 {
+  .main-heading {
     font-size: 2.5em;
     margin: 0 0 0.25em 0;
   }
@@ -83,7 +88,7 @@ a:hover {
   .btn {
     border: none;
     border-radius: 4px;
-    padding: 0.45rem;
+    padding: 0.5rem;
     font-size: 0.8em;
     margin-bottom: 0.5rem;
 
@@ -91,27 +96,50 @@ a:hover {
       background: crimson;
       color: white;
     }
+
+    &.logout {
+      display: inline-block;
+
+      text-decoration: none;
+      background: rgb(88, 88, 88);
+      padding: 0.5rem;
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.45);
+    }
+  }
+}
+
+.add-exercise {
+  p {
+    margin: 0;
   }
 
-  .add-exercise {
-    p {
-      margin: 0;
+  display: flex;
+  flex-direction: column;
+
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+  .form-field {
+    margin-bottom: 0.75rem;
+
+    input {
+      color: white;
+      padding: 0rem 0.2rem 0.1rem;
+      background: none;
+      border-radius: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     }
+  }
 
-    display: flex;
-    flex-direction: column;
+  .btn {
+    margin-right: 0.5rem;
+    font-weight: bolder;
 
-    .form-field {
-      margin-bottom: 0.5rem;
-    }
-    .btn {
-      margin-right: 0.5rem;
-      font-weight: bolder;
-
-      &.add {
-        color: white;
-        background: $green;
-      }
+    &.add {
+      color: white;
+      background: $green;
     }
   }
 }
@@ -129,6 +157,7 @@ a:hover {
 
   h1 {
     font-size: 2.5em;
+    margin: 1.75rem 0;
   }
 
   form {
@@ -157,6 +186,7 @@ a:hover {
 
     button {
       width: 80px;
+      margin-bottom: 1rem;
     }
   }
 }

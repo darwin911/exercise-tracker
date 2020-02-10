@@ -55,14 +55,14 @@ export const App = () => {
       <Route exact path='/'>
         <div className='App'>
           <div className='container'>
-            <h1>Exercise Tracker</h1>
-            <hr />
-
+            <header>
+              <h1 className='main-heading'>Exercise Tracker</h1>
+              <hr />
+              <Link to='/login' onClick={handleLogout} className='btn logout'>
+                Logout
+              </Link>
+            </header>
             <UserExercises />
-
-            <Link to='/login' onClick={handleLogout}>
-              Logout
-            </Link>
           </div>
         </div>
       </Route>

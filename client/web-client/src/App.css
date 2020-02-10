@@ -19,6 +19,11 @@ span {
   margin: 0;
 }
 
+input,
+button {
+  font-family: inherit;
+}
+
 input {
   border: none;
   border-radius: 5px;
@@ -92,7 +97,7 @@ a:hover {
   padding-top: 1rem;
 }
 
-.App h1 {
+.App .main-heading {
   font-size: 2.5em;
   margin: 0 0 0.25em 0;
 }
@@ -100,7 +105,7 @@ a:hover {
 .App .btn {
   border: none;
   border-radius: 4px;
-  padding: 0.45rem;
+  padding: 0.5rem;
   font-size: 0.8em;
   margin-bottom: 0.5rem;
 }
@@ -110,7 +115,16 @@ a:hover {
   color: white;
 }
 
-.App .add-exercise {
+.App .btn.logout {
+  display: inline-block;
+  text-decoration: none;
+  background: #585858;
+  padding: 0.5rem;
+  -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.45);
+          box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.45);
+}
+
+.add-exercise {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -118,22 +132,34 @@ a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
 }
 
-.App .add-exercise p {
+.add-exercise p {
   margin: 0;
 }
 
-.App .add-exercise .form-field {
-  margin-bottom: 0.5rem;
+.add-exercise .form-field {
+  margin-bottom: 0.75rem;
 }
 
-.App .add-exercise .btn {
+.add-exercise .form-field input {
+  color: white;
+  padding: 0rem 0.2rem 0.1rem;
+  background: none;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.add-exercise .btn {
   margin-right: 0.5rem;
   font-weight: bolder;
 }
 
-.App .add-exercise .btn.add {
+.add-exercise .btn.add {
   color: white;
   background: #4caf50;
 }
@@ -162,6 +188,7 @@ a:hover {
 .login h1,
 .register h1 {
   font-size: 2.5em;
+  margin: 1.75rem 0;
 }
 
 .login form .form-field,
@@ -215,6 +242,7 @@ a:hover {
 .login form button,
 .register form button {
   width: 80px;
+  margin-bottom: 1rem;
 }
 
 a {
