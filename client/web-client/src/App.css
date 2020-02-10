@@ -39,6 +39,8 @@ button {
 hr {
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.8);
+          box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.8);
 }
 
 a:visited,
@@ -46,21 +48,26 @@ a:link {
   color: white;
 }
 
+a {
+  -webkit-transition: color 520ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: color 520ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
 a:hover {
-  color: rgba(116, 202, 252, 0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .loader {
-  border: 0.25rem solid #f3f3f3;
-  /* Light grey */
-  border-top: 0.25rem solid #344ddb;
-  /* Blue */
+  border: 0.2em solid rgba(255, 255, 255, 0.8);
+  /* white */
+  border-top: 0.2em solid rgba(22, 109, 0, 0.575);
+  /* black tint */
   border-radius: 50%;
-  width: 0.7em;
-  height: 0.7em;
+  width: 1em;
+  height: 1em;
   margin: 0 auto;
-  -webkit-animation: spin 0.4s linear infinite;
-          animation: spin 0.4s linear infinite;
+  -webkit-animation: spin 0.8s linear infinite;
+          animation: spin 0.8s linear infinite;
 }
 
 @-webkit-keyframes spin {
@@ -99,12 +106,29 @@ a:hover {
   width: 100%;
   max-width: 90vw;
   margin: 0 auto;
-  padding-top: 1rem;
+  padding-top: 2em;
+}
+
+.App .header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .App .main-heading {
   font-size: 2.5em;
-  margin: 0 0 0.25em 0;
+  margin: 0;
+  font-weight: 300;
+}
+
+.App .main-heading span {
+  font-weight: bold;
 }
 
 .App .btn {
@@ -114,58 +138,37 @@ a:hover {
   margin-bottom: 0.5rem;
 }
 
+.App .btn.toggle-form {
+  display: block;
+  margin-left: auto;
+}
+
 .App .btn.delete {
   background: crimson;
   color: white;
+  font-size: 1rem;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-weight: 900;
+  -webkit-box-shadow: 0px 0px 6px -1px rgba(0, 0, 0, 0.8), 0px 0px 12px 0px rgba(0, 0, 0, 0.35);
+          box-shadow: 0px 0px 6px -1px rgba(0, 0, 0, 0.8), 0px 0px 12px 0px rgba(0, 0, 0, 0.35);
 }
 
 .App .btn.logout {
-  display: inline-block;
+  -webkit-transition: 200ms;
+  transition: 200ms;
   text-decoration: none;
-  background: #585858;
+  background: rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(0, 0, 0, 0.25);
   padding: 0.5rem;
-  -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.45);
-          box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.45);
-}
-
-.add-exercise {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 0.5rem;
-  padding: 1rem;
-  margin-bottom: 1rem;
-}
-
-.add-exercise p {
+  -webkit-box-shadow: 1px 1px 3px -1px rgba(0, 0, 0, 0.45);
+          box-shadow: 1px 1px 3px -1px rgba(0, 0, 0, 0.45);
+  border-radius: 8px;
   margin: 0;
-}
-
-.add-exercise .form-field {
-  margin-bottom: 0.75rem;
-}
-
-.add-exercise .form-field input {
-  color: white;
-  padding: 0rem 0.2rem 0.1rem;
-  background: none;
-  border-radius: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-.add-exercise .btn {
-  margin-right: 0.5rem;
-  font-weight: bolder;
-}
-
-.add-exercise .btn.add {
-  color: white;
-  background: #4caf50;
 }
 
 .login,
@@ -249,43 +252,6 @@ a:hover {
   margin-bottom: 1rem;
 }
 
-a {
-  -webkit-transition: color 520ms cubic-bezier(0.075, 0.82, 0.165, 1);
-  transition: color 520ms cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-
-.user-exercises__summary {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
-  grid-row-gap: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.user-exercises__summary__heading {
-  color: white;
-  grid-column: 1 / -1;
-}
-
-.user-exercises__summary__total-exercises, .user-exercises__summary__total-mins {
-  font-size: 2.25em;
-}
-
-.user-exercises__summary__total-exercises span, .user-exercises__summary__total-mins span {
-  font-size: 0.5em;
-  text-transform: uppercase;
-  font-weight: 300;
-}
-
-.user-exercises__summary__total-exercises {
-  color: #3ec54a;
-}
-
-.user-exercises__summary__total-mins {
-  color: grey;
-}
-
 .exercise {
   max-width: 400px;
   display: -ms-grid;
@@ -354,5 +320,76 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.user-exercises__summary {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  grid-row-gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.user-exercises__summary__heading {
+  color: white;
+  grid-column: 1 / -1;
+}
+
+.user-exercises__summary__total-exercises, .user-exercises__summary__total-mins {
+  font-size: 2.25em;
+}
+
+.user-exercises__summary__total-exercises span, .user-exercises__summary__total-mins span {
+  font-size: 0.5em;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.user-exercises__summary__total-exercises {
+  color: #3ec54a;
+}
+
+.user-exercises__summary__total-mins {
+  color: grey;
+}
+
+.add-exercise {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.add-exercise p {
+  margin: 0;
+}
+
+.add-exercise .form-field {
+  margin-bottom: 0.75rem;
+}
+
+.add-exercise .form-field input {
+  color: white;
+  padding: 0rem 0.2rem 0.1rem;
+  background: none;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.add-exercise .btn {
+  margin-right: 0.5rem;
+}
+
+.add-exercise .btn.add {
+  color: white;
+  background: #4caf50;
 }
 /*# sourceMappingURL=App.css.map */

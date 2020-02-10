@@ -1,0 +1,48 @@
+// Login and Register
+
+.login,
+.register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .container {
+    width: 100%;
+    max-width: 90vw;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 2.5em;
+    margin: 1.75rem 0;
+  }
+
+  form {
+    .form-field {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      display: block;
+      font-size: 1.25em;
+      margin-bottom: 0.5rem;
+    }
+
+    input,
+    button {
+      border-radius: 5px;
+      padding: 0.5rem;
+      font-size: 1em;
+    }
+
+    input::placeholder {
+      color: rgba(0, 0, 0, 0.45);
+    }
+
+    button {
+      width: 80px;
+      margin-bottom: 1rem;
+    }
+  }
+}
