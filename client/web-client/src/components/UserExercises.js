@@ -22,12 +22,14 @@ export const UserExercises = () => {
           totalExercises={exercises.length}
           totalExerciseMins={totalExerciseMins}
         />
+        <hr />
         <AnimatePresence>
           {exercises.map(exercise => (
             <Exercise key={exercise._id} exercise={exercise} />
           ))}
         </AnimatePresence>
         <AddExercise />
+        <hr />
       </div>
     );
   } else {
