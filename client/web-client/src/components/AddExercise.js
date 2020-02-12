@@ -4,6 +4,8 @@ import { AuthContext } from '../Store';
 import { ADD_EXERCISE } from '../constants';
 import { motion } from 'framer-motion';
 
+const exerciseTypes = ['Gym', 'Run', 'Yoga'];
+
 export const AddExercise = () => {
   const [state, dispatch] = useContext(AuthContext);
   const { user } = state;
@@ -67,10 +69,12 @@ export const AddExercise = () => {
         <div className='form-field type'>
           <label htmlFor='type'>Type:</label>
           <select onChange={e => setType(e.target.value)}>
-            <option value={null}>----Select----</option>
-            <option value='gym'>Gym</option>
-            <option value='run'>Run</option>
-            <option value='yoga'>Yoga</option>
+            <option value={null}>Select</option>
+            {exerciseTypes.map(option => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </select>
         </div>
         <div className='form-field buttons-container'>

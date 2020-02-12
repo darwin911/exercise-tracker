@@ -15,12 +15,16 @@ h4,
 h5,
 h6,
 p,
-span {
+span,
+select,
+option {
   margin: 0;
 }
 
 input,
-button {
+button,
+select,
+option {
   font-family: inherit;
 }
 
@@ -29,6 +33,17 @@ input {
   border-radius: 5px;
   padding: 0.5rem;
   font-size: 1em;
+}
+
+select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: none;
+  border: 1px solid white;
+  text-align: center;
+  color: white;
+  padding: 0.25em 1em;
 }
 
 button {
@@ -295,6 +310,8 @@ a:hover {
   font-style: italic;
   color: #bbb;
   margin: 0.5rem 0;
+  -ms-grid-column: 1;
+  grid-column: 1;
 }
 
 .exercise__left-container {

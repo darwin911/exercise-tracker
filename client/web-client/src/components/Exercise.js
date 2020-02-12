@@ -9,7 +9,7 @@ export const Exercise = ({ exercise }) => {
   const dispatch = useContext(AuthContext)[1];
 
   const [deleting, setDeleting] = useState(false);
-  const { _id, note, duration, date } = exercise;
+  const { _id, note, duration, date, type } = exercise;
 
   const handleDelete = async id => {
     setDeleting(true);
@@ -30,6 +30,11 @@ export const Exercise = ({ exercise }) => {
         <p className='exercise__duration'>
           {duration} <span>mins</span>
         </p>
+        {type && (
+          <p className='exercise__type'>
+            {type} <span></span>
+          </p>
+        )}
         <p className='exercise__note'>
           <span role='img' aria-label='Note'>
             📝
