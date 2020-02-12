@@ -44,7 +44,6 @@ export const Reducer = (state, action) => {
         loading: false
       };
     case TOGGLE_MODAL:
-      console.log(state);
       return {
         ...state,
         modalOpen: !state.modalOpen
