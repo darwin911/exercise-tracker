@@ -1,13 +1,13 @@
 import React, { useEffect, useContext } from 'react';
 import './App.css';
-import { UserExercises } from './components/UserExercises';
+import { SET_USER, SET_EXERCISES, LOADING } from './constants';
 import { getUserExercises, verifyToken } from './helper';
-import { Login } from './components/Login';
-import { Register } from './components/Register';
-import { Header } from './components/Header';
 import { Switch, Route, useHistory } from 'react-router-dom';
 import { AuthContext } from './Store';
-import { SET_USER, SET_EXERCISES, LOADING } from './constants';
+import { Header } from './components/Header';
+import { Login } from './components/Login';
+import { Register } from './components/Register';
+import { UserExercises } from './components/UserExercises';
 
 export const App = () => {
   const [state, dispatch] = useContext(AuthContext);
