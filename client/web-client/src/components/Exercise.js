@@ -23,7 +23,7 @@ export const Exercise = ({ exercise }) => {
       className='exercise'
       initial={{ y: 0 }}
       animate={{ y: 10 }}
-      exit={{ x: '-100%' }}>
+      exit={{ x: '-100%', height: 0, opacity: 0 }}>
       <div className='exercise__left-container'>
         <p className='exercise__date'>{moment(date).format('MMM Do')}</p>
         <p className='exercise__time'>{moment(date).format('h:mm a')}</p>

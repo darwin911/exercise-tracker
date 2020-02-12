@@ -90,17 +90,16 @@
 
 .add-exercise {
   display: grid;
-  width: 800px;
-  max-width: 80vw;
+  width: 400px;
+  max-width: 75vw;
 
   display: flex;
   flex-direction: column;
 
-  background: rgb(233, 233, 233);
+  background: hsl(0, 0%, 99%);
   color: black;
   border-radius: 0.25rem;
-  padding: 1rem;
-  margin-bottom: 1rem;
+  padding: 2rem;
 
   &__modal {
     color: black;
@@ -116,21 +115,54 @@
       transparent -40%,
       rgba(0, 0, 0, 0.3)
     );
+
+    .divider {
+      width: 100%;
+      border-bottom-color: rgba(0, 0, 0, 0.15);
+      box-shadow: 0px 1px 3px -1px rgba(0, 0, 0, 0.2);
+    }
   }
 
   select {
-    color: black;
-    font-size: 1em;
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 0.85em;
     border-color: currentColor;
   }
 
   .form-field {
     color: black;
     margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
 
-    input {
-      padding: 0.2rem 0.25rem;
-      background: rgba(0, 0, 0, 0.1);
+    label {
+      flex-grow: 2;
+      font-weight: 700;
+      line-height: 2;
+      margin-right: 0.25rem;
+    }
+
+    input,
+    select {
+      flex-grow: 1;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      font-size: 0.8em;
+      line-height: 2;
+      padding: 0 0 0 0.25rem;
+      margin-right: 0.25rem;
+      background: rgba(0, 0, 0, 0.025);
+    }
+
+    &.duration {
+      position: relative;
+      input {
+        max-width: 70px;
+      }
+      span {
+        color: rgba(0, 0, 0, 0.2);
+        position: absolute;
+        right: 1.5rem;
+      }
     }
   }
 
@@ -142,6 +174,15 @@
     &.add {
       color: white;
       background: $green;
+    }
+  }
+
+  .buttons-container {
+    margin-bottom: 0;
+    button {
+      flex-grow: 1;
+      font-size: 1em;
+      font-weight: bold;
     }
   }
 }

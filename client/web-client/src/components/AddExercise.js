@@ -10,11 +10,10 @@ const exerciseTypes = ['Gym', 'Run', 'Yoga'];
 export const AddExercise = () => {
   const [state, dispatch] = useContext(AuthContext);
   const { user, modalOpen } = state;
-  console.log(modalOpen);
 
   const [duration, setDuration] = useState(0);
   const [note, setNote] = useState('');
-  const [type, setType] = useState(null);
+  const [type, setType] = useState(exerciseTypes[0]);
 
   const [loading, setLoading] = useState(false);
 
@@ -32,7 +31,11 @@ export const AddExercise = () => {
     };
 
     const newExercise = await addExercise(exerciseObj);
-    dispatch({ type: ADD_EXERCISE, payload: newExercise });
+
+    if (newExercise) {
+      dispatch({ type: ADD_EXERCISE, payload: newExercise });
+    }
+
     dispatch({ type: TOGGLE_MODAL });
     resetForm();
   };
@@ -48,6 +51,12 @@ export const AddExercise = () => {
     console.log('close modal called');
     dispatch({ type: TOGGLE_MODAL });
   };
+
+  const handleSelectChange = value => {
+    console.log(value);
+    setType(value);
+  };
+
   if (modalOpen) {
     return createPortal(
       <aside className='add-exercise__modal'>
@@ -55,20 +64,19 @@ export const AddExercise = () => {
           className='add-exercise'
           initial={{ y: 0 }}
           animate={{ y: 10 }}>
-          <h2 style={{ marginBottom: '1rem' }}>Add Exercise: </h2>
+          <h2>Log New Exercise</h2>
+          <hr className='divider' />
+          <div className='form-field type'>
+            <label htmlFor='type'>Type:</label>
+            <select onChange={e => handleSelectChange(e.target.value)}>
+              {exerciseTypes.map(option => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </div>
           <div className='form-field duration'>
-            <div className='form-field type'>
-              <select
-                onChange={e => setType(e.target.value)}
-                defaultValue={type}>
-                <option disabled>Select Exercise Type</option>
-                {exerciseTypes.map(option => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            </div>
             <label htmlFor='duration'>Duration: </label>
             <input
               inputMode='numeric'
@@ -80,11 +88,12 @@ export const AddExercise = () => {
               required
               value={duration}
             />
+            <span>mins</span>
           </div>
           <div className='form-field note'>
             <label htmlFor='note'>Note: </label>
             <input
-              placeholder='Ran with Jimmy around park.'
+              placeholder='Felt great!'
               type='text'
               name='note'
               onChange={e => setNote(e.target.value)}
