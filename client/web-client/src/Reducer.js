@@ -4,7 +4,8 @@ import {
   LOADING,
   SET_EXERCISES,
   REMOVE_EXERCISE,
-  ADD_EXERCISE
+  ADD_EXERCISE,
+  TOGGLE_MODAL
 } from './constants';
 
 export const Reducer = (state, action) => {
@@ -41,6 +42,12 @@ export const Reducer = (state, action) => {
           exercise => exercise._id !== action.payload
         ),
         loading: false
+      };
+    case TOGGLE_MODAL:
+      console.log(state);
+      return {
+        ...state,
+        modalOpen: !state.modalOpen
       };
 
     case LOADING:

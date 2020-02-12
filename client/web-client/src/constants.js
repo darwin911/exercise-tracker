@@ -7,3 +7,5 @@ export const REMOVE_EXERCISE = 'REMOVE_EXERCISE';
 export const CLEAR_USER = 'CLEAR_USER';
 export const LOGOUT = 'LOGOUT';
 export const LOADING = 'LOADING_USER';
+
+export const TOGGLE_MODAL = 'TOGGLE_MODAL';

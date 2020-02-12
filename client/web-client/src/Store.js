@@ -4,7 +4,8 @@ import { Reducer } from './Reducer';
 const initialState = {
   user: null,
   loading: false,
-  exercises: []
+  exercises: [],
+  modalOpen: false
 };
 
 export const AuthContext = createContext(initialState);
