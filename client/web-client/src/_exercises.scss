@@ -89,32 +89,55 @@
 }
 
 .add-exercise {
-  p {
-    margin: 0;
-  }
+  display: grid;
+  width: 800px;
+  max-width: 80vw;
 
   display: flex;
   flex-direction: column;
 
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 0.5rem;
+  background: rgb(233, 233, 233);
+  color: black;
+  border-radius: 0.25rem;
   padding: 1rem;
   margin-bottom: 1rem;
 
+  &__modal {
+    color: black;
+    display: grid;
+    place-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      ellipse at center,
+      transparent -40%,
+      rgba(0, 0, 0, 0.3)
+    );
+  }
+
+  select {
+    color: black;
+    font-size: 1em;
+    border-color: currentColor;
+  }
+
   .form-field {
+    color: black;
     margin-bottom: 0.75rem;
 
     input {
-      color: white;
-      padding: 0rem 0.2rem 0.1rem;
-      background: none;
-      border-radius: 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 0.2rem 0.25rem;
+      background: rgba(0, 0, 0, 0.1);
     }
   }
 
   .btn {
     margin-right: 0.5rem;
+    padding: 0.4rem;
+    border-radius: 4px;
 
     &.add {
       color: white;

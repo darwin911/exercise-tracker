@@ -117,6 +117,11 @@ a:hover {
           flex-direction: column;
 }
 
+.App.modal-open {
+  -webkit-filter: blur(2px) grayscale(60%);
+          filter: blur(2px) grayscale(60%);
+}
+
 .App .container {
   width: 90vw;
   max-width: 1024px;
@@ -372,6 +377,10 @@ a:hover {
 }
 
 .add-exercise {
+  display: -ms-grid;
+  display: grid;
+  width: 800px;
+  max-width: 80vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -379,30 +388,46 @@ a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 0.5rem;
+  background: #e9e9e9;
+  color: black;
+  border-radius: 0.25rem;
   padding: 1rem;
   margin-bottom: 1rem;
 }
 
-.add-exercise p {
-  margin: 0;
+.add-exercise__modal {
+  color: black;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, transparent -40%, rgba(0, 0, 0, 0.3));
+}
+
+.add-exercise select {
+  color: black;
+  font-size: 1em;
+  border-color: currentColor;
 }
 
 .add-exercise .form-field {
+  color: black;
   margin-bottom: 0.75rem;
 }
 
 .add-exercise .form-field input {
-  color: white;
-  padding: 0rem 0.2rem 0.1rem;
-  background: none;
-  border-radius: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 0.2rem 0.25rem;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .add-exercise .btn {
   margin-right: 0.5rem;
+  padding: 0.4rem;
+  border-radius: 4px;
 }
 
 .add-exercise .btn.add {

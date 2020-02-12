@@ -8,10 +8,11 @@ import { Header } from './components/Header';
 import { Login } from './components/Login';
 import { Register } from './components/Register';
 import { UserExercises } from './components/UserExercises';
+import { AddExercise } from './components/AddExercise';
 
 export const App = () => {
   const [state, dispatch] = useContext(AuthContext);
-  const { user } = state;
+  const { user, modalOpen } = state;
 
   const history = useHistory();
 
@@ -49,11 +50,12 @@ export const App = () => {
   return (
     <Switch>
       <Route exact path='/'>
-        <div className='App'>
+        <div className={`App ${modalOpen && 'modal-open'}`}>
           <main className='container'>
             <Header dispatch={dispatch} />
             <hr />
             <UserExercises />
+            <AddExercise />
           </main>
         </div>
       </Route>

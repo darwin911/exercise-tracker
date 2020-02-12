@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { TOGGLE_MODAL } from '../constants';
 import { Exercise } from './Exercise';
-import { AddExercise } from './AddExercise';
 import { ExercisesSummary } from './ExercisesSummary';
 import { AuthContext } from '../Store';
 import { AnimatePresence } from 'framer-motion';
 
 export const UserExercises = () => {
-  const state = useContext(AuthContext)[0];
+  const [state, dispatch] = useContext(AuthContext);
   const { user, exercises, loading } = state;
   const [totalMins, setTotalMins] = useState(0);
 
@@ -15,6 +15,10 @@ export const UserExercises = () => {
       exercises.reduce((total, exercise) => total + exercise.duration, 0)
     );
   }, [exercises]);
+
+  const toggleModal = () => {
+    dispatch({ type: TOGGLE_MODAL });
+  };
 
   if (!loading) {
     return (
@@ -30,11 +34,17 @@ export const UserExercises = () => {
             <Exercise key={exercise._id} exercise={exercise} />
           ))}
         </AnimatePresence>
-        <AddExercise />
+
         <hr />
+        <button className='btn toggle-form' onClick={toggleModal}>
+          Add Exercise
+        </button>
       </div>
     );
   } else {
     return <div className='loader'></div>;
   }
 };
+
+// initial={{ opacity: 0, y: -10 }}
+//           animate={{ opacity: 1, y: 0 }}

@@ -106,6 +106,10 @@ a:hover {
   display: flex;
   flex-direction: column;
 
+  &.modal-open {
+    filter: blur(2px) grayscale(60%);
+  }
+
   .container {
     width: 90vw;
     max-width: 1024px;
