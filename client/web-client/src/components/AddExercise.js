@@ -44,6 +44,17 @@ export const AddExercise = () => {
         initial={{ y: 0 }}
         animate={{ y: 10 }}>
         <div className='form-field duration'>
+          <div className='form-field type'>
+            <label htmlFor='type'>Type:</label>
+            <select onChange={e => setType(e.target.value)}>
+              <option value={null}>Select</option>
+              {exerciseTypes.map(option => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </div>
           <label htmlFor='duration'>Duration: </label>
           <input
             placeholder={0}
@@ -65,17 +76,6 @@ export const AddExercise = () => {
             required
             value={note}
           />
-        </div>
-        <div className='form-field type'>
-          <label htmlFor='type'>Type:</label>
-          <select onChange={e => setType(e.target.value)}>
-            <option value={null}>Select</option>
-            {exerciseTypes.map(option => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
         </div>
         <div className='form-field buttons-container'>
           <button className='btn add' type='submit' disabled={loading}>

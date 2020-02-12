@@ -118,8 +118,8 @@ a:hover {
 }
 
 .App .container {
-  width: 100%;
-  max-width: 90vw;
+  width: 90vw;
+  max-width: 1024px;
   margin: 0 auto;
   padding-top: 2em;
 }
