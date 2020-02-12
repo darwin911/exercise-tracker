@@ -9,8 +9,7 @@ const exerciseSchema = new Schema(
     note: { type: String, required: true },
     date: { type: Date, required: true },
     type: {
-      type: String,
-      required: true
+      type: String
     }
   },
   { timestamps: true }
