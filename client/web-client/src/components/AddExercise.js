@@ -11,6 +11,7 @@ export const AddExercise = () => {
   const [isAdding, setIsAdding] = useState(false);
   const [duration, setDuration] = useState(0);
   const [note, setNote] = useState('');
+  const [type, setType] = useState(null);
 
   const [loading, setLoading] = useState(false);
 
@@ -22,7 +23,8 @@ export const AddExercise = () => {
       userId: user.id,
       note,
       date: new Date(),
-      username: user.username
+      username: user.username,
+      type
     };
 
     const newExercise = await addExercise(exerciseObj);
@@ -64,8 +66,8 @@ export const AddExercise = () => {
         </div>
         <div className='form-field type'>
           <label htmlFor='type'>Type:</label>
-          <select>
-            <option value='blank'>----Select----</option>
+          <select onChange={e => setType(e.target.value)}>
+            <option value={null}>----Select----</option>
             <option value='gym'>Gym</option>
             <option value='run'>Run</option>
             <option value='yoga'>Yoga</option>
