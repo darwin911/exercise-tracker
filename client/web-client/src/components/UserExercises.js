@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Exercise } from './Exercise';
 import { AddExercise } from './AddExercise';
 import { ExercisesSummary } from './ExercisesSummary';
@@ -8,11 +8,13 @@ import { AnimatePresence } from 'framer-motion';
 export const UserExercises = () => {
   const state = useContext(AuthContext)[0];
   const { user, exercises, loading } = state;
+  const [totalMins, setTotalMins] = useState(0);
 
-  const totalExerciseMins = exercises.reduce(
-    (total, exercise) => total + exercise.duration,
-    0
-  );
+  useEffect(() => {
+    setTotalMins(
+      exercises.reduce((total, exercise) => total + exercise.duration, 0)
+    );
+  }, [exercises]);
 
   if (!loading) {
     return (
@@ -20,7 +22,7 @@ export const UserExercises = () => {
         <ExercisesSummary
           username={user ? user.username : 'Guest'}
           totalExercises={exercises.length}
-          totalExerciseMins={totalExerciseMins}
+          totalExerciseMins={totalMins}
         />
         <hr />
         <AnimatePresence>
