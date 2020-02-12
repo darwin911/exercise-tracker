@@ -9,7 +9,7 @@ export const AddExercise = () => {
   const { user } = state;
 
   const [isAdding, setIsAdding] = useState(false);
-  const [duration, setDuration] = useState(null);
+  const [duration, setDuration] = useState(0);
   const [note, setNote] = useState('');
 
   const [loading, setLoading] = useState(false);
