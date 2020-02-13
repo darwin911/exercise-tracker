@@ -3,7 +3,7 @@ import { TOGGLE_MODAL } from '../constants';
 import { Exercise } from './Exercise';
 import { ExercisesSummary } from './ExercisesSummary';
 import { AuthContext } from '../Store';
-import { AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export const UserExercises = () => {
   const [state, dispatch] = useContext(AuthContext);
@@ -22,29 +22,30 @@ export const UserExercises = () => {
 
   if (!loading) {
     return (
-      <div className='user-exercises'>
+      <motion.div
+        className='user-exercises'
+        animate={{ height: '100%' }}
+        initial={{ height: '100%' }}>
         <ExercisesSummary
           username={user ? user.username : 'Guest'}
           totalExercises={exercises.length}
           totalExerciseMins={totalMins}
         />
         <hr />
-        <AnimatePresence>
-          {exercises.map(exercise => (
-            <Exercise key={exercise._id} exercise={exercise} />
-          ))}
-        </AnimatePresence>
 
-        <hr />
-        <button className='btn toggle-form' onClick={toggleModal}>
-          Add Exercise
-        </button>
-      </div>
+        <div className='exercises__container'>
+          <AnimatePresence>
+            {exercises.map(exercise => (
+              <Exercise key={exercise._id} exercise={exercise} />
+            ))}
+            <button className='btn toggle-form' onClick={toggleModal}>
+              Add Exercise
+            </button>
+          </AnimatePresence>
+        </div>
+      </motion.div>
     );
   } else {
     return <div className='loader'></div>;
   }
 };
-
-// initial={{ opacity: 0, y: -10 }}
-//           animate={{ opacity: 1, y: 0 }}
