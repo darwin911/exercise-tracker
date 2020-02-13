@@ -50,11 +50,13 @@ router.route('/register').post(async (req, res) => {
   const { username, email, password } = req.body;
   try {
     const userExists = await User.find({ email });
-    if (userExists) {
+
+    if (userExists.length) {
       return res.status(409).json({ error: 'Email has already been taken' });
     }
     const newUser = new User({ username, email });
     await newUser.setPassword(password);
+    newUser.save();
     const userData = await newUser.toAuthJSON();
     return res.json(userData);
   } catch (error) {
