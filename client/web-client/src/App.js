@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import './App.css';
-import { SET_USER, SET_EXERCISES, LOADING } from './constants';
+import { SET_USER, SET_EXERCISES, TOGGLE_LOADING } from './constants';
 import { getUserExercises, verifyToken } from './helper';
 import { Switch, Route, useHistory } from 'react-router-dom';
 import { AuthContext } from './Store';
@@ -37,7 +37,7 @@ export const App = () => {
 
   useEffect(() => {
     const loadExercises = async userId => {
-      dispatch({ type: LOADING });
+      dispatch({ type: TOGGLE_LOADING });
       const dbExercises = await getUserExercises(userId);
       dispatch({ type: SET_EXERCISES, payload: dbExercises });
     };

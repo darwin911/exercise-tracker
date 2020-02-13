@@ -1,7 +1,7 @@
 import {
   SET_USER,
   LOGOUT,
-  LOADING,
+  TOGGLE_LOADING,
   SET_EXERCISES,
   REMOVE_EXERCISE,
   ADD_EXERCISE,
@@ -49,10 +49,10 @@ export const Reducer = (state, action) => {
         modalOpen: !state.modalOpen
       };
 
-    case LOADING:
+    case TOGGLE_LOADING:
       return {
         ...state,
-        loading: true
+        loading: !state.loading
       };
 
     default:
