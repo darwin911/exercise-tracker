@@ -40,6 +40,7 @@ const loginUser = async data => {
     return resp.data;
   } catch (err) {
     console.error(err);
+    return err.response.data;
   }
 };
 
@@ -49,6 +50,7 @@ const registerUser = async data => {
     return resp.data;
   } catch (err) {
     console.error(err);
+    return err.response.data;
   }
 };
 
