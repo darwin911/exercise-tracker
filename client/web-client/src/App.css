@@ -49,6 +49,7 @@ select {
 button {
   background: #f3f3f3;
   border: none;
+  cursor: pointer;
 }
 
 hr {
@@ -272,14 +273,32 @@ a:hover {
   margin-bottom: 1rem;
 }
 
+.login .error,
+.register .error {
+  color: crimson;
+  font-weight: bolder;
+}
+
 .exercise {
+  background-color: rgba(255, 255, 255, 0.05);
   max-width: 400px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 4fr 1fr;
       grid-template-columns: 4fr 1fr;
   border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  -webkit-transition: background-color 200ms ease-in-out;
+  transition: background-color 200ms ease-in-out;
+}
+
+.exercise:hover {
+  background: rgba(255, 255, 255, 0.075);
 }
 
 .exercise__duration, .exercise__date, .exercise__time, .exercise__note {
