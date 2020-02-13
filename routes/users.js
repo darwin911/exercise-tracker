@@ -26,13 +26,20 @@ router.route('/login').post(async (req, res) => {
   const { email, password } = req.body;
   try {
     let user = await User.findOne({ email });
-    if (user) {
+
+    if (!user) {
+      return res.status(401).json({
+        error: 'Invalid Credentials: No account with this email has been found'
+      });
+    } else {
       const isAuthenticated = await user.isValidPassword(password);
-      if (isAuthenticated) {
-        const userData = await user.toAuthJSON();
-        return res.json(userData);
+      if (!isAuthenticated) {
+        return res.status(401).json({
+          error: 'Invalid Credentials: Email and password are not correct'
+        });
       }
-      res.status(401).json({ error: 'Invalid Credentials' });
+      const userData = await user.toAuthJSON();
+      return res.json(userData);
     }
   } catch (error) {
     console.log(error);
