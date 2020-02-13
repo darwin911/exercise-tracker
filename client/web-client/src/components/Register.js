@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { registerUser } from '../helper';
 import { Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../Store';
-import { SET_USER, LOADING } from '../constants';
+import { SET_USER, TOGGLE_LOADING } from '../constants';
 
 export const Register = () => {
   const [state, dispatch] = useContext(AuthContext);
@@ -11,16 +11,24 @@ export const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
   const handleRegister = async e => {
     e.preventDefault();
-    dispatch({ type: LOADING });
+    dispatch({ type: TOGGLE_LOADING });
 
-    const registeredUser = await registerUser({ username, email, password });
+    const authenticatedUser = await registerUser({ username, email, password });
 
-    if (registeredUser) {
-      localStorage.setItem('token', registeredUser.token);
-      dispatch({ type: SET_USER, payload: registeredUser });
+    if (authenticatedUser.error) {
+      console.log(authenticatedUser);
+      setError(authenticatedUser.error);
+      dispatch({ type: TOGGLE_LOADING });
+      return;
+    }
+
+    if (authenticatedUser) {
+      localStorage.setItem('token', authenticatedUser.token);
+      dispatch({ type: SET_USER, payload: authenticatedUser });
       history.push('/');
     }
   };
@@ -69,6 +77,7 @@ export const Register = () => {
           <button disabled={state.loading}>
             {state.loading ? <div className='loader' /> : 'Submit'}
           </button>
+          {error && <p className='error'>{error}</p>}
         </form>
         <p>
           Already have an account? <Link to='/login'>Login!</Link>
