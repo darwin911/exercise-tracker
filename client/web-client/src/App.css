@@ -507,15 +507,15 @@ a:hover {
   background: rgba(0, 0, 0, 0.025);
 }
 
-.add-exercise .form-field.duration {
+.add-exercise .form-field.duration, .add-exercise .form-field.distance {
   position: relative;
 }
 
-.add-exercise .form-field.duration input {
-  max-width: 70px;
+.add-exercise .form-field.duration input, .add-exercise .form-field.distance input {
+  max-width: 80px;
 }
 
-.add-exercise .form-field.duration label:last-of-type {
+.add-exercise .form-field.duration label:last-of-type, .add-exercise .form-field.distance label:last-of-type {
   color: rgba(0, 0, 0, 0.2);
   font-weight: 300;
   position: absolute;

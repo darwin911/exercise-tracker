@@ -14,6 +14,7 @@ export const AddExercise = () => {
   const [duration, setDuration] = useState(0);
   const [note, setNote] = useState('');
   const [type, setType] = useState(exerciseTypes[0]);
+  const [distance, setDistance] = useState(0); // Units in miles (imperial)
 
   const [loading, setLoading] = useState(false);
 
@@ -49,7 +50,8 @@ export const AddExercise = () => {
     setLoading(false);
     setDuration(0);
     setNote('');
-    setType(null);
+    setType(exerciseTypes[0]);
+    setDistance(0);
   };
 
   const closeModal = () => {
@@ -62,6 +64,87 @@ export const AddExercise = () => {
     setType(value);
   };
 
+  const typeField = (
+    <div className='form-field type'>
+      <label htmlFor='type'>Type:</label>
+      <select
+        id='type'
+        onChange={e => handleSelectChange(e.target.value)}
+        autoFocus>
+        {exerciseTypes.map(option => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+
+  const durationField = (
+    <div className='form-field duration'>
+      <label htmlFor='duration'>Duration: </label>
+      <input
+        id='duration'
+        type='number'
+        inputMode='numeric'
+        min={1}
+        max={360}
+        onChange={e => setDuration(e.target.value)}
+        required
+        value={duration}
+      />
+      <label htmlFor='duration'>min{duration > 1 && 's'}</label>
+    </div>
+  );
+
+  const noteField = (
+    <div className='form-field note'>
+      <label htmlFor='note'>Note: </label>
+      <input
+        id='note'
+        type='text'
+        placeholder='Felt great!'
+        onChange={e => setNote(e.target.value)}
+        required
+        value={note}
+      />
+    </div>
+  );
+
+  const distanceField =
+    type.toUpperCase() === 'RUN' ? (
+      <div className='form-field distance'>
+        <label htmlFor='note'>Distance: </label>
+        <input
+          id='distance'
+          type='number'
+          step={0.1}
+          onChange={e => setDistance(e.target.value)}
+          value={distance}
+          required
+        />
+        <label htmlFor='distance'>mi</label>
+      </div>
+    ) : null;
+
+  const buttonsContainer = (
+    <div className='form-field buttons-container'>
+      <button
+        className='btn add'
+        onClick={handleSubmit}
+        disabled={loading || !duration}>
+        {loading ? <div className='loader' /> : 'Add'}
+      </button>
+      <button
+        type='button'
+        className='btn cancel'
+        onClick={closeModal}
+        disabled={loading}>
+        Cancel
+      </button>
+    </div>
+  );
+
   if (modalOpen) {
     return createPortal(
       <aside className='add-exercise__modal'>
@@ -71,59 +154,11 @@ export const AddExercise = () => {
           animate={{ y: 10 }}>
           <h2>Log New Exercise</h2>
           <hr className='divider' />
-          <div className='form-field type'>
-            <label htmlFor='type'>Type:</label>
-            <select
-              id='type'
-              onChange={e => handleSelectChange(e.target.value)}
-              autoFocus>
-              {exerciseTypes.map(option => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className='form-field duration'>
-            <label htmlFor='duration'>Duration: </label>
-            <input
-              id='duration'
-              type='number'
-              inputMode='numeric'
-              min={1}
-              max={360}
-              onChange={e => setDuration(e.target.value)}
-              required
-              value={duration}
-            />
-            <label htmlFor='duration'>min{duration > 1 && 's'}</label>
-          </div>
-          <div className='form-field note'>
-            <label htmlFor='note'>Note: </label>
-            <input
-              id='note'
-              type='text'
-              placeholder='Felt great!'
-              onChange={e => setNote(e.target.value)}
-              required
-              value={note}
-            />
-          </div>
-          <div className='form-field buttons-container'>
-            <button
-              className='btn add'
-              onClick={handleSubmit}
-              disabled={loading || !duration}>
-              {loading ? <div className='loader' /> : 'Add'}
-            </button>
-            <button
-              type='button'
-              className='btn cancel'
-              onClick={closeModal}
-              disabled={loading}>
-              Cancel
-            </button>
-          </div>
+          {typeField}
+          {durationField}
+          {distanceField}
+          {noteField}
+          {buttonsContainer}
         </motion.form>
       </aside>,
       document.body
