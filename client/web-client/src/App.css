@@ -500,7 +500,7 @@ a:hover {
       -ms-flex-positive: 1;
           flex-grow: 1;
   border: 1px solid rgba(0, 0, 0, 0.15);
-  font-size: 0.8em;
+  font-size: 1em;
   line-height: 2;
   padding: 0 0 0 0.25rem;
   margin-right: 0.25rem;
