@@ -9,7 +9,7 @@ export const Exercise = ({ exercise }) => {
   const dispatch = useContext(AuthContext)[1];
 
   const [deleting, setDeleting] = useState(false);
-  const { _id, note, duration, date, type } = exercise;
+  const { id, note, duration, date, type } = exercise;
 
   const handleDelete = async id => {
     setDeleting(true);
@@ -45,7 +45,7 @@ export const Exercise = ({ exercise }) => {
       <div className='exercise__right-container'>
         <button
           className='btn delete'
-          onClick={() => handleDelete(_id)}
+          onClick={() => handleDelete(id)}
           disabled={deleting}>
           {deleting ? (
             <div className='loader' />
