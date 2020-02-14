@@ -38,7 +38,7 @@ export const App = () => {
   useEffect(() => {
     const loadExercises = async userId => {
       dispatch({ type: TOGGLE_LOADING });
-      const dbExercises = await getUserExercises(userId);
+      const { exercises: dbExercises } = await getUserExercises(userId);
       dispatch({ type: SET_EXERCISES, payload: dbExercises });
     };
 
