@@ -39,7 +39,7 @@ export const Reducer = (state, action) => {
       return {
         ...state,
         exercises: state.exercises.filter(
-          exercise => exercise._id !== action.payload
+          exercise => exercise.id !== action.payload
         ),
         loading: false
       };

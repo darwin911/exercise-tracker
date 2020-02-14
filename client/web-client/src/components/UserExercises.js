@@ -36,7 +36,7 @@ export const UserExercises = () => {
         <div className='exercises__container'>
           <AnimatePresence>
             {exercises.map(exercise => (
-              <Exercise key={exercise._id} exercise={exercise} />
+              <Exercise key={exercise.id} exercise={exercise} />
             ))}
             <button className='btn toggle-form' onClick={toggleModal}>
               Add Exercise
