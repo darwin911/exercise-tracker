@@ -9,3 +9,5 @@ export const LOGOUT = 'LOGOUT';
 export const TOGGLE_LOADING = 'TOGGLE_LOADING';
 
 export const TOGGLE_MODAL = 'TOGGLE_MODAL';
+export const IMPERIAL = 'IMPERIAL';
+export const METRIC = 'METRIC';
