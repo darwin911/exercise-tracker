@@ -38,10 +38,12 @@ export const UserExercises = () => {
             {exercises.map(exercise => (
               <Exercise key={exercise.id} exercise={exercise} />
             ))}
+          </AnimatePresence>
+          <div style={{ gridColumn: 'span 2' }}>
             <button className='btn toggle-form' onClick={toggleModal}>
               Add Exercise
             </button>
-          </AnimatePresence>
+          </div>
         </div>
       </motion.div>
     );

@@ -68,7 +68,9 @@ export const AddExercise = () => {
           <hr className='divider' />
           <div className='form-field type'>
             <label htmlFor='type'>Type:</label>
-            <select onChange={e => handleSelectChange(e.target.value)}>
+            <select
+              id='type'
+              onChange={e => handleSelectChange(e.target.value)}>
               {exerciseTypes.map(option => (
                 <option key={option} value={option}>
                   {option}
@@ -79,23 +81,23 @@ export const AddExercise = () => {
           <div className='form-field duration'>
             <label htmlFor='duration'>Duration: </label>
             <input
-              inputMode='numeric'
+              id='duration'
               type='number'
-              name='duration'
+              inputMode='numeric'
               min={1}
               max={360}
               onChange={e => setDuration(e.target.value)}
               required
               value={duration}
             />
-            <span>mins</span>
+            <label htmlFor='duration'>mins</label>
           </div>
           <div className='form-field note'>
             <label htmlFor='note'>Note: </label>
             <input
-              placeholder='Felt great!'
+              id='note'
               type='text'
-              name='note'
+              placeholder='Felt great!'
               onChange={e => setNote(e.target.value)}
               required
               value={note}
