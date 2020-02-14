@@ -18,6 +18,7 @@ export const App = () => {
 
   useEffect(() => {
     const loadCredentials = async token => {
+      dispatch({ type: TOGGLE_LOADING });
       const verifiedUser = await verifyToken({ token });
       if (!verifiedUser) {
         history.push('/login');
