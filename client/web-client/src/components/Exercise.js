@@ -35,12 +35,14 @@ export const Exercise = ({ exercise }) => {
             {type} <span></span>
           </p>
         )}
-        <p className='exercise__note'>
-          <span role='img' aria-label='Note'>
-            📝
-          </span>{' '}
-          {note}
-        </p>
+        {note && (
+          <p className='exercise__note'>
+            <span role='img' aria-label='Note'>
+              📝
+            </span>{' '}
+            {note}
+          </p>
+        )}
       </div>
       <div className='exercise__right-container'>
         <button
