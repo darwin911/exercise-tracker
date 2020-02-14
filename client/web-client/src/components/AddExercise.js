@@ -21,6 +21,11 @@ export const AddExercise = () => {
     e.preventDefault();
     setLoading(true);
 
+    if (duration < 1) {
+      setLoading(false);
+      return;
+    }
+
     const exerciseObj = {
       duration,
       userId: user.id,
@@ -50,10 +55,10 @@ export const AddExercise = () => {
   const closeModal = () => {
     console.log('close modal called');
     dispatch({ type: TOGGLE_MODAL });
+    resetForm();
   };
 
   const handleSelectChange = value => {
-    console.log(value);
     setType(value);
   };
 
@@ -70,7 +75,8 @@ export const AddExercise = () => {
             <label htmlFor='type'>Type:</label>
             <select
               id='type'
-              onChange={e => handleSelectChange(e.target.value)}>
+              onChange={e => handleSelectChange(e.target.value)}
+              autoFocus>
               {exerciseTypes.map(option => (
                 <option key={option} value={option}>
                   {option}
@@ -90,7 +96,7 @@ export const AddExercise = () => {
               required
               value={duration}
             />
-            <label htmlFor='duration'>mins</label>
+            <label htmlFor='duration'>min{duration > 1 && 's'}</label>
           </div>
           <div className='form-field note'>
             <label htmlFor='note'>Note: </label>
@@ -107,7 +113,7 @@ export const AddExercise = () => {
             <button
               className='btn add'
               onClick={handleSubmit}
-              disabled={loading}>
+              disabled={loading || !duration}>
               {loading ? <div className='loader' /> : 'Add'}
             </button>
             <button

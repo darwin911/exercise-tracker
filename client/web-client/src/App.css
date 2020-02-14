@@ -526,11 +526,18 @@ a:hover {
   margin-right: 0.5rem;
   padding: 0.4rem;
   border-radius: 4px;
+  -webkit-transition: opacity 120ms ease-in;
+  transition: opacity 120ms ease-in;
 }
 
 .add-exercise .btn.add {
   color: white;
   background: #4caf50;
+}
+
+.add-exercise .btn.add:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 
 .add-exercise .buttons-container {
