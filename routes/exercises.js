@@ -3,23 +3,30 @@ let Exercise = require('../models/exercise.model');
 
 // Get All User Exercises
 router.route('/:userId').get(async (req, res) => {
-  Exercise.find({ userId: req.params.userId })
-    .then(exercises => res.json(exercises))
-    .catch(err => res.status(400).json('Error: ' + err));
+  try {
+    let exercises = await Exercise.find({ userId: req.params.userId });
+    exercises = await Promise.all(
+      exercises.map(exercise => exercise.toClient())
+    );
+    res.json({ exercises });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // Add Exercise
 router.route('/add').post(async (req, res) => {
-  const { userId, note, type } = req.body;
-  const duration = Number(req.body.duration);
-  const date = Date.parse(req.body.date);
-
-  const newExercise = new Exercise({ userId, date, duration, note, type });
-
-  newExercise
-    .save()
-    .then(() => res.json(newExercise))
-    .catch(err => res.status(400).json('Error: ' + err));
+  try {
+    const { userId, note, type } = req.body;
+    const duration = Number(req.body.duration);
+    const date = Date.parse(req.body.date);
+    const exercise = new Exercise({ userId, date, duration, note, type });
+    exercise.save();
+    const exerciseData = await exercise.toClient();
+    return res.json(exerciseData);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // Find One Exercise by Id
@@ -31,9 +38,13 @@ router.route('/:id').get((req, res) => {
 
 // Delete Exercise
 router.route('/:id').delete((req, res) => {
-  Exercise.findByIdAndDelete(req.params.id)
-    .then(exercise => res.json(`Exercise ${exercise.id} deleted.`))
-    .catch(err => res.status(400).json('Error: ' + err));
+  try {
+    Exercise.findByIdAndDelete(req.params.id)
+      .then(exercise => res.json(`Exercise ${exercise.id} deleted.`))
+      .catch(err => res.status(400).json('Error: ' + err));
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // Update Exercise
