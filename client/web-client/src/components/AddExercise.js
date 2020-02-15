@@ -13,7 +13,7 @@ export const AddExercise = () => {
 
   const [duration, setDuration] = useState(0);
   const [note, setNote] = useState('');
-  const [type, setType] = useState(exerciseTypes[0]);
+  const [type, setType] = useState('');
   const [distance, setDistance] = useState(0); // Units in miles (imperial)
 
   const [loading, setLoading] = useState(false);
@@ -50,7 +50,7 @@ export const AddExercise = () => {
     setLoading(false);
     setDuration(0);
     setNote('');
-    setType(exerciseTypes[0]);
+    setType('');
     setDistance(0);
   };
 
@@ -70,7 +70,11 @@ export const AddExercise = () => {
       <select
         id='type'
         onChange={e => handleSelectChange(e.target.value)}
+        value={type}
         autoFocus>
+        <option value='' disabled>
+          Choose...
+        </option>
         {exerciseTypes.map(option => (
           <option key={option} value={option}>
             {option}
