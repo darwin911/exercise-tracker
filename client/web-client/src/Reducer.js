@@ -10,6 +10,7 @@ import {
   FILTER_CURRENT_MONTH,
   FILTER_CURRENT_WEEK
 } from './constants';
+import moment from 'moment';
 
 export const Reducer = (state, action) => {
   switch (action.type) {
@@ -46,10 +47,31 @@ export const Reducer = (state, action) => {
         ),
         loading: false
       };
-    case FILTER_CURRENT_WEEK: {
+    case FILTER_ALL: {
       return {
         ...state,
-        filteredExercises: state.exercises.slice(0, 3)
+        exercises: state.exercises,
+        filteredExercises: null
+      };
+    }
+    case FILTER_CURRENT_WEEK: {
+      console.log(state.exercises);
+      //find most recent Monday
+      const currentWeek = moment().week();
+      return {
+        ...state,
+        filteredExercises: state.exercises.filter(
+          ex => moment(ex.date).week() === currentWeek
+        )
+      };
+    }
+    case FILTER_CURRENT_MONTH: {
+      const currentMonth = moment().format('MMMM');
+      return {
+        ...state,
+        filteredExercises: state.exercises.filter(ex => {
+          return moment(ex.date).format('MMMM') === currentMonth;
+        })
       };
     }
     case TOGGLE_MODAL:
