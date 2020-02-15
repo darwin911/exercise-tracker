@@ -4,7 +4,9 @@ let Exercise = require('../models/exercise.model');
 // Get All User Exercises
 router.route('/:userId').get(async (req, res) => {
   try {
-    let exercises = await Exercise.find({ userId: req.params.userId });
+    let exercises = await Exercise.find({ userId: req.params.userId }).sort({
+      date: 'descending'
+    });
     exercises = await Promise.all(
       exercises.map(exercise => exercise.toClient())
     );
