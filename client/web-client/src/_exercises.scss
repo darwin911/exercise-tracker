@@ -16,6 +16,18 @@
     grid-column: span 1;
   }
 
+  &.gym {
+    background: $gym-bg-color;
+  }
+
+  &.run {
+    background: $run-bg-color;
+  }
+
+  &.yoga {
+    background: $yoga-bg-color;
+  }
+
   &:hover {
     background: hsla(0, 0%, 100%, 0.075);
   }

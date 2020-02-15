@@ -21,7 +21,7 @@ export const Exercise = ({ exercise }) => {
   return (
     <motion.div
       positionTransition
-      className='exercise'
+      className={`exercise ${type.toLowerCase()}`}
       initial={{ y: -10, transformOrigin: 'center' }}
       animate={{ y: 0 }}
       exit={{ scale: 0, opacity: 0 }}>
