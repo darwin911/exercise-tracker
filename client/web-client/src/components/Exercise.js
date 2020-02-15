@@ -20,12 +20,13 @@ export const Exercise = ({ exercise }) => {
 
   return (
     <motion.div
+      positionTransition
       className='exercise'
       initial={{ y: -10, transformOrigin: 'center' }}
       animate={{ y: 0 }}
       exit={{ scale: 0, opacity: 0 }}>
       <div className='exercise__left-container'>
-        <p className='exercise__date'>{moment(date).format('ddd MMM Do')}</p>
+        <p className='exercise__date'>{moment(date).format('ddd MMM D')}</p>
         <p className='exercise__time'>{moment(date).format('h:mm a')}</p>
         <p className='exercise__duration'>
           {duration} <span>mins</span>
