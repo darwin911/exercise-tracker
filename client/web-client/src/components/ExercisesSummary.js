@@ -1,4 +1,5 @@
 import React from 'react';
+import { FilterExercises } from './FilterExercises';
 
 export const ExercisesSummary = ({
   username,
@@ -16,6 +17,7 @@ export const ExercisesSummary = ({
       <p className='user-exercises__summary__total-exercises'>
         {totalExercises} <span>Exercises</span>
       </p>
+      <FilterExercises />
     </div>
   );
 };
