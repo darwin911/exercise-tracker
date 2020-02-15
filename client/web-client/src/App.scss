@@ -172,3 +172,8 @@ a:hover {
 //
 @import './auth';
 @import './exercises';
+
+.filter {
+  position: absolute;
+  right: 10%;
+}

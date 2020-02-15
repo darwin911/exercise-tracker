@@ -5,7 +5,10 @@ import {
   SET_EXERCISES,
   REMOVE_EXERCISE,
   ADD_EXERCISE,
-  TOGGLE_MODAL
+  TOGGLE_MODAL,
+  FILTER_ALL,
+  FILTER_CURRENT_MONTH,
+  FILTER_CURRENT_WEEK
 } from './constants';
 
 export const Reducer = (state, action) => {
@@ -43,6 +46,12 @@ export const Reducer = (state, action) => {
         ),
         loading: false
       };
+    case FILTER_CURRENT_WEEK: {
+      return {
+        ...state,
+        filteredExercises: state.exercises.slice(0, 3)
+      };
+    }
     case TOGGLE_MODAL:
       return {
         ...state,

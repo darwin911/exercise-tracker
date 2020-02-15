@@ -566,4 +566,9 @@ a:hover {
         grid-template-columns: 1fr 1fr 1fr;
   }
 }
+
+.filter {
+  position: absolute;
+  right: 10%;
+}
 /*# sourceMappingURL=App.css.map */
