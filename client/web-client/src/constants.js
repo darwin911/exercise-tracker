@@ -11,3 +11,6 @@ export const TOGGLE_LOADING = 'TOGGLE_LOADING';
 export const TOGGLE_MODAL = 'TOGGLE_MODAL';
 export const IMPERIAL = 'IMPERIAL';
 export const METRIC = 'METRIC';
+export const FILTER_ALL = 'FILTER_ALL';
+export const FILTER_CURRENT_WEEK = 'FILTER_CURRENT_WEEK';
+export const FILTER_CURRENT_MONTH = 'FILTER_CURRENT_MONTH';
