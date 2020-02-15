@@ -25,7 +25,7 @@ export const Exercise = ({ exercise }) => {
       animate={{ y: 0 }}
       exit={{ scale: 0, opacity: 0 }}>
       <div className='exercise__left-container'>
-        <p className='exercise__date'>{moment(date).format('MMM Do')}</p>
+        <p className='exercise__date'>{moment(date).format('ddd MMM Do')}</p>
         <p className='exercise__time'>{moment(date).format('h:mm a')}</p>
         <p className='exercise__duration'>
           {duration} <span>mins</span>
