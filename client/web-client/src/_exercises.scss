@@ -47,7 +47,7 @@
   }
 
   &__date {
-    min-width: 60px;
+    min-width: 90px;
     font-weight: bold;
   }
 
@@ -72,7 +72,7 @@
   &__left-container {
     flex-grow: 1;
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 3fr 2fr;
   }
 
   &__right-container {
