@@ -7,7 +7,13 @@ $gym-bg-color: rgba(0, 150, 136, 0.25);
 $run-bg-color: rgba(0, 91, 148, 0.25);
 $yoga-bg-color: rgba(233, 30, 99, 0.25);
 
-// General
+$container-max-width: 1024px;
+
+html,
+body,
+#root {
+  height: 100%;
+}
 
 #root {
   min-height: 100%;
@@ -102,7 +108,16 @@ a:hover {
 }
 //
 
-$container-max-width: 1024px;
+.main-heading {
+  font-size: 2.5em;
+  margin: 0;
+  font-weight: 300;
+
+  span {
+    font-weight: bold;
+  }
+}
+
 .App {
   display: flex;
   flex-direction: column;
@@ -122,16 +137,6 @@ $container-max-width: 1024px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-
-  .main-heading {
-    font-size: 2.5em;
-    margin: 0;
-    font-weight: 300;
-
-    span {
-      font-weight: bold;
-    }
   }
 
   .btn {

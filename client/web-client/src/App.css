@@ -1,3 +1,9 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
 #root {
   min-height: 100%;
 }
@@ -108,6 +114,16 @@ a:hover {
   }
 }
 
+.main-heading {
+  font-size: 2.5em;
+  margin: 0;
+  font-weight: 300;
+}
+
+.main-heading span {
+  font-weight: bold;
+}
+
 .App {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -140,16 +156,6 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.App .main-heading {
-  font-size: 2.5em;
-  margin: 0;
-  font-weight: 300;
-}
-
-.App .main-heading span {
-  font-weight: bold;
 }
 
 .App .btn {
@@ -194,6 +200,34 @@ a:hover {
 
 .login,
 .register {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: linear-gradient(12deg, rgba(193, 193, 193, 0.05) 0%, rgba(193, 193, 193, 0.05) 2%, rgba(129, 129, 129, 0.05) 2%, rgba(129, 129, 129, 0.05) 27%, rgba(185, 185, 185, 0.05) 27%, rgba(185, 185, 185, 0.05) 66%, rgba(83, 83, 83, 0.05) 66%, rgba(83, 83, 83, 0.05) 100%), linear-gradient(321deg, rgba(240, 240, 240, 0.05) 0%, rgba(240, 240, 240, 0.05) 13%, rgba(231, 231, 231, 0.05) 13%, rgba(231, 231, 231, 0.05) 34%, rgba(139, 139, 139, 0.05) 34%, rgba(139, 139, 139, 0.05) 71%, rgba(112, 112, 112, 0.05) 71%, rgba(112, 112, 112, 0.05) 100%), linear-gradient(236deg, rgba(189, 189, 189, 0.05) 0%, rgba(189, 189, 189, 0.05) 47%, rgba(138, 138, 138, 0.05) 47%, rgba(138, 138, 138, 0.05) 58%, rgba(108, 108, 108, 0.05) 58%, rgba(108, 108, 108, 0.05) 85%, rgba(143, 143, 143, 0.05) 85%, rgba(143, 143, 143, 0.05) 100%), linear-gradient(96deg, rgba(53, 53, 53, 0.05) 0%, rgba(53, 53, 53, 0.05) 53%, rgba(44, 44, 44, 0.05) 53%, rgba(44, 44, 44, 0.05) 82%, rgba(77, 77, 77, 0.05) 82%, rgba(77, 77, 77, 0.05) 98%, rgba(8, 8, 8, 0.05) 98%, rgba(8, 8, 8, 0.05) 100%), linear-gradient(334deg, #050505, #050505);
+}
+
+.login .container,
+.register .container {
+  width: 90vw;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding-top: 2em;
+}
+
+.login h1,
+.register h1 {
+  font-size: 2.5em;
+  margin: 1.75rem 0;
+  text-align: center;
+}
+
+.login form,
+.register form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -204,25 +238,12 @@ a:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-}
-
-.login .container,
-.register .container {
-  width: 100%;
-  max-width: 1024px;
   margin: 0 auto;
-}
-
-.login h1,
-.register h1 {
-  font-size: 2.5em;
-  margin: 1.75rem 0;
-}
-
-.login form,
-.register form {
-  margin: 0 auto;
-  max-width: 600px;
+  max-width: 400px;
+  padding: 2rem 1rem;
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
 }
 
 .login form .form-field,
@@ -240,8 +261,14 @@ a:hover {
 .login form label,
 .register form label {
   display: block;
-  font-size: 1.25em;
+  font-size: 1em;
   margin-bottom: 0.5rem;
+}
+
+.login form input,
+.register form input {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
 }
 
 .login form input,
@@ -255,22 +282,22 @@ a:hover {
 
 .login form input::-webkit-input-placeholder,
 .register form input::-webkit-input-placeholder {
-  color: rgba(0, 0, 0, 0.45);
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .login form input:-ms-input-placeholder,
 .register form input:-ms-input-placeholder {
-  color: rgba(0, 0, 0, 0.45);
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .login form input::-ms-input-placeholder,
 .register form input::-ms-input-placeholder {
-  color: rgba(0, 0, 0, 0.45);
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .login form input::placeholder,
 .register form input::placeholder {
-  color: rgba(0, 0, 0, 0.45);
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .login form button,
