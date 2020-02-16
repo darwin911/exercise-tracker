@@ -14,8 +14,8 @@ export const Exercise = ({ exercise }) => {
   const handleDelete = async id => {
     setDeleting(true);
     await deleteExercise(id);
-    dispatch({ type: REMOVE_EXERCISE, payload: id });
     setDeleting(false);
+    dispatch({ type: REMOVE_EXERCISE, payload: id });
   };
 
   return (
@@ -46,15 +46,8 @@ export const Exercise = ({ exercise }) => {
         )}
       </div>
       <div className='exercise__right-container'>
-        <button
-          className='btn delete'
-          onClick={() => handleDelete(id)}
-          disabled={deleting}>
-          {deleting ? (
-            <div className='loader' />
-          ) : (
-            <i style={{ fontStyle: 'normal' }}>&#x2212;</i>
-          )}
+        <button className='btn delete' onClick={() => handleDelete(id)} disabled={deleting}>
+          {deleting ? <div className='loader' /> : <i style={{ fontStyle: 'normal' }}>&#x2212;</i>}
         </button>
       </div>
     </motion.div>
