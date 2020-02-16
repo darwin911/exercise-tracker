@@ -310,12 +310,24 @@ a:hover {
   background: rgba(0, 150, 136, 0.25);
 }
 
+.exercise.gym:hover {
+  background-color: rgba(0, 150, 136, 0.5);
+}
+
 .exercise.run {
   background: rgba(0, 91, 148, 0.25);
 }
 
+.exercise.run:hover {
+  background-color: rgba(0, 91, 148, 0.5);
+}
+
 .exercise.yoga {
   background: rgba(233, 30, 99, 0.25);
+}
+
+.exercise.yoga:hover {
+  background-color: rgba(233, 30, 99, 0.5);
 }
 
 .exercise:hover {

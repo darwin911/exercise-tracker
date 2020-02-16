@@ -18,14 +18,23 @@
 
   &.gym {
     background: $gym-bg-color;
+    &:hover {
+      background-color: rgba($gym-bg-color, 0.5);
+    }
   }
 
   &.run {
     background: $run-bg-color;
+    &:hover {
+      background-color: rgba($run-bg-color, 0.5);
+    }
   }
 
   &.yoga {
     background: $yoga-bg-color;
+    &:hover {
+      background-color: rgba($yoga-bg-color, 0.5);
+    }
   }
 
   &:hover {
