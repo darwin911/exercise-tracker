@@ -1,9 +1,5 @@
 import React, { useState, useContext } from 'react';
-import {
-  FILTER_ALL,
-  FILTER_CURRENT_MONTH,
-  FILTER_CURRENT_WEEK
-} from '../constants';
+import { FILTER_ALL, FILTER_CURRENT_MONTH, FILTER_CURRENT_WEEK } from '../constants';
 import { AuthContext } from '../Store';
 
 export const FilterExercises = () => {

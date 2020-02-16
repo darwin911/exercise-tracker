@@ -63,11 +63,4 @@ const verifyToken = async data => {
   }
 };
 
-export {
-  getUserExercises,
-  addExercise,
-  deleteExercise,
-  loginUser,
-  registerUser,
-  verifyToken
-};
+export { getUserExercises, addExercise, deleteExercise, loginUser, registerUser, verifyToken };
