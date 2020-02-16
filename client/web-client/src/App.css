@@ -209,7 +209,7 @@ a:hover {
 .login .container,
 .register .container {
   width: 100%;
-  max-width: 90vw;
+  max-width: 1024px;
   margin: 0 auto;
 }
 
@@ -217,6 +217,12 @@ a:hover {
 .register h1 {
   font-size: 2.5em;
   margin: 1.75rem 0;
+}
+
+.login form,
+.register form {
+  margin: 0 auto;
+  max-width: 600px;
 }
 
 .login form .form-field,
