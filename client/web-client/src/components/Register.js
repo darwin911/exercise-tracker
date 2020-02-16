@@ -36,11 +36,20 @@ export const Register = () => {
   return (
     <div className='register'>
       <div className='container'>
-        <h1>Register</h1>
+        <header>
+          <h1 className='main-heading'>
+            Exercise <span>Tracker</span>
+          </h1>
+        </header>
+        <hr />
+        <br />
         <form onSubmit={handleRegister}>
+          <h2>Register</h2>
+          <br />
           <div className='form-field'>
             <label htmlFor='username'>Username</label>
             <input
+              id='username'
               type='text'
               name='username'
               placeholder='select a username'
@@ -52,6 +61,7 @@ export const Register = () => {
           <div className='form-field'>
             <label htmlFor='email'>Email</label>
             <input
+              id='email'
               type='email'
               name='email'
               autoComplete='email'
@@ -64,6 +74,7 @@ export const Register = () => {
           <div className='form-field'>
             <label htmlFor='password'>Password</label>
             <input
+              id='password'
               type='password'
               name='password'
               autoComplete='current-password'
@@ -78,10 +89,10 @@ export const Register = () => {
             {state.loading ? <div className='loader' /> : 'Submit'}
           </button>
           {error && <p className='error'>{error}</p>}
+          <p>
+            Already have an account? <Link to='/login'>Login!</Link>
+          </p>
         </form>
-        <p>
-          Already have an account? <Link to='/login'>Login!</Link>
-        </p>
       </div>
     </div>
   );

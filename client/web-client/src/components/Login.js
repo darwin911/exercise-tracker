@@ -19,7 +19,6 @@ export const Login = () => {
     const authenticatedUser = await loginUser({ email, password });
 
     if (authenticatedUser.error) {
-      console.log(authenticatedUser);
       setError(authenticatedUser.error);
       dispatch({ type: TOGGLE_LOADING });
       return;
@@ -40,12 +39,18 @@ export const Login = () => {
             Exercise <span>Tracker</span>
           </h1>
         </header>
+        <hr />
+        <br />
         <form onSubmit={handleLogin}>
+          <h2>Login</h2>
+          <br />
           <div className='form-field'>
             <label htmlFor='email'>Email</label>
             <input
+              id='email'
               type='email'
               name='email'
+              autoFocus
               autoComplete='username'
               placeholder='name@email.com'
               onChange={e => setEmail(e.target.value)}
@@ -56,6 +61,7 @@ export const Login = () => {
           <div className='form-field'>
             <label htmlFor='password'>Password</label>
             <input
+              id='password'
               type='password'
               name='password'
               autoComplete='current-password'
