@@ -5,3 +5,4 @@
 .netlify
 
 *.css.map
+.eslintrc.json
