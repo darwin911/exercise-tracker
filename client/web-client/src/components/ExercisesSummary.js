@@ -1,16 +1,10 @@
 import React from 'react';
 import { FilterExercises } from './FilterExercises';
 
-export const ExercisesSummary = ({
-  username,
-  totalExercises,
-  totalExerciseMins
-}) => {
+export const ExercisesSummary = ({ username, totalExercises, totalExerciseMins }) => {
   return (
     <div className='user-exercises__summary'>
-      <h4 className='user-exercises__summary__heading'>
-        {username}'s Exercises
-      </h4>
+      <h4 className='user-exercises__summary__heading'>{username}'s Exercises</h4>
       <p className='user-exercises__summary__total-mins'>
         {totalExerciseMins} <span>Mins</span>
       </p>
