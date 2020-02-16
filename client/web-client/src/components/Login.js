@@ -35,7 +35,11 @@ export const Login = () => {
   return (
     <div className='login'>
       <div className='container'>
-        <h1>Login</h1>
+        <header>
+          <h1 className='main-heading'>
+            Exercise <span>Tracker</span>
+          </h1>
+        </header>
         <form onSubmit={handleLogin}>
           <div className='form-field'>
             <label htmlFor='email'>Email</label>
@@ -65,10 +69,10 @@ export const Login = () => {
             {state.loading ? <div className='loader' /> : 'Submit'}
           </button>
           {error && <p className='error'>{error}</p>}
+          <p>
+            Don't have an account? <Link to='/register'>Register</Link>
+          </p>
         </form>
-        <p>
-          Don't have an account? <Link to='/register'>Register</Link>
-        </p>
       </div>
     </div>
   );
