@@ -11,7 +11,7 @@ export const AddExercise = () => {
   const [state, dispatch] = useContext(AuthContext);
   const { user, modalOpen } = state;
 
-  const [duration, setDuration] = useState(0);
+  const [duration, setDuration] = useState('');
   const [note, setNote] = useState('');
   const [type, setType] = useState('');
   const [distance, setDistance] = useState(0); // Units in miles (imperial)
@@ -33,7 +33,7 @@ export const AddExercise = () => {
       note,
       date: new Date(),
       username: user.username,
-      type
+      type,
     };
 
     const newExercise = await addExercise(exerciseObj);
@@ -67,11 +67,7 @@ export const AddExercise = () => {
   const typeField = (
     <div className='form-field type'>
       <label htmlFor='type'>Type:</label>
-      <select
-        id='type'
-        onChange={e => handleSelectChange(e.target.value)}
-        value={type}
-        autoFocus>
+      <select id='type' onChange={e => handleSelectChange(e.target.value)} value={type} autoFocus>
         <option value='' disabled>
           Choose...
         </option>
@@ -91,6 +87,7 @@ export const AddExercise = () => {
         id='duration'
         type='number'
         inputMode='numeric'
+        placeholder='0'
         min={1}
         max={360}
         onChange={e => setDuration(e.target.value)}
@@ -133,17 +130,10 @@ export const AddExercise = () => {
 
   const buttonsContainer = (
     <div className='form-field buttons-container'>
-      <button
-        className='btn add'
-        onClick={handleSubmit}
-        disabled={loading || !duration}>
+      <button className='btn add' onClick={handleSubmit} disabled={loading || !duration}>
         {loading ? <div className='loader' /> : 'Add'}
       </button>
-      <button
-        type='button'
-        className='btn cancel'
-        onClick={closeModal}
-        disabled={loading}>
+      <button type='button' className='btn cancel' onClick={closeModal} disabled={loading}>
         Cancel
       </button>
     </div>
@@ -152,10 +142,7 @@ export const AddExercise = () => {
   if (modalOpen) {
     return createPortal(
       <aside className='add-exercise__modal'>
-        <motion.form
-          className='add-exercise'
-          initial={{ y: 0 }}
-          animate={{ y: 10 }}>
+        <motion.form className='add-exercise' initial={{ y: 0 }} animate={{ y: 10 }}>
           <h2>Log New Exercise</h2>
           <hr className='divider' />
           {typeField}
