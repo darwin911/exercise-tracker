@@ -6,19 +6,7 @@ import { AuthContext } from '../Store';
 
 export const UserExercises = () => {
   const [state, dispatch] = useContext(AuthContext);
-  const { user, exercises, loading, filteredExercises } = state;
-  const [totalMins, setTotalMins] = useState(0);
-  const [numExercises, setNumExercises] = useState(0);
-
-  useEffect(() => {
-    if (filteredExercises) {
-      setTotalMins(filteredExercises.reduce((total, exercise) => total + exercise.duration, 0));
-      setNumExercises(filteredExercises.length);
-    } else {
-      setTotalMins(exercises.reduce((total, exercise) => total + exercise.duration, 0));
-      setNumExercises(exercises.length);
-    }
-  }, [exercises, filteredExercises]);
+  const { user, exercises, loading, filteredExercises, exerciseCount, exerciseMins } = state;
 
   const toggleModal = () => {
     dispatch({ type: TOGGLE_MODAL });
@@ -29,13 +17,13 @@ export const UserExercises = () => {
       <div className='user-exercises'>
         <ExercisesSummary
           username={user ? user.username : 'Guest'}
-          totalExercises={numExercises}
-          totalExerciseMins={totalMins}
+          totalExercises={exerciseCount}
+          totalExerciseMins={exerciseMins}
         />
         <hr />
 
         <div className='exercises__container'>
-          <ExerciseList exercises={filteredExercises || exercises} />
+          <ExerciseList exercises={exercises} />
           <div style={{ gridColumn: '1 / -1' }}>
             <button className='btn toggle-form' onClick={toggleModal}>
               Add Exercise

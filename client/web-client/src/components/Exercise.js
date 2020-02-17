@@ -15,7 +15,7 @@ export const Exercise = ({ exercise }) => {
     setDeleting(true);
     await deleteExercise(id);
     setDeleting(false);
-    dispatch({ type: REMOVE_EXERCISE, payload: id });
+    dispatch({ type: REMOVE_EXERCISE, payload: exercise });
   };
 
   return (

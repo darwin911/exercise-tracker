@@ -8,7 +8,7 @@ import {
   TOGGLE_MODAL,
   FILTER_ALL,
   FILTER_CURRENT_MONTH,
-  FILTER_CURRENT_WEEK
+  FILTER_CURRENT_WEEK,
 } from './constants';
 import moment from 'moment';
 
@@ -18,51 +18,51 @@ export const Reducer = (state, action) => {
       return {
         ...state,
         user: action.payload,
-        loading: false
+        loading: false,
       };
     case LOGOUT:
       return {
         ...state,
         user: null,
         exercises: [],
-        loading: false
+        loading: false,
       };
     case SET_EXERCISES:
       return {
         ...state,
         exercises: action.payload,
-        loading: false
+        exerciseCount: action.payload.length,
+        exerciseMins: action.payload.reduce((total, exercise) => total + exercise.duration, 0),
+        loading: false,
       };
     case ADD_EXERCISE:
       return {
         ...state,
         exercises: [...state.exercises, action.payload],
-        loading: false
+        exerciseCount: state.exerciseCount + 1,
+        exerciseMins: state.exerciseMins + action.payload.duration,
+        loading: false,
       };
     case REMOVE_EXERCISE:
       return {
         ...state,
-        exercises: state.exercises.filter(
-          exercise => exercise.id !== action.payload
-        ),
-        loading: false
+        exercises: state.exercises.filter(exercise => exercise.id !== action.payload.id),
+        exerciseCount: state.exerciseCount - 1,
+        exerciseMins: state.exerciseMins - action.payload.duration,
+        loading: false,
       };
     case FILTER_ALL: {
       return {
         ...state,
         exercises: state.exercises,
-        filteredExercises: null
+        filteredExercises: null,
       };
     }
     case FILTER_CURRENT_WEEK: {
-      console.log(state.exercises);
-      //find most recent Monday
       const currentWeek = moment().week();
       return {
         ...state,
-        filteredExercises: state.exercises.filter(
-          ex => moment(ex.date).week() === currentWeek
-        )
+        filteredExercises: state.exercises.filter(ex => moment(ex.date).week() === currentWeek),
       };
     }
     case FILTER_CURRENT_MONTH: {
@@ -71,19 +71,19 @@ export const Reducer = (state, action) => {
         ...state,
         filteredExercises: state.exercises.filter(ex => {
           return moment(ex.date).format('MMMM') === currentMonth;
-        })
+        }),
       };
     }
     case TOGGLE_MODAL:
       return {
         ...state,
-        modalOpen: !state.modalOpen
+        modalOpen: !state.modalOpen,
       };
 
     case TOGGLE_LOADING:
       return {
         ...state,
-        loading: !state.loading
+        loading: !state.loading,
       };
 
     default:
