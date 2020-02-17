@@ -261,6 +261,11 @@
       flex-grow: 1;
       font-size: 1em;
       font-weight: bold;
+      box-shadow: none;
+      &.cancel {
+        background: #eb0d11;
+        color: white;
+      }
     }
   }
 }
