@@ -51,7 +51,7 @@ export const App = () => {
   return (
     <Switch>
       <Route exact path='/'>
-        <div className={`App ${modalOpen && 'modal-open'}`}>
+        <div className={`App${modalOpen ? ' modal-open' : ''}`}>
           <main className='container'>
             <Header dispatch={dispatch} />
             <hr />
