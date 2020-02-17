@@ -52,6 +52,7 @@ export const Register = () => {
               id='username'
               type='text'
               name='username'
+              autoComplete='name'
               placeholder='select a username'
               onChange={e => setUsername(e.target.value)}
               value={username}

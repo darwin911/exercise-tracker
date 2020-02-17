@@ -55,9 +55,11 @@ select {
 }
 
 button {
-  background: #f3f3f3;
+  font-weight: bold;
+  background: #1fff8f;
   border: none;
   cursor: pointer;
+  box-shadow: 0px 5px 10px -5px #1fff8fe1;
 }
 
 hr {
@@ -133,9 +135,8 @@ a:hover {
   }
 
   .btn {
-    border-radius: 4px;
+    border-radius: 0.5rem;
     padding: 0.5rem;
-    font-size: 0.8em;
     margin-bottom: 0.5rem;
 
     &.toggle-form {
@@ -175,7 +176,13 @@ a:hover {
 @import './exercises';
 
 .filter {
-  position: absolute;
-  right: 10%;
+  grid-row: 1;
+  grid-column: 2;
   font-size: 1em;
+  background: rgb(231, 231, 231);
+  color: black;
+  border: none;
+  border-radius: 50rem;
+  font-weight: 500;
+  max-width: 150px;
 }

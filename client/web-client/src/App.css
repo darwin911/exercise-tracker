@@ -57,9 +57,12 @@ select {
 }
 
 button {
-  background: #f3f3f3;
+  font-weight: bold;
+  background: #1fff8f;
   border: none;
   cursor: pointer;
+  -webkit-box-shadow: 0px 5px 10px -5px #1fff8fe1;
+          box-shadow: 0px 5px 10px -5px #1fff8fe1;
 }
 
 hr {
@@ -163,9 +166,8 @@ a:hover {
 }
 
 .App .btn {
-  border-radius: 4px;
+  border-radius: 0.5rem;
   padding: 0.5rem;
-  font-size: 0.8em;
   margin-bottom: 0.5rem;
 }
 
@@ -318,6 +320,23 @@ a:hover {
   margin-bottom: 1em;
 }
 
+.exercises__container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  row-gap: 0.8rem;
+  -webkit-column-gap: 0.8rem;
+          column-gap: 0.8rem;
+}
+
+@media screen and (min-width: 768px) {
+  .exercises__container {
+    -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
 .exercise {
   display: -ms-grid;
   display: grid;
@@ -328,7 +347,6 @@ a:hover {
       grid-template-columns: 4fr 1fr;
   background-color: rgba(255, 255, 255, 0.045);
   max-width: 400px;
-  margin-bottom: 0.75rem;
   padding: 0.5rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
@@ -471,12 +489,17 @@ a:hover {
   -ms-grid-columns: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
   grid-row-gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  padding: 1rem 0;
+  position: relative;
 }
 
 .user-exercises__summary__heading {
   color: white;
-  grid-column: 1 / -1;
+  -ms-grid-column: 1;
+  grid-column: 1;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 
 .user-exercises__summary__total-exercises, .user-exercises__summary__total-mins {
@@ -619,24 +642,17 @@ a:hover {
   font-weight: bold;
 }
 
-.exercises__container {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
-  grid-column-gap: 1rem;
-}
-
-@media screen and (min-width: 768px) {
-  .exercises__container {
-    -ms-grid-columns: 1fr 1fr 1fr;
-        grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-
 .filter {
-  position: absolute;
-  right: 10%;
+  -ms-grid-row: 1;
+  grid-row: 1;
+  -ms-grid-column: 2;
+  grid-column: 2;
   font-size: 1em;
+  background: #e7e7e7;
+  color: black;
+  border: none;
+  border-radius: 50rem;
+  font-weight: 500;
+  max-width: 150px;
 }
 /*# sourceMappingURL=App.css.map */
