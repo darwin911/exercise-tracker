@@ -3,7 +3,6 @@ import { TOGGLE_MODAL } from '../constants';
 import { ExercisesSummary } from './ExercisesSummary';
 import { ExerciseList } from './ExerciseList';
 import { AuthContext } from '../Store';
-import { AnimatePresence } from 'framer-motion';
 
 export const UserExercises = () => {
   const [state, dispatch] = useContext(AuthContext);
@@ -13,17 +12,10 @@ export const UserExercises = () => {
 
   useEffect(() => {
     if (filteredExercises) {
-      setTotalMins(
-        filteredExercises.reduce(
-          (total, exercise) => total + exercise.duration,
-          0
-        )
-      );
+      setTotalMins(filteredExercises.reduce((total, exercise) => total + exercise.duration, 0));
       setNumExercises(filteredExercises.length);
     } else {
-      setTotalMins(
-        exercises.reduce((total, exercise) => total + exercise.duration, 0)
-      );
+      setTotalMins(exercises.reduce((total, exercise) => total + exercise.duration, 0));
       setNumExercises(exercises.length);
     }
   }, [exercises, filteredExercises]);
@@ -43,9 +35,7 @@ export const UserExercises = () => {
         <hr />
 
         <div className='exercises__container'>
-          <AnimatePresence>
-            <ExerciseList exercises={filteredExercises || exercises} />
-          </AnimatePresence>
+          <ExerciseList exercises={filteredExercises || exercises} />
           <div style={{ gridColumn: '1 / -1' }}>
             <button className='btn toggle-form' onClick={toggleModal}>
               Add Exercise
