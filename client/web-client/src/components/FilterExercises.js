@@ -3,6 +3,7 @@ import { FILTER_ALL, FILTER_CURRENT_MONTH, FILTER_CURRENT_WEEK } from '../consta
 import { AuthContext } from '../Store';
 
 export const FilterExercises = () => {
+  // eslint-disable-next-line
   const [state, dispatch] = useContext(AuthContext);
 
   const [filterOption, setFilterOption] = useState('All');
@@ -10,7 +11,6 @@ export const FilterExercises = () => {
   const handleChange = e => {
     const { value } = e.target;
     setFilterOption(value);
-    console.log(value);
     dispatch({ type: value });
   };
 
