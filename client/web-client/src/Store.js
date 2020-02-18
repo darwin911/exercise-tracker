@@ -7,6 +7,7 @@ const initialState = {
   exercises: [],
   exerciseCount: 0,
   exerciseMins: 0,
+  totalMiles: 0,
   modalOpen: false,
 };
 
