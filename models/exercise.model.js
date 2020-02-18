@@ -8,7 +8,8 @@ const exerciseSchema = new Schema(
     date: { type: Date, required: true },
     duration: { type: Number, required: true },
     note: { type: String },
-    userId: { type: String, required: true }
+    userId: { type: String, required: true },
+    distance: { type: Number },
   },
   { timestamps: true }
 );
@@ -20,7 +21,8 @@ exerciseSchema.methods.toClient = function() {
     date: this.date,
     duration: this.duration,
     note: this.note,
-    type: this.type
+    type: this.type,
+    distance: this.distance,
   };
 };
 
