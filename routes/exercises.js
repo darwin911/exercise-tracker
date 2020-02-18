@@ -5,11 +5,9 @@ let Exercise = require('../models/exercise.model');
 router.route('/:userId').get(async (req, res) => {
   try {
     let exercises = await Exercise.find({ userId: req.params.userId }).sort({
-      date: 'descending'
+      date: 'descending',
     });
-    exercises = await Promise.all(
-      exercises.map(exercise => exercise.toClient())
-    );
+    exercises = await Promise.all(exercises.map(exercise => exercise.toClient()));
     res.json({ exercises });
   } catch (error) {
     console.log(error);
@@ -21,8 +19,9 @@ router.route('/add').post(async (req, res) => {
   try {
     const { userId, note, type } = req.body;
     const duration = Number(req.body.duration);
+    const distance = Number(req.body.distance);
     const date = Date.parse(req.body.date);
-    const exercise = new Exercise({ userId, date, duration, note, type });
+    const exercise = new Exercise({ userId, date, duration, note, type, distance });
     exercise.save();
     const exerciseData = await exercise.toClient();
     return res.json(exerciseData);
