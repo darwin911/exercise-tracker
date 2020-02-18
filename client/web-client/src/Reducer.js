@@ -28,12 +28,13 @@ export const Reducer = (state, action) => {
         loading: false,
       };
     case SET_EXERCISES:
+      const miles = action.payload.reduce((acc, item) => acc + item.distance, 0);
       return {
         ...state,
         exercises: action.payload,
         exerciseCount: action.payload.length,
         exerciseMins: action.payload.reduce((total, exercise) => total + exercise.duration, 0),
-        totalMiles: action.payload.reduce((total, exercise) => total + exercise.distance, 0),
+        totalMiles: miles.toFixed(1),
         loading: false,
       };
     case ADD_EXERCISE:
