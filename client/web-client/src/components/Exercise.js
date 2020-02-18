@@ -9,7 +9,7 @@ export const Exercise = ({ exercise }) => {
   const dispatch = useContext(AuthContext)[1];
 
   const [deleting, setDeleting] = useState(false);
-  const { id, note, duration, date, type } = exercise;
+  const { id, note, duration, date, type, distance } = exercise;
 
   const handleDelete = async id => {
     setDeleting(true);
@@ -42,6 +42,11 @@ export const Exercise = ({ exercise }) => {
               📝
             </span>{' '}
             {note}
+          </p>
+        )}
+        {distance && (
+          <p className='exercise__distance'>
+            {distance} <span>miles</span>
           </p>
         )}
       </div>
