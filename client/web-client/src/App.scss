@@ -174,15 +174,3 @@ a:hover {
 //
 @import './auth';
 @import './exercises';
-
-.filter {
-  grid-row: 1;
-  grid-column: 2;
-  font-size: 1em;
-  background: rgb(231, 231, 231);
-  color: black;
-  border: none;
-  border-radius: 50rem;
-  font-weight: 500;
-  max-width: 150px;
-}
