@@ -363,7 +363,7 @@ a:hover {
 }
 
 .exercise.gym {
-  background: rgba(0, 150, 136, 0.25);
+  background: rgba(0, 150, 136, 0.35);
 }
 
 .exercise.gym:hover {
@@ -371,7 +371,7 @@ a:hover {
 }
 
 .exercise.run {
-  background: rgba(0, 91, 148, 0.25);
+  background: rgba(0, 91, 148, 0.35);
 }
 
 .exercise.run:hover {
@@ -379,7 +379,7 @@ a:hover {
 }
 
 .exercise.yoga {
-  background: rgba(233, 30, 99, 0.25);
+  background: rgba(233, 30, 99, 0.35);
 }
 
 .exercise.yoga:hover {
@@ -415,15 +415,15 @@ a:hover {
 }
 
 .exercise__date {
-  -ms-grid-column: 2;
-  grid-column: 2;
+  -ms-grid-column: 3;
+  grid-column: 3;
   min-width: 90px;
   font-weight: bold;
 }
 
 .exercise__time {
-  -ms-grid-column: 2;
-  grid-column: 2;
+  -ms-grid-column: 3;
+  grid-column: 3;
   min-width: 20px;
 }
 
@@ -445,14 +445,28 @@ a:hover {
   grid-column: 1;
 }
 
+.exercise__distance {
+  font-size: 1.5em;
+  -ms-grid-column: 2;
+  grid-column: 2;
+  -ms-grid-row: 2;
+  grid-row: 2;
+}
+
+.exercise__distance span {
+  text-transform: uppercase;
+  font-size: 0.5em;
+  font-weight: 500;
+}
+
 .exercise__left-container {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 3fr 2fr;
-      grid-template-columns: 3fr 2fr;
+  -ms-grid-columns: 3fr 2fr 2fr;
+      grid-template-columns: 3fr 2fr 2fr;
 }
 
 .exercise__right-container {
