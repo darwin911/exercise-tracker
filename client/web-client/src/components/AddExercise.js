@@ -14,7 +14,7 @@ export const AddExercise = () => {
   const [duration, setDuration] = useState('');
   const [note, setNote] = useState('');
   const [type, setType] = useState('');
-  const [distance, setDistance] = useState(0); // Units in miles (imperial)
+  const [distance, setDistance] = useState(''); // Units in miles (imperial)
 
   const [loading, setLoading] = useState(false);
 
@@ -34,6 +34,7 @@ export const AddExercise = () => {
       date: new Date(),
       username: user.username,
       type,
+      distance,
     };
 
     const newExercise = await addExercise(exerciseObj);
