@@ -6,7 +6,15 @@ import { AuthContext } from '../Store';
 
 export const UserExercises = () => {
   const [state, dispatch] = useContext(AuthContext);
-  const { user, exercises, loading, filteredExercises, exerciseCount, exerciseMins } = state;
+  const {
+    user,
+    exercises,
+    loading,
+    filteredExercises,
+    exerciseCount,
+    exerciseMins,
+    totalMiles,
+  } = state;
 
   const toggleModal = () => {
     dispatch({ type: TOGGLE_MODAL });
@@ -19,6 +27,7 @@ export const UserExercises = () => {
           username={user ? user.username : 'Guest'}
           totalExercises={exerciseCount}
           totalExerciseMins={exerciseMins}
+          totalMiles={totalMiles}
         />
         <hr />
 
