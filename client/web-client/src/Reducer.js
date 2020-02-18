@@ -33,6 +33,7 @@ export const Reducer = (state, action) => {
         exercises: action.payload,
         exerciseCount: action.payload.length,
         exerciseMins: action.payload.reduce((total, exercise) => total + exercise.duration, 0),
+        totalMiles: action.payload.reduce((total, exercise) => total + exercise.distance, 0),
         loading: false,
       };
     case ADD_EXERCISE:
