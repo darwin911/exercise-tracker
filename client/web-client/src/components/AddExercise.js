@@ -14,7 +14,7 @@ export const AddExercise = () => {
   const [duration, setDuration] = useState('');
   const [note, setNote] = useState('');
   const [type, setType] = useState('');
-  const [distance, setDistance] = useState(''); // Units in miles (imperial)
+  const [distance, setDistance] = useState(null); // Units in miles (imperial)
 
   const [loading, setLoading] = useState(false);
 
@@ -27,6 +27,7 @@ export const AddExercise = () => {
       return;
     }
 
+    debugger;
     const exerciseObj = {
       duration,
       userId: user.id,
@@ -121,9 +122,9 @@ export const AddExercise = () => {
           id='distance'
           type='number'
           step={0.1}
+          min={0.1}
           onChange={e => setDistance(e.target.value)}
           value={distance}
-          required
         />
         <label htmlFor='distance'>mi</label>
       </div>
