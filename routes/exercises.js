@@ -17,11 +17,16 @@ router.route('/:userId').get(async (req, res) => {
 // Add Exercise
 router.route('/add').post(async (req, res) => {
   try {
-    const { userId, note, type } = req.body;
-    const duration = Number(req.body.duration);
-    const distance = Number(req.body.distance);
-    const date = Date.parse(req.body.date);
-    const exercise = new Exercise({ userId, date, duration, note, type, distance });
+    const exerciseObj = {
+      userId: req.body.userId,
+      type: req.body.type,
+      duration: Number(req.body.duration),
+      date: Date.parse(req.body.date),
+    };
+    if (req.body.distance > 0) {
+      exerciseObj.distance = Number(req.body.distance);
+    }
+    const exercise = new Exercise(exerciseObj);
     exercise.save();
     const exerciseData = await exercise.toClient();
     return res.json(exerciseData);

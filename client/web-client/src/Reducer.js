@@ -28,7 +28,9 @@ export const Reducer = (state, action) => {
         loading: false,
       };
     case SET_EXERCISES:
-      let miles = action.payload.reduce((acc, item) => acc + item.distance, 0);
+      let miles = action.payload
+        .filter(exercise => exercise.distance)
+        .reduce((acc, item) => acc + item.distance, 0);
       return {
         ...state,
         exercises: action.payload,
@@ -43,7 +45,9 @@ export const Reducer = (state, action) => {
         exercises: [...state.exercises, action.payload],
         exerciseCount: state.exerciseCount + 1,
         exerciseMins: state.exerciseMins + action.payload.duration,
-        totalMiles: Math.round((state.totalMiles + action.payload.distance) * 100) / 100,
+        totalMiles:
+          action.payload.distance &&
+          Math.round((state.totalMiles + action.payload.distance) * 100) / 100,
         loading: false,
       };
     case REMOVE_EXERCISE:
@@ -52,7 +56,9 @@ export const Reducer = (state, action) => {
         exercises: state.exercises.filter(exercise => exercise.id !== action.payload.id),
         exerciseCount: state.exerciseCount - 1,
         exerciseMins: state.exerciseMins - action.payload.duration,
-        totalMiles: Math.round((state.totalMiles - action.payload.distance) * 100) / 100,
+        totalMiles:
+          action.payload.distance &&
+          Math.round((state.totalMiles - action.payload.distance) * 100) / 100,
         loading: false,
       };
     case FILTER_ALL: {

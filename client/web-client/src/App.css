@@ -417,7 +417,7 @@ a:hover {
 .exercise__date {
   -ms-grid-column: 3;
   grid-column: 3;
-  min-width: 90px;
+  min-width: 80px;
   font-weight: bold;
 }
 
@@ -465,8 +465,8 @@ a:hover {
           flex-grow: 1;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 3fr 2fr 2fr;
-      grid-template-columns: 3fr 2fr 2fr;
+  -ms-grid-columns: 3fr 3fr 2fr;
+      grid-template-columns: 3fr 3fr 2fr;
 }
 
 .exercise__right-container {
@@ -679,6 +679,8 @@ a:hover {
   grid-row: 1;
   -ms-grid-column: 3;
   grid-column: 3;
+  -ms-grid-column-align: self-end;
+      justify-self: self-end;
   max-width: 150px;
 }
 /*# sourceMappingURL=App.css.map */

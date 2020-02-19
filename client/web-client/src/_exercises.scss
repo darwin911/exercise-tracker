@@ -80,7 +80,7 @@
 
   &__date {
     grid-column: 3;
-    min-width: 90px;
+    min-width: 80px;
     font-weight: bold;
   }
 
@@ -118,7 +118,7 @@
   &__left-container {
     flex-grow: 1;
     display: grid;
-    grid-template-columns: 3fr 2fr 2fr;
+    grid-template-columns: 3fr 3fr 2fr;
   }
 
   &__right-container {
@@ -294,5 +294,6 @@
   font-weight: 500;
   grid-row: 1;
   grid-column: 3;
+  justify-self: self-end;
   max-width: 150px;
 }

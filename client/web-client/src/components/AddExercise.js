@@ -14,7 +14,7 @@ export const AddExercise = () => {
   const [duration, setDuration] = useState('');
   const [note, setNote] = useState('');
   const [type, setType] = useState('');
-  const [distance, setDistance] = useState(null); // Units in miles (imperial)
+  const [distance, setDistance] = useState(''); // Units in miles (imperial)
 
   const [loading, setLoading] = useState(false);
 
@@ -27,8 +27,7 @@ export const AddExercise = () => {
       return;
     }
 
-    debugger;
-    const exerciseObj = {
+    let exerciseObj = {
       duration,
       userId: user.id,
       note,
@@ -53,11 +52,10 @@ export const AddExercise = () => {
     setDuration(0);
     setNote('');
     setType('');
-    setDistance(0);
+    setDistance('');
   };
 
   const closeModal = () => {
-    console.log('close modal called');
     dispatch({ type: TOGGLE_MODAL });
     resetForm();
   };
