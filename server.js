@@ -17,7 +17,7 @@ const uri = process.env.MONGODB_URI;
 mongoose.connect(uri, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
-  useCreateIndex: true
+  useCreateIndex: true,
 });
 
 const connection = mongoose.connection;
@@ -29,8 +29,11 @@ connection.once('open', () => {
 const exerciseRouter = require('./routes/exercises');
 const userRouter = require('./routes/users');
 
-app.use('/exercises', exerciseRouter);
-app.use('/users', userRouter);
+const contactsRouter = require('./routes/contacts');
+
+// app.use('/exercises', exerciseRouter);
+// app.use('/users', userRouter);
+app.use('/contact', contactsRouter);
 
 app.get('/', (req, res) => {
   res.json({ message: `Server is running on port: ${port}` });
