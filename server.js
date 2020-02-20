@@ -33,7 +33,7 @@ const contactsRouter = require('./routes/contacts');
 
 // app.use('/exercises', exerciseRouter);
 // app.use('/users', userRouter);
-app.use('/contact', contactsRouter);
+app.use('/contacts', contactsRouter);
 
 app.get('/', (req, res) => {
   res.json({ message: `Server is running on port: ${port}` });
