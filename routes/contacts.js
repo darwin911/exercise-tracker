@@ -4,10 +4,10 @@ let Contact = require('../models/contact.model');
 router.route('/').get(async (req, res) => {
   try {
     console.log('test!');
-    const { email, telephone } = req.body;
-    const contact = new Contact({ email, telephone });
-    contact.save();
-    return res.json(await contact.toClient());
+
+    let contacts = await Contact.find();
+    contacts = await Promise.all(contacts.map(contact => contact.toClient()));
+    return res.json({ contacts });
   } catch (error) {
     console.log(error);
   }
@@ -16,11 +16,16 @@ router.route('/').get(async (req, res) => {
 router.route('/add').post(async (req, res) => {
   try {
     const { email, telephone } = req.body;
-    const contact = new Contact({ email, telephone });
-    contact.save();
-    return res.json(await contact.toClient());
+    const existingContact = await Contact.find({ email });
+    if (existingContact.length === 0) {
+      const contact = new Contact({ email, telephone });
+      contact.save();
+      return res.json(await contact.toClient());
+    }
+    return res.status(409).json({ error: 'Duplicate email' });
   } catch (error) {
     console.log(error);
+    return res.data;
   }
 });
 
