@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import { addExercise } from '../helper';
 import { AuthContext } from '../Store';
 import { ADD_EXERCISE, TOGGLE_MODAL } from '../constants';
 import { motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
+import { createRef } from 'react';
 
 const exerciseTypes = ['Gym', 'Run', 'Yoga'];
 
@@ -11,10 +12,12 @@ export const AddExercise = () => {
   const [state, dispatch] = useContext(AuthContext);
   const { user, modalOpen } = state;
 
+  const [distance, setDistance] = useState(''); // Units in miles (imperial)
+  const [date, setDate] = useState(new Date(Date.now()));
   const [duration, setDuration] = useState('');
   const [note, setNote] = useState('');
   const [type, setType] = useState('');
-  const [distance, setDistance] = useState(''); // Units in miles (imperial)
+  console.log('date', date);
 
   const [loading, setLoading] = useState(false);
 
@@ -31,25 +34,28 @@ export const AddExercise = () => {
       duration,
       userId: user.id,
       note,
-      date: new Date(),
+      date: new Date(date),
       username: user.username,
       type,
       distance,
     };
 
-    const newExercise = await addExercise(exerciseObj);
+    debugger;
 
-    if (newExercise) {
-      dispatch({ type: ADD_EXERCISE, payload: newExercise });
-    }
+    // const newExercise = await addExercise(exerciseObj);
 
-    dispatch({ type: TOGGLE_MODAL });
-    resetForm();
+    // if (newExercise) {
+    //   dispatch({ type: ADD_EXERCISE, payload: newExercise });
+    // }
+
+    // dispatch({ type: TOGGLE_MODAL });
+    // resetForm();
   };
 
   const resetForm = () => {
     setLoading(false);
-    setDuration(0);
+    setDate('');
+    setDuration('');
     setNote('');
     setType('');
     setDistance('');
@@ -64,10 +70,26 @@ export const AddExercise = () => {
     setType(value);
   };
 
+  const dateRef = createRef();
+  console.dir(dateRef.current);
+
+  const dateField = (
+    <div className='form-field date' ref={dateRef}>
+      <label htmlFor='date'>Date:</label>
+      <input
+        id='date'
+        type='datetime-local'
+        onChange={e => setDate(e.target.value)}
+        value={date}
+        required
+      />
+    </div>
+  );
+
   const typeField = (
     <div className='form-field type'>
       <label htmlFor='type'>Type:</label>
-      <select id='type' onChange={e => handleSelectChange(e.target.value)} value={type} autoFocus>
+      <select id='type' onChange={e => handleSelectChange(e.target.value)} value={type}>
         <option value='' disabled>
           Choose...
         </option>
@@ -145,6 +167,7 @@ export const AddExercise = () => {
         <motion.form className='add-exercise' initial={{ y: 0 }} animate={{ y: 10 }}>
           <h2>Log New Exercise</h2>
           <hr className='divider' />
+          {dateField}
           {typeField}
           {durationField}
           {distanceField}
