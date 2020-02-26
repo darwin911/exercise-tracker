@@ -29,11 +29,8 @@ connection.once('open', () => {
 const exerciseRouter = require('./routes/exercises');
 const userRouter = require('./routes/users');
 
-const contactsRouter = require('./routes/contacts');
-
-// app.use('/exercises', exerciseRouter);
-// app.use('/users', userRouter);
-app.use('/contacts', contactsRouter);
+app.use('/exercises', exerciseRouter);
+app.use('/users', userRouter);
 
 app.get('/', (req, res) => {
   res.json({ message: `Server is running on port: ${port}` });
