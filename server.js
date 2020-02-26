@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 app.use(passport.initialize());
 
-const uri = process.env.MONGODB_URI_CONTACT;
+const uri = process.env.MONGODB_URI;
 // current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
 mongoose.connect(uri, {
   useUnifiedTopology: true,
@@ -29,11 +29,8 @@ connection.once('open', () => {
 const exerciseRouter = require('./routes/exercises');
 const userRouter = require('./routes/users');
 
-const contactsRouter = require('./routes/contacts');
-
-// app.use('/exercises', exerciseRouter);
-// app.use('/users', userRouter);
-app.use('/contacts', contactsRouter);
+app.use('/exercises', exerciseRouter);
+app.use('/users', userRouter);
 
 app.get('/', (req, res) => {
   res.json({ message: `Server is running on port: ${port}` });
