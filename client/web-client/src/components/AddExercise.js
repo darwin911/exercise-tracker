@@ -1,10 +1,10 @@
-import React, { useState, useContext, useRef } from 'react';
+import React, { useState, useContext } from 'react';
 import { addExercise } from '../helper';
 import { AuthContext } from '../Store';
 import { ADD_EXERCISE, TOGGLE_MODAL } from '../constants';
 import { motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
-import { createRef } from 'react';
+import moment from 'moment';
 
 const exerciseTypes = ['Gym', 'Run', 'Yoga'];
 
@@ -13,11 +13,10 @@ export const AddExercise = () => {
   const { user, modalOpen } = state;
 
   const [distance, setDistance] = useState(''); // Units in miles (imperial)
-  const [date, setDate] = useState(new Date(Date.now()));
+  const [date, setDate] = useState(moment().format(moment.HTML5_FMT.DATETIME_LOCAL));
   const [duration, setDuration] = useState('');
   const [note, setNote] = useState('');
   const [type, setType] = useState('');
-  console.log('date', date);
 
   const [loading, setLoading] = useState(false);
 
@@ -40,21 +39,19 @@ export const AddExercise = () => {
       distance,
     };
 
-    debugger;
+    const newExercise = await addExercise(exerciseObj);
 
-    // const newExercise = await addExercise(exerciseObj);
+    if (newExercise) {
+      dispatch({ type: ADD_EXERCISE, payload: newExercise });
+    }
 
-    // if (newExercise) {
-    //   dispatch({ type: ADD_EXERCISE, payload: newExercise });
-    // }
-
-    // dispatch({ type: TOGGLE_MODAL });
-    // resetForm();
+    dispatch({ type: TOGGLE_MODAL });
+    resetForm();
   };
 
   const resetForm = () => {
     setLoading(false);
-    setDate('');
+    setDate(moment().format(moment.HTML5_FMT.DATETIME_LOCAL));
     setDuration('');
     setNote('');
     setType('');
@@ -70,11 +67,8 @@ export const AddExercise = () => {
     setType(value);
   };
 
-  const dateRef = createRef();
-  console.dir(dateRef.current);
-
   const dateField = (
-    <div className='form-field date' ref={dateRef}>
+    <div className='form-field date'>
       <label htmlFor='date'>Date:</label>
       <input
         id='date'
