@@ -40,14 +40,15 @@ export const Reducer = (state, action) => {
         loading: false,
       };
     case ADD_EXERCISE:
+      debugger;
       return {
         ...state,
         exercises: [...state.exercises, action.payload],
         exerciseCount: state.exerciseCount + 1,
         exerciseMins: state.exerciseMins + action.payload.duration,
-        totalMiles:
-          action.payload.distance &&
-          Math.round((state.totalMiles + action.payload.distance) * 100) / 100,
+        totalMiles: action.payload.distance
+          ? Math.round((state.totalMiles + action.payload.distance) * 100) / 100
+          : state.totalMiles,
         loading: false,
       };
     case REMOVE_EXERCISE:
@@ -56,9 +57,9 @@ export const Reducer = (state, action) => {
         exercises: state.exercises.filter(exercise => exercise.id !== action.payload.id),
         exerciseCount: state.exerciseCount - 1,
         exerciseMins: state.exerciseMins - action.payload.duration,
-        totalMiles:
-          action.payload.distance &&
-          Math.round((state.totalMiles - action.payload.distance) * 100) / 100,
+        totalMiles: action.payload.distance
+          ? Math.round((state.totalMiles - action.payload.distance) * 100) / 100
+          : state.totalMiles,
         loading: false,
       };
     case FILTER_ALL: {
