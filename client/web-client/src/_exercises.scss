@@ -12,16 +12,15 @@
 .exercise {
   display: grid;
   grid-column: span 2;
-  grid-auto-rows: min-content;
-  grid-template-columns: 4fr 1fr;
+  grid-auto-rows: max-content;
+  grid-template-columns: 5fr 1fr;
 
   background-color: hsla(0, 0%, 100%, 0.045);
   max-width: 400px;
-  // margin-bottom: 0.75rem;
   padding: 0.5rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   transition: background-color 200ms ease-in-out;
   @media screen and (min-width: 414px) {
     grid-column: span 1;
@@ -65,6 +64,7 @@
     font-size: 1.5em;
 
     span {
+      display: block;
       text-transform: uppercase;
       font-size: 0.5em;
       font-weight: 500;
@@ -90,7 +90,7 @@
   }
 
   &__type {
-    grid-column: 1;
+    grid-column: 1 / 3;
     grid-row: 1;
     text-transform: uppercase;
     font-size: 0.75em;
@@ -98,10 +98,13 @@
 
   &__note {
     font-size: 0.8em;
-    font-style: italic;
     color: #bbb;
     margin: 0.25rem 0;
-    grid-column: 1;
+    grid-column: span 2;
+    font-style: italic;
+    span {
+      font-style: normal;
+    }
   }
 
   &__distance {
@@ -109,6 +112,7 @@
     grid-column: 2;
     grid-row: 2;
     span {
+      display: block;
       text-transform: uppercase;
       font-size: 0.5em;
       font-weight: 500;

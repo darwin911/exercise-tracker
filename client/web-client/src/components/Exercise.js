@@ -31,11 +31,7 @@ export const Exercise = ({ exercise }) => {
         <p className='exercise__duration'>
           {duration} <span>mins</span>
         </p>
-        {type && (
-          <p className='exercise__type'>
-            {type} <span></span>
-          </p>
-        )}
+        <p className='exercise__type'>{type}</p>
         {note && (
           <p className='exercise__note'>
             <span role='img' aria-label='Note'>
