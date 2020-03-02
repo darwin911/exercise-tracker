@@ -22,6 +22,7 @@ router.route('/add').post(async (req, res) => {
       type: req.body.type,
       duration: Number(req.body.duration),
       date: Date.parse(req.body.date),
+      note: req.body.note,
     };
     if (req.body.distance > 0) {
       exerciseObj.distance = Number(req.body.distance);
