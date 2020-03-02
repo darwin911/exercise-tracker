@@ -40,7 +40,6 @@ export const Reducer = (state, action) => {
         loading: false,
       };
     case ADD_EXERCISE:
-      debugger;
       return {
         ...state,
         exercises: [...state.exercises, action.payload],
