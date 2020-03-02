@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { TOGGLE_MODAL } from '../constants';
 import { ExercisesSummary } from './ExercisesSummary';
 import { ExerciseList } from './ExerciseList';
@@ -6,15 +6,7 @@ import { AuthContext } from '../Store';
 
 export const UserExercises = () => {
   const [state, dispatch] = useContext(AuthContext);
-  const {
-    user,
-    exercises,
-    loading,
-    filteredExercises,
-    exerciseCount,
-    exerciseMins,
-    totalMiles,
-  } = state;
+  const { user, exercises, loading, exerciseCount, exerciseMins, totalMiles } = state;
 
   const toggleModal = () => {
     dispatch({ type: TOGGLE_MODAL });
