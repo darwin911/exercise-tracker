@@ -70,6 +70,7 @@ hr {
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.8);
           box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.8);
+  margin: 1rem;
 }
 
 a:visited,
@@ -321,13 +322,16 @@ a:hover {
 }
 
 .exercises__container {
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-column-gap: 1rem;
+          column-gap: 1rem;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
-  row-gap: 0.8rem;
-  -webkit-column-gap: 0.8rem;
-          column-gap: 0.8rem;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  row-gap: 1rem;
 }
 
 @media screen and (min-width: 768px) {
@@ -338,6 +342,11 @@ a:hover {
 }
 
 .exercise {
+  background-color: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
   display: -ms-grid;
   display: grid;
   grid-column: span 2;
@@ -345,13 +354,8 @@ a:hover {
   grid-auto-rows: max-content;
   -ms-grid-columns: 5fr 1fr;
       grid-template-columns: 5fr 1fr;
-  background-color: rgba(255, 255, 255, 0.045);
   max-width: 400px;
   padding: 0.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-          box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-  border-radius: 0.5rem;
   -webkit-transition: background-color 200ms ease-in-out;
   transition: background-color 200ms ease-in-out;
 }
@@ -409,23 +413,24 @@ a:hover {
   font-weight: 500;
 }
 
-.exercise__date, .exercise__time {
-  font-weight: 300;
+.exercise__date, .exercise__time, .exercise__day-of-week {
+  font-weight: 500;
   text-align: right;
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
 .exercise__date {
   -ms-grid-column: 3;
   grid-column: 3;
-  min-width: 80px;
   font-weight: bold;
 }
 
 .exercise__time {
+  font-weight: 300;
   -ms-grid-column: 3;
   grid-column: 3;
   min-width: 20px;
+  opacity: 0.9;
 }
 
 .exercise__type {
@@ -509,7 +514,6 @@ a:hover {
   -ms-grid-columns: (1fr)[3];
       grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 0.5rem;
-  padding: 1rem 0;
   position: relative;
 }
 
@@ -523,6 +527,7 @@ a:hover {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
+  text-align: center;
 }
 
 .user-exercises__summary__total-exercises, .user-exercises__summary__total-mins, .user-exercises__summary__total-miles {
@@ -539,10 +544,21 @@ a:hover {
 
 .user-exercises__summary__total-exercises {
   color: #3ec54a;
+  -ms-grid-row: 2;
+  grid-row: 2;
 }
 
 .user-exercises__summary__total-mins {
   color: grey;
+  -ms-grid-column: 1;
+  grid-column: 1;
+  -ms-grid-row: 2;
+  grid-row: 2;
+}
+
+.user-exercises__summary__total-miles {
+  -ms-grid-row: 2;
+  grid-row: 2;
 }
 
 .add-exercise {
@@ -675,6 +691,7 @@ a:hover {
 }
 
 .filter {
+  display: none;
   border: none;
   border-radius: 50rem;
   background: #e7e7e7;
