@@ -135,10 +135,12 @@ export const AddExercise = () => {
         <input
           id='distance'
           type='number'
+          placeholder='0.0'
           step={0.1}
           min={0.1}
           onChange={e => setDistance(e.target.value)}
           value={distance}
+          required
         />
         <label htmlFor='distance'>mi</label>
       </div>
@@ -146,7 +148,10 @@ export const AddExercise = () => {
 
   const buttonsContainer = (
     <div className='form-field buttons-container'>
-      <button className='btn add' onClick={handleSubmit} disabled={loading || !duration}>
+      <button
+        className='btn add'
+        onClick={handleSubmit}
+        disabled={loading || !duration || (type.toUpperCase() === 'RUN' && !distance)}>
         {loading ? <div className='loader' /> : 'Add'}
       </button>
       <button type='button' className='btn cancel' onClick={closeModal} disabled={loading}>
