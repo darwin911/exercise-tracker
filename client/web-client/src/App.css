@@ -70,7 +70,7 @@ hr {
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.8);
           box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.8);
-  margin: 1rem;
+  margin: 1rem 0;
 }
 
 a:visited,
@@ -367,7 +367,7 @@ a:hover {
 }
 
 .exercise.gym {
-  background: rgba(0, 150, 136, 0.35);
+  background: rgba(0, 150, 136, 0.5);
 }
 
 .exercise.gym:hover {
@@ -375,7 +375,7 @@ a:hover {
 }
 
 .exercise.run {
-  background: rgba(0, 91, 148, 0.35);
+  background: rgba(0, 91, 148, 0.5);
 }
 
 .exercise.run:hover {
@@ -383,7 +383,7 @@ a:hover {
 }
 
 .exercise.yoga {
-  background: rgba(233, 30, 99, 0.35);
+  background: rgba(233, 30, 99, 0.5);
 }
 
 .exercise.yoga:hover {
@@ -401,8 +401,8 @@ a:hover {
 .exercise__duration {
   -ms-grid-column: 1;
   grid-column: 1;
-  -ms-grid-row: 2;
-  grid-row: 2;
+  -ms-grid-row: 3;
+  grid-row: 3;
   font-size: 1.5em;
 }
 
@@ -426,6 +426,9 @@ a:hover {
 }
 
 .exercise__time {
+  -ms-flex-item-align: self-end;
+      -ms-grid-row-align: self-end;
+      align-self: self-end;
   font-weight: 300;
   -ms-grid-column: 3;
   grid-column: 3;
@@ -459,8 +462,8 @@ a:hover {
   font-size: 1.5em;
   -ms-grid-column: 2;
   grid-column: 2;
-  -ms-grid-row: 2;
-  grid-row: 2;
+  -ms-grid-row: 3;
+  grid-row: 3;
 }
 
 .exercise__distance span {
