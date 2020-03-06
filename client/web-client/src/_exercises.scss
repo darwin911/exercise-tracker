@@ -132,20 +132,39 @@
   &__right-container {
     flex-grow: 1;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
   }
 
   .btn.delete {
     position: relative;
-    i {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      line-height: 1.25;
-    }
+    background: crimson;
+    border-radius: 50%;
+    color: white;
+    font-size: 1rem;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    font-weight: 900;
+    box-shadow: none;
+  }
+
+  .btn.edit {
+    position: relative;
+    background: rgb(20, 123, 220);
+    border-radius: 50%;
+    color: white;
+    font-size: 1rem;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    font-weight: 900;
+    box-shadow: none;
   }
 }
 

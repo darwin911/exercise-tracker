@@ -49,8 +49,9 @@ export const Exercise = ({ exercise }) => {
       </div>
       <div className='exercise__right-container'>
         <button className='btn delete' onClick={() => handleDelete(id)} disabled={deleting}>
-          {deleting ? <div className='loader' /> : <i style={{ fontStyle: 'normal' }}>&#x2212;</i>}
+          {deleting ? <div className='loader' /> : '✖'}
         </button>
+        <button className='btn edit'>✎</button>
       </div>
     </motion.div>
   );
