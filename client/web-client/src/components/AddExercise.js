@@ -13,7 +13,8 @@ export const AddExercise = () => {
   const { user, modalOpen } = state;
 
   const [distance, setDistance] = useState(''); // Units in miles (imperial)
-  const [date, setDate] = useState(moment().format(moment.HTML5_FMT.DATETIME_LOCAL));
+  const [date, setDate] = useState(moment().format(moment.HTML5_FMT.DATE));
+  const [time, setTime] = useState(moment().format(moment.HTML5_FMT.TIME));
   const [duration, setDuration] = useState('');
   const [note, setNote] = useState('');
   const [type, setType] = useState('');
@@ -51,7 +52,7 @@ export const AddExercise = () => {
 
   const resetForm = () => {
     setLoading(false);
-    setDate(moment().format(moment.HTML5_FMT.DATETIME_LOCAL));
+    setDate(moment().format(moment.HTML5_FMT.DATE));
     setDuration('');
     setNote('');
     setType('');
@@ -72,11 +73,19 @@ export const AddExercise = () => {
       <label htmlFor='date'>Date:</label>
       <input
         id='date'
-        type='datetime-local'
+        type='date'
+        pattern='\d{4}-\d{2}-\d{2}'
         onChange={e => setDate(e.target.value)}
         value={date}
         required
       />
+    </div>
+  );
+
+  const timeField = (
+    <div className='form-field time'>
+      <label htmlFor='time'>Time:</label>
+      <input id='time' type='time' onChange={e => setTime(e.target.value)} value={time} required />
     </div>
   );
 
@@ -167,6 +176,7 @@ export const AddExercise = () => {
           <h2>Log New Exercise</h2>
           <hr className='divider' />
           {dateField}
+          {timeField}
           {typeField}
           {durationField}
           {distanceField}
