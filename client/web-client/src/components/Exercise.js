@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { deleteExercise } from '../helper';
 import moment from 'moment';
 import { AuthContext } from '../Store';
-import { REMOVE_EXERCISE } from '../constants';
+import { REMOVE_EXERCISE, LOAD_EDIT_EXERCISE } from '../constants';
 import { motion } from 'framer-motion';
 
 export const Exercise = ({ exercise }) => {
@@ -16,6 +16,10 @@ export const Exercise = ({ exercise }) => {
     await deleteExercise(id);
     setDeleting(false);
     dispatch({ type: REMOVE_EXERCISE, payload: exercise });
+  };
+
+  const toggleEdit = () => {
+    dispatch({ type: LOAD_EDIT_EXERCISE, payload: exercise });
   };
 
   return (
@@ -51,7 +55,9 @@ export const Exercise = ({ exercise }) => {
         <button className='btn delete' onClick={() => handleDelete(id)} disabled={deleting}>
           {deleting ? <div className='loader' /> : '✖'}
         </button>
-        <button className='btn edit'>✎</button>
+        <button className='btn edit' onClick={() => toggleEdit()}>
+          ✎
+        </button>
       </div>
     </motion.div>
   );
