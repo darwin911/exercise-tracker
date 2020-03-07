@@ -213,18 +213,16 @@
   }
 }
 
-.add-exercise {
-  display: grid;
-  width: 400px;
-  max-width: 75vw;
-
-  display: flex;
-  flex-direction: column;
-
+.add-exercise,
+.edit-exercise {
+  border-radius: 0.25rem;
   background: hsl(0, 0%, 99%);
   color: black;
-  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  max-width: 75vw;
   padding: 2rem;
+  width: 400px;
 
   &__modal {
     color: black;

@@ -572,11 +572,11 @@ a:hover {
   grid-row: 2;
 }
 
-.add-exercise {
-  display: -ms-grid;
-  display: grid;
-  width: 400px;
-  max-width: 75vw;
+.add-exercise,
+.edit-exercise {
+  border-radius: 0.25rem;
+  background: #fcfcfc;
+  color: black;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -584,13 +584,13 @@ a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background: #fcfcfc;
-  color: black;
-  border-radius: 0.25rem;
+  max-width: 75vw;
   padding: 2rem;
+  width: 400px;
 }
 
-.add-exercise__modal {
+.add-exercise__modal,
+.edit-exercise__modal {
   color: black;
   display: -ms-grid;
   display: grid;
@@ -603,20 +603,23 @@ a:hover {
   background: radial-gradient(ellipse at center, transparent -40%, rgba(0, 0, 0, 0.3));
 }
 
-.add-exercise__modal .divider {
+.add-exercise__modal .divider,
+.edit-exercise__modal .divider {
   width: 100%;
   border-bottom-color: rgba(0, 0, 0, 0.15);
   -webkit-box-shadow: 0px 1px 3px -1px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 1px 3px -1px rgba(0, 0, 0, 0.2);
 }
 
-.add-exercise select {
+.add-exercise select,
+.edit-exercise select {
   color: rgba(0, 0, 0, 0.85);
   font-size: 0.85em;
   border-color: currentColor;
 }
 
-.add-exercise .form-field {
+.add-exercise .form-field,
+.edit-exercise .form-field {
   color: black;
   margin-bottom: 0.75rem;
   display: -webkit-box;
@@ -627,7 +630,8 @@ a:hover {
           align-items: center;
 }
 
-.add-exercise .form-field label {
+.add-exercise .form-field label,
+.edit-exercise .form-field label {
   -webkit-box-flex: 2;
       -ms-flex-positive: 2;
           flex-grow: 2;
@@ -637,7 +641,9 @@ a:hover {
 }
 
 .add-exercise .form-field input,
-.add-exercise .form-field select {
+.add-exercise .form-field select,
+.edit-exercise .form-field input,
+.edit-exercise .form-field select {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -649,22 +655,29 @@ a:hover {
   background: rgba(0, 0, 0, 0.025);
 }
 
-.add-exercise .form-field.duration, .add-exercise .form-field.distance {
+.add-exercise .form-field.duration, .add-exercise .form-field.distance,
+.edit-exercise .form-field.duration,
+.edit-exercise .form-field.distance {
   position: relative;
 }
 
-.add-exercise .form-field.duration input, .add-exercise .form-field.distance input {
+.add-exercise .form-field.duration input, .add-exercise .form-field.distance input,
+.edit-exercise .form-field.duration input,
+.edit-exercise .form-field.distance input {
   max-width: 80px;
 }
 
-.add-exercise .form-field.duration label:last-of-type, .add-exercise .form-field.distance label:last-of-type {
+.add-exercise .form-field.duration label:last-of-type, .add-exercise .form-field.distance label:last-of-type,
+.edit-exercise .form-field.duration label:last-of-type,
+.edit-exercise .form-field.distance label:last-of-type {
   color: rgba(0, 0, 0, 0.2);
   font-weight: 300;
   position: absolute;
   right: 1.25rem;
 }
 
-.add-exercise .btn {
+.add-exercise .btn,
+.edit-exercise .btn {
   margin-right: 0.5rem;
   padding: 0.4rem;
   border-radius: 4px;
@@ -672,21 +685,25 @@ a:hover {
   transition: opacity 120ms ease-in;
 }
 
-.add-exercise .btn.add {
+.add-exercise .btn.add,
+.edit-exercise .btn.add {
   color: white;
   background: #4caf50;
 }
 
-.add-exercise .btn.add:disabled {
+.add-exercise .btn.add:disabled,
+.edit-exercise .btn.add:disabled {
   opacity: 0.5;
   cursor: default;
 }
 
-.add-exercise .buttons-container {
+.add-exercise .buttons-container,
+.edit-exercise .buttons-container {
   margin-bottom: 0;
 }
 
-.add-exercise .buttons-container button {
+.add-exercise .buttons-container button,
+.edit-exercise .buttons-container button {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -696,7 +713,8 @@ a:hover {
           box-shadow: none;
 }
 
-.add-exercise .buttons-container button.cancel {
+.add-exercise .buttons-container button.cancel,
+.edit-exercise .buttons-container button.cancel {
   background: #eb0d11;
   color: white;
 }
