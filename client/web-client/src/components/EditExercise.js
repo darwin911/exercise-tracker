@@ -19,37 +19,35 @@ export const EditExercise = ({ exercise }) => {
   const [loading, setLoading] = useState(false);
 
   const handleEdit = async e => {
+    debugger;
     e.preventDefault();
     setLoading(true);
-
-    // if (duration < 1) {
-    //   setLoading(false);
-    //   return;
-    // }
 
     let exerciseObj = {
       duration,
       userId: user.id,
       note,
-      date,
+      date: moment(date).format(moment.HTML5_FMT.DATE),
       username: user.username,
       type: exercise.type,
       distance,
     };
+    debugger;
     const updatedExercise = await editExercise(exercise.id, exerciseObj);
-    // debugger;
+    debugger;
 
     if (updatedExercise) {
       dispatch({ type: UPDATE_EXERCISE, payload: updatedExercise });
     }
 
-    // dispatch({ type: TOGGLE_MODAL });
-    // resetForm();
+    dispatch({ type: CLEAR_EDIT_EXERCISE });
+    resetForm();
+    setLoading(false);
   };
 
   const resetForm = () => {
     setLoading(false);
-    setDate(moment().format(moment.HTML5_FMT.DATE));
+    setDate(moment(exercise.date).format(moment.HTML5_FMT.DATE));
     setDuration('');
     setNote('');
     setDistance('');
