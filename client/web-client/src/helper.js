@@ -33,6 +33,15 @@ const deleteExercise = async id => {
   }
 };
 
+const editExercise = async (id, data) => {
+  try {
+    const resp = await axios.put(`${BASE_URL}/exercises/update/${id}`, data);
+    return resp.data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 // Authentication
 
 const loginUser = async data => {
@@ -64,4 +73,12 @@ const verifyToken = async data => {
   }
 };
 
-export { getUserExercises, addExercise, deleteExercise, loginUser, registerUser, verifyToken };
+export {
+  getUserExercises,
+  addExercise,
+  deleteExercise,
+  editExercise,
+  loginUser,
+  registerUser,
+  verifyToken,
+};
