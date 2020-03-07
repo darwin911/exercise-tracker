@@ -55,20 +55,23 @@ router.route('/:id').delete((req, res) => {
 });
 
 // Update Exercise
-router.route('/update/:id').post((req, res) => {
-  Exercise.findById(req.params.id)
-    .then(exercise => {
-      exercise.username = req.body.username;
-      exercise.note = req.body.note;
-      exercise.duration = Number(req.body.duration);
-      exercise.date = Date.parse(req.body.date);
-
-      exercise
-        .save()
-        .then(exercise => res.json(`Exercise ${exercise.id} updated!`))
-        .catch(err => res.status(400).json('Error: ' + err));
-    })
-    .catch(err => res.status(400).json('Error: ' + err));
+router.route('/update/:id').put(async (req, res) => {
+  try {
+    const { duration, note, date, distance } = req.body;
+    let exerciseObj = {
+      duration,
+      note,
+      date,
+      distance,
+    };
+    let exercise = await Exercise.findByIdAndUpdate(req.params.id, exerciseObj, {
+      new: true,
+    });
+    const exerciseData = await exercise.toClient();
+    return res.json(exerciseData);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;
