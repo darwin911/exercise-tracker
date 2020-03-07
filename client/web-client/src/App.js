@@ -9,6 +9,7 @@ import { Login } from './components/Login';
 import { Register } from './components/Register';
 import { UserExercises } from './components/UserExercises';
 import { AddExercise } from './components/AddExercise';
+import { EditExercise } from './components/EditExercise';
 
 export const App = () => {
   const [state, dispatch] = useContext(AuthContext);
@@ -57,6 +58,7 @@ export const App = () => {
             <hr />
             <UserExercises />
             <AddExercise />
+            {state.editingExercise && <EditExercise exercise={state.editingExercise} />}
           </main>
         </div>
       </Route>
