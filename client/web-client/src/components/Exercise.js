@@ -2,8 +2,9 @@ import React, { useContext, useState } from 'react';
 import { deleteExercise } from '../helper';
 import moment from 'moment';
 import { AuthContext } from '../Store';
-import { REMOVE_EXERCISE, LOAD_EDIT_EXERCISE } from '../constants';
+import { REMOVE_EXERCISE, LOAD_EDIT_EXERCISE, TOGGLE_MODAL } from '../constants';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 export const Exercise = ({ exercise }) => {
   const dispatch = useContext(AuthContext)[1];
@@ -19,6 +20,7 @@ export const Exercise = ({ exercise }) => {
   };
 
   const toggleEdit = () => {
+    dispatch({ type: TOGGLE_MODAL });
     dispatch({ type: LOAD_EDIT_EXERCISE, payload: exercise });
   };
 
@@ -56,7 +58,7 @@ export const Exercise = ({ exercise }) => {
           {deleting ? <div className='loader' /> : '✖'}
         </button>
         <button className='btn edit' onClick={() => toggleEdit()}>
-          ✎
+          <Link to='/home/edit'>✎</Link>
         </button>
       </div>
     </motion.div>
