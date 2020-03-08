@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import './App.css';
 import { SET_USER, SET_EXERCISES, TOGGLE_LOADING } from './constants';
 import { getUserExercises, verifyToken } from './helper';
-import { Switch, Route, useHistory } from 'react-router-dom';
+import { Switch, Route, useHistory, Redirect } from 'react-router-dom';
 import { AuthContext } from './Store';
 import { Header } from './components/Header';
 import { Login } from './components/Login';
@@ -14,7 +14,6 @@ import { EditExercise } from './components/EditExercise';
 export const App = () => {
   const [state, dispatch] = useContext(AuthContext);
   const { user, modalOpen } = state;
-
   const history = useHistory();
 
   useEffect(() => {
@@ -25,7 +24,7 @@ export const App = () => {
         history.push('/login');
       } else {
         dispatch({ type: SET_USER, payload: verifiedUser });
-        history.push('/');
+        history.push('/home');
       }
     };
 
@@ -51,21 +50,29 @@ export const App = () => {
 
   return (
     <Switch>
-      <Route exact path='/'>
+      <Route path='/home'>
         <div className={`App${modalOpen ? ' modal-open' : ''}`}>
           <main className='container'>
             <Header dispatch={dispatch} />
             <hr />
             <UserExercises />
-            <AddExercise />
-            {state.editingExercise && <EditExercise exercise={state.editingExercise} />}
           </main>
         </div>
+        <Route path='/home/add' component={AddExercise} />
+        <Route
+          path='/home/edit'
+          render={() => {
+            if (!state.editingExercise) {
+              return <Redirect to='/home' />;
+            }
+            return <EditExercise exercise={state.editingExercise} />;
+          }}
+        />
       </Route>
-      <Route path='/login'>
+      <Route exact path='/login'>
         <Login />
       </Route>
-      <Route path='/register'>
+      <Route exact path='/register'>
         <Register />
       </Route>
     </Switch>
