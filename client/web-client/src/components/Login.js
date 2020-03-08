@@ -27,7 +27,7 @@ export const Login = () => {
     if (authenticatedUser) {
       dispatch({ type: SET_USER, payload: authenticatedUser });
       localStorage.setItem('token', authenticatedUser.token);
-      history.push('/');
+      history.push('/home');
     }
   };
 
