@@ -21,7 +21,6 @@ export const Exercise = ({ exercise }) => {
 
   const toggleEdit = () => {
     dispatch({ type: TOGGLE_MODAL });
-    dispatch({ type: LOAD_EDIT_EXERCISE, payload: exercise });
   };
 
   return (
@@ -57,9 +56,9 @@ export const Exercise = ({ exercise }) => {
         <button className='btn delete' onClick={() => handleDelete(id)} disabled={deleting}>
           {deleting ? <div className='loader' /> : '✖'}
         </button>
-        <button className='btn edit' onClick={() => toggleEdit()}>
-          <Link to='/home/edit'>✎</Link>
-        </button>
+        <Link className='btn edit' onClick={() => toggleEdit()} to={`/home/edit/${exercise.id}`}>
+          ✎
+        </Link>
       </div>
     </motion.div>
   );
