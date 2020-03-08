@@ -520,28 +520,36 @@ a:hover {
   font-size: 1rem;
   line-height: 1;
   font-weight: 900;
-  -webkit-transition: 120ms;
-  transition: 120ms;
+  -webkit-transition: 320ms ease-in-out;
+  transition: 320ms ease-in-out;
+  -webkit-box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.05);
+          box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.05);
+}
+
+.exercise .btn.delete:hover,
+.exercise .btn.edit:hover {
+  -webkit-box-shadow: 0px 0px 1rem 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 0px 1rem 4px rgba(0, 0, 0, 0.25);
+  -webkit-transform: rotateZ(180deg);
+          transform: rotateZ(180deg);
 }
 
 .exercise .btn.delete {
-  background: rgba(220, 20, 60, 0.75);
-  -webkit-box-shadow: 0px 0px 1px 4px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 0px 1px 4px rgba(0, 0, 0, 0.1);
+  background: rgba(183, 28, 28, 0.75);
 }
 
 .exercise .btn.delete:hover {
-  background: crimson;
+  background: rgba(183, 28, 28, 0.8);
 }
 
 .exercise .btn.edit {
   background: rgba(20, 123, 220, 0.75);
-  -webkit-box-shadow: 0px 0px 1px 4px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 0px 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 .exercise .btn.edit:hover {
   background: #147bdc;
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
 }
 
 .user-exercises__summary {
@@ -788,5 +796,11 @@ a:hover {
   -ms-grid-column-align: self-end;
       justify-self: self-end;
   max-width: 150px;
+}
+
+.cancel-svg {
+  width: 0.75em;
+  height: 0.75em;
+  color: white;
 }
 /*# sourceMappingURL=App.css.map */

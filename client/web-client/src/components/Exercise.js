@@ -5,6 +5,7 @@ import { AuthContext } from '../Store';
 import { REMOVE_EXERCISE, TOGGLE_MODAL } from '../constants';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import cancel from '../cancel.svg';
 
 export const Exercise = ({ exercise }) => {
   const dispatch = useContext(AuthContext)[1];
@@ -53,9 +54,13 @@ export const Exercise = ({ exercise }) => {
         )}
       </div>
       <div className='exercise__right-container'>
-        <Link className='btn delete' onClick={() => handleDelete(id)} disabled={deleting}>
-          {deleting ? <div className='loader' /> : '✖'}
-        </Link>
+        <button className='btn delete' onClick={() => handleDelete(id)} disabled={deleting}>
+          {deleting ? (
+            <div className='loader' />
+          ) : (
+            <img className='cancel-svg' src={cancel} alt='Cancel Icon' />
+          )}
+        </button>
         <Link className='btn edit' onClick={() => toggleEdit()} to={`/home/edit/${exercise.id}`}>
           ✎
         </Link>
