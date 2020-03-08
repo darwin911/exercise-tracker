@@ -12,14 +12,13 @@ export const EditExercise = ({ exercise }) => {
 
   const [distance, setDistance] = useState(exercise.distance); // Units in miles (imperial)
   const [date, setDate] = useState(moment(exercise.date).format(moment.HTML5_FMT.DATE));
-  const [time, setTime] = useState(moment().format(moment.HTML5_FMT.TIME));
+  const [time, setTime] = useState(moment(exercise.time, 'Hmm').format(moment.HTML5_FMT.TIME));
   const [duration, setDuration] = useState(exercise.duration);
   const [note, setNote] = useState(exercise.note);
 
   const [loading, setLoading] = useState(false);
 
   const handleEdit = async e => {
-    debugger;
     e.preventDefault();
     setLoading(true);
 
@@ -29,12 +28,12 @@ export const EditExercise = ({ exercise }) => {
       note,
       date: moment(date).format(moment.HTML5_FMT.DATE),
       username: user.username,
+      time,
       type: exercise.type,
       distance,
     };
-    debugger;
+
     const updatedExercise = await editExercise(exercise.id, exerciseObj);
-    debugger;
 
     if (updatedExercise) {
       dispatch({ type: UPDATE_EXERCISE, payload: updatedExercise });
