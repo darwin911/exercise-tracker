@@ -34,9 +34,10 @@ export const AddExercise = () => {
       duration,
       userId: user.id,
       note,
-      date: new Date(date),
+      date,
       username: user.username,
       type,
+      time,
       distance,
     };
 
