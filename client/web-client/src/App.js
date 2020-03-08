@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import './App.css';
 import { SET_USER, SET_EXERCISES, TOGGLE_LOADING } from './constants';
 import { getUserExercises, verifyToken } from './helper';
-import { Switch, Route, useHistory, Redirect } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import { AuthContext } from './Store';
 import { Header } from './components/Header';
 import { Login } from './components/Login';
@@ -51,24 +51,26 @@ export const App = () => {
   return (
     <Switch>
       <Route path='/home'>
-        <div className={`App${modalOpen ? ' modal-open' : ''}`}>
-          <main className='container'>
-            <Header dispatch={dispatch} />
-            <hr />
-            <UserExercises />
-          </main>
-        </div>
-        <Route path='/home/add' component={AddExercise} />
-        <Route
-          path='/home/edit'
-          render={() => {
-            if (!state.editingExercise) {
-              return <Redirect to='/home' />;
-            }
-            return <EditExercise exercise={state.editingExercise} />;
-          }}
-        />
+        <>
+          <div className={`App${modalOpen ? ' modal-open' : ''}`}>
+            <main className='container'>
+              <Header dispatch={dispatch} />
+              <hr />
+              <UserExercises />
+            </main>
+          </div>
+          <Route path='/home/add' component={AddExercise} />
+          <Route
+            path='/home/edit/:exerciseId'
+            render={({ match }) => {
+              const { exerciseId } = match.params;
+              const [editExercise] = state.exercises.filter(ex => ex.id === exerciseId);
+              return <EditExercise exercise={editExercise} />;
+            }}
+          />
+        </>
       </Route>
+      />
       <Route exact path='/login'>
         <Login />
       </Route>
