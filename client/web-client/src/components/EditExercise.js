@@ -1,14 +1,16 @@
 import React, { useState, useContext } from 'react';
 import { editExercise } from '../helper';
 import { AuthContext } from '../Store';
-import { CLEAR_EDIT_EXERCISE, UPDATE_EXERCISE } from '../constants';
+import { CLEAR_EDIT_EXERCISE, UPDATE_EXERCISE, TOGGLE_MODAL } from '../constants';
 import { motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import moment from 'moment';
+import { useHistory } from 'react-router-dom';
 
 export const EditExercise = ({ exercise }) => {
   const [state, dispatch] = useContext(AuthContext);
   const { user } = state;
+  const history = useHistory();
 
   const [distance, setDistance] = useState(exercise.distance); // Units in miles (imperial)
   const [date, setDate] = useState(moment(exercise.date).format(moment.HTML5_FMT.DATE));
@@ -54,6 +56,8 @@ export const EditExercise = ({ exercise }) => {
 
   const handleClose = () => {
     dispatch({ type: CLEAR_EDIT_EXERCISE });
+    dispatch({ type: TOGGLE_MODAL });
+    history.push('/home');
     resetForm();
   };
 
@@ -142,7 +146,13 @@ export const EditExercise = ({ exercise }) => {
     // modalOpen
     return createPortal(
       <aside className='edit-exercise__modal'>
-        <motion.form className='edit-exercise' initial={{ y: 0 }} animate={{ y: 10 }}>
+        <motion.form
+          className='edit-exercise'
+          initial={{ y: 0 }}
+          animate={{ y: 10 }}
+          style={
+            exercise.type.toUpperCase() === 'RUN' ? { background: 'rgba(0, 91, 148, 0.8)' } : null
+          }>
           <h2>Edit Exercise</h2>
           <hr className='divider' />
           {dateField}
