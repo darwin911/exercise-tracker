@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { deleteExercise } from '../helper';
 import moment from 'moment';
 import { AuthContext } from '../Store';
-import { REMOVE_EXERCISE, LOAD_EDIT_EXERCISE, TOGGLE_MODAL } from '../constants';
+import { REMOVE_EXERCISE, TOGGLE_MODAL } from '../constants';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -33,7 +33,7 @@ export const Exercise = ({ exercise }) => {
       <div className='exercise__left-container'>
         <p className='exercise__day-of-week'>{moment(date).format('ddd')}</p>
         <p className='exercise__date'>{moment(date).format('MMM D')}</p>
-        <p className='exercise__time'>{moment(time, 'Hmm').format('hh:mm a')}</p>
+        <p className='exercise__time'>{moment(time, 'Hmm').format('h:mm a')}</p>
         <p className='exercise__duration'>
           {duration} <span>mins</span>
         </p>
