@@ -31,7 +31,7 @@ export const Exercise = ({ exercise }) => {
       animate={{ y: 0 }}
       exit={{ scale: 0, opacity: 0 }}>
       <div className='exercise__left-container'>
-        <p className='exercise__day-of-week'>{moment(date).format('ddd')}</p>
+        <p className='exercise__day-of-week'>{moment(date).format('dddd')}</p>
         <p className='exercise__date'>{moment(date).format('MMM D')}</p>
         <p className='exercise__time'>{moment(time, 'Hmm').format('h:mm a')}</p>
         <p className='exercise__duration'>
@@ -53,9 +53,9 @@ export const Exercise = ({ exercise }) => {
         )}
       </div>
       <div className='exercise__right-container'>
-        <button className='btn delete' onClick={() => handleDelete(id)} disabled={deleting}>
+        <Link className='btn delete' onClick={() => handleDelete(id)} disabled={deleting}>
           {deleting ? <div className='loader' /> : '✖'}
-        </button>
+        </Link>
         <Link className='btn edit' onClick={() => toggleEdit()} to={`/home/edit/${exercise.id}`}>
           ✎
         </Link>
