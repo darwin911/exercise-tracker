@@ -147,13 +147,14 @@ export const EditExercise = ({ exercise }) => {
     return createPortal(
       <aside className='edit-exercise__modal'>
         <motion.form
-          className='edit-exercise'
+          className={`edit-exercise ${exercise.type.toLowerCase()}`}
           initial={{ y: 0 }}
-          animate={{ y: 10 }}
-          style={
-            exercise.type.toUpperCase() === 'RUN' ? { background: 'rgba(0, 91, 148, 0.8)' } : null
-          }>
-          <h2>Edit Exercise</h2>
+          animate={{ y: 10 }}>
+          <header>
+            <h2>Edit Exercise</h2>
+            <h4 className='type'>{exercise.type}</h4>
+          </header>
+
           <hr className='divider' />
           {dateField}
           {timeField}

@@ -332,7 +332,6 @@ a:hover {
 
 .exercise {
   background-color: rgba(255, 255, 255, 0.045);
-  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 0.5rem;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
           box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
@@ -344,7 +343,7 @@ a:hover {
   -ms-grid-columns: 5fr 1fr;
       grid-template-columns: 5fr 1fr;
   max-width: 400px;
-  padding: 0.5rem;
+  padding: 0.8rem;
   -webkit-transition: background-color 200ms ease-in-out;
   transition: background-color 200ms ease-in-out;
 }
@@ -357,30 +356,35 @@ a:hover {
 
 .exercise.gym {
   background: rgba(0, 150, 136, 0.5);
+  border: 1px solid rgba(0, 150, 136, 0.75);
+  -webkit-box-shadow: 0px 4px 15px -7px rgba(0, 150, 136, 0.8);
+          box-shadow: 0px 4px 15px -7px rgba(0, 150, 136, 0.8);
 }
 
 .exercise.gym:hover {
-  background-color: rgba(0, 150, 136, 0.5);
+  background-color: rgba(0, 150, 136, 0.6);
 }
 
 .exercise.run {
   background: rgba(0, 91, 148, 0.5);
+  border: 1px solid rgba(0, 91, 148, 0.75);
+  -webkit-box-shadow: 0px 4px 15px -7px rgba(0, 91, 148, 0.8);
+          box-shadow: 0px 4px 15px -7px rgba(0, 91, 148, 0.8);
 }
 
 .exercise.run:hover {
-  background-color: rgba(0, 91, 148, 0.5);
+  background-color: rgba(0, 91, 148, 0.6);
 }
 
 .exercise.yoga {
   background: rgba(233, 30, 99, 0.5);
+  border: 1px solid rgba(233, 30, 99, 0.75);
+  -webkit-box-shadow: 0px 4px 15px -7px rgba(233, 30, 99, 0.8);
+          box-shadow: 0px 4px 15px -7px rgba(233, 30, 99, 0.8);
 }
 
 .exercise.yoga:hover {
-  background-color: rgba(233, 30, 99, 0.5);
-}
-
-.exercise:hover {
-  background: rgba(255, 255, 255, 0.075);
+  background-color: rgba(233, 30, 99, 0.6);
 }
 
 .exercise__duration, .exercise__date, .exercise__time, .exercise__note {
@@ -405,7 +409,7 @@ a:hover {
 .exercise__date, .exercise__time, .exercise__day-of-week {
   font-weight: 500;
   text-align: right;
-  font-size: 1em;
+  font-size: 1.25em;
 }
 
 .exercise__date {
@@ -432,7 +436,7 @@ a:hover {
   -ms-grid-row: 1;
   grid-row: 1;
   text-transform: uppercase;
-  font-size: 0.85em;
+  font-size: 1.25em;
 }
 
 .exercise__note {
@@ -468,8 +472,8 @@ a:hover {
           flex-grow: 1;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 3fr 3fr 2fr;
-      grid-template-columns: 3fr 3fr 2fr;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
 }
 
 .exercise__right-container {
@@ -508,19 +512,28 @@ a:hover {
 }
 
 .exercise .btn.edit {
-  position: relative;
   background: #147bdc;
-  border-radius: 50%;
-  color: white;
-  font-size: 1rem;
-  line-height: 1;
-  margin: 0;
-  padding: 0;
-  width: 24px;
-  height: 24px;
-  font-weight: 900;
   -webkit-box-shadow: none;
           box-shadow: none;
+  border-radius: 50%;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1rem;
+  font-weight: 900;
+  height: 24px;
+  line-height: 1;
+  margin: 0;
+  position: relative;
+  padding: 0;
+  width: 24px;
 }
 
 .user-exercises__summary {
@@ -574,6 +587,35 @@ a:hover {
 .user-exercises__summary__total-miles {
   -ms-grid-row: 2;
   grid-row: 2;
+}
+
+.edit-exercise .type {
+  font-weight: 400;
+  position: relative;
+}
+
+.edit-exercise .type::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+}
+
+.edit-exercise.yoga .type::after {
+  background: rgba(233, 30, 99, 0.8);
+  border: 2px solid #e91e63;
+}
+
+.edit-exercise.run .type::after {
+  background: rgba(0, 91, 148, 0.8);
+  border: 2px solid #005b94;
+}
+
+.edit-exercise.gym .type::after {
+  background: rgba(0, 150, 136, 0.8);
+  border: 2px solid #009688;
 }
 
 .add-exercise,
