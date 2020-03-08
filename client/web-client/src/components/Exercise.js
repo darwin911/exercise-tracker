@@ -9,7 +9,7 @@ export const Exercise = ({ exercise }) => {
   const dispatch = useContext(AuthContext)[1];
 
   const [deleting, setDeleting] = useState(false);
-  const { id, note, duration, date, type, distance } = exercise;
+  const { id, note, duration, date, time, type, distance } = exercise;
 
   const handleDelete = async id => {
     setDeleting(true);
@@ -32,7 +32,7 @@ export const Exercise = ({ exercise }) => {
       <div className='exercise__left-container'>
         <p className='exercise__day-of-week'>{moment(date).format('ddd')}</p>
         <p className='exercise__date'>{moment(date).format('MMM D')}</p>
-        <p className='exercise__time'>{moment(date).format('h:mm a')}</p>
+        <p className='exercise__time'>{moment(time, 'Hmm').format('hh:mm a')}</p>
         <p className='exercise__duration'>
           {duration} <span>mins</span>
         </p>
