@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { editExercise } from '../helper';
 import { AuthContext } from '../Store';
-import { CLEAR_EDIT_EXERCISE, UPDATE_EXERCISE, TOGGLE_MODAL } from '../constants';
+import { UPDATE_EXERCISE, TOGGLE_MODAL } from '../constants';
 import { motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import moment from 'moment';
@@ -38,27 +38,30 @@ export const EditExercise = ({ exercise }) => {
     const updatedExercise = await editExercise(exercise.id, exerciseObj);
 
     if (updatedExercise) {
-      dispatch({ type: UPDATE_EXERCISE, payload: updatedExercise });
+      handleSuccess(updatedExercise);
     }
+  };
 
-    dispatch({ type: CLEAR_EDIT_EXERCISE });
+  const handleSuccess = updatedExercise => {
+    dispatch({ type: UPDATE_EXERCISE, payload: updatedExercise });
+    dispatch({ type: TOGGLE_MODAL });
     resetForm();
-    setLoading(false);
+    history.push('/home');
+  };
+
+  const handleClose = () => {
+    dispatch({ type: TOGGLE_MODAL });
+    history.push('/home');
+    resetForm();
   };
 
   const resetForm = () => {
+    setLoading(false);
     setLoading(false);
     setDate(moment(exercise.date).format(moment.HTML5_FMT.DATE));
     setDuration('');
     setNote('');
     setDistance('');
-  };
-
-  const handleClose = () => {
-    dispatch({ type: CLEAR_EDIT_EXERCISE });
-    dispatch({ type: TOGGLE_MODAL });
-    history.push('/home');
-    resetForm();
   };
 
   const dateField = (

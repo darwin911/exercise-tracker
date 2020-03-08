@@ -9,8 +9,6 @@ import {
   FILTER_ALL,
   FILTER_CURRENT_MONTH,
   FILTER_CURRENT_WEEK,
-  LOAD_EDIT_EXERCISE,
-  CLEAR_EDIT_EXERCISE,
   UPDATE_EXERCISE,
 } from './constants';
 import moment from 'moment';
@@ -73,16 +71,6 @@ export const Reducer = (state, action) => {
       return {
         ...state,
         exercises: updatedExercises,
-      };
-    case LOAD_EDIT_EXERCISE:
-      return {
-        ...state,
-        editingExercise: action.payload,
-      };
-    case CLEAR_EDIT_EXERCISE:
-      return {
-        ...state,
-        editingExercise: null,
       };
     case FILTER_ALL: {
       return {
