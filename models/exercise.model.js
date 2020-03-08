@@ -4,12 +4,13 @@ const Schema = mongoose.Schema;
 
 const exerciseSchema = new Schema(
   {
-    type: { type: String },
     date: { type: Date, required: true },
+    distance: { type: Number },
     duration: { type: Number, required: true },
     note: { type: String },
+    time: { type: Number },
+    type: { type: String },
     userId: { type: String, required: true },
-    distance: { type: Number },
   },
   { timestamps: true }
 );
@@ -17,12 +18,13 @@ const exerciseSchema = new Schema(
 exerciseSchema.methods.toClient = function() {
   return {
     id: this._id,
-    userId: this.userId,
     date: this.date,
+    distance: this.distance,
     duration: this.duration,
     note: this.note,
+    time: this.time,
+    userId: this.userId,
     type: this.type,
-    distance: this.distance,
   };
 };
 
