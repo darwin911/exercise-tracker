@@ -5,12 +5,14 @@ import { ADD_EXERCISE, TOGGLE_MODAL } from '../constants';
 import { motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import moment from 'moment';
+import { useHistory } from 'react-router-dom';
 
 const exerciseTypes = ['Gym', 'Run', 'Yoga'];
 
 export const AddExercise = () => {
   const [state, dispatch] = useContext(AuthContext);
-  const { user, modalOpen } = state;
+  const { user } = state;
+  const history = useHistory();
 
   const [distance, setDistance] = useState(''); // Units in miles (imperial)
   const [date, setDate] = useState(moment().format(moment.HTML5_FMT.DATE));
@@ -49,6 +51,7 @@ export const AddExercise = () => {
 
     dispatch({ type: TOGGLE_MODAL });
     resetForm();
+    history.push('/home');
   };
 
   const resetForm = () => {
@@ -62,6 +65,7 @@ export const AddExercise = () => {
 
   const closeModal = () => {
     dispatch({ type: TOGGLE_MODAL });
+    history.push('/home');
     resetForm();
   };
 
@@ -170,24 +174,20 @@ export const AddExercise = () => {
     </div>
   );
 
-  if (modalOpen) {
-    return createPortal(
-      <aside className='add-exercise__modal'>
-        <motion.form className='add-exercise' initial={{ y: 0 }} animate={{ y: 10 }}>
-          <h2>Log New Exercise</h2>
-          <hr className='divider' />
-          {dateField}
-          {timeField}
-          {typeField}
-          {durationField}
-          {distanceField}
-          {noteField}
-          {buttonsContainer}
-        </motion.form>
-      </aside>,
-      document.body
-    );
-  } else {
-    return null;
-  }
+  return createPortal(
+    <aside className='add-exercise__modal'>
+      <motion.form className='add-exercise' initial={{ y: 0 }} animate={{ y: 10 }}>
+        <h2>Log New Exercise</h2>
+        <hr className='divider' />
+        {dateField}
+        {timeField}
+        {typeField}
+        {durationField}
+        {distanceField}
+        {noteField}
+        {buttonsContainer}
+      </motion.form>
+    </aside>,
+    document.body
+  );
 };
