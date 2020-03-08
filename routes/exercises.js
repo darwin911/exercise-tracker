@@ -18,12 +18,16 @@ router.route('/:userId').get(async (req, res) => {
 router.route('/add').post(async (req, res) => {
   try {
     const exerciseObj = {
-      userId: req.body.userId,
-      type: req.body.type,
+      date: req.body.date,
       duration: Number(req.body.duration),
-      date: Date.parse(req.body.date),
       note: req.body.note,
+      type: req.body.type,
+      userId: req.body.userId,
     };
+
+    if (req.body.time) {
+      exerciseObj.time = Number(req.body.time.replace(/:/, '')); // min from midnight 00:00
+    }
     if (req.body.distance > 0) {
       exerciseObj.distance = Number(req.body.distance);
     }
@@ -57,13 +61,16 @@ router.route('/:id').delete((req, res) => {
 // Update Exercise
 router.route('/update/:id').put(async (req, res) => {
   try {
-    const { duration, note, date, distance } = req.body;
+    const { duration, note, date, distance, time } = req.body;
     let exerciseObj = {
       duration,
       note,
       date,
       distance,
     };
+    if (req.body.time) {
+      exerciseObj.time = Number(req.body.time.replace(/:/, '')); // min from midnight 00:00
+    }
     let exercise = await Exercise.findByIdAndUpdate(req.params.id, exerciseObj, {
       new: true,
     });
