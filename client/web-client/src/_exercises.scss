@@ -258,7 +258,7 @@
 
 .add-exercise,
 .edit-exercise {
-  border-radius: 0.25rem;
+  border-radius: 0.75rem;
   background: hsl(0, 0%, 99%);
   color: black;
   display: flex;
@@ -375,7 +375,6 @@
 }
 
 .filter {
-  display: none;
   border: none;
   border-radius: 50rem;
   background: rgb(231, 231, 231);
@@ -386,6 +385,10 @@
   grid-column: 3;
   justify-self: self-end;
   max-width: 150px;
+
+  &__container {
+    margin-bottom: 1rem;
+  }
 }
 
 .cancel-svg {

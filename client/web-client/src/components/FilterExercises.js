@@ -1,24 +1,22 @@
-import React, { useState, useContext } from 'react';
-import { FILTER_ALL, FILTER_CURRENT_MONTH, FILTER_CURRENT_WEEK } from '../constants';
-import { AuthContext } from '../Store';
+import React from 'react';
+import { exerciseTypes } from '../constants';
 
-export const FilterExercises = () => {
-  // eslint-disable-next-line
-  const [state, dispatch] = useContext(AuthContext);
-
-  const [filterOption, setFilterOption] = useState('All');
-
-  const handleChange = e => {
-    const { value } = e.target;
-    setFilterOption(value);
-    dispatch({ type: value });
-  };
-
+export const FilterExercises = ({ filter, setFilter }) => {
   return (
-    <select className='filter' value={filterOption} onChange={handleChange}>
-      <option value={FILTER_ALL}>All</option>
-      <option value={FILTER_CURRENT_WEEK}>This Week</option>
-      <option value={FILTER_CURRENT_MONTH}>This Month</option>
-    </select>
+    <div className='filter__container'>
+      <label htmlFor='filter'>Filter: </label>
+      <select
+        id='filter'
+        className='filter'
+        value={filter}
+        onChange={e => setFilter(e.target.value)}>
+        <option value='All'>All</option>
+        {exerciseTypes.map(type => (
+          <option key={type} value={type}>
+            {type}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 };

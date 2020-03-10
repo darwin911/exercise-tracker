@@ -636,7 +636,7 @@ a:hover {
 
 .add-exercise,
 .edit-exercise {
-  border-radius: 0.25rem;
+  border-radius: 0.75rem;
   background: #fcfcfc;
   color: black;
   display: -webkit-box;
@@ -782,7 +782,6 @@ a:hover {
 }
 
 .filter {
-  display: none;
   border: none;
   border-radius: 50rem;
   background: #e7e7e7;
@@ -796,6 +795,10 @@ a:hover {
   -ms-grid-column-align: self-end;
       justify-self: self-end;
   max-width: 150px;
+}
+
+.filter__container {
+  margin-bottom: 1rem;
 }
 
 .cancel-svg {
