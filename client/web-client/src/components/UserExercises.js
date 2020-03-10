@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 export const UserExercises = () => {
   const [state, dispatch] = useContext(AuthContext);
   const history = useHistory();
-  const { user, exercises, loading, exerciseCount, exerciseMins, totalMiles } = state;
+  const { user, exercises, loading } = state;
 
   const toggleModal = () => {
     dispatch({ type: TOGGLE_MODAL });
@@ -18,14 +18,8 @@ export const UserExercises = () => {
   if (!loading) {
     return (
       <div className='user-exercises'>
-        <ExercisesSummary
-          username={user ? user.username : 'Guest'}
-          totalExercises={exerciseCount}
-          totalExerciseMins={exerciseMins}
-          totalMiles={totalMiles}
-        />
+        <ExercisesSummary username={user ? user.username : 'Guest'} />
         <hr />
-
         <div className='exercises__container'>
           <ExerciseList exercises={exercises} />
           <div style={{ gridColumn: '1 / -1' }}>

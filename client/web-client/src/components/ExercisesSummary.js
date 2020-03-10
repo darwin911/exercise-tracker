@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../Store';
 import { FilterExercises } from './FilterExercises';
 
-export const ExercisesSummary = ({ username, totalExercises, totalExerciseMins, totalMiles }) => {
+export const ExercisesSummary = ({ username }) => {
+  const { exercises } = useContext(AuthContext)[0];
+  const totalExerciseMins = exercises.reduce((total, exercise) => total + exercise.duration, 0);
+  const totalExercises = exercises.length;
+  const totalMiles =
+    Math.round(
+      exercises
+        .filter(exercise => exercise.distance)
+        .reduce((acc, item) => acc + item.distance, 0) * 100
+    ) / 100;
   return (
     <div className='user-exercises__summary'>
       <h4 className='user-exercises__summary__heading'>{username}'s Exercises</h4>
