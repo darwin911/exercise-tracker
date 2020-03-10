@@ -29,7 +29,7 @@ export const Register = () => {
     if (authenticatedUser) {
       localStorage.setItem('token', authenticatedUser.token);
       dispatch({ type: SET_USER, payload: authenticatedUser });
-      history.push('/');
+      history.push('/home');
     }
   };
 
