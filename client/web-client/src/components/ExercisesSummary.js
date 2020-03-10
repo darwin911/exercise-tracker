@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Store';
-import { FilterExercises } from './FilterExercises';
 
 export const ExercisesSummary = ({ username }) => {
   const { exercises } = useContext(AuthContext)[0];
@@ -24,7 +23,6 @@ export const ExercisesSummary = ({ username }) => {
       <p className='user-exercises__summary__total-miles'>
         {totalMiles} <span>Miles</span>
       </p>
-      <FilterExercises />
     </div>
   );
 };
