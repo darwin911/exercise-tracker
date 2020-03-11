@@ -71,10 +71,14 @@ button {
 
 hr {
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom-color: currentcolor;
+  border-bottom-style: none;
+  border-bottom-width: medium;
+  border-bottom: 5px solid rgba(51, 51, 51, 0.65);
   -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.8);
           box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.8);
   margin: 1rem 0;
+  border-radius: 0.125rem;
 }
 
 a:visited,
@@ -177,8 +181,31 @@ a:hover {
 }
 
 .App .btn.toggle-form {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  font-size: 1rem;
+  width: 3rem;
+  font-weight: normal;
   display: block;
-  margin-left: auto;
+  margin: 0;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #a64eff;
+  -webkit-box-shadow: 0px 2px 13px -4px rgba(255, 255, 255, 0.25), inset 0px 0px 6px rgba(0, 0, 0, 0.75), inset 0px 0px 2px -1px black;
+          box-shadow: 0px 2px 13px -4px rgba(255, 255, 255, 0.25), inset 0px 0px 6px rgba(0, 0, 0, 0.75), inset 0px 0px 2px -1px black;
+}
+
+.App .btn.toggle-form svg {
+  -webkit-transform: scale(0.667);
+          transform: scale(0.667);
 }
 
 .App .btn.logout {
@@ -357,8 +384,8 @@ a:hover {
 .exercise.gym {
   background: rgba(0, 150, 136, 0.7);
   border: 2px solid rgba(0, 150, 136, 0.85);
-  -webkit-box-shadow: 0px 4px 15px -7px rgba(0, 150, 136, 0.8);
-          box-shadow: 0px 4px 15px -7px rgba(0, 150, 136, 0.8);
+  -webkit-box-shadow: 0px 4px 15px -7px rgba(0, 150, 136, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 4px 15px -7px rgba(0, 150, 136, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
 }
 
 .exercise.gym:hover {
@@ -368,8 +395,8 @@ a:hover {
 .exercise.run {
   background: rgba(0, 91, 148, 0.7);
   border: 2px solid rgba(0, 91, 148, 0.85);
-  -webkit-box-shadow: 0px 4px 15px -7px rgba(0, 91, 148, 0.8);
-          box-shadow: 0px 4px 15px -7px rgba(0, 91, 148, 0.8);
+  -webkit-box-shadow: 0px 4px 15px -7px rgba(0, 91, 148, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 4px 15px -7px rgba(0, 91, 148, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
 }
 
 .exercise.run:hover {
@@ -379,8 +406,8 @@ a:hover {
 .exercise.yoga {
   background: rgba(233, 30, 99, 0.7);
   border: 2px solid rgba(233, 30, 99, 0.85);
-  -webkit-box-shadow: 0px 4px 15px -7px rgba(233, 30, 99, 0.8);
-          box-shadow: 0px 4px 15px -7px rgba(233, 30, 99, 0.8);
+  -webkit-box-shadow: 0px 4px 15px -7px rgba(233, 30, 99, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 4px 15px -7px rgba(233, 30, 99, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
 }
 
 .exercise.yoga:hover {
@@ -798,7 +825,16 @@ a:hover {
 }
 
 .filter__container {
-  margin-bottom: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 2rem;
 }
 
 .cancel-svg {

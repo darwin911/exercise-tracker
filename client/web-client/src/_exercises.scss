@@ -31,7 +31,8 @@
   &.gym {
     background: $gym-bg-color;
     border: 2px solid rgba($gym-bg-color, 0.85);
-    box-shadow: 0px 4px 15px -7px rgba($gym-bg-color, 0.8);
+    box-shadow: 0px 4px 15px -7px rgba($gym-bg-color, 0.8),
+      inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
     &:hover {
       background-color: rgba($gym-bg-color, $hover-opacity);
     }
@@ -40,7 +41,8 @@
   &.run {
     background: $run-bg-color;
     border: 2px solid rgba($run-bg-color, 0.85);
-    box-shadow: 0px 4px 15px -7px rgba($run-bg-color, 0.8);
+    box-shadow: 0px 4px 15px -7px rgba($run-bg-color, 0.8),
+      inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
     &:hover {
       background-color: rgba($run-bg-color, $hover-opacity);
     }
@@ -49,7 +51,8 @@
   &.yoga {
     background: $yoga-bg-color;
     border: 2px solid rgba($yoga-bg-color, 0.85);
-    box-shadow: 0px 4px 15px -7px rgba($yoga-bg-color, 0.8);
+    box-shadow: 0px 4px 15px -7px rgba($yoga-bg-color, 0.8),
+      inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
     &:hover {
       background-color: rgba($yoga-bg-color, $hover-opacity);
     }
@@ -387,7 +390,10 @@
   max-width: 150px;
 
   &__container {
-    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
   }
 }
 

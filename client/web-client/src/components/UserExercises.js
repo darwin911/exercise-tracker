@@ -1,22 +1,15 @@
 import React, { useContext, useState } from 'react';
-import { TOGGLE_MODAL } from '../constants';
 import { ExercisesSummary } from './ExercisesSummary';
 import { FilterExercises } from './FilterExercises';
 import { ExerciseList } from './ExerciseList';
 import { AuthContext } from '../Store';
-import { useHistory } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { AddExerciseButton } from './AddExerciseButton';
 
 export const UserExercises = () => {
-  const [state, dispatch] = useContext(AuthContext);
-  const history = useHistory();
-  const { user, exercises, loading } = state;
+  const { user, exercises, loading } = useContext(AuthContext)[0];
 
   const [filter, setFilter] = useState('All');
-
-  const toggleModal = () => {
-    dispatch({ type: TOGGLE_MODAL });
-    history.push('/home/add');
-  };
 
   const filterExercises = filter => {
     const result = exercises.filter(ex => ex.type === filter);
@@ -29,15 +22,13 @@ export const UserExercises = () => {
       <div className='user-exercises'>
         <ExercisesSummary username={user ? user.username : 'Guest'} />
         <hr />
-        <FilterExercises filter={filter} setFilter={setFilter} />
-        <div className='exercises__container'>
-          <ExerciseList exercises={filterExercises(filter)} />
-          <div style={{ gridColumn: '1 / -1' }}>
-            <button className='btn toggle-form' onClick={() => toggleModal()}>
-              Add Exercise
-            </button>
-          </div>
+        <div className='filter__container'>
+          <FilterExercises filter={filter} setFilter={setFilter} />
+          <AddExerciseButton />
         </div>
+        <motion.div className='exercises__container'>
+          <ExerciseList exercises={filterExercises(filter)} />
+        </motion.div>
       </div>
     );
   } else {

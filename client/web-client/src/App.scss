@@ -68,9 +68,13 @@ button {
 
 hr {
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom-color: currentcolor;
+  border-bottom-style: none;
+  border-bottom-width: medium;
+  border-bottom: 5px solid rgba(51, 51, 51, 0.65);
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.8);
   margin: 1rem 0;
+  border-radius: 0.125rem;
 }
 
 a:visited,
@@ -145,8 +149,23 @@ a:hover {
     margin-bottom: 0.5rem;
 
     &.toggle-form {
+      box-shadow: none;
+      font-size: 1rem;
+      width: 3rem;
+      font-weight: normal;
       display: block;
-      margin-left: auto;
+      margin: 0;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // background: #3ec54a;
+      background: #a64eff;
+      box-shadow: 0px 2px 13px -4px rgba(255, 255, 255, 0.25), inset 0px 0px 6px rgba(0, 0, 0, 0.75),
+        inset 0px 0px 2px -1px rgb(0, 0, 0);
+      svg {
+        transform: scale(0.667);
+      }
     }
 
     &.logout {

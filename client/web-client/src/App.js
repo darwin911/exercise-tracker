@@ -12,8 +12,8 @@ import { AddExercise } from './components/AddExercise';
 import { EditExercise } from './components/EditExercise';
 
 export const App = () => {
-  const [state, dispatch] = useContext(AuthContext);
-  const { user, modalOpen } = state;
+  const [{ exercises, user, modalOpen }, dispatch] = useContext(AuthContext);
+
   const history = useHistory();
 
   useEffect(() => {
@@ -64,7 +64,7 @@ export const App = () => {
             path='/home/edit/:exerciseId'
             render={({ match }) => {
               const { exerciseId } = match.params;
-              const [editExercise] = state.exercises.filter(ex => ex.id === exerciseId);
+              const [editExercise] = exercises.filter(ex => ex.id === exerciseId);
               return <EditExercise exercise={editExercise} />;
             }}
           />

@@ -3,7 +3,7 @@ import { exerciseTypes } from '../constants';
 
 export const FilterExercises = ({ filter, setFilter }) => {
   return (
-    <div className='filter__container'>
+    <aside className='filter__wrapper'>
       <label htmlFor='filter'>Filter: </label>
       <select
         id='filter'
@@ -17,6 +17,6 @@ export const FilterExercises = ({ filter, setFilter }) => {
           </option>
         ))}
       </select>
-    </div>
+    </aside>
   );
 };
