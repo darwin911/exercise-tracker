@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
-import { editExercise } from '../helper';
-import { AuthContext } from '../Store';
-import { UPDATE_EXERCISE, TOGGLE_MODAL } from '../constants';
+import { editExercise } from '../../helper';
+import { AuthContext } from '../../Store';
+import { UPDATE_EXERCISE, TOGGLE_MODAL } from '../../constants';
 import { motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import moment from 'moment';

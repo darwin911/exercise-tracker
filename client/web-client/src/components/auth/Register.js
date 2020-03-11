@@ -1,38 +1,40 @@
 import React, { useState, useContext } from 'react';
-import { loginUser } from '../helper';
+import { registerUser } from '../../helper';
 import { Link, useHistory } from 'react-router-dom';
-import { AuthContext } from '../Store';
-import { SET_USER, TOGGLE_LOADING } from '../constants';
+import { AuthContext } from '../../Store';
+import { SET_USER, TOGGLE_LOADING } from '../../constants';
 
-export const Login = () => {
+export const Register = () => {
   const [state, dispatch] = useContext(AuthContext);
+  const history = useHistory();
 
-  let history = useHistory();
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
-  const handleLogin = async e => {
+  const handleRegister = async e => {
     e.preventDefault();
     dispatch({ type: TOGGLE_LOADING });
 
-    const authenticatedUser = await loginUser({ email, password });
+    const authenticatedUser = await registerUser({ username, email, password });
 
     if (authenticatedUser.error) {
+      console.log(authenticatedUser);
       setError(authenticatedUser.error);
       dispatch({ type: TOGGLE_LOADING });
       return;
     }
 
     if (authenticatedUser) {
-      dispatch({ type: SET_USER, payload: authenticatedUser });
       localStorage.setItem('token', authenticatedUser.token);
+      dispatch({ type: SET_USER, payload: authenticatedUser });
       history.push('/home');
     }
   };
 
   return (
-    <div className='login'>
+    <div className='register'>
       <div className='container'>
         <header>
           <h1 className='main-heading'>
@@ -41,17 +43,29 @@ export const Login = () => {
         </header>
         <hr />
         <br />
-        <form onSubmit={handleLogin}>
-          <h2>Login</h2>
+        <form onSubmit={handleRegister}>
+          <h2>Register</h2>
           <br />
+          <div className='form-field'>
+            <label htmlFor='username'>Username</label>
+            <input
+              id='username'
+              type='text'
+              name='username'
+              autoComplete='name'
+              placeholder='select a username'
+              onChange={e => setUsername(e.target.value)}
+              value={username}
+              required
+            />
+          </div>
           <div className='form-field'>
             <label htmlFor='email'>Email</label>
             <input
               id='email'
               type='email'
               name='email'
-              autoFocus
-              autoComplete='username'
+              autoComplete='email'
               placeholder='name@email.com'
               onChange={e => setEmail(e.target.value)}
               value={email}
@@ -68,6 +82,7 @@ export const Login = () => {
               placeholder='p@s5w0rd'
               onChange={e => setPassword(e.target.value)}
               value={password}
+              minLength={3}
               required
             />
           </div>
@@ -76,7 +91,7 @@ export const Login = () => {
           </button>
           {error && <p className='error'>{error}</p>}
           <p>
-            Don't have an account? <Link to='/register'>Register</Link>
+            Already have an account? <Link to='/login'>Login!</Link>
           </p>
         </form>
       </div>

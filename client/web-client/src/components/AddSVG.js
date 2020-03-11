@@ -31,13 +31,3 @@ export const AddSVG = ({ fill }) => {
     </svg>
   );
 };
-
-{
-  /* <svg width="102px" height="99px" viewBox="0 0 102 99" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="add-plus-iconsrepo-com" transform="translate(1.000000, 1.000000)" fill="#FFFFFF" fill-rule="nonzero" stroke="#FFFFFF" stroke-width="0.5">
-            <path d="M52.2726563,46.2955234 L52.2726563,2.27265625 C52.2726563,1.01750286 51.2551534,-2.30567937e-16 50,0 C48.7448466,2.30567937e-16 47.7273438,1.01750286 47.7273438,2.27265625 L47.7273438,46.2955234 L47.7273438,46.2955234 L0,46.2955234 L0,50.7044766 L47.7273438,50.7044766 L47.7273438,97 L52.2726563,97 L52.2726563,50.7044766 L100,50.7044766 L100,46.2955234 L52.2726563,46.2955234 Z" id="Path"></path>
-        </g>
-    </g>
-</svg> */
-}

@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { ExercisesSummary } from './ExercisesSummary';
-import { FilterExercises } from './FilterExercises';
+import { ExercisesSummary } from '../ExercisesSummary';
+import { FilterExercises } from '../FilterExercises';
 import { ExerciseList } from './ExerciseList';
-import { AuthContext } from '../Store';
+import { AuthContext } from '../../Store';
 import { motion } from 'framer-motion';
-import { AddExerciseButton } from './AddExerciseButton';
+import { AddExerciseButton } from '../AddExerciseButton';
 
 export const UserExercises = () => {
   const { user, exercises, loading } = useContext(AuthContext)[0];

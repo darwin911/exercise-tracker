@@ -5,11 +5,11 @@ import { getUserExercises, verifyToken } from './helper';
 import { Switch, Route, useHistory } from 'react-router-dom';
 import { AuthContext } from './Store';
 import { Header } from './components/Header';
-import { Login } from './components/Login';
-import { Register } from './components/Register';
-import { UserExercises } from './components/UserExercises';
-import { AddExercise } from './components/AddExercise';
-import { EditExercise } from './components/EditExercise';
+import { Login } from './components/auth/Login';
+import { Register } from './components/auth/Register';
+import { UserExercises } from './components/home/UserExercises';
+import { AddExercise } from './components/home/AddExercise';
+import { EditExercise } from './components/home/EditExercise';
 
 export const App = () => {
   const [{ exercises, user, modalOpen }, dispatch] = useContext(AuthContext);

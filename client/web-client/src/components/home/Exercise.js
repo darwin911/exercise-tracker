@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
-import { deleteExercise } from '../helper';
+import { deleteExercise } from '../../helper';
 import moment from 'moment';
-import { AuthContext } from '../Store';
-import { REMOVE_EXERCISE, TOGGLE_MODAL } from '../constants';
+import { AuthContext } from '../../Store';
+import { REMOVE_EXERCISE, TOGGLE_MODAL } from '../../constants';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import cancel from '../cancel.svg';
+import cancel from '../../cancel.svg';
 
 export const Exercise = ({ exercise }) => {
   const dispatch = useContext(AuthContext)[1];
