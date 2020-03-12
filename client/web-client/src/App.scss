@@ -133,6 +133,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+
   &.modal-open {
     filter: blur(2px) grayscale(60%);
   }
@@ -141,13 +142,6 @@ a:hover {
     width: 90vw;
     max-width: $container-max-width;
     margin: 0 auto;
-    padding-top: 2em;
-  }
-
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
 
   .btn {
@@ -210,3 +204,16 @@ a:hover {
 //
 @import './auth';
 @import './exercises';
+
+// Header
+
+.header {
+  padding: 1rem 0 0 0;
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 90vw;
+    margin: 0 auto;
+  }
+}

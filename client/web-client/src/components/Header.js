@@ -9,15 +9,17 @@ export const Header = ({ dispatch }) => {
   };
   return (
     <header className='header'>
-      <h1 className='main-heading'>
-        E<span className='hide-sm'>xercise </span>
-        <b>
-          T<span className='hide-sm'>racker</span>
-        </b>
-      </h1>
-      <Link to='/login' onClick={handleLogout} className='btn logout'>
-        Logout
-      </Link>
+      <nav>
+        <h1 className='main-heading'>
+          E<span className='hide-sm'>xercise </span>
+          <b>
+            T<span className='hide-sm'>racker</span>
+          </b>
+        </h1>
+        <Link to='/login' onClick={handleLogout} className='btn logout'>
+          Logout
+        </Link>
+      </nav>
     </header>
   );
 };

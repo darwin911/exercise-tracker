@@ -167,19 +167,6 @@ a:hover {
   width: 90vw;
   max-width: 1024px;
   margin: 0 auto;
-  padding-top: 2em;
-}
-
-.App .header {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 .App .btn {
@@ -895,5 +882,23 @@ a:hover {
   width: 0.75em;
   height: 0.75em;
   color: white;
+}
+
+.header {
+  padding: 1rem 0 0 0;
+}
+
+.header nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 90vw;
+  margin: 0 auto;
 }
 /*# sourceMappingURL=App.css.map */

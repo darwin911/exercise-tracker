@@ -53,8 +53,8 @@ export const App = () => {
       <Route path='/home'>
         <>
           <div className={`App${modalOpen ? ' modal-open' : ''}`}>
+            <Header dispatch={dispatch} />
             <main className='container'>
-              <Header dispatch={dispatch} />
               <hr />
               <UserExercises />
             </main>
