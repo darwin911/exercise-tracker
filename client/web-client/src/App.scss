@@ -118,8 +118,14 @@ a:hover {
   margin: 0;
   font-weight: 300;
 
-  span {
+  b {
     font-weight: bold;
+  }
+
+  span {
+    @media screen and (max-width: 550px) {
+      display: none;
+    }
   }
 }
 
