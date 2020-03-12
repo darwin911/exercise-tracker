@@ -155,17 +155,36 @@ a:hover {
       width: 3rem;
       font-weight: normal;
       display: block;
-      margin: 0;
+      margin: 0 1rem;
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
       // background: #3ec54a;
       background: #a64eff;
-      box-shadow: 0px 2px 13px -4px rgba(255, 255, 255, 0.25), inset 0px 0px 6px rgba(0, 0, 0, 0.75),
-        inset 0px 0px 2px -1px rgb(0, 0, 0);
+      box-shadow: 0px 2px 13px -4px rgba(255, 255, 255, 0.25), inset 0px 0px 6px rgba(0, 0, 0, 0.5);
       svg {
         transform: scale(0.667);
+      }
+      transition: 240ms ease-out;
+      &:hover,
+      &:focus {
+        animation: bounce 400ms linear;
+      }
+    }
+
+    @keyframes bounce {
+      0% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      25% {
+        transform: translateY(-2px) rotate(6deg);
+      }
+      50% {
+        transform: translateY(-1px) rotate(-3deg);
+      }
+      100% {
+        transform: translateY(0px) rotate(0deg);
       }
     }
 
