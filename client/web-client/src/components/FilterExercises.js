@@ -1,7 +1,8 @@
 import React from 'react';
-import { exerciseTypes } from '../constants';
+import { EXERCISE_TYPES } from '../constants';
 
 export const FilterExercises = ({ filter, setFilter }) => {
+  const types = Object.values(EXERCISE_TYPES);
   return (
     <aside className='filter__wrapper'>
       <label htmlFor='filter'>Filter: </label>
@@ -11,7 +12,7 @@ export const FilterExercises = ({ filter, setFilter }) => {
         value={filter}
         onChange={e => setFilter(e.target.value)}>
         <option value='All'>All</option>
-        {exerciseTypes.map(type => (
+        {types.map(type => (
           <option key={type} value={type}>
             {type}
           </option>

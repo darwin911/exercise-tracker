@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { addExercise } from '../../helper';
 import { AuthContext } from '../../Store';
-import { ADD_EXERCISE, TOGGLE_MODAL, exerciseTypes } from '../../constants';
+import { ADD_EXERCISE, TOGGLE_MODAL, EXERCISE_TYPES } from '../../constants';
 import { motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import moment from 'moment';
@@ -99,7 +99,7 @@ export const AddExercise = () => {
         <option value='' disabled>
           Choose...
         </option>
-        {exerciseTypes.map(option => (
+        {Object.values(EXERCISE_TYPES).map(option => (
           <option key={option} value={option}>
             {option}
           </option>
