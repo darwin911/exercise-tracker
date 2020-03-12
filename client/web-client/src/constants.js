@@ -16,4 +16,13 @@ export const FILTER_ALL = 'FILTER_ALL';
 export const FILTER_CURRENT_WEEK = 'FILTER_CURRENT_WEEK';
 export const FILTER_CURRENT_MONTH = 'FILTER_CURRENT_MONTH';
 
-export const exerciseTypes = ['Gym', 'Run', 'Yoga'];
+export const exerciseTypes = [
+  'General',
+  'Run',
+  'Gym',
+  'Yoga',
+  'Cycling',
+  'Rock Climbing',
+  'Swimming',
+  'Tennis',
+];
