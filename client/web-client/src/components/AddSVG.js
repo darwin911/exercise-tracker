@@ -15,7 +15,7 @@ export const AddSVG = ({ fill }) => {
       fill={fill}
       stroke={fill}
       strokeWidth='56px'>
-      <g stroke='none' stroke-width='1' fill='none' fillRule='evenodd'>
+      <g stroke='none' strokeWidth='1' fill='none' fillRule='evenodd'>
         <g
           id='add-plus-iconsrepo-com'
           transform='translate(1.000000, 1.000000)'
