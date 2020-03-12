@@ -126,7 +126,7 @@ a:hover {
 .App {
   display: flex;
   flex-direction: column;
-
+  overflow: hidden;
   &.modal-open {
     filter: blur(2px) grayscale(60%);
   }
