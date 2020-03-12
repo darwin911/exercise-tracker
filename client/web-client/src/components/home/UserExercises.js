@@ -3,7 +3,7 @@ import { ExercisesSummary } from '../ExercisesSummary';
 import { FilterExercises } from '../FilterExercises';
 import { ExerciseList } from './ExerciseList';
 import { AuthContext } from '../../Store';
-import { motion } from 'framer-motion';
+
 import { AddExerciseButton } from '../AddExerciseButton';
 
 export const UserExercises = () => {
@@ -26,9 +26,7 @@ export const UserExercises = () => {
           <FilterExercises filter={filter} setFilter={setFilter} />
           <AddExerciseButton />
         </div>
-        <motion.div className='exercises__container'>
-          <ExerciseList exercises={filterExercises(filter)} />
-        </motion.div>
+        <ExerciseList exercises={filterExercises(filter)} />
       </div>
     );
   } else {
