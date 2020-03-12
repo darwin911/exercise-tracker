@@ -28,9 +28,9 @@ export const Exercise = ({ exercise }) => {
     <motion.div
       positionTransition
       className={`exercise ${type.toLowerCase()}`}
-      initial={{ y: -10, transformOrigin: 'center' }}
-      animate={{ y: 0 }}
-      exit={{ scale: 0, opacity: 0 }}>
+      initial={{ y: -10, transformOrigin: 'center', opacity: 0.35 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -10, opacity: 0.35 }}>
       <div className='exercise__left-container'>
         <p className='exercise__day-of-week'>{moment(date).format('dddd')}</p>
         <p className='exercise__date'>{moment(date).format('MMM D')}</p>
