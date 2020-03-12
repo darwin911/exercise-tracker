@@ -17,3 +17,14 @@
 - User can login to previously created account
 - User can add Exercises with duration and a note
 - User can view all of his/her previoulsy added Exercises
+
+# Exercise Types
+
+- General
+- Run
+- Gym
+- Yoga
+- Cycling
+- Rock Climbing
+- Swimming
+- Tennis
