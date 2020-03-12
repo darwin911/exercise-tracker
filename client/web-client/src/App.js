@@ -9,7 +9,7 @@ import { Login } from './components/auth/Login';
 import { Register } from './components/auth/Register';
 import { UserExercises } from './components/home/UserExercises';
 import { AddExercise } from './components/home/AddExercise';
-import { EditExercise } from './components/home/EditExercise';
+import { EditExerciseModal } from './components/home/EditExerciseModal';
 
 export const App = () => {
   const [{ exercises, user, modalOpen }, dispatch] = useContext(AuthContext);
@@ -65,7 +65,8 @@ export const App = () => {
             render={({ match }) => {
               const { exerciseId } = match.params;
               const [editExercise] = exercises.filter(ex => ex.id === exerciseId);
-              return <EditExercise exercise={editExercise} />;
+              if (!editExercise) return null;
+              return <EditExerciseModal exercise={editExercise} />;
             }}
           />
         </>

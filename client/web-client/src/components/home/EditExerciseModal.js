@@ -7,7 +7,7 @@ import { createPortal } from 'react-dom';
 import moment from 'moment';
 import { useHistory } from 'react-router-dom';
 
-export const EditExercise = ({ exercise }) => {
+export const EditExerciseModal = ({ exercise }) => {
   const [state, dispatch] = useContext(AuthContext);
   const { user } = state;
   const history = useHistory();
@@ -64,7 +64,7 @@ export const EditExercise = ({ exercise }) => {
     setDistance('');
   };
 
-  const dateField = (
+  const DateField = () => (
     <div className='form-field date'>
       <label htmlFor='date'>Date:</label>
       <input
@@ -78,14 +78,14 @@ export const EditExercise = ({ exercise }) => {
     </div>
   );
 
-  const timeField = (
+  const TimeField = () => (
     <div className='form-field time'>
       <label htmlFor='time'>Time:</label>
       <input id='time' type='time' onChange={e => setTime(e.target.value)} value={time} required />
     </div>
   );
 
-  const durationField = (
+  const DurationField = () => (
     <div className='form-field duration'>
       <label htmlFor='duration'>Duration: </label>
       <input
@@ -103,7 +103,25 @@ export const EditExercise = ({ exercise }) => {
     </div>
   );
 
-  const noteField = (
+  const DistanceField = () =>
+    exercise.distance ? (
+      <div className='form-field distance'>
+        <label htmlFor='note'>Distance: </label>
+        <input
+          id='distance'
+          type='number'
+          placeholder='0.0'
+          step={0.1}
+          min={0.1}
+          onChange={e => setDistance(e.target.value)}
+          value={distance}
+          required
+        />
+        <label htmlFor='distance'>mi</label>
+      </div>
+    ) : null;
+
+  const NoteField = () => (
     <div className='form-field note'>
       <label htmlFor='note'>Note: </label>
       <input
@@ -117,24 +135,7 @@ export const EditExercise = ({ exercise }) => {
     </div>
   );
 
-  const distanceField = exercise.distance ? (
-    <div className='form-field distance'>
-      <label htmlFor='note'>Distance: </label>
-      <input
-        id='distance'
-        type='number'
-        placeholder='0.0'
-        step={0.1}
-        min={0.1}
-        onChange={e => setDistance(e.target.value)}
-        value={distance}
-        required
-      />
-      <label htmlFor='distance'>mi</label>
-    </div>
-  ) : null;
-
-  const buttonsContainer = (
+  const ButtonsContainer = () => (
     <div className='form-field buttons-container'>
       <button className='btn edit' onClick={e => handleEdit(e)} disabled={loading || !duration}>
         {loading ? <div className='loader' /> : 'Save'}
@@ -145,31 +146,25 @@ export const EditExercise = ({ exercise }) => {
     </div>
   );
 
-  if (exercise) {
-    // modalOpen
-    return createPortal(
-      <aside className='edit-exercise__modal'>
-        <motion.form
-          className={`edit-exercise ${exercise.type.toLowerCase()}`}
-          initial={{ y: 0 }}
-          animate={{ y: 10 }}>
-          <header>
-            <h2>Edit Exercise</h2>
-            <h4 className='type'>{exercise.type}</h4>
-          </header>
-
-          <hr className='divider' />
-          {dateField}
-          {timeField}
-          {durationField}
-          {distanceField}
-          {noteField}
-          {buttonsContainer}
-        </motion.form>
-      </aside>,
-      document.body
-    );
-  } else {
-    return null;
-  }
+  return createPortal(
+    <aside className='edit-exercise__modal'>
+      <motion.form
+        className={`edit-exercise ${exercise.type.toLowerCase()}`}
+        initial={{ y: 0 }}
+        animate={{ y: 10 }}>
+        <header>
+          <h2>Edit Exercise</h2>
+          <h4 className='type'>{exercise.type}</h4>
+        </header>
+        <hr className='divider' />
+        <DateField />
+        <TimeField />
+        <DurationField />
+        <DistanceField />
+        <NoteField />
+        <ButtonsContainer />
+      </motion.form>
+    </aside>,
+    document.body
+  );
 };
