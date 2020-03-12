@@ -99,7 +99,7 @@ a:hover {
 .loader {
   border: 0.2em solid rgba(255, 255, 255, 0.8);
   /* white */
-  border-top: 0.2em solid rgba(22, 109, 0, 0.575);
+  border-top: 0.2em solid rgba(255, 255, 255, 0.575);
   /* black tint */
   border-radius: 50%;
   width: 1em;

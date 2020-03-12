@@ -95,7 +95,7 @@ a:hover {
   $size: 1em;
   $borderSize: 0.2em;
   border: $borderSize solid rgba(255, 255, 255, 0.8); /* white */
-  border-top: $borderSize solid rgba(22, 109, 0, 0.575); /* black tint */
+  border-top: $borderSize solid rgba(255, 255, 255, 0.575); /* black tint */
   border-radius: 50%;
   width: $size;
   height: $size;
