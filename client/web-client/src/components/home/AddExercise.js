@@ -80,6 +80,7 @@ export const AddExercise = () => {
         pattern='\d{4}-\d{2}-\d{2}'
         onChange={e => setDate(e.target.value)}
         value={date}
+        max={moment().format(moment.HTML5_FMT.DATE)}
         required
       />
     </div>
