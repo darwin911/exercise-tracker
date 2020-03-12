@@ -64,6 +64,16 @@ export const EditExerciseModal = ({ exercise }) => {
     setDistance('');
   };
 
+  const Header = () => (
+    <>
+      <header>
+        <h2>Edit Exercise</h2>
+        <h4 className='type'>{exercise.type}</h4>
+      </header>
+      <hr className='divider' />
+    </>
+  );
+
   const DateField = () => (
     <div className='form-field date'>
       <label htmlFor='date'>Date:</label>
@@ -152,11 +162,7 @@ export const EditExerciseModal = ({ exercise }) => {
         className={`edit-exercise ${exercise.type.toLowerCase()}`}
         initial={{ y: 0 }}
         animate={{ y: 10 }}>
-        <header>
-          <h2>Edit Exercise</h2>
-          <h4 className='type'>{exercise.type}</h4>
-        </header>
-        <hr className='divider' />
+        <Header />
         <DateField />
         <TimeField />
         <DurationField />
