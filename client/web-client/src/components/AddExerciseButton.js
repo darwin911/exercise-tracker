@@ -13,7 +13,7 @@ export const AddExerciseButton = () => {
   };
   return (
     <button className='btn toggle-form' onClick={() => toggleModal()}>
-      <AddSVG fill='#D905FF' />
+      <AddSVG fill={'white'} />
     </button>
   );
 };
