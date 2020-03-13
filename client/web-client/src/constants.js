@@ -10,6 +10,7 @@ export const LOGOUT = 'LOGOUT';
 export const TOGGLE_LOADING = 'TOGGLE_LOADING';
 
 export const TOGGLE_MODAL = 'TOGGLE_MODAL';
+export const TOGGLE_MENU = 'TOGGLE_MENU';
 export const IMPERIAL = 'IMPERIAL';
 export const METRIC = 'METRIC';
 export const FILTER_ALL = 'FILTER_ALL';
