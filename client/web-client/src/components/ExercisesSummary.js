@@ -1,23 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../Store';
 
-export const ExercisesSummary = ({ username, exercises }) => {
-  const totalExerciseMins = exercises.reduce((total, exercise) => total + exercise.duration, 0);
-  const totalExercises = exercises.length;
-  const totalMiles =
-    Math.round(
-      exercises
-        .filter(exercise => exercise.distance)
-        .reduce((acc, item) => acc + item.distance, 0) * 100
-    ) / 100;
+export const ExercisesSummary = () => {
+  const { user, exercises } = useContext(AuthContext)[0];
+
+  const totalMinutes = getTotalMinutes(exercises);
+  const exerciseCount = exercises.length;
+  const totalMiles = getTotalMiles(exercises);
+
+  let defaultUserName = 'Guest';
+
+  if (user) {
+    defaultUserName = user.username;
+  }
+
   return (
     <>
       <div className='user-exercises__summary'>
-        <h4 className='user-exercises__summary__heading'>{username}'s Exercises</h4>
+        <h4 className='user-exercises__summary__heading'>{defaultUserName}'s Exercises</h4>
         <p className='user-exercises__summary__total-mins'>
-          {totalExerciseMins} <span>Mins</span>
+          {totalMinutes} <span>Mins</span>
         </p>
         <p className='user-exercises__summary__total-exercises'>
-          {totalExercises} <span>Exercises</span>
+          {exerciseCount} <span>Exercises</span>
         </p>
         <p className='user-exercises__summary__total-miles'>
           {totalMiles} <span>Miles</span>
@@ -26,4 +31,18 @@ export const ExercisesSummary = ({ username, exercises }) => {
       <hr />
     </>
   );
+};
+
+const getTotalMiles = exerciseCollection => {
+  return (
+    Math.round(
+      exerciseCollection
+        .filter(exercise => exercise.distance)
+        .reduce((acc, item) => acc + item.distance, 0) * 100
+    ) / 100
+  );
+};
+
+const getTotalMinutes = exerciseCollection => {
+  return exerciseCollection.reduce((total, exercise) => total + exercise.duration, 0);
 };
