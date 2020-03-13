@@ -6,19 +6,30 @@ import { AuthContext } from '../../Store';
 
 import { AddExerciseButton } from '../AddExerciseButton';
 
-export const UserExercises = ({ exercises }) => {
+const Loader = ({ size }) => (
+  <div
+    className='loader'
+    style={{
+      width: `${size}rem`,
+      height: `${size}rem`,
+      borderWidth: `${size + 2}px`,
+    }}
+  />
+);
+
+export const UserExercises = () => {
   const { user, loading } = useContext(AuthContext)[0];
-
-  if (loading) return <div className='loader' style={{ width: '5em', height: '5em' }} />;
-
-  return (
-    <div className='user-exercises'>
-      <ExercisesSummary username={user ? user.username : 'Guest'} exercises={exercises} />
-      <div className='filter__container'>
-        <FilterExercises />
-        <AddExerciseButton />
+  if (!loading) {
+    return (
+      <div className='user-exercises'>
+        <ExercisesSummary username={user ? user.username : 'Guest'} />
+        <div className='filter__container'>
+          <FilterExercises />
+          <AddExerciseButton />
+        </div>
+        <ExerciseList />
       </div>
-      <ExerciseList exercises={exercises} />
-    </div>
-  );
+    );
+  }
+  return <Loader size={4} />;
 };
