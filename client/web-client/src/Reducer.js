@@ -11,6 +11,7 @@ import {
   FILTER_CURRENT_WEEK,
   UPDATE_EXERCISE,
   SET_FILTER,
+  TOGGLE_MENU,
 } from './constants';
 import moment from 'moment';
 
@@ -85,6 +86,11 @@ export const Reducer = (state, action) => {
       return {
         ...state,
         modalOpen: !state.modalOpen,
+      };
+    case TOGGLE_MENU:
+      return {
+        ...state,
+        menuOpen: !state.menuOpen,
       };
 
     case TOGGLE_LOADING:
