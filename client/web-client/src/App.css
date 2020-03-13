@@ -163,7 +163,7 @@ a:hover {
           filter: blur(2px) grayscale(60%);
 }
 
-.App .container {
+.App main.container {
   width: 90vw;
   max-width: 1024px;
   margin: 0 auto;
@@ -885,6 +885,7 @@ a:hover {
 }
 
 .header {
+  position: relative;
   padding: 1rem 0 0 0;
 }
 
@@ -898,7 +899,79 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  max-width: 90vw;
+  width: 90vw;
+  max-width: 1024px;
   margin: 0 auto;
+}
+
+.nav-menu {
+  position: absolute;
+  width: 100%;
+  background: rgba(187, 187, 187, 0.404);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  z-index: 1000;
+}
+
+.hamburger-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 3px;
+  width: 2.5rem;
+  height: 2.5rem;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.hamburger-btn span {
+  width: 1rem;
+  height: 2px;
+  background: white;
+  border-radius: 3px;
+  position: relative;
+  display: block;
+  -webkit-transform: translateX(0.2rem);
+          transform: translateX(0.2rem);
+}
+
+.hamburger-btn span::before, .hamburger-btn span::after {
+  content: '';
+  display: block;
+  border-radius: 3px;
+  position: absolute;
+  width: 1.25rem;
+  height: 2px;
+  background: white;
+  right: 0;
+}
+
+.hamburger-btn span::before {
+  -webkit-transform: translateY(-8px);
+          transform: translateY(-8px);
+}
+
+.hamburger-btn span::after {
+  -webkit-transform: translateY(8px);
+          transform: translateY(8px);
+}
+
+.menu-open {
+  -webkit-filter: blur(2px) grayscale(60%);
+          filter: blur(2px) grayscale(60%);
 }
 /*# sourceMappingURL=App.css.map */
