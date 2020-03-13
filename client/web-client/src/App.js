@@ -12,7 +12,7 @@ import { AddExercise } from './components/home/AddExercise';
 import { EditExerciseModal } from './components/home/EditExerciseModal';
 
 export const App = () => {
-  const [{ exercises, user, modalOpen, filter }, dispatch] = useContext(AuthContext);
+  const [{ exercises, user, modalOpen, menuOpen, loading }, dispatch] = useContext(AuthContext);
 
   const history = useHistory();
 
@@ -48,21 +48,15 @@ export const App = () => {
     }
   }, [user, dispatch]);
 
-  const filterExercises = (filter = 'All') => {
-    const result = exercises.filter(ex => ex.type === filter);
-    if (filter === 'All') return exercises;
-    return result;
-  };
-
   return (
     <Switch>
       <Route path='/home'>
         <>
           <div className={`App${modalOpen ? ' modal-open' : ''}`}>
-            <Header dispatch={dispatch} />
-            <main className='container'>
+            <Header />
+            <main className={`container${menuOpen ? ' menu-open' : ''}`}>
               <hr />
-              <UserExercises exercises={filterExercises(filter)} />
+              <UserExercises />
             </main>
           </div>
           <Route path='/home/add' component={AddExercise} />
