@@ -5,10 +5,8 @@ const initialState = {
   user: null,
   loading: false,
   exercises: [],
-  exerciseCount: 0,
-  exerciseMins: 0,
-  totalMiles: 0,
   modalOpen: false,
+  menuOpen: false,
 };
 
 export const AuthContext = createContext(initialState);
