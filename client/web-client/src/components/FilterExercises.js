@@ -4,7 +4,6 @@ import { AuthContext } from '../Store';
 
 const types = Object.values(EXERCISE_TYPES);
 
-//{ filter, setFilter }
 export const FilterExercises = () => {
   const [{ filter }, dispatch] = React.useContext(AuthContext);
   const handleSetFilter = e => {
