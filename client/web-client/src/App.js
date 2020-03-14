@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './App.css';
 import { SET_USER, SET_EXERCISES, TOGGLE_LOADING } from './constants';
 import { getUserExercises, verifyToken } from './helper';
@@ -12,7 +12,8 @@ import { AddExercise } from './components/home/AddExercise';
 import { EditExerciseModal } from './components/home/EditExerciseModal';
 
 export const App = () => {
-  const [{ exercises, user, modalOpen, menuOpen, loading }, dispatch] = useContext(AuthContext);
+  const [{ exercises, user, modalOpen }, dispatch] = useContext(AuthContext);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const history = useHistory();
 
@@ -53,7 +54,7 @@ export const App = () => {
       <Route path='/home'>
         <>
           <div className={`App${modalOpen ? ' modal-open' : ''}`}>
-            <Header />
+            <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
             <main className={`container${menuOpen ? ' menu-open' : ''}`}>
               <hr />
               <UserExercises />
