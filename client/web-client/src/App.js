@@ -8,14 +8,14 @@ import { Header } from './components/Header';
 import { Login } from './components/auth/Login';
 import { Register } from './components/auth/Register';
 import { UserExercises } from './components/home/UserExercises';
+import { Profile } from './components/profile/Profile';
 import { AddExercise } from './components/home/AddExercise';
 import { EditExerciseModal } from './components/home/EditExerciseModal';
 const { SET_USER, SET_EXERCISES, TOGGLE_LOADING } = CONSTANTS;
 
 export const App = () => {
-  const [{ exercises, user, modalOpen }, dispatch] = useContext(AuthContext);
+  const [{ exercises, user }, dispatch] = useContext(AuthContext);
   const [menuOpen, setMenuOpen] = useState(false);
-
   const history = useHistory();
 
   useEffect(() => {
@@ -33,9 +33,8 @@ export const App = () => {
     let token = localStorage.getItem('token');
     if (token) {
       loadCredentials(token);
-    } else {
-      history.push('/login');
     }
+    history.push('/login');
   }, [history, dispatch]);
 
   useEffect(() => {
@@ -50,28 +49,33 @@ export const App = () => {
     }
   }, [user, dispatch]);
 
+  const Home = () => {
+    return (
+      <div className={`App${false ? ' modal-open' : ''}`}>
+        <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        <hr />
+        <Route path='/home/profile' component={Profile} />
+        <main className={`container${menuOpen ? ' menu-open' : ''}`}>
+          <UserExercises />
+        </main>
+        <Route path='/home/add' component={AddExercise} />
+        <Route
+          path='/home/edit/:exerciseId'
+          render={({ match }) => {
+            const { exerciseId } = match.params;
+            const [editExercise] = exercises.filter(ex => ex.id === exerciseId);
+            if (!editExercise) return null;
+            return <EditExerciseModal exercise={editExercise} />;
+          }}
+        />
+      </div>
+    );
+  };
+
   return (
     <Switch>
       <Route path='/home'>
-        <>
-          <div className={`App${modalOpen ? ' modal-open' : ''}`}>
-            <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-            <main className={`container${menuOpen ? ' menu-open' : ''}`}>
-              <hr />
-              <UserExercises />
-            </main>
-          </div>
-          <Route path='/home/add' component={AddExercise} />
-          <Route
-            path='/home/edit/:exerciseId'
-            render={({ match }) => {
-              const { exerciseId } = match.params;
-              const [editExercise] = exercises.filter(ex => ex.id === exerciseId);
-              if (!editExercise) return null;
-              return <EditExerciseModal exercise={editExercise} />;
-            }}
-          />
-        </>
+        <Home />
       </Route>
       />
       <Route exact path='/login'>

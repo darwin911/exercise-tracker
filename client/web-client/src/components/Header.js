@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavMenu } from './NavMenu';
 
-export const Header = ({ menuOpen, setMenuOpen }) => {
+export const Header = ({ isOpen, setMenuOpen }) => {
   return (
     <header className={`header`}>
       <nav>
@@ -11,11 +11,11 @@ export const Header = ({ menuOpen, setMenuOpen }) => {
             T<span className='hide-sm'>racker</span>
           </b>
         </h1>
-        <button className='hamburger-btn' onClick={() => setMenuOpen(open => !open)}>
+        <button className='hamburger-btn' onClick={() => setMenuOpen(val => !val)}>
           <span />
         </button>
       </nav>
-      {menuOpen && <NavMenu />}
+      {isOpen && <NavMenu />}
     </header>
   );
 };
