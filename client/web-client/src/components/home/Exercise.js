@@ -65,13 +65,23 @@ export const Exercise = ({ exercise }) => {
     </Link>
   );
 
+  const spring = {
+    type: 'spring',
+    damping: 50,
+    stiffness: 600,
+  };
+
+  const className = type.toLowerCase().replace(/ /g, '-');
+
   return (
     <motion.div
-      positionTransition
-      className={`exercise ${type.toLowerCase()}`}
-      initial={{ y: -10, opacity: 0.35 }}
+      // this casuses flicker
+      // positionTransition
+      layoutTransition={spring}
+      className={`exercise ${className}`}
+      initial={{ y: -10, opacity: 0.15 }}
       animate={{ y: 0, opacity: 1 }}
-      exit={{ y: -10, opacity: 0.35 }}>
+      exit={{ y: -5, opacity: 0.15 }}>
       <div className='exercise__left-container'>
         <p className='exercise__day-of-week'>{moment(date).format('dddd')}</p>
         <p className='exercise__date'>{moment(date).format('MMM D')}</p>
