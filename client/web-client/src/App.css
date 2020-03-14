@@ -137,6 +137,13 @@ a:hover {
   font-weight: 300;
 }
 
+@media screen and (min-width: 1400px) {
+  .main-heading {
+    font-size: 4em;
+    margin: 0.25em 0;
+  }
+}
+
 .main-heading b {
   font-weight: bold;
 }
@@ -428,7 +435,8 @@ a:hover {
 }
 
 .exercise.gym {
-  background: rgba(0, 150, 136, 0.8);
+  background: rgba(0, 150, 136, 0.9);
+  background: linear-gradient(0.35turn, rgba(0, 150, 136, 0.9), rgba(0, 150, 136, 0.625));
   border: 2px solid rgba(0, 150, 136, 0.85);
   -webkit-box-shadow: 0px 4px 15px -7px rgba(0, 150, 136, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
           box-shadow: 0px 4px 15px -7px rgba(0, 150, 136, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
@@ -439,7 +447,8 @@ a:hover {
 }
 
 .exercise.run {
-  background: rgba(40, 53, 147, 0.8);
+  background: rgba(40, 53, 147, 0.9);
+  background: linear-gradient(0.35turn, rgba(40, 53, 147, 0.9), rgba(40, 53, 147, 0.625));
   border: 2px solid rgba(40, 53, 147, 0.85);
   -webkit-box-shadow: 0px 4px 15px -7px rgba(40, 53, 147, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
           box-shadow: 0px 4px 15px -7px rgba(40, 53, 147, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
@@ -450,7 +459,8 @@ a:hover {
 }
 
 .exercise.yoga {
-  background: rgba(233, 30, 99, 0.8);
+  background: rgba(233, 30, 99, 0.9);
+  background: linear-gradient(0.35turn, rgba(233, 30, 99, 0.9), rgba(233, 30, 99, 0.625));
   border: 2px solid rgba(233, 30, 99, 0.85);
   -webkit-box-shadow: 0px 4px 15px -7px rgba(233, 30, 99, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
           box-shadow: 0px 4px 15px -7px rgba(233, 30, 99, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
@@ -461,7 +471,8 @@ a:hover {
 }
 
 .exercise.tennis {
-  background: rgba(106, 170, 2, 0.8);
+  background: rgba(106, 170, 2, 0.9);
+  background: linear-gradient(0.35turn, rgba(106, 170, 2, 0.9), rgba(106, 170, 2, 0.625));
   border: 2px solid rgba(106, 170, 2, 0.85);
   -webkit-box-shadow: 0px 4px 15px -7px rgba(106, 170, 2, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
           box-shadow: 0px 4px 15px -7px rgba(106, 170, 2, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
@@ -472,7 +483,8 @@ a:hover {
 }
 
 .exercise.swimming {
-  background: rgba(3, 169, 244, 0.8);
+  background: rgba(3, 169, 244, 0.9);
+  background: linear-gradient(0.35turn, rgba(3, 169, 244, 0.9), rgba(3, 169, 244, 0.625));
   border: 2px solid rgba(3, 169, 244, 0.85);
   -webkit-box-shadow: 0px 4px 15px -7px rgba(3, 169, 244, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
           box-shadow: 0px 4px 15px -7px rgba(3, 169, 244, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
@@ -483,7 +495,8 @@ a:hover {
 }
 
 .exercise.rock-climbing {
-  background: rgba(82, 82, 82, 0.8);
+  background: rgba(82, 82, 82, 0.9);
+  background: linear-gradient(0.35turn, rgba(82, 82, 82, 0.9), rgba(82, 82, 82, 0.625));
   border: 2px solid rgba(82, 82, 82, 0.85);
   -webkit-box-shadow: 0px 4px 15px -7px rgba(82, 82, 82, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
           box-shadow: 0px 4px 15px -7px rgba(82, 82, 82, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
@@ -494,7 +507,8 @@ a:hover {
 }
 
 .exercise.cycling {
-  background: rgba(255, 251, 0, 0.8);
+  background: rgba(255, 251, 0, 0.9);
+  background: linear-gradient(0.35turn, rgba(255, 251, 0, 0.9), rgba(255, 251, 0, 0.625));
   border: 2px solid rgba(255, 251, 0, 0.85);
   -webkit-box-shadow: 0px 4px 15px -7px rgba(255, 251, 0, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
           box-shadow: 0px 4px 15px -7px rgba(255, 251, 0, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
@@ -680,7 +694,7 @@ a:hover {
   font-size: 1.2em;
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1400px) {
   .user-exercises__summary {
     font-size: 1.5em;
   }
@@ -948,7 +962,7 @@ a:hover {
 
 .header {
   position: relative;
-  padding: 1rem 0 0 0;
+  padding: 0;
 }
 
 .header nav {
@@ -962,14 +976,14 @@ a:hover {
       -ms-flex-align: center;
           align-items: center;
   width: 90vw;
-  max-width: 1024px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 .nav-menu {
+  text-align: right;
   position: absolute;
-  width: 100%;
-  background: rgba(187, 187, 187, 0.404);
+  background: rgba(255, 255, 255, 0.1);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -978,6 +992,16 @@ a:hover {
       -ms-flex-direction: column;
           flex-direction: column;
   z-index: 1000;
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.nav-menu a {
+  margin-bottom: 1rem;
+  font-size: 3em;
+  line-height: 2;
+  font-weight: bold;
 }
 
 .hamburger-btn {
@@ -1035,5 +1059,36 @@ a:hover {
 .menu-open {
   -webkit-filter: blur(2px) grayscale(60%);
           filter: blur(2px) grayscale(60%);
+}
+
+.dashboard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+  .dashboard {
+    margin-bottom: 2rem;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  .dashboard .user-exercises__summary {
+    -webkit-box-flex: 5;
+        -ms-flex-positive: 5;
+            flex-grow: 5;
+  }
+  .dashboard .filter__container {
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    margin: 0;
+  }
 }
 /*# sourceMappingURL=App.css.map */

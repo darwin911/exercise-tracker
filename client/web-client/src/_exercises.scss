@@ -1,5 +1,6 @@
 @mixin exercise-type($bg-color, $opacity) {
   background: $bg-color;
+  background: linear-gradient(0.35turn, $bg-color, rgba($bg-color, 0.625));
   border: 2px solid rgba($bg-color, 0.85);
   box-shadow: 0px 4px 15px -7px rgba($bg-color, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
   &:hover {
@@ -201,8 +202,6 @@
     }
   }
 }
-
-$xl: 1200px;
 
 .user-exercises__summary {
   display: grid;

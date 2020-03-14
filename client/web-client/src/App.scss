@@ -117,6 +117,11 @@ a:hover {
   margin: 0;
   font-weight: 300;
 
+  @media screen and (min-width: $xl) {
+    font-size: 4em;
+    margin: 0.25em 0;
+  }
+
   b {
     font-weight: bold;
   }
@@ -196,24 +201,33 @@ a:hover {
 
 .header {
   position: relative;
-  padding: 1rem 0 0 0;
+  padding: 0;
   nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 90vw;
-    max-width: 1024px;
+    max-width: $xl;
     margin: 0 auto;
   }
 }
 
 .nav-menu {
+  text-align: right;
   position: absolute;
-  width: 100%;
-  background: rgba(187, 187, 187, 0.404);
+  background: rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
   z-index: 1000;
+  top: 100%;
+  left: 0;
+  right: 0;
+  a {
+    margin-bottom: 1rem;
+    font-size: 3em;
+    line-height: 2;
+    font-weight: bold;
+  }
 }
 
 .hamburger-btn {
@@ -265,4 +279,22 @@ a:hover {
 
 .menu-open {
   filter: $blur;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: $md) {
+    margin-bottom: 2rem;
+    flex-direction: row;
+    .user-exercises__summary {
+      flex-grow: 5;
+    }
+
+    .filter__container {
+      flex-grow: 1;
+      margin: 0;
+    }
+  }
 }
