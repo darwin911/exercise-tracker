@@ -111,7 +111,6 @@ a:hover {
     transform: rotate(360deg);
   }
 }
-//
 
 .main-heading {
   font-size: 2.5em;
@@ -132,7 +131,6 @@ a:hover {
 .App {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 
   &.modal-open {
     filter: $blur;
@@ -186,17 +184,6 @@ a:hover {
       100% {
         transform: translateY(0px) rotate(0deg);
       }
-    }
-
-    &.logout {
-      transition: 200ms;
-      text-decoration: none;
-      background: rgba(0, 0, 0, 0.1);
-      border: 2px solid rgba(0, 0, 0, 0.25);
-      padding: 0.5rem;
-      box-shadow: 1px 1px 3px -1px rgba(0, 0, 0, 0.45);
-      border-radius: 8px;
-      margin: 0;
     }
   }
 }

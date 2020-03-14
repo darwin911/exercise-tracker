@@ -155,7 +155,6 @@ a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  overflow: hidden;
 }
 
 .App.modal-open {
@@ -165,7 +164,7 @@ a:hover {
 
 .App main.container {
   width: 90vw;
-  max-width: 1024px;
+  max-width: 1280px;
   margin: 0 auto;
 }
 
@@ -248,19 +247,6 @@ a:hover {
   }
 }
 
-.App .btn.logout {
-  -webkit-transition: 200ms;
-  transition: 200ms;
-  text-decoration: none;
-  background: rgba(0, 0, 0, 0.1);
-  border: 2px solid rgba(0, 0, 0, 0.25);
-  padding: 0.5rem;
-  -webkit-box-shadow: 1px 1px 3px -1px rgba(0, 0, 0, 0.45);
-          box-shadow: 1px 1px 3px -1px rgba(0, 0, 0, 0.45);
-  border-radius: 8px;
-  margin: 0;
-}
-
 .login,
 .register {
   height: 100%;
@@ -278,7 +264,7 @@ a:hover {
 .login .container,
 .register .container {
   width: 90vw;
-  max-width: 1024px;
+  max-width: 1280px;
   margin: 0 auto;
   padding-top: 1rem;
 }
@@ -390,27 +376,46 @@ a:hover {
   row-gap: 1rem;
 }
 
+@media screen and (min-width: 468px) {
+  .exercises__container {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media screen and (min-width: 768px) {
   .exercises__container {
-    -ms-grid-columns: 1fr 1fr 1fr;
-        grid-template-columns: 1fr 1fr 1fr;
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .exercises__container {
+    -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .exercises__container {
+    -ms-grid-columns: (1fr)[4];
+        grid-template-columns: repeat(4, 1fr);
   }
 }
 
 .exercise {
   background-color: rgba(255, 255, 255, 0.045);
-  border-radius: 0.85rem;
+  border-radius: 0.75rem;
   border: 2px solid rgba(255, 255, 255, 0.25);
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
           box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
   display: -ms-grid;
   display: grid;
-  grid-column: span 2;
   grid-auto-rows: -webkit-max-content;
   grid-auto-rows: max-content;
   -ms-grid-columns: 5fr 1fr;
       grid-template-columns: 5fr 1fr;
-  max-width: 400px;
   padding: 0.8rem;
   -webkit-transition: background-color 200ms ease-in-out;
   transition: background-color 200ms ease-in-out;
@@ -423,7 +428,7 @@ a:hover {
 }
 
 .exercise.gym {
-  background: rgba(0, 150, 136, 0.7);
+  background: rgba(0, 150, 136, 0.8);
   border: 2px solid rgba(0, 150, 136, 0.85);
   -webkit-box-shadow: 0px 4px 15px -7px rgba(0, 150, 136, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
           box-shadow: 0px 4px 15px -7px rgba(0, 150, 136, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
@@ -434,18 +439,18 @@ a:hover {
 }
 
 .exercise.run {
-  background: rgba(0, 91, 148, 0.7);
-  border: 2px solid rgba(0, 91, 148, 0.85);
-  -webkit-box-shadow: 0px 4px 15px -7px rgba(0, 91, 148, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
-          box-shadow: 0px 4px 15px -7px rgba(0, 91, 148, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
+  background: rgba(40, 53, 147, 0.8);
+  border: 2px solid rgba(40, 53, 147, 0.85);
+  -webkit-box-shadow: 0px 4px 15px -7px rgba(40, 53, 147, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 4px 15px -7px rgba(40, 53, 147, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
 }
 
 .exercise.run:hover {
-  background-color: rgba(0, 91, 148, 0.8);
+  background-color: rgba(40, 53, 147, 0.8);
 }
 
 .exercise.yoga {
-  background: rgba(233, 30, 99, 0.7);
+  background: rgba(233, 30, 99, 0.8);
   border: 2px solid rgba(233, 30, 99, 0.85);
   -webkit-box-shadow: 0px 4px 15px -7px rgba(233, 30, 99, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
           box-shadow: 0px 4px 15px -7px rgba(233, 30, 99, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
@@ -453,6 +458,51 @@ a:hover {
 
 .exercise.yoga:hover {
   background-color: rgba(233, 30, 99, 0.8);
+}
+
+.exercise.tennis {
+  background: rgba(106, 170, 2, 0.8);
+  border: 2px solid rgba(106, 170, 2, 0.85);
+  -webkit-box-shadow: 0px 4px 15px -7px rgba(106, 170, 2, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 4px 15px -7px rgba(106, 170, 2, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
+}
+
+.exercise.tennis:hover {
+  background-color: rgba(106, 170, 2, 0.8);
+}
+
+.exercise.swimming {
+  background: rgba(3, 169, 244, 0.8);
+  border: 2px solid rgba(3, 169, 244, 0.85);
+  -webkit-box-shadow: 0px 4px 15px -7px rgba(3, 169, 244, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 4px 15px -7px rgba(3, 169, 244, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
+}
+
+.exercise.swimming:hover {
+  background-color: rgba(3, 169, 244, 0.8);
+}
+
+.exercise.rock-climbing {
+  background: rgba(82, 82, 82, 0.8);
+  border: 2px solid rgba(82, 82, 82, 0.85);
+  -webkit-box-shadow: 0px 4px 15px -7px rgba(82, 82, 82, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 4px 15px -7px rgba(82, 82, 82, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
+}
+
+.exercise.rock-climbing:hover {
+  background-color: rgba(82, 82, 82, 0.8);
+}
+
+.exercise.cycling {
+  background: rgba(255, 251, 0, 0.8);
+  border: 2px solid rgba(255, 251, 0, 0.85);
+  -webkit-box-shadow: 0px 4px 15px -7px rgba(255, 251, 0, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 4px 15px -7px rgba(255, 251, 0, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
+  color: black;
+}
+
+.exercise.cycling:hover {
+  background-color: rgba(255, 251, 0, 0.8);
 }
 
 .exercise__duration, .exercise__date, .exercise__time, .exercise__note {
@@ -627,6 +677,7 @@ a:hover {
       grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 0.5rem;
   position: relative;
+  font-size: 1.2em;
 }
 
 .user-exercises__summary__heading {
@@ -649,9 +700,9 @@ a:hover {
 
 .user-exercises__summary__total-exercises span, .user-exercises__summary__total-mins span, .user-exercises__summary__total-miles span {
   display: block;
-  font-size: 0.5em;
+  font-size: 0.35em;
   text-transform: uppercase;
-  font-weight: 300;
+  font-weight: 500;
 }
 
 .user-exercises__summary__total-exercises {
@@ -693,13 +744,18 @@ a:hover {
 }
 
 .edit-exercise.run .type::after {
-  background: rgba(0, 91, 148, 0.8);
-  border: 2px solid #005b94;
+  background: rgba(40, 53, 147, 0.8);
+  border: 2px solid #283593;
 }
 
 .edit-exercise.gym .type::after {
   background: rgba(0, 150, 136, 0.8);
   border: 2px solid #009688;
+}
+
+.edit-exercise.tennis .type::after {
+  background: rgba(106, 170, 2, 0.8);
+  border: 2px solid #6aaa02;
 }
 
 .add-exercise,

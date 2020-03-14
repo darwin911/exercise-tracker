@@ -3,11 +3,18 @@ $green-alt: #3ec54a;
 $cool-text-shadow: rgba(0, 0, 0, 0.2) 1px 4px 2px, rgba(0, 0, 0, 0.2) -2px 3px 8px;
 $box-shadow: 0px 0px 6px -1px rgba(0, 0, 0, 0.8), 0px 0px 12px 0px rgba(0, 0, 0, 0.35);
 
-$gym-bg-color: rgba(0, 150, 136, 0.7);
-$run-bg-color: rgba(0, 91, 148, 0.7);
-$yoga-bg-color: rgba(233, 30, 99, 0.7);
+$opacity: 0.8;
 
-$container-max-width: 1024px;
+$gym-bg-color: rgba(0, 150, 136, $opacity);
+$run-bg-color: rgba(40, 53, 147, $opacity);
+$yoga-bg-color: rgba(233, 30, 99, $opacity);
+$tennis-bg-color: rgba(106, 170, 2, $opacity);
+$tennis-bg-color: rgba(106, 170, 2, $opacity);
+$swimming-bg-color: rgba(3, 169, 244, $opacity);
+$rock-climbing-bg-color: rgba(82, 82, 82, $opacity);
+$cycling-bg-color: rgba(rgb(255, 251, 0), $opacity);
+
+$container-max-width: 1280px;
 
 $blur: blur(2px) grayscale(60%);
 
