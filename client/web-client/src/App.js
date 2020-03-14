@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './App.css';
-import { SET_USER, SET_EXERCISES, TOGGLE_LOADING } from './constants';
+import { CONSTANTS } from './constants';
 import { getUserExercises, verifyToken } from './helper';
 import { Switch, Route, useHistory } from 'react-router-dom';
 import { AuthContext } from './Store';
@@ -10,6 +10,7 @@ import { Register } from './components/auth/Register';
 import { UserExercises } from './components/home/UserExercises';
 import { AddExercise } from './components/home/AddExercise';
 import { EditExerciseModal } from './components/home/EditExerciseModal';
+const { SET_USER, SET_EXERCISES, TOGGLE_LOADING } = CONSTANTS;
 
 export const App = () => {
   const [{ exercises, user, modalOpen }, dispatch] = useContext(AuthContext);

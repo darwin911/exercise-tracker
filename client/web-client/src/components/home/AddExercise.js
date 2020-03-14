@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { addExercise } from '../../helper';
 import { AuthContext } from '../../Store';
-import { ADD_EXERCISE, TOGGLE_MODAL, EXERCISE_TYPES } from '../../constants';
+import { CONSTANTS } from '../../constants';
 import { motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import moment from 'moment';
 import { useHistory } from 'react-router-dom';
+const { ADD_EXERCISE, TOGGLE_MODAL, EXERCISE_TYPES } = CONSTANTS;
 
 export const AddExercise = () => {
   const [state, dispatch] = useContext(AuthContext);

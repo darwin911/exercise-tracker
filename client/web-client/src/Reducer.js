@@ -1,21 +1,23 @@
-import {
-  SET_USER,
-  LOGOUT,
-  TOGGLE_LOADING,
-  SET_EXERCISES,
-  REMOVE_EXERCISE,
-  ADD_EXERCISE,
-  TOGGLE_MODAL,
-  FILTER_ALL,
-  FILTER_CURRENT_MONTH,
-  FILTER_CURRENT_WEEK,
-  UPDATE_EXERCISE,
-  SET_FILTER,
-  TOGGLE_MENU,
-} from './constants';
+import { CONSTANTS } from './constants';
 import moment from 'moment';
 
 export const Reducer = (state, action) => {
+  const {
+    SET_USER,
+    LOGOUT,
+    TOGGLE_LOADING,
+    SET_EXERCISES,
+    REMOVE_EXERCISE,
+    ADD_EXERCISE,
+    TOGGLE_MODAL,
+    FILTER_ALL,
+    FILTER_CURRENT_MONTH,
+    FILTER_CURRENT_WEEK,
+    UPDATE_EXERCISE,
+    SET_FILTER,
+    TOGGLE_MENU,
+  } = CONSTANTS;
+
   switch (action.type) {
     case SET_USER:
       return {

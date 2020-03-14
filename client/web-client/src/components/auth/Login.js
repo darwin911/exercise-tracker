@@ -2,7 +2,8 @@ import React, { useState, useContext } from 'react';
 import { loginUser } from '../../helper';
 import { Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../../Store';
-import { SET_USER, TOGGLE_LOADING } from '../../constants';
+import { CONSTANTS } from '../../constants';
+const { SET_USER, TOGGLE_LOADING } = CONSTANTS;
 
 export const Login = () => {
   const [state, dispatch] = useContext(AuthContext);

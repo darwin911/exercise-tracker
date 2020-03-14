@@ -680,6 +680,12 @@ a:hover {
   font-size: 1.2em;
 }
 
+@media screen and (min-width: 1200px) {
+  .user-exercises__summary {
+    font-size: 1.5em;
+  }
+}
+
 .user-exercises__summary__heading {
   color: white;
   -ms-grid-column: 1;

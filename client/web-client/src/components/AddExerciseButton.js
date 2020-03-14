@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { TOGGLE_MODAL } from '../constants';
+import { CONSTANTS } from '../constants';
 import { AuthContext } from '../Store';
 import { AddSVG } from './AddSVG';
+const { TOGGLE_MODAL } = CONSTANTS;
 
 export const AddExerciseButton = () => {
   const dispatch = useContext(AuthContext)[1];

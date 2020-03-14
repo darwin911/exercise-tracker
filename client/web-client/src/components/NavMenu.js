@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Store';
 import { Link } from 'react-router-dom';
-import { LOGOUT } from '../constants';
+import { CONSTANTS } from '../constants';
 import { motion } from 'framer-motion';
+const { LOGOUT } = CONSTANTS;
 
 const Span = () => (
   <span
