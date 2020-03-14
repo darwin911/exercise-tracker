@@ -32,11 +32,14 @@ export const UserExercises = () => {
   if (!loading) {
     return (
       <div className='user-exercises'>
-        <ExercisesSummary username={user ? user.username : 'Guest'} {...data} />
-        <div className='filter__container'>
-          <FilterExercises />
-          <AddExerciseButton />
-        </div>
+        <aside className='dashboard'>
+          <ExercisesSummary username={user ? user.username : 'Guest'} {...data} />
+          <div className='filter__container'>
+            <FilterExercises />
+            <AddExerciseButton />
+          </div>
+        </aside>
+
         <ExerciseList exercises={filteredExercises} />
       </div>
     );
