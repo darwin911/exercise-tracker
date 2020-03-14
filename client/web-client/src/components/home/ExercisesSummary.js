@@ -1,19 +1,9 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../../Store';
+import React from 'react';
 
 export const ExercisesSummary = ({ minutes, count, miles }) => {
-  const { user } = useContext(AuthContext)[0];
-
-  let defaultUserName = 'Guest';
-
-  if (user) {
-    defaultUserName = user.username;
-  }
-
   return (
     <>
       <div className='user-exercises__summary'>
-        <h4 className='user-exercises__summary__heading'>{defaultUserName}'s Exercises</h4>
         <p className='user-exercises__summary__total-mins'>
           {minutes} <span>Mins</span>
         </p>
