@@ -11,7 +11,7 @@ export const ActivityTypes = () => {
       </h2>
       <div className='wrapper'>
         {activities.map(activity => (
-          <InfoCard {...activity} />
+          <InfoCard key={activity.title} {...activity} />
         ))}
       </div>
     </section>
@@ -25,7 +25,7 @@ const InfoCard = ({ title, description, exampleList }) => {
       <p>{description}</p>
       <ul>
         {exampleList.map(example => (
-          <li>{example}</li>
+          <li key={example}>{example}</li>
         ))}
       </ul>
     </div>
