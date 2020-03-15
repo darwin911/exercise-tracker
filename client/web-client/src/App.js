@@ -31,10 +31,7 @@ export const App = () => {
     };
 
     let token = localStorage.getItem('token');
-    if (token) {
-      loadCredentials(token);
-    }
-    history.push('/login');
+    token ? loadCredentials(token) : history.push('/login');
   }, [history, dispatch]);
 
   useEffect(() => {
@@ -49,35 +46,32 @@ export const App = () => {
     }
   }, [user, dispatch]);
 
-  const Home = () => {
-    return (
-      <div className={`App${false ? ' modal-open' : ''}`}>
-        <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
-        <hr />
-        <Route path='/home/profile' component={Profile} />
-        <main className={`container${menuOpen ? ' menu-open' : ''}`}>
-          <UserExercises />
-        </main>
-        <Route path='/home/add' component={AddExercise} />
-        <Route
-          path='/home/edit/:exerciseId'
-          render={({ match }) => {
-            const { exerciseId } = match.params;
-            const [editExercise] = exercises.filter(ex => ex.id === exerciseId);
-            if (!editExercise) return null;
-            return <EditExerciseModal exercise={editExercise} />;
-          }}
-        />
-      </div>
-    );
-  };
+  const Home = () => (
+    <div className={`App${false ? ' modal-open' : ''}`}>
+      <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <hr />
+      <Route path='/home/profile' component={Profile} />
+      <main className={`container${menuOpen ? ' menu-open' : ''}`}>
+        <UserExercises />
+      </main>
+      <Route path='/home/add' component={AddExercise} />
+      <Route
+        path='/home/edit/:exerciseId'
+        render={({ match }) => {
+          const { exerciseId } = match.params;
+          const [editExercise] = exercises.filter(ex => ex.id === exerciseId);
+          if (!editExercise) return null;
+          return <EditExerciseModal exercise={editExercise} />;
+        }}
+      />
+    </div>
+  );
 
   return (
     <Switch>
       <Route path='/home'>
         <Home />
       </Route>
-      />
       <Route exact path='/login'>
         <Login />
       </Route>
