@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import './App.css';
+import './style/App.css';
 import { CONSTANTS } from './constants';
 import { getUserExercises, verifyToken } from './helper';
 import { Switch, Route, useHistory } from 'react-router-dom';
@@ -11,6 +11,7 @@ import { UserExercises } from './components/home/UserExercises';
 import { Profile } from './components/profile/Profile';
 import { AddExercise } from './components/home/AddExercise';
 import { EditExerciseModal } from './components/home/EditExerciseModal';
+import { ActivityTypes } from './components/home/ActivityTypes';
 const { SET_USER, SET_EXERCISES, TOGGLE_LOADING } = CONSTANTS;
 
 export const App = () => {
@@ -46,31 +47,24 @@ export const App = () => {
     }
   }, [user, dispatch]);
 
-  const Home = () => (
-    <div className={`App${false ? ' modal-open' : ''}`}>
-      <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      <hr />
-      <Route path='/home/profile' component={Profile} />
-      <main className={`container${menuOpen ? ' menu-open' : ''}`}>
-        <UserExercises />
-      </main>
-      <Route path='/home/add' component={AddExercise} />
-      <Route
-        path='/home/edit/:exerciseId'
-        render={({ match }) => {
-          const { exerciseId } = match.params;
-          const [editExercise] = exercises.filter(ex => ex.id === exerciseId);
-          if (!editExercise) return null;
-          return <EditExerciseModal exercise={editExercise} />;
-        }}
-      />
-    </div>
-  );
-
   return (
     <Switch>
       <Route path='/home'>
-        <Home />
+        <div className={`App${modalOpen ? ' modal-open' : ''}`}>
+          <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+          <main className={`container${menuOpen ? ' menu-open' : ''}`}>
+            <ActivityTypes />
+            <UserExercises />
+          </main>
+          <Route path='/home/add' component={AddExercise} />
+          <Route
+            path='/home/edit/:exerciseId'
+            render={({ match }) => {
+              const { exerciseId } = match.params;
+              const [editExercise] = exercises.filter(ex => ex.id === exerciseId);
+              if (!editExercise) return null;
+              return <EditExerciseModal exercise={editExercise} />;}} />
+        </div>
       </Route>
       <Route exact path='/login'>
         <Login />

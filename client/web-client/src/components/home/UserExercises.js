@@ -29,19 +29,22 @@ export const UserExercises = () => {
     miles,
   };
 
+  const Dashboard = () => (
+    <aside className='dashboard'>
+      <ExercisesSummary username={user ? user.username : 'Guest'} {...data} />
+      <div className='filter__container'>
+        <FilterExercises />
+        <AddExerciseButton />
+      </div>
+    </aside>
+  );
+
   if (!loading) {
     return (
-      <div className='user-exercises'>
-        <aside className='dashboard'>
-          <ExercisesSummary username={user ? user.username : 'Guest'} {...data} />
-          <div className='filter__container'>
-            <FilterExercises />
-            <AddExerciseButton />
-          </div>
-        </aside>
-
+      <section className='user-exercises'>
+        <Dashboard />
         <ExerciseList exercises={filteredExercises} />
-      </div>
+      </section>
     );
   }
   return <Loader size={4} />;
