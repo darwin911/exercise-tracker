@@ -33,7 +33,7 @@ export const ACTIVITY_TYPES = {
   AEROBIC: {
     title: 'Aerobic',
     description:
-      'Aerobic activities make you breathe harder and make your heart and blood vessels healthier. These include:',
+      'Aerobic activities make you breathe harder and make your heart and blood vessels healthier.',
     exampleList: [
       'Walking',
       'Dancing',
@@ -49,20 +49,19 @@ export const ACTIVITY_TYPES = {
   FLEXIBILITY: {
     title: 'Flexibility',
     description:
-      'Flexibility-enhancing activities ensure a good range of motion in the joints. Loss of flexibility can be a predisposing factor for physical issues, such as pain syndromes or balance disorders. Gender, age, and genetics may all influence range of motion. Flexibility exercises include:',
+      'These activities ensure a good range of motion in the joints. Gender, age, and genetics may all influence range of motion.',
     exampleList: ['Stretching', 'Yoga', 'Tai Chi or Qi Gong', 'Pilates'],
   },
   MUSCLE_STRENGTHENING: {
     title: 'Muscle-strengthening',
     description:
-      'Muscle-strengthening activities build up your strength. These activities work all the different parts of the body—legs, hips, back, chest, stomach, shoulders, and arms—and include:',
+      'They build up your strength, and work all the different parts of the body—legs, hips, back, chest, stomach, shoulders, and arms.',
     exampleList: [
       'Heavy gardening (digging, shoveling)',
       'Lifting weights',
       'Push-ups on the floor or against the wall',
       'Sit-ups',
       'Working with resistance bands (long, wide rubber strips that stretch)',
-      'Pilates',
     ],
   },
 };
