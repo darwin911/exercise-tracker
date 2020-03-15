@@ -10,6 +10,7 @@ import { Register } from './components/auth/Register';
 import { UserExercises } from './components/home/UserExercises';
 import { AddExercise } from './components/home/AddExercise';
 import { EditExerciseModal } from './components/home/EditExerciseModal';
+import { ActivityTypes } from './components/home/ActivityTypes';
 const { SET_USER, SET_EXERCISES, TOGGLE_LOADING } = CONSTANTS;
 
 export const App = () => {
@@ -53,14 +54,12 @@ export const App = () => {
   return (
     <Switch>
       <Route path='/home'>
-        <>
-          <div className={`App${modalOpen ? ' modal-open' : ''}`}>
-            <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-            <main className={`container${menuOpen ? ' menu-open' : ''}`}>
-              <hr />
-              <UserExercises />
-            </main>
-          </div>
+        <div className={`App${modalOpen ? ' modal-open' : ''}`}>
+          <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+          <main className={`container${menuOpen ? ' menu-open' : ''}`}>
+            <ActivityTypes />
+            <UserExercises />
+          </main>
           <Route path='/home/add' component={AddExercise} />
           <Route
             path='/home/edit/:exerciseId'
@@ -71,7 +70,7 @@ export const App = () => {
               return <EditExerciseModal exercise={editExercise} />;
             }}
           />
-        </>
+        </div>
       </Route>
       />
       <Route exact path='/login'>
@@ -83,16 +82,3 @@ export const App = () => {
     </Switch>
   );
 };
-
-// Note: checking out 'f77713c7365891028c9df51e2048bb9b808ddcde'.
-
-// You are in 'detached HEAD' state. You can look around, make experimental
-// changes and commit them, and you can discard any commits you make in this
-// state without impacting any branches by performing another checkout.
-
-// If you want to create a new branch to retain commits you create, you may
-// do so (now or later) by using -b with the checkout command again. Example:
-
-//   git checkout -b <new-branch-name>
-
-// HEAD is now at f77713c creates dashboard markup
