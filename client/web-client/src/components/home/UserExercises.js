@@ -5,6 +5,7 @@ import { ExerciseList } from './ExerciseList';
 import { Loader } from '../Loader';
 import { AddExerciseButton } from '../AddExerciseButton';
 import { AuthContext } from '../../Store';
+import { ActivityTypes } from './ActivityTypes';
 
 export const UserExercises = () => {
   const { user, exercises, loading, filter } = useContext(AuthContext)[0];
@@ -29,18 +30,24 @@ export const UserExercises = () => {
     miles,
   };
 
+  const Dashboard = () => (
+    <aside className='dashboard'>
+      <ExercisesSummary username={user ? user.username : 'Guest'} {...data} />
+      <div className='filter__container'>
+        <FilterExercises />
+        <AddExerciseButton />
+      </div>
+    </aside>
+  );
+
   if (!loading) {
     return (
       <div className='user-exercises'>
-        <aside className='dashboard'>
-          <ExercisesSummary username={user ? user.username : 'Guest'} {...data} />
-          <div className='filter__container'>
-            <FilterExercises />
-            <AddExerciseButton />
-          </div>
-        </aside>
-
-        <ExerciseList exercises={filteredExercises} />
+        <ActivityTypes />
+        <div>
+          <Dashboard />
+          <ExerciseList exercises={filteredExercises} />
+        </div>
       </div>
     );
   }
