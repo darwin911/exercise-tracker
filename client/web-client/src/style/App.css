@@ -1091,4 +1091,19 @@ a:hover {
     margin: 0;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .activity-types {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
+  }
+}
 /*# sourceMappingURL=App.css.map */

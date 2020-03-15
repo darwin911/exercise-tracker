@@ -298,3 +298,15 @@ a:hover {
     }
   }
 }
+
+@media screen and (max-width: $md - 1) {
+  .activity-types {
+    display: none;
+  }
+}
+@media screen and (min-width: $md) {
+  .wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
