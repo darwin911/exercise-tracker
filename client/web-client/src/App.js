@@ -15,7 +15,7 @@ import { ActivityTypes } from './components/home/ActivityTypes';
 const { SET_USER, SET_EXERCISES, TOGGLE_LOADING } = CONSTANTS;
 
 export const App = () => {
-  const [{ exercises, user }, dispatch] = useContext(AuthContext);
+  const [{ exercises, user, modalOpen }, dispatch] = useContext(AuthContext);
   const [menuOpen, setMenuOpen] = useState(false);
   const history = useHistory();
 
@@ -51,7 +51,7 @@ export const App = () => {
     <Switch>
       <Route path='/home'>
         <div className={`App${modalOpen ? ' modal-open' : ''}`}>
-          <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+          <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
           <main className={`container${menuOpen ? ' menu-open' : ''}`}>
             <ActivityTypes />
             <UserExercises />
@@ -63,7 +63,9 @@ export const App = () => {
               const { exerciseId } = match.params;
               const [editExercise] = exercises.filter(ex => ex.id === exerciseId);
               if (!editExercise) return null;
-              return <EditExerciseModal exercise={editExercise} />;}} />
+              return <EditExerciseModal exercise={editExercise} />;
+            }}
+          />
         </div>
       </Route>
       <Route exact path='/login'>
