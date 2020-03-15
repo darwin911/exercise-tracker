@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import './App.css';
+import './style/App.css';
 import { CONSTANTS } from './constants';
 import { getUserExercises, verifyToken } from './helper';
 import { Switch, Route, useHistory } from 'react-router-dom';
@@ -83,3 +83,16 @@ export const App = () => {
     </Switch>
   );
 };
+
+// Note: checking out 'f77713c7365891028c9df51e2048bb9b808ddcde'.
+
+// You are in 'detached HEAD' state. You can look around, make experimental
+// changes and commit them, and you can discard any commits you make in this
+// state without impacting any branches by performing another checkout.
+
+// If you want to create a new branch to retain commits you create, you may
+// do so (now or later) by using -b with the checkout command again. Example:
+
+//   git checkout -b <new-branch-name>
+
+// HEAD is now at f77713c creates dashboard markup
