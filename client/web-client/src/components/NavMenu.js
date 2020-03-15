@@ -5,13 +5,6 @@ import { CONSTANTS } from '../constants';
 import { motion } from 'framer-motion';
 const { LOGOUT } = CONSTANTS;
 
-const Span = () => (
-  <span
-    style={{
-      marginBottom: '5vh',
-    }}></span>
-);
-
 const spring = {
   type: 'spring',
   damping: 50,
@@ -26,22 +19,27 @@ export const NavMenu = () => {
     dispatch({ type: LOGOUT });
   };
 
+  const handleProfileLink = () => {};
+
   return (
     <motion.div
       className='nav-menu'
       transition={spring}
-      style={{ width: '100%' }}
-      initial={{ y: '-100%', opacity: 0 }}
+      initial={{ y: '-20%', opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      exit={{ y: 0, opacity: 0 }}>
+      exit={{ y: -5, opacity: 0.5 }}>
+      <Link to='/home' className='btn home'>
+        Home
+      </Link>
+      <Link
+        to={`/home/profile/${user.id}`}
+        onClick={() => handleProfileLink()}
+        className='btn profile'>
+        Profile
+      </Link>
       <Link to='/login' onClick={() => handleLogout()} className='btn logout'>
         Logout
       </Link>
-      <Span />
-      <Link to={`/profile/${user.id}`}>Profile</Link>
-      <Span />
-      <Link to='/home'>Home</Link>
-      <Span />
     </motion.div>
   );
 };
