@@ -9,13 +9,13 @@ export const ExerciseList = ({ exercises }) => {
   if (!exercises.length) return <EmptyFilterResult selectValue={filter} />;
 
   return (
-    <div className='exercises__container'>
+    <section className='exercises__container'>
       <AnimatePresence>
         {exercises.map(exercise => (
           <Exercise key={exercise.id} exercise={exercise} />
         ))}
       </AnimatePresence>
-    </div>
+    </section>
   );
 };
 
