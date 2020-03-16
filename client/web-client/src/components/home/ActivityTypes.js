@@ -5,15 +5,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 const activities = Object.values(ACTIVITY_TYPES);
 
 export const ActivityTypes = () => {
+  const Cards = () => activities.map(activity => <InfoCard key={activity.title} {...activity} />);
   return (
     <section className='activity-types'>
       <h2 title='https://www.takingcharge.csh.umn.edu/what-physical-activity-fitness'>
         Activity Types
       </h2>
       <div className='wrapper'>
-        {activities.map(activity => (
-          <InfoCard key={activity.title} {...activity} />
-        ))}
+        <Cards />
       </div>
     </section>
   );
@@ -53,6 +52,6 @@ const InfoCard = ({ title, description, exampleList }) => {
 
 const spring = {
   type: 'spring',
-  damping: 35,
+  damping: 300,
   stiffness: 1200,
 };
