@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ACTIVITY_TYPES } from '../../constants';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const activities = Object.values(ACTIVITY_TYPES);
 
@@ -19,15 +20,39 @@ export const ActivityTypes = () => {
 };
 
 const InfoCard = ({ title, description, exampleList }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const className = `info-card ${title.toLowerCase()} ${isOpen ? 'open' : ''}`;
   return (
-    <div className={`info-card ${title.toLowerCase()}`}>
+    <div className={className} onClick={() => setIsOpen(val => !val)}>
+      <span className='svg-wrapper'></span>
       <h3>{title}</h3>
-      <p>{description}</p>
-      <ul>
-        {exampleList.map(example => (
-          <li key={example}>{example}</li>
-        ))}
-      </ul>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial='collapsed'
+            animate='open'
+            exit='collapsed'
+            variants={{
+              open: { opacity: 1, height: 'auto' },
+              collapsed: { opacity: 0, height: 0 },
+            }}
+            transition={spring}>
+            <p>{description}</p>
+            <ul>
+              {exampleList.map(example => (
+                <li key={example}>{example}</li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
+};
+
+const spring = {
+  type: 'spring',
+  damping: 35,
+  stiffness: 1200,
 };
