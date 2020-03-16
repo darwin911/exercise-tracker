@@ -2,8 +2,15 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+const ACIVITY_TYPES = {
+  AEROBIC: 'AEROBIC',
+  FLEXIBILITY: 'FLEXIBILITY',
+  STRENGTH_TRAINING: 'STRENGTH_TRAINING',
+};
+
 const exerciseSchema = new Schema(
   {
+    activityType: { type: String },
     date: { type: Date, required: true },
     distance: { type: Number },
     duration: { type: Number, required: true },
@@ -15,8 +22,29 @@ const exerciseSchema = new Schema(
   { timestamps: true }
 );
 
+exerciseSchema.methods.setActivityType = function(type) {
+  switch (type.toLowerCase()) {
+    case 'run':
+    case 'cycling':
+    case 'rock climbing':
+    case 'swimming':
+    case 'tennis':
+      this.activityType = ACIVITY_TYPES.AEROBIC;
+      break;
+    case 'yoga':
+      this.activityType = ACIVITY_TYPES.FLEXIBILITY;
+      break;
+    case 'gym':
+      this.activityType = ACIVITY_TYPES.MUSCLE_STRENGTHENING;
+      break;
+    default:
+      break;
+  }
+};
+
 exerciseSchema.methods.toClient = function() {
   return {
+    activityType: this.activityType,
     id: this._id,
     date: this.date,
     distance: this.distance,

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 let Exercise = require('../models/exercise.model');
 
-// Get All User Exercises
+// Get all Exercises from a User
 router.route('/:userId').get(async (req, res) => {
   try {
     let exercises = await Exercise.find({ userId: req.params.userId }).sort({
@@ -32,6 +32,7 @@ router.route('/add').post(async (req, res) => {
       exerciseObj.distance = Number(req.body.distance);
     }
     const exercise = new Exercise(exerciseObj);
+    exercise.setActivityType(exerciseObj.type);
     exercise.save();
     const exerciseData = await exercise.toClient();
     return res.json(exerciseData);
