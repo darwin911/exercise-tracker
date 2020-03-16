@@ -5,6 +5,9 @@ import { ExerciseList } from './ExerciseList';
 import { Loader } from '../Loader';
 import { AddExerciseButton } from '../AddExerciseButton';
 import { AuthContext } from '../../Store';
+import { ACTIVITY_TYPES } from '../../constants';
+
+const activityTypes = Object.values(ACTIVITY_TYPES).map(type => type.title);
 
 export const UserExercises = () => {
   const { user, exercises, loading, filter } = useContext(AuthContext)[0];
@@ -12,12 +15,18 @@ export const UserExercises = () => {
   const [filteredExercises, setFilteredExercises] = useState(exercises);
 
   useEffect(() => {
-    if (filter === 'All') {
+    if (filter === 'ALL') {
       setFilteredExercises(exercises);
       return;
     }
 
-    setFilteredExercises(filterExercisesByType(filter, exercises));
+    const isActivityType = activityTypes.indexOf(filter.replace(/_/g, ' ')) !== -1;
+
+    let exercisesToUpdate = isActivityType
+      ? filterExercisesByActivity(filter, exercises)
+      : filterExercisesByType(filter, exercises);
+
+    setFilteredExercises(exercisesToUpdate);
   }, [filter, exercises]);
 
   const minutes = getTotalMinutes(filteredExercises);
@@ -50,21 +59,24 @@ export const UserExercises = () => {
   return <Loader size={4} />;
 };
 
-const filterExercisesByType = (value = 'All', exerciseCollection) => {
-  if (value === 'All') return exerciseCollection;
-  return exerciseCollection.filter(ex => ex.type === value);
+const filterExercisesByActivity = (value, exercisesArray) => {
+  let val = value.toUpperCase().replace(/ /g, '_');
+  return exercisesArray.filter(ex => ex.activityType === val);
 };
 
-const getTotalMiles = exerciseCollection => {
+const filterExercisesByType = (value = 'ALL', exercisesArray) =>
+  exercisesArray.filter(ex => ex.type.toUpperCase() === value.toUpperCase());
+
+const getTotalMiles = exercisesArray => {
   return (
     Math.round(
-      exerciseCollection
+      exercisesArray
         .filter(exercise => exercise.distance)
         .reduce((acc, item) => acc + item.distance, 0) * 100
     ) / 100
   );
 };
 
-const getTotalMinutes = exerciseCollection => {
-  return exerciseCollection.reduce((total, exercise) => total + exercise.duration, 0);
+const getTotalMinutes = exercisesArray => {
+  return exercisesArray.reduce((total, exercise) => total + exercise.duration, 0);
 };
