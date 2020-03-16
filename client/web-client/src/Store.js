@@ -7,6 +7,7 @@ const initialState = {
   exercises: [],
   modalOpen: false,
   menuOpen: false,
+  filter: 'ALL',
 };
 
 export const AuthContext = createContext(initialState);
