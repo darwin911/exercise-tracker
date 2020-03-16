@@ -1,9 +1,8 @@
 import React from 'react';
-import { CONSTANTS, ACTIVITY_TYPES } from '../constants';
+import { ACTIVITY_TYPES, EXERCISE_TYPES } from '../constants';
 import { AuthContext } from '../Store';
-const { EXERCISE_TYPES } = CONSTANTS;
-const activityTypes = Object.values(ACTIVITY_TYPES).map(type => type.title);
 
+const activityTypes = Object.values(ACTIVITY_TYPES).map(type => type.title);
 const exerciseTypeValues = Object.values(EXERCISE_TYPES);
 
 export const FilterExercises = () => {

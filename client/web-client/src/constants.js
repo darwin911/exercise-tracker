@@ -17,16 +17,17 @@ export const CONSTANTS = {
   FILTER_CURRENT_WEEK: 'FILTER_CURRENT_WEEK',
   FILTER_CURRENT_MONTH: 'FILTER_CURRENT_MONTH',
   SET_FILTER: 'SET_FILTER',
-  EXERCISE_TYPES: {
-    GENERAL: 'General',
-    RUN: 'Run',
-    GYM: 'Gym',
-    YOGA: 'Yoga',
-    CYCLING: 'Cycling',
-    ROCK_CLIMBING: 'Rock Climbing',
-    SWIMMING: 'Swimming',
-    TENNIS: 'Tennis',
-  },
+};
+
+export const EXERCISE_TYPES = {
+  GENERAL: 'General',
+  RUN: 'Run',
+  GYM: 'Gym',
+  YOGA: 'Yoga',
+  CYCLING: 'Cycling',
+  ROCK_CLIMBING: 'Rock Climbing',
+  SWIMMING: 'Swimming',
+  TENNIS: 'Tennis',
 };
 
 export const ACTIVITY_TYPES = {
