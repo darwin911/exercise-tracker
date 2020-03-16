@@ -52,8 +52,8 @@ export const ACTIVITY_TYPES = {
       'These activities ensure a good range of motion in the joints. Gender, age, and genetics may all influence range of motion.',
     exampleList: ['Stretching', 'Yoga', 'Tai Chi or Qi Gong', 'Pilates'],
   },
-  MUSCLE_STRENGTHENING: {
-    title: 'Muscle-strengthening',
+  STRENGTH: {
+    title: 'Strength Training',
     description:
       'They build up your strength, and work all the different parts of the body—legs, hips, back, chest, stomach, shoulders, and arms.',
     exampleList: [
