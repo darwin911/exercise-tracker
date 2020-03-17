@@ -140,6 +140,12 @@ a:hover {
     filter: $blur;
   }
 
+  header.header {
+    width: 90vw;
+    max-width: $container-max-width;
+    margin: 0 auto;
+  }
+
   main.container {
     width: 90vw;
     max-width: $container-max-width;
@@ -206,7 +212,6 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 90vw;
     max-width: $xl;
     margin: 0 auto;
   }

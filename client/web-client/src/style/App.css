@@ -170,6 +170,12 @@ a:hover {
           filter: blur(2px) grayscale(60%);
 }
 
+.App header.header {
+  width: 90vw;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
 .App main.container {
   width: 90vw;
   max-width: 1280px;
@@ -745,6 +751,10 @@ a:hover {
   grid-row: 2;
 }
 
+.edit-exercise header {
+  margin-bottom: 0.5rem;
+}
+
 .edit-exercise .type {
   font-weight: 400;
   position: relative;
@@ -977,7 +987,6 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 90vw;
   max-width: 1400px;
   margin: 0 auto;
 }

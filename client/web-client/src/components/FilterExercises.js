@@ -17,13 +17,13 @@ export const FilterExercises = () => {
       <select id='filter' className='filter' value={filter} onChange={e => handleSetFilter(e)}>
         <option value='ALL'>All Exercises</option>
         <option disabled>--------</option>
-        {exerciseTypeValues.map(type => (
+        {activityTypes.map(type => (
           <option key={type} value={type}>
             {type}
           </option>
         ))}
         <option disabled>--------</option>
-        {activityTypes.map(type => (
+        {exerciseTypeValues.map(type => (
           <option key={type} value={type}>
             {type}
           </option>

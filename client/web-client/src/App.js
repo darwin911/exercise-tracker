@@ -8,7 +8,6 @@ import { Header } from './components/Header';
 import { Login } from './components/auth/Login';
 import { Register } from './components/auth/Register';
 import { UserExercises } from './components/home/UserExercises';
-import { Profile } from './components/profile/Profile';
 import { AddExercise } from './components/home/AddExercise';
 import { EditExerciseModal } from './components/home/EditExerciseModal';
 import { ActivityTypes } from './components/home/ActivityTypes';
@@ -20,6 +19,8 @@ export const App = () => {
   const history = useHistory();
 
   useEffect(() => {
+    let token = localStorage.getItem('token');
+
     const loadCredentials = async token => {
       dispatch({ type: TOGGLE_LOADING });
       const verifiedUser = await verifyToken({ token });
@@ -31,15 +32,14 @@ export const App = () => {
       }
     };
 
-    let token = localStorage.getItem('token');
     token ? loadCredentials(token) : history.push('/login');
   }, [history, dispatch]);
 
   useEffect(() => {
     const loadExercises = async userId => {
       dispatch({ type: TOGGLE_LOADING });
-      const { exercises: dbExercises } = await getUserExercises(userId);
-      dispatch({ type: SET_EXERCISES, payload: dbExercises });
+      const { exercises } = await getUserExercises(userId);
+      dispatch({ type: SET_EXERCISES, payload: exercises });
     };
 
     if (user) {
