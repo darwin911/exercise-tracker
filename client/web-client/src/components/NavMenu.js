@@ -37,7 +37,7 @@ export const NavMenu = () => {
         className='btn profile'>
         Profile
       </Link>
-      <Link to='/login' onClick={() => handleLogout()} className='btn logout'>
+      <Link to='/auth/login' onClick={() => handleLogout()} className='btn logout'>
         Logout
       </Link>
     </motion.div>
