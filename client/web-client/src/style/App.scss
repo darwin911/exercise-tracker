@@ -132,10 +132,12 @@ a:hover {
 }
 
 .App {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   background: $app-bg;
   height: 100%;
+
   &.modal-open {
     filter: $blur;
   }
@@ -150,6 +152,7 @@ a:hover {
     width: 90vw;
     max-width: $container-max-width;
     margin: 0 auto;
+    position: relative;
   }
 
   .btn {
@@ -168,13 +171,12 @@ a:hover {
       display: flex;
       justify-content: center;
       align-items: center;
-      // background: #3ec54a;
       background: #a64eff;
       box-shadow: 0px 2px 13px -4px rgba(255, 255, 255, 0.25), inset 0px 0px 6px rgba(0, 0, 0, 0.5);
+      transition: 240ms ease-out;
       svg {
         transform: scale(0.667);
       }
-      transition: 240ms ease-out;
       &:hover,
       &:focus {
         animation: bounce 400ms linear;

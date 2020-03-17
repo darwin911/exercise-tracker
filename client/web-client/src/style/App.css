@@ -153,6 +153,7 @@ a:hover {
 }
 
 .App {
+  min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -180,6 +181,7 @@ a:hover {
   width: 90vw;
   max-width: 1280px;
   margin: 0 auto;
+  position: relative;
 }
 
 .App .btn {
@@ -261,37 +263,9 @@ a:hover {
   }
 }
 
-.login,
-.register {
+.auth.container {
   height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  background: repeating-linear-gradient(90deg, rgba(89, 89, 89, 0.05) 0px, rgba(89, 89, 89, 0.05) 1px, transparent 1px, transparent 91px), repeating-linear-gradient(45deg, rgba(89, 89, 89, 0.05) 0px, rgba(89, 89, 89, 0.05) 1px, transparent 1px, transparent 91px), repeating-linear-gradient(0deg, rgba(89, 89, 89, 0.05) 0px, rgba(89, 89, 89, 0.05) 1px, transparent 1px, transparent 61px), repeating-linear-gradient(90deg, rgba(89, 89, 89, 0.05) 0px, rgba(89, 89, 89, 0.05) 1px, transparent 1px, transparent 61px), repeating-linear-gradient(90deg, rgba(89, 89, 89, 0.05) 0px, rgba(89, 89, 89, 0.05) 1px, transparent 1px, transparent 16px), repeating-linear-gradient(0deg, rgba(89, 89, 89, 0.05) 0px, rgba(89, 89, 89, 0.05) 1px, transparent 1px, transparent 16px), -webkit-gradient(linear, left top, right top, from(#151613), to(#151613));
-  background: repeating-linear-gradient(90deg, rgba(89, 89, 89, 0.05) 0px, rgba(89, 89, 89, 0.05) 1px, transparent 1px, transparent 91px), repeating-linear-gradient(45deg, rgba(89, 89, 89, 0.05) 0px, rgba(89, 89, 89, 0.05) 1px, transparent 1px, transparent 91px), repeating-linear-gradient(0deg, rgba(89, 89, 89, 0.05) 0px, rgba(89, 89, 89, 0.05) 1px, transparent 1px, transparent 61px), repeating-linear-gradient(90deg, rgba(89, 89, 89, 0.05) 0px, rgba(89, 89, 89, 0.05) 1px, transparent 1px, transparent 61px), repeating-linear-gradient(90deg, rgba(89, 89, 89, 0.05) 0px, rgba(89, 89, 89, 0.05) 1px, transparent 1px, transparent 16px), repeating-linear-gradient(0deg, rgba(89, 89, 89, 0.05) 0px, rgba(89, 89, 89, 0.05) 1px, transparent 1px, transparent 16px), linear-gradient(90deg, #151613, #151613);
-}
-
-.login .container,
-.register .container {
-  width: 90vw;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding-top: 1rem;
-}
-
-.login h1,
-.register h1 {
-  font-size: 2.5em;
-  margin: 1.75rem 0;
-  text-align: center;
-}
-
-.login form,
-.register form {
+  min-height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -302,16 +276,24 @@ a:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.auth h1 {
+  font-size: 2.5em;
+  margin: 1.75rem 0;
+  text-align: center;
+}
+
+.auth form {
+  max-width: 80vw;
   margin: 0 auto;
-  max-width: 400px;
+  width: 500px;
   padding: 2rem 1rem;
   border-radius: 14px;
-  background-color: rgba(255, 255, 255, 0.1);
   color: white;
 }
 
-.login form .form-field,
-.register form .form-field {
+.auth form .form-field {
   margin-bottom: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -322,56 +304,96 @@ a:hover {
           flex-direction: column;
 }
 
-.login form label,
-.register form label {
+.auth form label {
   display: block;
   font-size: 1em;
   margin-bottom: 0.5rem;
 }
 
-.login form input,
-.register form input {
+.auth form input {
   background: rgba(255, 255, 255, 0.1);
   color: white;
+  -webkit-transition: 200ms ease-out;
+  transition: 200ms ease-out;
 }
 
-.login form input,
-.login form button,
-.register form input,
-.register form button {
+.auth form input:focus {
+  color: black;
+  background: rgba(255, 255, 255, 0.85);
+  outline: none;
+  -webkit-box-shadow: 0px 0px 1px 3px rgba(0, 132, 255, 0.85);
+          box-shadow: 0px 0px 1px 3px rgba(0, 132, 255, 0.85);
+}
+
+.auth form input:focus::-webkit-input-placeholder {
+  color: black;
+}
+
+.auth form input:focus:-ms-input-placeholder {
+  color: black;
+}
+
+.auth form input:focus::-ms-input-placeholder {
+  color: black;
+}
+
+.auth form input:focus::placeholder {
+  color: black;
+}
+
+.auth form input,
+.auth form button {
   border-radius: 5px;
   padding: 0.5rem;
   font-size: 1em;
 }
 
-.login form input::-webkit-input-placeholder,
-.register form input::-webkit-input-placeholder {
+.auth form input:disabled,
+.auth form button:disabled {
+  background: rgba(255, 255, 255, 0.25);
+  opacity: 0.8;
+}
+
+.auth form input:disabled:hover,
+.auth form button:disabled:hover {
+  cursor: not-allowed;
+}
+
+.auth form input::-webkit-input-placeholder {
   color: rgba(255, 255, 255, 0.45);
 }
 
-.login form input:-ms-input-placeholder,
-.register form input:-ms-input-placeholder {
+.auth form input:-ms-input-placeholder {
   color: rgba(255, 255, 255, 0.45);
 }
 
-.login form input::-ms-input-placeholder,
-.register form input::-ms-input-placeholder {
+.auth form input::-ms-input-placeholder {
   color: rgba(255, 255, 255, 0.45);
 }
 
-.login form input::placeholder,
-.register form input::placeholder {
+.auth form input::placeholder {
   color: rgba(255, 255, 255, 0.45);
 }
 
-.login form button,
-.register form button {
-  width: 80px;
+.auth form button {
+  color: white;
+  background: #10ac44;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  width: 100%;
+  font-weight: bold;
+  -webkit-transition: 200ms ease-in-out;
+  transition: 200ms ease-in-out;
   margin-bottom: 1rem;
 }
 
-.login .error,
-.register .error {
+.auth form button:focus {
+  outline: none;
+  -webkit-box-shadow: 0px 0px 1px 3px rgba(0, 132, 255, 0.85);
+          box-shadow: 0px 0px 1px 3px rgba(0, 132, 255, 0.85);
+}
+
+.auth .error {
   color: crimson;
   font-weight: bolder;
   margin-bottom: 1em;
@@ -560,7 +582,7 @@ a:hover {
   -ms-flex-item-align: self-end;
       -ms-grid-row-align: self-end;
       align-self: self-end;
-  font-size: 1em;
+  font-size: 1.25em;
   font-weight: 300;
   -ms-grid-column: 3;
   grid-column: 3;

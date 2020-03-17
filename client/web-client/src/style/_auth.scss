@@ -1,17 +1,12 @@
 // Login and Register
 
-.login,
-.register {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  background: $app-bg;
-
-  .container {
-    width: 90vw;
-    max-width: $container-max-width;
-    margin: 0 auto;
-    padding-top: 1rem;
+.auth {
+  &.container {
+    height: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   h1 {
@@ -21,14 +16,11 @@
   }
 
   form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    max-width: 80vw;
     margin: 0 auto;
-    max-width: 400px;
+    width: 500px;
     padding: 2rem 1rem;
     border-radius: 14px;
-    background-color: rgba(255, 255, 255, 0.1);
     color: white;
     .form-field {
       margin-bottom: 1rem;
@@ -45,6 +37,16 @@
     input {
       background: rgba(255, 255, 255, 0.1);
       color: white;
+      transition: 200ms ease-out;
+      &:focus {
+        color: black;
+        background: rgba(255, 255, 255, 0.85);
+        outline: none;
+        box-shadow: 0px 0px 1px 3px rgba(0, 132, 255, 0.85);
+        &::placeholder {
+          color: black;
+        }
+      }
     }
 
     input,
@@ -52,6 +54,13 @@
       border-radius: 5px;
       padding: 0.5rem;
       font-size: 1em;
+      &:disabled {
+        background: rgba(255, 255, 255, 0.25);
+        opacity: 0.8;
+        &:hover {
+          cursor: not-allowed;
+        }
+      }
     }
 
     input::placeholder {
@@ -59,8 +68,17 @@
     }
 
     button {
-      width: 80px;
+      color: white;
+      background: rgb(16, 172, 68);
+      box-shadow: none;
+      width: 100%;
+      font-weight: bold;
+      transition: 200ms ease-in-out;
       margin-bottom: 1rem;
+      &:focus {
+        outline: none;
+        box-shadow: 0px 0px 1px 3px rgba(0, 132, 255, 0.85);
+      }
     }
   }
 
