@@ -46,13 +46,13 @@ export const App = () => {
 
   return (
     <div className={`App${modalOpen ? ' modal-open' : ''}`}>
-      <Route exact path='/home'>
+      <Route path='/home'>
         <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <main className={`container${menuOpen ? ' menu-open' : ''}`}>
           <ActivityTypes />
           <UserExercises />
         </main>
-        <Route path='/home/add' component={AddExercise} />
+        <Route path='/home/add' render={() => <AddExercise />} />
         <Route
           path='/home/edit/:exerciseId'
           render={({ match }) => {
