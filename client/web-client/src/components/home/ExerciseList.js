@@ -22,6 +22,6 @@ export const ExerciseList = ({ exercises }) => {
 const EmptyFilterResult = ({ selectValue }) => (
   <div>
     <h3>Sorry</h3>
-    <p>No {selectValue} exercises found.</p>
+    <p>No{selectValue === 'ALL' ? '' : ` ${selectValue}`} exercises found.</p>
   </div>
 );
