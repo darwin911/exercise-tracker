@@ -6,7 +6,7 @@ const initialState = {
   loading: false,
   exercises: [],
   modalOpen: false,
-  menuOpen: false,
+  navMenuIsOpen: false,
   filter: 'ALL',
 };
 
