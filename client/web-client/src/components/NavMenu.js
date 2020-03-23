@@ -31,10 +31,7 @@ export const NavMenu = () => {
       <Link to='/home' className='btn home'>
         Home
       </Link>
-      <Link
-        to={`/home/profile/${user.id}`}
-        onClick={() => handleProfileLink()}
-        className='btn profile'>
+      <Link to={`/profile/${user.id}`} onClick={() => handleProfileLink()} className='btn profile'>
         Profile
       </Link>
       <Link to='/auth/login' onClick={() => handleLogout()} className='btn logout'>
