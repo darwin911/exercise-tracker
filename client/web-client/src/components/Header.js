@@ -11,7 +11,7 @@ export const Header = ({ isOpen, setMenuOpen }) => {
           <span />
         </button>
       </nav>
-      {isOpen && <NavMenu />}
+      {isOpen && <NavMenu isOpen={isOpen} setMenuOpen={setMenuOpen} />}
     </header>
   );
 };

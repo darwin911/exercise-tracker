@@ -14,7 +14,8 @@ import { Profile } from './components/profile/Profile';
 const { SET_USER, SET_EXERCISES, TOGGLE_LOADING } = CONSTANTS;
 
 export const App = () => {
-  const [{ exercises, user, modalOpen }, dispatch] = useContext(AuthContext);
+  const [state, dispatch] = useContext(AuthContext);
+  const { exercises, user, modalOpen } = state;
   const [menuOpen, setMenuOpen] = useState(false);
   const history = useHistory();
 
@@ -64,7 +65,10 @@ export const App = () => {
           }}
         />
       </Route>
-      <Route path='/profile' component={Profile} />
+      <Route
+        path='/profile'
+        render={() => <Profile isOpen={menuOpen} setMenuOpen={setMenuOpen} />}
+      />
       <Route path='/auth' component={Auth} />
     </div>
   );

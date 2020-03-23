@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Store';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { CONSTANTS } from '../constants';
 import { motion } from 'framer-motion';
 const { LOGOUT } = CONSTANTS;
@@ -11,15 +11,14 @@ const spring = {
   stiffness: 600,
 };
 
-export const NavMenu = () => {
+export const NavMenu = ({ setMenuOpen }) => {
   const [{ user }, dispatch] = useContext(AuthContext);
+  const history = useHistory();
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     dispatch({ type: LOGOUT });
   };
-
-  const handleProfileLink = () => {};
 
   return (
     <motion.div
@@ -28,10 +27,13 @@ export const NavMenu = () => {
       initial={{ y: '-20%', opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: -5, opacity: 0.5 }}>
-      <Link to='/home' className='btn home'>
+      <Link to='/home' onClick={() => setMenuOpen(isOpen => !isOpen)} className='btn home'>
         Home
       </Link>
-      <Link to={`/profile/${user.id}`} onClick={() => handleProfileLink()} className='btn profile'>
+      <Link
+        to={`/profile/${user.id}`}
+        onClick={() => setMenuOpen(isOpen => !isOpen)}
+        className='btn profile'>
         Profile
       </Link>
       <Link to='/auth/login' onClick={() => handleLogout()} className='btn logout'>
