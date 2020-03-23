@@ -10,6 +10,7 @@ import { UserExercises } from './components/home/UserExercises';
 import { AddExercise } from './components/home/AddExercise';
 import { EditExerciseModal } from './components/home/EditExerciseModal';
 import { ActivityTypes } from './components/home/ActivityTypes';
+import { Profile } from './components/profile/Profile';
 const { SET_USER, SET_EXERCISES, TOGGLE_LOADING } = CONSTANTS;
 
 export const App = () => {
@@ -63,6 +64,7 @@ export const App = () => {
           }}
         />
       </Route>
+      <Route path='/profile' component={Profile} />
       <Route path='/auth' component={Auth} />
     </div>
   );
