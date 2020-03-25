@@ -15,11 +15,13 @@ export const Profile = ({ isOpen, setMenuOpen }) => {
       <main className='container'>
         <div className='profile'>
           <h1>Profile</h1>
-          <h3>{user.username}</h3>
-          <h4>Id: {user.id}</h4>
-          <img src='https://picsum.photos/100' alt='img' />
-          <p>email: {user.email}</p>
-          <p>weight: {weight}lbs</p>
+          <div className='profile__card'>
+            <h3>{user.username}</h3>
+            <h4>Id: {user.id}</h4>
+            <img src='https://picsum.photos/100' alt='img' />
+            <p>email: {user.email}</p>
+            <p>weight: {weight}lbs</p>
+          </div>
         </div>
       </main>
     </>
