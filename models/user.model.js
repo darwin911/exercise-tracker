@@ -10,16 +10,22 @@ const userSchema = new Schema(
       required: true,
       unique: true,
       trim: true,
-      minlength: 3
+      minlength: 3,
     },
     email: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
     },
     passwordDigest: {
-      type: String
-    }
+      type: String,
+    },
+    weight: {
+      type: Number,
+    },
+    unitSystem: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
@@ -39,7 +45,7 @@ userSchema.methods.toAuthJSON = async function() {
     id: this._id,
     username: this.username,
     email: this.email,
-    token: await this.generateJWT()
+    token: await this.generateJWT(),
   };
 };
 
@@ -47,7 +53,9 @@ userSchema.methods.toClient = async function() {
   return {
     id: this._id,
     username: this.username,
-    email: this.email
+    email: this.email,
+    unitSystem: this.unitSystem,
+    weight: this.weight,
   };
 };
 
@@ -55,7 +63,7 @@ userSchema.methods.generateJWT = async function() {
   const data = {
     id: this._id,
     username: this.username,
-    passwordDigest: this.passwordDigest
+    passwordDigest: this.passwordDigest,
   };
   return await encode(data);
 };
