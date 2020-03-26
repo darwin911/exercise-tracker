@@ -25,6 +25,7 @@ const userSchema = new Schema(
     },
     unitSystem: {
       type: String,
+      default: 'IMPERIAL',
     },
   },
   { timestamps: true }
