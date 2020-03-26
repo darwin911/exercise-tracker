@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Store';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { CONSTANTS } from '../constants';
 import { motion } from 'framer-motion';
 const { LOGOUT } = CONSTANTS;
@@ -13,10 +13,10 @@ const spring = {
 
 export const NavMenu = ({ setMenuOpen }) => {
   const [{ user }, dispatch] = useContext(AuthContext);
-  const history = useHistory();
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    setMenuOpen(isOpen => !isOpen);
     dispatch({ type: LOGOUT });
   };
 

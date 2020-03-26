@@ -1162,7 +1162,7 @@ a:hover {
 
 .info-card {
   overflow: hidden;
-  margin: 0 auto;
+  margin: 0;
   background: rgba(255, 255, 255, 0.1);
   padding: 1rem;
   padding: 0.8rem;
@@ -1173,6 +1173,7 @@ a:hover {
 }
 
 .info-card h3 {
+  text-align: center;
   margin-bottom: 0.25rem;
 }
 
