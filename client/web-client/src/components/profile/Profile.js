@@ -9,6 +9,7 @@ export const Profile = ({ isOpen, setMenuOpen }) => {
   if (!user) {
     return <Loader size={4} />;
   }
+  const size = 56;
   return (
     <>
       <Header isOpen={isOpen} setMenuOpen={setMenuOpen} />
@@ -16,11 +17,15 @@ export const Profile = ({ isOpen, setMenuOpen }) => {
         <div className='profile'>
           <h1>Profile</h1>
           <div className='profile__card'>
-            <h3>{user.username}</h3>
-            <h4>Id: {user.id}</h4>
-            <img src='https://picsum.photos/100' alt='img' />
-            <p>email: {user.email}</p>
-            <p>weight: {weight}lbs</p>
+            <h3>Username: {user.username}</h3>
+            <img
+              src={`https://picsum.photos/${size}`}
+              alt='img'
+              style={{ minWidth: size, minHeight: size }}
+            />
+            <p>Email: {user.email}</p>
+            <p>Weight: {weight}lbs</p>
+            {user.unitSystem && <p>Units: {user.unitSystem}</p>}
           </div>
         </div>
       </main>
