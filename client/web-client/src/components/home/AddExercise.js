@@ -10,7 +10,7 @@ const { ADD_EXERCISE, TOGGLE_MODAL } = CONSTANTS;
 
 export const AddExercise = () => {
   const [state, dispatch] = useContext(AuthContext);
-  const { user } = state;
+  const { user, menuOpen } = state;
   const history = useHistory();
 
   const [distance, setDistance] = useState(''); // Units in miles (imperial)
@@ -63,7 +63,9 @@ export const AddExercise = () => {
   };
 
   const closeModal = () => {
-    dispatch({ type: TOGGLE_MODAL });
+    if (menuOpen) {
+      dispatch({ type: TOGGLE_MODAL });
+    }
     history.push('/home');
     resetForm();
   };
