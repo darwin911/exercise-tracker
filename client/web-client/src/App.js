@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import './style/App.css';
 import { CONSTANTS } from './constants';
 import { getUserExercises, verifyToken } from './helper';
-import { Route, useHistory } from 'react-router-dom';
+import { Route, useHistory, withRouter } from 'react-router-dom';
 import { AuthContext } from './Store';
 import { Header } from './components/Header';
 import { Auth } from './components/auth/Auth';
@@ -13,11 +13,12 @@ import { ActivityTypes } from './components/home/ActivityTypes';
 import { Profile } from './components/profile/Profile';
 const { SET_USER, SET_EXERCISES, TOGGLE_LOADING } = CONSTANTS;
 
-export const App = () => {
+export const App = withRouter(({ location }) => {
   const [state, dispatch] = useContext(AuthContext);
   const { exercises, user, modalOpen } = state;
   const [menuOpen, setMenuOpen] = useState(false);
   const history = useHistory();
+  const isAuthenticating = location.pathname.includes('auth');
 
   useEffect(() => {
     let token = localStorage.getItem('token');
