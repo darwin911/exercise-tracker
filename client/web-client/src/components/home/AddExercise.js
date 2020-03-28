@@ -145,7 +145,7 @@ export const AddExercise = () => {
   );
 
   const distanceField =
-    type.toUpperCase() === 'RUN' ? (
+    type === EXERCISE_TYPES.RUN ? (
       <div className='form-field distance'>
         <label htmlFor='note'>Distance: </label>
         <input
