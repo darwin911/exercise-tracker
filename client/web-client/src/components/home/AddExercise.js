@@ -170,7 +170,7 @@ export const AddExercise = () => {
         disabled={loading || !duration || (type.toUpperCase() === 'RUN' && !distance)}>
         {loading ? <div className='loader' /> : 'Add'}
       </button>
-      <button type='button' className='btn cancel' onClick={closeModal} disabled={loading}>
+      <button className='btn cancel' onClick={() => closeModal()} disabled={loading}>
         Cancel
       </button>
     </div>
