@@ -69,8 +69,8 @@ router.route('/update/:id').put(async (req, res) => {
       date,
       distance,
     };
-    if (req.body.time) {
-      exerciseObj.time = Number(req.body.time.replace(/:/, '')); // min from midnight 00:00
+    if (time) {
+      exerciseObj.time = Number(time.replace(/:/, '')); // min from midnight 00:00
     }
     let exercise = await Exercise.findByIdAndUpdate(req.params.id, exerciseObj, {
       new: true,
