@@ -164,7 +164,7 @@ export const AddExercise = () => {
     <div className='form-field buttons-container'>
       <button
         className='btn add'
-        onClick={handleSubmit}
+        onClick={e => handleSubmit(e)}
         disabled={loading || !duration || (type.toUpperCase() === 'RUN' && !distance)}>
         {loading ? <div className='loader' /> : 'Add'}
       </button>
