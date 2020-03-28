@@ -28,13 +28,12 @@ export const Auth = withRouter(({ location }) => {
       authenticatedUser = await registerUser({ username, email, password });
     }
 
-    if (authenticatedUser.error) {
-      setError(authenticatedUser.error);
-      dispatch({ type: TOGGLE_LOADING });
-      return;
-    }
-
     if (authenticatedUser) {
+      if (authenticatedUser.error) {
+        setError(authenticatedUser.error);
+        dispatch({ type: TOGGLE_LOADING });
+        return;
+      }
       dispatch({ type: SET_USER, payload: authenticatedUser });
       localStorage.setItem('token', authenticatedUser.token);
       history.push('/home');
