@@ -15,7 +15,7 @@ const { SET_USER, SET_EXERCISES, TOGGLE_LOADING } = CONSTANTS;
 
 export const App = withRouter(({ location }) => {
   const [state, dispatch] = useContext(AuthContext);
-  const { exercises, user, modalOpen } = state;
+  const { exercises, user } = state;
   const [menuOpen, setMenuOpen] = useState(false);
   const history = useHistory();
   const pushToHome = location.pathname.includes('auth') || location.pathname === '/';
@@ -45,8 +45,10 @@ export const App = withRouter(({ location }) => {
     if (user) loadExercises(user.id);
   }, [user, dispatch]);
 
+  const openModal = location.pathname.includes('/add') || location.pathname.includes('/edit');
+
   return (
-    <div className={`App${modalOpen ? ' modal-open' : ''}`}>
+    <div className={`App${openModal ? ' modal-open' : ''}`}>
       <Route path='/home'>
         <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <main className={`container${menuOpen ? ' menu-open' : ''}`}>
