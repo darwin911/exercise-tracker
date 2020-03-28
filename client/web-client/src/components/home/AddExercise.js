@@ -31,7 +31,7 @@ export const AddExercise = () => {
       return;
     }
 
-    let exerciseObj = {
+    const newExercise = await addExercise({
       duration,
       userId: user.id,
       note,
@@ -40,9 +40,7 @@ export const AddExercise = () => {
       type,
       time,
       distance,
-    };
-
-    const newExercise = await addExercise(exerciseObj);
+    });
 
     if (newExercise) {
       dispatch({ type: ADD_EXERCISE, payload: newExercise });
