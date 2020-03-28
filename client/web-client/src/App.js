@@ -18,7 +18,7 @@ export const App = withRouter(({ location }) => {
   const { exercises, user, modalOpen } = state;
   const [menuOpen, setMenuOpen] = useState(false);
   const history = useHistory();
-  const isAuthenticating = location.pathname.includes('auth');
+  const pushToHome = location.pathname.includes('auth') || location.pathname === '/';
 
   useEffect(() => {
     let token = localStorage.getItem('token');
@@ -26,11 +26,9 @@ export const App = withRouter(({ location }) => {
     const loadCredentials = async token => {
       dispatch({ type: TOGGLE_LOADING });
       const verifiedUser = await verifyToken({ token });
-      if (!verifiedUser) {
-        history.push('/auth/login');
-      } else {
+      if (verifiedUser) {
         dispatch({ type: SET_USER, payload: verifiedUser });
-        history.push('/home');
+        history.push(pushToHome ? '/home' : location.pathname);
       }
     };
 
@@ -73,4 +71,4 @@ export const App = withRouter(({ location }) => {
       <Route path='/auth' component={Auth} />
     </div>
   );
-};
+});
