@@ -301,6 +301,11 @@ a:hover {
   padding: 2rem 1rem;
   border-radius: 14px;
   color: white;
+  background: #263238;
+}
+
+.auth form h2 {
+  text-shadow: 3px 3px 3px black, 0px 0px 8px rgba(0, 0, 0, 0.9);
 }
 
 .auth form .form-field {
@@ -361,12 +366,13 @@ a:hover {
 }
 
 .auth form input.has-error {
-  -webkit-box-shadow: 0px 0px 1px 3px rgba(255, 0, 0, 0.75);
-          box-shadow: 0px 0px 1px 3px rgba(255, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 0px 2px #9c0000;
+          box-shadow: 0px 0px 0px 2px #9c0000;
 }
 
 .auth form input,
 .auth form button {
+  font-weight: 500;
   border-radius: 5px;
   padding: 0.5rem;
   font-size: 1em;
@@ -374,8 +380,8 @@ a:hover {
 
 .auth form input:disabled,
 .auth form button:disabled {
-  background: rgba(255, 255, 255, 0.25);
-  opacity: 0.8;
+  background: rgba(83, 83, 83, 0.5);
+  opacity: 0.5;
 }
 
 .auth form input:disabled:hover,
