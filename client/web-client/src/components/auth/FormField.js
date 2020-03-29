@@ -1,54 +1,83 @@
 import React from 'react';
+import { Field } from 'formik';
 
-export const FormField = ({ inputType, value, setter }) => {
+export const FormField = ({ inputType, value, handleChange, handleBlur, error, disabled }) => {
   switch (inputType) {
+    case 'name':
+      return (
+        <div className='form-field'>
+          <label htmlFor='name'>Name</label>
+          <Field
+            id={'name'}
+            className={error ? 'has-error' : null}
+            type={'text'}
+            name={'name'}
+            placeholder='John Doe'
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={value}
+            maxLength={255}
+            required
+            disabled={disabled}
+          />
+          <div className='form-field__error'>{error}</div>
+        </div>
+      );
     case 'email':
       return (
         <div className='form-field'>
           <label htmlFor='email'>Email</label>
-          <input
+          <Field
+            autoComplete='on'
             id={inputType}
+            className={error ? 'has-error' : null}
             type={inputType}
             name={inputType}
-            autoFocus
-            autoComplete='username'
-            placeholder='name@email.com'
-            onChange={e => setter(e.target.value)}
+            placeholder='email@example.com'
+            onChange={handleChange}
+            onBlur={handleBlur}
             value={value}
-            required
+            disabled={disabled}
           />
+          <div className='form-field__error'>{error}</div>
         </div>
       );
     case 'password':
       return (
         <div className='form-field'>
           <label htmlFor='password'>Password</label>
-          <input
+          <Field
             id='password'
+            className={error ? 'has-error' : null}
             type='password'
             name='password'
             autoComplete='current-password'
             placeholder='p@s5w0rd'
-            onChange={e => setter(e.target.value)}
+            onChange={handleChange}
+            onBlur={handleBlur}
             value={value}
             required
+            disabled={disabled}
           />
+          <div className='form-field__error'>{error}</div>
         </div>
       );
     case 'username':
       return (
         <div className='form-field'>
           <label htmlFor='username'>Username</label>
-          <input
+          <Field
             id='username'
+            className={error ? 'has-error' : null}
             type='text'
             name='username'
-            autoComplete='name'
-            placeholder='select a username'
-            onChange={e => setter(e.target.value)}
+            placeholder='UsernameExample'
+            onChange={handleChange}
             value={value}
             required
+            disabled={disabled}
           />
+          <div className='form-field__error'>{error}</div>
         </div>
       );
     default:
