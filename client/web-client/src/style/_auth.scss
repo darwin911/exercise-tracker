@@ -22,10 +22,28 @@
     padding: 2rem 1rem;
     border-radius: 14px;
     color: white;
+    background: linear-gradient(to bottom right, #263238, hsla(200, 19%, 10%, 1));
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 4px 1rem -2px rgba(0, 0, 0, 0.7);
+
+    h2 {
+      text-shadow: 3px 3px 3px rgba(0, 0, 0, 1), 0px 0px 8px rgba(0, 0, 0, 0.9);
+    }
+
     .form-field {
+      position: relative;
       margin-bottom: 1rem;
       display: flex;
       flex-direction: column;
+
+      &__error {
+        position: absolute;
+        font-weight: 500;
+        font-size: 0.8em;
+        color: red;
+        right: 0;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+      }
     }
 
     label {
@@ -35,9 +53,12 @@
     }
 
     input {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
       color: white;
-      transition: 200ms ease-out;
+      transition: 150ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      box-shadow: 0px 1px 0.3rem -0.1rem rgba(0, 0, 0, 0.6),
+        0px 0px 0.6rem -0.1rem rgba(0, 0, 0, 0.2);
       &:focus {
         color: black;
         background: rgba(255, 255, 255, 0.85);
@@ -47,16 +68,21 @@
           color: black;
         }
       }
+
+      &.has-error {
+        box-shadow: 0px 0px 0px 2px rgb(156, 0, 0);
+      }
     }
 
     input,
     button {
+      font-weight: 500;
       border-radius: 5px;
       padding: 0.5rem;
       font-size: 1em;
       &:disabled {
-        background: rgba(255, 255, 255, 0.25);
-        opacity: 0.8;
+        background: rgba(83, 83, 83, 0.5);
+        opacity: 0.5;
         &:hover {
           cursor: not-allowed;
         }
