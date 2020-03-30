@@ -13,8 +13,10 @@ export const RegisterForm = () => {
   const [state, dispatch] = useContext(AuthContext);
   const history = useHistory();
   const registerValidation = Yup.object({
-    name: Yup.string().max(2, 'Must be 2 characters or less'),
-    username: Yup.string().min(6, 'Must be 6 characters or more'),
+    name: Yup.string().max(255, 'Must be 255 characters or less'),
+    username: Yup.string()
+      .min(3, 'Too Short!')
+      .max(50, 'Too Long!'),
     email: Yup.string()
       .email('Invalid email address')
       .required('Required'),
