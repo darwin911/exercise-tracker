@@ -587,10 +587,6 @@ a:hover {
   background-color: rgba(255, 251, 0, 0.8);
 }
 
-.exercise__duration, .exercise__date, .exercise__time, .exercise__note {
-  margin: 0;
-}
-
 .exercise__duration {
   -ms-grid-column: 1;
   grid-column: 1;
@@ -621,12 +617,12 @@ a:hover {
   -ms-flex-item-align: self-end;
       -ms-grid-row-align: self-end;
       align-self: self-end;
-  font-size: 1.25em;
-  font-weight: 300;
+  font-size: 0.8em;
+  font-weight: 500;
   -ms-grid-column: 3;
   grid-column: 3;
   min-width: 20px;
-  opacity: 0.9;
+  opacity: 0.5;
 }
 
 .exercise__day-of-week {
