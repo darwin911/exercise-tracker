@@ -115,7 +115,6 @@ a:hover {
   opacity: 0.8;
 
   @media screen and (min-width: $xl) {
-    font-size: 4em;
     margin: 0.25em 0;
     opacity: 0.25;
   }
@@ -180,6 +179,7 @@ a:hover {
       }
       &:hover,
       &:focus {
+        outline: none;
         background: rgb(105, 33, 177);
         box-shadow: 0px 2px 13px -4px rgba(255, 255, 255, 0.25),
           0px 0px 0px 0.25rem rgba(181, 53, 255, 0.2);

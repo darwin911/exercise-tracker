@@ -136,7 +136,6 @@ a:hover {
 
 @media screen and (min-width: 1400px) {
   .main-heading {
-    font-size: 4em;
     margin: 0.25em 0;
     opacity: 0.25;
   }
@@ -222,6 +221,7 @@ a:hover {
 }
 
 .App .btn.toggle-form:hover, .App .btn.toggle-form:focus {
+  outline: none;
   background: #6921b1;
   -webkit-box-shadow: 0px 2px 13px -4px rgba(255, 255, 255, 0.25), 0px 0px 0px 0.25rem rgba(181, 53, 255, 0.2);
           box-shadow: 0px 2px 13px -4px rgba(255, 255, 255, 0.25), 0px 0px 0px 0.25rem rgba(181, 53, 255, 0.2);
@@ -335,8 +335,9 @@ a:hover {
 
 .auth form label {
   display: block;
-  font-size: 1em;
-  margin-bottom: 0.5rem;
+  font-size: 0.75em;
+  font-weight: 500;
+  margin-bottom: 0.5em;
 }
 
 .auth form input {
@@ -381,9 +382,9 @@ a:hover {
 .auth form input,
 .auth form button {
   font-weight: 500;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 0.5rem;
-  font-size: 1em;
+  font-size: 0.9em;
 }
 
 .auth form input:disabled,
@@ -725,8 +726,10 @@ a:hover {
           box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.05);
 }
 
-.exercise .btn.delete:hover,
-.exercise .btn.edit:hover {
+.exercise .btn.delete:hover, .exercise .btn.delete:focus,
+.exercise .btn.edit:hover,
+.exercise .btn.edit:focus {
+  outline: none;
   -webkit-box-shadow: 0px 0px 1rem 4px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 0px 1rem 4px rgba(0, 0, 0, 0.25);
   -webkit-transform: rotateZ(180deg);
@@ -737,18 +740,22 @@ a:hover {
   background: rgba(183, 28, 28, 0.75);
 }
 
-.exercise .btn.delete:hover {
+.exercise .btn.delete:hover, .exercise .btn.delete:focus {
   background: rgba(183, 28, 28, 0.8);
+  -webkit-box-shadow: 0px 0px 1px 3px #b71c1c;
+          box-shadow: 0px 0px 1px 3px #b71c1c;
 }
 
 .exercise .btn.edit {
   background: rgba(20, 123, 220, 0.75);
 }
 
-.exercise .btn.edit:hover {
+.exercise .btn.edit:hover, .exercise .btn.edit:focus {
   background: #147bdc;
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
+  -webkit-box-shadow: 0px 0px 1px 3px #147bdc;
+          box-shadow: 0px 0px 1px 3px #147bdc;
 }
 
 .user-exercises__summary {
@@ -1009,6 +1016,8 @@ a:hover {
   -ms-grid-column-align: self-end;
       justify-self: self-end;
   max-width: 200px;
+  -webkit-transition: 150ms ease-in;
+  transition: 150ms ease-in;
 }
 
 .filter__container {
@@ -1022,6 +1031,12 @@ a:hover {
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 2rem;
+}
+
+.filter:focus {
+  outline: none;
+  -webkit-box-shadow: 0px 0px 1px 3px rgba(181, 53, 255, 0.9);
+          box-shadow: 0px 0px 1px 3px rgba(181, 53, 255, 0.9);
 }
 
 .cancel-svg {

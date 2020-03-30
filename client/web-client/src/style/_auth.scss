@@ -48,8 +48,9 @@
 
     label {
       display: block;
-      font-size: 1em;
-      margin-bottom: 0.5rem;
+      font-size: 0.75em;
+      font-weight: 500;
+      margin-bottom: 0.5em;
     }
 
     input {
@@ -77,9 +78,9 @@
     input,
     button {
       font-weight: 500;
-      border-radius: 5px;
+      border-radius: 10px;
       padding: 0.5rem;
-      font-size: 1em;
+      font-size: 0.9em;
       &:disabled {
         background: rgba(83, 83, 83, 0.5);
         opacity: 0.5;
