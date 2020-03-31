@@ -17,20 +17,32 @@ router.route('/:userId').get(async (req, res) => {
 // Add Exercise
 router.route('/add').post(async (req, res) => {
   try {
+    // Required Properties
+
     const exerciseObj = {
       date: req.body.date,
-      duration: Number(req.body.duration),
-      note: req.body.note,
       type: req.body.type,
       userId: req.body.userId,
     };
 
+    // Optional Properties
+
+    if (req.body.duration) {
+      exerciseObj.duration = Number(req.body.duration); // min from midnight 00:00
+    }
+
+    if (req.body.note) {
+      exerciseObj.note = req.body.note;
+    }
+
     if (req.body.time) {
       exerciseObj.time = Number(req.body.time.replace(/:/, '')); // min from midnight 00:00
     }
+
     if (req.body.distance > 0) {
       exerciseObj.distance = Number(req.body.distance);
     }
+
     const exercise = new Exercise(exerciseObj);
     exercise.setActivityType(exerciseObj.type);
     exercise.save();
