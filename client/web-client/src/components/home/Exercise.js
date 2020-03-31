@@ -93,10 +93,10 @@ export const Exercise = ({ exercise }) => {
         <p className='exercise__day-of-week'>{moment.utc(date).format('dddd')}</p>
         <p className='exercise__date'>{moment.utc(date).format('MMM D')}</p>
         <p className='exercise__time'>{moment(time, 'Hmm').format('h:mm a')}</p>
-        <ExerciseDuration duration={duration} />
-        <ExerciseType type={type} />
-        <ExerciseNote note={note} />
-        <ExerciseDistance distance={distance} />
+        <ExerciseDuration />
+        <ExerciseType />
+        <ExerciseNote />
+        <ExerciseDistance />
       </div>
       <div className='exercise__right-container'>
         <ExerciseDeleteButton id={id} deleting={deleting} handleDelete={handleDelete} />
