@@ -28,6 +28,7 @@ export const EXERCISE_TYPES = {
   ROCK_CLIMBING: 'Rock Climbing',
   SWIMMING: 'Swimming',
   TENNIS: 'Tennis',
+  PUSH_UPS: 'Push-Ups',
 };
 
 export const ACTIVITY_TYPES = {
