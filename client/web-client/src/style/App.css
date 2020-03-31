@@ -492,10 +492,8 @@ a:hover {
   -ms-grid-columns: 5fr 1fr;
       grid-template-columns: 5fr 1fr;
   padding: 0.8rem;
-  -webkit-transition: background-color 200ms ease-in-out, -webkit-transform 500ms ease-in;
-  transition: background-color 200ms ease-in-out, -webkit-transform 500ms ease-in;
-  transition: background-color 200ms ease-in-out, transform 500ms ease-in;
-  transition: background-color 200ms ease-in-out, transform 500ms ease-in, -webkit-transform 500ms ease-in;
+  -webkit-transition: background-color 200ms ease-in-out;
+  transition: background-color 200ms ease-in-out;
 }
 
 .exercise:focus {
