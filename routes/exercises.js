@@ -35,6 +35,10 @@ router.route('/add').post(async (req, res) => {
       exerciseObj.note = req.body.note;
     }
 
+    if (req.body.repetitions) {
+      exerciseObj.repetitions = Number(req.body.repetitions);
+    }
+
     if (req.body.time) {
       exerciseObj.time = Number(req.body.time.replace(/:/, '')); // min from midnight 00:00
     }
