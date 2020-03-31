@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { deleteExercise } from '../../helper';
 import moment from 'moment';
 import { AuthContext } from '../../Store';
-import { CONSTANTS } from '../../constants';
+import { CONSTANTS, EXERCISE_TYPES } from '../../constants';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CancelSVG } from '../CancelSVG';
@@ -12,7 +12,7 @@ export const Exercise = ({ exercise }) => {
   const dispatch = useContext(AuthContext)[1];
 
   const [deleting, setDeleting] = useState(false);
-  const { id, note, duration, date, time, type, distance } = exercise;
+  const { id, note, duration, date, time, type, distance, repetitions } = exercise;
 
   const handleDelete = async id => {
     setDeleting(true);
@@ -25,11 +25,16 @@ export const Exercise = ({ exercise }) => {
     dispatch({ type: TOGGLE_MODAL });
   };
 
-  const ExerciseDuration = () => (
-    <p className='exercise__duration'>
-      {duration} <span>mins</span>
-    </p>
-  );
+  const ExerciseDuration = () =>
+    type !== EXERCISE_TYPES.PUSH_UPS ? (
+      <p className='exercise__duration'>
+        {duration} <span>mins</span>
+      </p>
+    ) : (
+      <p className='exercise__repetitions'>
+        {repetitions} <span>reps</span>
+      </p>
+    );
 
   const ExerciseType = () => <p className='exercise__type'>{type}</p>;
 
