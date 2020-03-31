@@ -36,7 +36,8 @@ exerciseSchema.methods.setActivityType = function(type) {
       this.activityType = ACIVITY_TYPES.FLEXIBILITY;
       break;
     case 'gym':
-      this.activityType = ACIVITY_TYPES.MUSCLE_STRENGTHENING;
+    case 'push-ups':
+      this.activityType = ACIVITY_TYPES.STRENGTH_TRAINING;
       break;
     default:
       break;
