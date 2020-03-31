@@ -85,7 +85,7 @@ export const EditExerciseModal = ({ exercise }) => {
   const [{ user }, dispatch] = useContext(AuthContext);
   const history = useHistory();
   const [inputDistance, editDistance] = useState(distance); // miles
-  const [inputDate, editDate] = useState(moment(date).format(moment.HTML5_FMT.DATE));
+  const [inputDate, editDate] = useState(moment.utc(date).format(moment.HTML5_FMT.DATE));
   const [inputTime, editTime] = useState(moment(time, 'Hmm').format(moment.HTML5_FMT.TIME));
   const [inputDuration, editDuration] = useState(duration);
   const [inputNote, editNote] = useState(note);

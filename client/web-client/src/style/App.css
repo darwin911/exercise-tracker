@@ -480,11 +480,11 @@ a:hover {
 }
 
 .exercise {
-  background-color: rgba(255, 255, 255, 0.045);
+  background-color: #151512;
   border-radius: 0.75rem;
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-          box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
   display: -ms-grid;
   display: grid;
   grid-auto-rows: -webkit-max-content;
@@ -492,8 +492,16 @@ a:hover {
   -ms-grid-columns: 5fr 1fr;
       grid-template-columns: 5fr 1fr;
   padding: 0.8rem;
-  -webkit-transition: background-color 200ms ease-in-out;
-  transition: background-color 200ms ease-in-out;
+  -webkit-transition: background-color 200ms ease-in-out, -webkit-transform 500ms ease-in;
+  transition: background-color 200ms ease-in-out, -webkit-transform 500ms ease-in;
+  transition: background-color 200ms ease-in-out, transform 500ms ease-in;
+  transition: background-color 200ms ease-in-out, transform 500ms ease-in, -webkit-transform 500ms ease-in;
+}
+
+.exercise:focus {
+  outline: none;
+  -webkit-box-shadow: 0px 0px 1px 4px red;
+          box-shadow: 0px 0px 1px 4px red;
 }
 
 @media screen and (min-width: 414px) {
@@ -506,8 +514,6 @@ a:hover {
   background: rgba(0, 150, 136, 0.9);
   background: linear-gradient(0.35turn, rgba(0, 150, 136, 0.9), rgba(0, 150, 136, 0.625));
   border: 2px solid rgba(0, 150, 136, 0.85);
-  -webkit-box-shadow: 0px 4px 15px -7px rgba(0, 150, 136, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
-          box-shadow: 0px 4px 15px -7px rgba(0, 150, 136, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
 }
 
 .exercise.gym:hover {
@@ -518,8 +524,6 @@ a:hover {
   background: rgba(40, 53, 147, 0.9);
   background: linear-gradient(0.35turn, rgba(40, 53, 147, 0.9), rgba(40, 53, 147, 0.625));
   border: 2px solid rgba(40, 53, 147, 0.85);
-  -webkit-box-shadow: 0px 4px 15px -7px rgba(40, 53, 147, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
-          box-shadow: 0px 4px 15px -7px rgba(40, 53, 147, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
 }
 
 .exercise.run:hover {
@@ -530,8 +534,6 @@ a:hover {
   background: rgba(233, 30, 99, 0.9);
   background: linear-gradient(0.35turn, rgba(233, 30, 99, 0.9), rgba(233, 30, 99, 0.625));
   border: 2px solid rgba(233, 30, 99, 0.85);
-  -webkit-box-shadow: 0px 4px 15px -7px rgba(233, 30, 99, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
-          box-shadow: 0px 4px 15px -7px rgba(233, 30, 99, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
 }
 
 .exercise.yoga:hover {
@@ -542,8 +544,6 @@ a:hover {
   background: rgba(106, 170, 2, 0.9);
   background: linear-gradient(0.35turn, rgba(106, 170, 2, 0.9), rgba(106, 170, 2, 0.625));
   border: 2px solid rgba(106, 170, 2, 0.85);
-  -webkit-box-shadow: 0px 4px 15px -7px rgba(106, 170, 2, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
-          box-shadow: 0px 4px 15px -7px rgba(106, 170, 2, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
 }
 
 .exercise.tennis:hover {
@@ -554,8 +554,6 @@ a:hover {
   background: rgba(3, 169, 244, 0.9);
   background: linear-gradient(0.35turn, rgba(3, 169, 244, 0.9), rgba(3, 169, 244, 0.625));
   border: 2px solid rgba(3, 169, 244, 0.85);
-  -webkit-box-shadow: 0px 4px 15px -7px rgba(3, 169, 244, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
-          box-shadow: 0px 4px 15px -7px rgba(3, 169, 244, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
 }
 
 .exercise.swimming:hover {
@@ -566,8 +564,6 @@ a:hover {
   background: rgba(82, 82, 82, 0.9);
   background: linear-gradient(0.35turn, rgba(82, 82, 82, 0.9), rgba(82, 82, 82, 0.625));
   border: 2px solid rgba(82, 82, 82, 0.85);
-  -webkit-box-shadow: 0px 4px 15px -7px rgba(82, 82, 82, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
-          box-shadow: 0px 4px 15px -7px rgba(82, 82, 82, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
 }
 
 .exercise.rock-climbing:hover {
@@ -578,8 +574,6 @@ a:hover {
   background: rgba(255, 251, 0, 0.9);
   background: linear-gradient(0.35turn, rgba(255, 251, 0, 0.9), rgba(255, 251, 0, 0.625));
   border: 2px solid rgba(255, 251, 0, 0.85);
-  -webkit-box-shadow: 0px 4px 15px -7px rgba(255, 251, 0, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
-          box-shadow: 0px 4px 15px -7px rgba(255, 251, 0, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
   color: black;
 }
 

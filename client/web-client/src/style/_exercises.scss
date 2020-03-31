@@ -2,7 +2,6 @@
   background: $bg-color;
   background: linear-gradient(0.35turn, $bg-color, rgba($bg-color, 0.625));
   border: 2px solid rgba($bg-color, 0.85);
-  box-shadow: 0px 4px 15px -7px rgba($bg-color, 0.8), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
   &:hover {
     background-color: rgba($bg-color, $opacity);
   }
@@ -31,15 +30,20 @@
 
 .exercise {
   $hover-opacity: 0.8;
-  background-color: hsla(0, 0%, 100%, 0.045);
+  background-color: #151512;
   border-radius: 0.75rem;
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
   display: grid;
   grid-auto-rows: max-content;
   grid-template-columns: 5fr 1fr;
   padding: 0.8rem;
   transition: background-color 200ms ease-in-out;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0px 0px 1px 4px red;
+  }
 
   @media screen and (min-width: 414px) {
     grid-column: span 1;

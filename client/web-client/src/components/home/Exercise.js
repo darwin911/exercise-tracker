@@ -82,10 +82,11 @@ export const Exercise = ({ exercise }) => {
       className={`exercise ${className}`}
       initial={{ y: -10, opacity: 0.15 }}
       animate={{ y: 0, opacity: 1 }}
-      exit={{ y: -5, opacity: 0.15 }}>
+      exit={{ y: -5, opacity: 0.15 }}
+      tabIndex={0}>
       <div className='exercise__left-container'>
-        <p className='exercise__day-of-week'>{moment(date).format('dddd')}</p>
-        <p className='exercise__date'>{moment(date).format('MMM D')}</p>
+        <p className='exercise__day-of-week'>{moment.utc(date).format('dddd')}</p>
+        <p className='exercise__date'>{moment.utc(date).format('MMM D')}</p>
         <p className='exercise__time'>{moment(time, 'Hmm').format('h:mm a')}</p>
         <ExerciseDuration duration={duration} />
         <ExerciseType type={type} />
