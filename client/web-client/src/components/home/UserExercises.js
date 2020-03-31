@@ -70,13 +70,11 @@ const filterExercisesByType = (value = 'ALL', exercisesArray) =>
 const getTotalMiles = exercisesArray => {
   return (
     Math.round(
-      exercisesArray
-        .filter(exercise => exercise.distance)
-        .reduce((acc, item) => acc + item.distance, 0) * 100
+      exercisesArray.reduce((acc, item) => (acc.distance ? acc + item.distance : acc), 0) * 100
     ) / 100
   );
 };
 
 const getTotalMinutes = exercisesArray => {
-  return exercisesArray.reduce((total, exercise) => total + exercise.duration, 0);
+  return exercisesArray.reduce((acc, item) => (item.duration ? acc + item.duration : acc), 0);
 };
