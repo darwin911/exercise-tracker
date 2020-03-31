@@ -13,7 +13,7 @@ const exerciseSchema = new Schema(
     activityType: { type: String },
     date: { type: Date, required: true },
     distance: { type: Number },
-    duration: { type: Number, required: true },
+    duration: { type: Number },
     note: { type: String },
     repetitions: { type: Number },
     time: { type: Number },
