@@ -40,6 +40,7 @@ exerciseSchema.methods.setActivityType = function(type) {
       this.activityType = ACIVITY_TYPES.STRENGTH_TRAINING;
       break;
     default:
+      this.activityType = null;
       break;
   }
 };
