@@ -111,23 +111,37 @@ export const AddExercise = () => {
     </div>
   );
 
-  const durationField = (
-    <div className='form-field duration'>
-      <label htmlFor='duration'>Duration: </label>
-      <input
-        id='duration'
-        type='number'
-        inputMode='numeric'
-        placeholder='0'
-        min={1}
-        max={360}
-        onChange={e => setDuration(e.target.value)}
-        required
-        value={duration}
-      />
-      <label htmlFor='duration'>min{duration > 1 && 's'}</label>
-    </div>
-  );
+  const durationField =
+    type !== EXERCISE_TYPES.PUSH_UPS ? (
+      <div className='form-field duration'>
+        <label htmlFor='duration'>Duration: </label>
+        <input
+          id='duration'
+          type='number'
+          inputMode='numeric'
+          placeholder='0'
+          min={1}
+          max={360}
+          onChange={e => setDuration(e.target.value)}
+          required
+          value={duration}
+        />
+        <label htmlFor='duration'>min{duration > 1 && 's'}</label>
+      </div>
+    ) : (
+      <div className='form-field repetitions'>
+        <label htmlFor='repetitions'>Repetitions: </label>
+        <input
+          type='number'
+          id='duration'
+          min={1}
+          max={9999}
+          onChange={e => setRepetitions(e.target.value)}
+          required
+          value={repetitions}
+        />
+      </div>
+    );
 
   const noteField = (
     <div className='form-field note'>
