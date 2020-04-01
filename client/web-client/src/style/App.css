@@ -579,7 +579,18 @@ a:hover {
   background-color: rgba(255, 251, 0, 0.8);
 }
 
-.exercise__duration {
+.exercise.push-ups {
+  background: rgba(136, 36, 18, 0.9);
+  background: linear-gradient(0.35turn, rgba(136, 36, 18, 0.9), rgba(136, 36, 18, 0.625));
+  border: 2px solid rgba(136, 36, 18, 0.85);
+  color: white;
+}
+
+.exercise.push-ups:hover {
+  background-color: rgba(136, 36, 18, 0.8);
+}
+
+.exercise__duration, .exercise__repetitions {
   -ms-grid-column: 1;
   grid-column: 1;
   -ms-grid-row: 3;
@@ -587,7 +598,7 @@ a:hover {
   font-size: 1.5em;
 }
 
-.exercise__duration span {
+.exercise__duration span, .exercise__repetitions span {
   display: block;
   text-transform: uppercase;
   font-size: 0.5em;

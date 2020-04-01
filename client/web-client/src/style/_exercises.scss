@@ -78,13 +78,19 @@
     color: black;
   }
 
+  &.push-ups {
+    @include exercise-type($push-ups-bg-color, $hover-opacity);
+    color: rgb(255, 255, 255);
+  }
+
   $tiny: 0.5em;
   $small: 0.8em;
   $normal: 1em;
   $big: 1.25em;
   $large: 1.5em;
 
-  &__duration {
+  &__duration,
+  &__repetitions {
     grid-column: 1;
     grid-row: 3;
     font-size: $large;
