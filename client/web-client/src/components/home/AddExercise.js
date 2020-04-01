@@ -17,6 +17,7 @@ export const AddExercise = () => {
   const [date, setDate] = useState(moment().format(moment.HTML5_FMT.DATE));
   const [time, setTime] = useState(moment().format(moment.HTML5_FMT.TIME));
   const [duration, setDuration] = useState('');
+  const [repetitions, setRepetitions] = useState('');
   const [note, setNote] = useState('');
   const [type, setType] = useState('');
 
