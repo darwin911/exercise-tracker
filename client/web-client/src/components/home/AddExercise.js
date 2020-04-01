@@ -181,7 +181,12 @@ export const AddExercise = () => {
       <button
         className='btn add'
         onClick={e => handleSubmit(e)}
-        disabled={loading || !duration || (type.toUpperCase() === 'RUN' && !distance)}>
+        disabled={
+          loading ||
+          (type !== EXERCISE_TYPES.PUSH_UPS && !duration) ||
+          (type === EXERCISE_TYPES.PUSH_UPS && !repetitions) ||
+          (type === EXERCISE_TYPES.RUN && !distance)
+        }>
         {loading ? <div className='loader' /> : 'Add'}
       </button>
       <button className='btn cancel' onClick={() => closeModal()} disabled={loading}>
