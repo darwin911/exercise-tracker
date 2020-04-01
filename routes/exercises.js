@@ -59,6 +59,7 @@ router.route('/add').post(async (req, res) => {
 });
 
 // Find One Exercise by Id
+// =======================
 router.route('/:id').get((req, res) => {
   Exercise.findById(req.params.id)
     .then(exercise => res.json(exercise))
@@ -66,6 +67,7 @@ router.route('/:id').get((req, res) => {
 });
 
 // Delete Exercise
+// ===============
 router.route('/:id').delete((req, res) => {
   try {
     Exercise.findByIdAndDelete(req.params.id)
@@ -77,14 +79,16 @@ router.route('/:id').delete((req, res) => {
 });
 
 // Update Exercise
+// ===============
 router.route('/update/:id').put(async (req, res) => {
   try {
-    const { duration, note, date, distance, time } = req.body;
+    const { duration, note, date, distance, time, repetitions } = req.body;
     let exerciseObj = {
       duration,
       note,
       date,
       distance,
+      repetitions,
     };
     if (time) {
       exerciseObj.time = Number(time.replace(/:/, '')); // min from midnight 00:00
