@@ -27,7 +27,7 @@ export const AddExercise = () => {
     e.preventDefault();
     setLoading(true);
 
-    if (duration < 1) {
+    if (duration < 1 && type !== EXERCISE_TYPES.PUSH_UPS) {
       setLoading(false);
       return;
     }
@@ -38,6 +38,7 @@ export const AddExercise = () => {
       note,
       date,
       username: user.username,
+      repetitions,
       type,
       time,
       distance,
