@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { editExercise } from '../../helper';
 import { AuthContext } from '../../Store';
-import { CONSTANTS } from '../../constants';
+import { CONSTANTS, EXERCISE_TYPES } from '../../constants';
 import { motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import moment from 'moment';
@@ -25,6 +25,21 @@ const DurationField = ({ input, update }) => (
       value={input}
     />
     <label htmlFor='duration'>min{input > 1 && 's'}</label>
+  </div>
+);
+
+const RepetitionsField = ({ input, update }) => (
+  <div className='form-field repetitions'>
+    <label htmlFor='repetitions'>Repetitions: </label>
+    <input
+      id='repetitions'
+      type='number'
+      min={1}
+      max={9999}
+      onChange={e => update(e.target.value)}
+      required
+      value={input}
+    />
   </div>
 );
 
@@ -81,13 +96,14 @@ const NoteField = ({ input, update }) => (
 );
 
 export const EditExerciseModal = ({ exercise }) => {
-  const { id, date, time, duration, note, distance, type } = exercise;
+  const { id, date, time, duration, note, distance, type, repetitions } = exercise;
   const [{ user }, dispatch] = useContext(AuthContext);
   const history = useHistory();
   const [inputDistance, editDistance] = useState(distance); // miles
   const [inputDate, editDate] = useState(moment.utc(date).format(moment.HTML5_FMT.DATE));
   const [inputTime, editTime] = useState(moment(time, 'Hmm').format(moment.HTML5_FMT.TIME));
   const [inputDuration, editDuration] = useState(duration);
+  const [inputRepetitions, editRepetitions] = useState(repetitions);
   const [inputNote, editNote] = useState(note);
   const [loading, setLoading] = useState(false);
 
@@ -101,6 +117,7 @@ export const EditExerciseModal = ({ exercise }) => {
       note: inputNote,
       date: moment(inputDate).format(moment.HTML5_FMT.DATE),
       username: user.username,
+      repetitions: inputRepetitions,
       time: inputTime,
       distance: inputDistance,
     });
@@ -108,8 +125,7 @@ export const EditExerciseModal = ({ exercise }) => {
     if (updatedExercise) {
       handleSuccess(updatedExercise);
     } else {
-      console.log(updatedExercise);
-      debugger;
+      console.error('Error updating => ', updatedExercise);
     }
   };
 
@@ -147,7 +163,14 @@ export const EditExerciseModal = ({ exercise }) => {
 
   const ButtonsContainer = () => (
     <div className='form-field buttons-container'>
-      <button className='btn edit' onClick={e => handleEdit(e)} disabled={loading || !duration}>
+      <button
+        className='btn edit'
+        onClick={e => handleEdit(e)}
+        disabled={
+          loading ||
+          (type !== EXERCISE_TYPES.PUSH_UPS && !duration) ||
+          (type === EXERCISE_TYPES.PUSH_UPS && !repetitions)
+        }>
         {loading ? <div className='loader' /> : 'Save'}
       </button>
       <button type='button' className='btn cancel' onClick={() => handleClose()} disabled={loading}>
@@ -165,7 +188,11 @@ export const EditExerciseModal = ({ exercise }) => {
         <Header />
         <DateField input={inputDate} update={editDate} />
         <TimeField input={inputTime} update={editTime} />
-        <DurationField input={inputDuration} update={editDuration} />
+        {type !== EXERCISE_TYPES.PUSH_UPS ? (
+          <DurationField input={inputDuration} update={editDuration} />
+        ) : (
+          <RepetitionsField input={inputRepetitions} update={editRepetitions} />
+        )}
         {distance && <DistanceField input={inputDistance} update={editDistance} />}
         <NoteField input={inputNote} update={editNote} />
         <ButtonsContainer />
