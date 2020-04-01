@@ -43,6 +43,7 @@ exerciseSchema.methods.setActivityType = function(type) {
       this.activityType = null;
       break;
   }
+  return this;
 };
 
 exerciseSchema.methods.toClient = function() {

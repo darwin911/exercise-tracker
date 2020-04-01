@@ -48,9 +48,10 @@ router.route('/add').post(async (req, res) => {
     }
 
     const exercise = new Exercise(exerciseObj);
-    exercise.setActivityType(exerciseObj.type);
-    exercise.save();
+    exercise.setActivityType(exerciseObj.type).save();
+
     const exerciseData = await exercise.toClient();
+
     return res.json(exerciseData);
   } catch (error) {
     console.log(error);
