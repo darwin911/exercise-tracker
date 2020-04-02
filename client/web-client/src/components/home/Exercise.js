@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { deleteExercise } from '../../helper';
 import moment from 'moment';
 import { AuthContext } from '../../Store';
-import { CONSTANTS, EXERCISE_TYPES } from '../../constants';
+import { CONSTANTS, EXERCISE_TYPES, TRANSITIONS } from '../../constants';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CancelSVG } from '../CancelSVG';
@@ -71,19 +71,13 @@ export const Exercise = ({ exercise }) => {
     </Link>
   );
 
-  const spring = {
-    type: 'spring',
-    damping: 50,
-    stiffness: 600,
-  };
-
   const className = type.toLowerCase().replace(/ /g, '-');
 
   return (
     <motion.div
       // this casuses flicker
       // positionTransition
-      layoutTransition={spring}
+      layoutTransition={TRANSITIONS.SPRING}
       className={`exercise ${className}`}
       initial={{ y: -10, opacity: 0.15 }}
       animate={{ y: 0, opacity: 1 }}
