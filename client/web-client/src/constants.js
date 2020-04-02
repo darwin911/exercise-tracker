@@ -67,3 +67,7 @@ export const ACTIVITY_TYPES = {
     ],
   },
 };
+
+export const TRANSITIONS = {
+  SPRING: { type: 'spring', damping: 50, stiffness: 600 },
+};
