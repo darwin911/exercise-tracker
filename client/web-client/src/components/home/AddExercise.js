@@ -1,36 +1,24 @@
 import React, { useState, useContext } from 'react';
 import { addExercise } from '../../helper';
 import { AuthContext } from '../../Store';
-import { CONSTANTS, EXERCISE_TYPES } from '../../constants';
+import { CONSTANTS, EXERCISE_TYPES, TRANSITIONS } from '../../constants';
 import { motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import moment from 'moment';
 import { useHistory } from 'react-router-dom';
+import { Formik } from 'formik';
 const { ADD_EXERCISE, TOGGLE_MODAL } = CONSTANTS;
+const { PUSH_UPS, RUN } = EXERCISE_TYPES;
 
 export const AddExercise = () => {
   const [state, dispatch] = useContext(AuthContext);
   const { user, modalOpen } = state;
   const history = useHistory();
 
-  const [distance, setDistance] = useState(''); // Units in miles (imperial)
-  const [date, setDate] = useState(moment().format(moment.HTML5_FMT.DATE));
-  const [time, setTime] = useState(moment().format(moment.HTML5_FMT.TIME));
-  const [duration, setDuration] = useState('');
-  const [repetitions, setRepetitions] = useState('');
-  const [note, setNote] = useState('');
-  const [type, setType] = useState('');
-
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async e => {
-    e.preventDefault();
+  const handleSubmit = async ({ date, distance, duration, time, type, repetitions, note }) => {
     setLoading(true);
-
-    if (duration < 1 && type !== EXERCISE_TYPES.PUSH_UPS) {
-      setLoading(false);
-      return;
-    }
 
     const newExercise = await addExercise({
       duration,
@@ -55,11 +43,7 @@ export const AddExercise = () => {
 
   const resetForm = () => {
     setLoading(false);
-    setDate(moment().format(moment.HTML5_FMT.DATE));
-    setDuration('');
-    setNote('');
-    setType('');
-    setDistance('');
+    // setDate(moment().format(moment.HTML5_FMT.DATE));
   };
 
   const closeModal = () => {
@@ -70,145 +54,166 @@ export const AddExercise = () => {
     resetForm();
   };
 
-  const handleSelectChange = value => {
-    setType(value);
-  };
-
-  const dateField = (
-    <div className='form-field date'>
-      <label htmlFor='date'>Date:</label>
-      <input
-        id='date'
-        type='date'
-        pattern='\d{4}-\d{2}-\d{2}'
-        onChange={e => setDate(e.target.value)}
-        value={date}
-        max={moment().format(moment.HTML5_FMT.DATE)}
-        required
-      />
-    </div>
-  );
-
-  const timeField = (
-    <div className='form-field time'>
-      <label htmlFor='time'>Time:</label>
-      <input id='time' type='time' onChange={e => setTime(e.target.value)} value={time} required />
-    </div>
-  );
-
-  const typeField = (
-    <div className='form-field type'>
-      <label htmlFor='type'>Type:</label>
-      <select id='type' onChange={e => handleSelectChange(e.target.value)} value={type}>
-        <option value='' disabled>
-          Choose...
-        </option>
-        {Object.values(EXERCISE_TYPES).map(option => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
-    </div>
-  );
-
-  const durationField =
-    type !== EXERCISE_TYPES.PUSH_UPS ? (
-      <div className='form-field duration'>
-        <label htmlFor='duration'>Duration: </label>
-        <input
-          id='duration'
-          type='number'
-          inputMode='numeric'
-          placeholder='0'
-          min={1}
-          max={360}
-          onChange={e => setDuration(e.target.value)}
-          required
-          value={duration}
-        />
-        <label htmlFor='duration'>min{duration > 1 && 's'}</label>
-      </div>
-    ) : (
-      <div className='form-field repetitions'>
-        <label htmlFor='repetitions'>Repetitions: </label>
-        <input
-          type='number'
-          id='duration'
-          min={1}
-          max={9999}
-          onChange={e => setRepetitions(e.target.value)}
-          required
-          value={repetitions}
-        />
-      </div>
-    );
-
-  const noteField = (
-    <div className='form-field note'>
-      <label htmlFor='note'>Note: </label>
-      <input
-        id='note'
-        type='text'
-        placeholder='Felt great!'
-        onChange={e => setNote(e.target.value)}
-        required
-        value={note}
-      />
-    </div>
-  );
-
-  const distanceField =
-    type === EXERCISE_TYPES.RUN ? (
-      <div className='form-field distance'>
-        <label htmlFor='note'>Distance: </label>
-        <input
-          id='distance'
-          type='number'
-          placeholder='0.0'
-          step={0.1}
-          min={0.1}
-          onChange={e => setDistance(e.target.value)}
-          value={distance}
-          required
-        />
-        <label htmlFor='distance'>mi</label>
-      </div>
-    ) : null;
-
-  const buttonsContainer = (
-    <div className='form-field buttons-container'>
-      <button
-        className='btn add'
-        onClick={e => handleSubmit(e)}
-        disabled={
-          loading ||
-          (type !== EXERCISE_TYPES.PUSH_UPS && !duration) ||
-          (type === EXERCISE_TYPES.PUSH_UPS && !repetitions) ||
-          (type === EXERCISE_TYPES.RUN && !distance)
-        }>
-        {loading ? <div className='loader' /> : 'Add'}
-      </button>
-      <button className='btn cancel' onClick={() => closeModal()} disabled={loading}>
-        Cancel
-      </button>
-    </div>
-  );
-
   return createPortal(
-    <aside className='add-exercise__modal'>
-      <motion.form className='add-exercise' initial={{ y: 0 }} animate={{ y: 10 }}>
-        <h2>Log New Exercise</h2>
-        <hr className='divider' />
-        {dateField}
-        {timeField}
-        {typeField}
-        {durationField}
-        {distanceField}
-        {noteField}
-        {buttonsContainer}
-      </motion.form>
-    </aside>,
+    <motion.aside
+      className='add-exercise__modal'
+      initial={{ x: '-10%', opacity: 0.15 }}
+      animate={{ x: '0', opacity: 1 }}
+      transition={TRANSITIONS.SPRING}>
+      <Formik
+        initialValues={{
+          date: moment().format(moment.HTML5_FMT.DATE),
+          time: moment().format(moment.HTML5_FMT.TIME),
+          type: '',
+          duration: '',
+          distance: '',
+          repetitions: '',
+          note: '',
+        }}
+        onSubmit={handleSubmit}>
+        {({ values, errors, touched, handleSubmit, handleChange, handleBlur, isSubmitting }) => {
+          const { type, date, duration, distance, note, repetitions, time } = values;
+          const addButtonDisabledState =
+            loading ||
+            (type !== PUSH_UPS && !duration) ||
+            (type === PUSH_UPS && !repetitions) ||
+            (type === RUN && !distance);
+          return (
+            <form className='add-exercise' onSubmit={handleSubmit}>
+              <h2>Log New Exercise</h2>
+              <br />
+              <hr className='divider' />
+
+              <div className='form-field date'>
+                <label htmlFor='date'>Date:</label>
+                <input
+                  id='date'
+                  type='date'
+                  pattern='\d{4}-\d{2}-\d{2}'
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={date}
+                  max={moment().format(moment.HTML5_FMT.DATE)}
+                  required
+                />
+              </div>
+
+              <div className='form-field time'>
+                <label htmlFor='time'>Time:</label>
+                <input
+                  id='time'
+                  type='time'
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={time}
+                  required
+                />
+              </div>
+
+              <div className='form-field type'>
+                <label htmlFor='type'>Type:</label>
+                <select
+                  id='type'
+                  name='type'
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={type}>
+                  <option value='' disabled>
+                    Choose...
+                  </option>
+                  {Object.values(EXERCISE_TYPES).map(option => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {type !== PUSH_UPS ? (
+                <div className='form-field duration'>
+                  <label htmlFor='duration'>Duration: </label>
+                  <input
+                    id='duration'
+                    type='number'
+                    inputMode='numeric'
+                    placeholder='0'
+                    min={1}
+                    max={360}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    required
+                    value={duration}
+                  />
+                  <label htmlFor='duration'>min{duration > 1 && 's'}</label>
+                </div>
+              ) : (
+                <div className='form-field repetitions'>
+                  <label htmlFor='repetitions'>Repetitions: </label>
+                  <input
+                    id='repetitions'
+                    type='number'
+                    min={1}
+                    max={9999}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    required
+                    value={repetitions}
+                  />
+                </div>
+              )}
+
+              {type === RUN ? (
+                <div className='form-field distance'>
+                  <label htmlFor='note'>Distance: </label>
+                  <input
+                    id='distance'
+                    type='number'
+                    placeholder='0.0'
+                    step={0.1}
+                    min={0.1}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={distance}
+                    required
+                  />
+                  <label htmlFor='distance'>mi</label>
+                </div>
+              ) : null}
+
+              <div className='form-field note'>
+                <label htmlFor='note'>Note: </label>
+                <input
+                  id='note'
+                  type='text'
+                  placeholder='Felt great!'
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  required
+                  value={note}
+                />
+              </div>
+
+              <div className='form-field buttons-container'>
+                <button
+                  type='submit'
+                  className='btn add'
+                  onClick={handleSubmit}
+                  disabled={addButtonDisabledState}>
+                  {loading ? <div className='loader' /> : 'Add'}
+                </button>
+                <button
+                  type='button'
+                  className='btn cancel'
+                  onClick={() => closeModal()}
+                  disabled={loading}>
+                  Cancel
+                </button>
+              </div>
+            </form>
+          );
+        }}
+      </Formik>
+    </motion.aside>,
     document.body
   );
 };
