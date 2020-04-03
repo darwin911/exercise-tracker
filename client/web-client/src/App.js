@@ -7,7 +7,7 @@ import { AuthContext } from './Store';
 import { Header } from './components/Header';
 import { Auth } from './components/auth/Auth';
 import { UserExercises } from './components/home/UserExercises';
-import { AddExercise } from './components/home/AddExercise';
+import { AddExerciseModal } from './components/home/AddExerciseModal';
 import { EditExerciseModal } from './components/home/EditExerciseModal';
 import { ActivityTypes } from './components/home/ActivityTypes';
 import { Profile } from './components/profile/Profile';
@@ -55,7 +55,7 @@ export const App = withRouter(({ location }) => {
           <ActivityTypes />
           <UserExercises />
         </main>
-        <Route path='/home/add' render={() => <AddExercise />} />
+        <Route path='/home/add' render={() => <AddExerciseModal />} />
         <Route
           path='/home/edit/:exerciseId'
           render={({ match }) => {
