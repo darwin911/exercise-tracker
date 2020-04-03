@@ -6,7 +6,8 @@ import { motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import moment from 'moment';
 import { useHistory } from 'react-router-dom';
-import { Formik } from 'formik';
+import { Formik, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 const { ADD_EXERCISE, TOGGLE_MODAL } = CONSTANTS;
 const { PUSH_UPS, RUN } = EXERCISE_TYPES;
 
@@ -58,13 +59,20 @@ export const AddExerciseModal = () => {
     note: '',
   };
 
+  const validationSchema = Yup.object({
+    type: Yup.string().required('Required'),
+  });
+
   return createPortal(
     <motion.aside
       className='add-exercise__modal'
       initial={{ x: '-10%', opacity: 0.15 }}
       animate={{ x: '0', opacity: 1 }}
       transition={TRANSITIONS.SPRING}>
-      <Formik initialValues={initValues} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={initValues}
+        onSubmit={handleSubmit}
+        validationSchema={validationSchema}>
         {({ values, errors, touched, handleSubmit, handleChange, handleBlur, isSubmitting }) => {
           const { type, date, duration, distance, note, repetitions, time } = values;
           const addButtonDisabledState =
@@ -72,6 +80,7 @@ export const AddExerciseModal = () => {
             (type !== PUSH_UPS && !duration) ||
             (type === PUSH_UPS && !repetitions) ||
             (type === RUN && !distance);
+          console.log(errors, touched);
           return (
             <form className='add-exercise' onSubmit={handleSubmit}>
               <h2>Log New Exercise</h2>
@@ -80,7 +89,11 @@ export const AddExerciseModal = () => {
 
               <div className='form-field type'>
                 <label htmlFor='type'>Type:</label>
-                <select
+                <ErrorMessage name='type'>
+                  {msg => <span className='error'>{msg}</span>}
+                </ErrorMessage>
+                <Field
+                  as='select'
                   id='type'
                   name='type'
                   onChange={handleChange}
@@ -94,13 +107,13 @@ export const AddExerciseModal = () => {
                       {option}
                     </option>
                   ))}
-                </select>
+                </Field>
               </div>
 
               <div className='form-field date'>
                 <label htmlFor='date'>Date:</label>
-                <input
-                  id='date'
+                <Field
+                  name='date'
                   type='date'
                   pattern='\d{4}-\d{2}-\d{2}'
                   onChange={handleChange}
@@ -113,8 +126,8 @@ export const AddExerciseModal = () => {
 
               <div className='form-field time'>
                 <label htmlFor='time'>Time:</label>
-                <input
-                  id='time'
+                <Field
+                  name='time'
                   type='time'
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -126,8 +139,8 @@ export const AddExerciseModal = () => {
               {type !== PUSH_UPS ? (
                 <div className='form-field duration'>
                   <label htmlFor='duration'>Duration: </label>
-                  <input
-                    id='duration'
+                  <Field
+                    name='duration'
                     type='number'
                     inputMode='numeric'
                     placeholder='0'
@@ -143,8 +156,8 @@ export const AddExerciseModal = () => {
               ) : (
                 <div className='form-field repetitions'>
                   <label htmlFor='repetitions'>Repetitions: </label>
-                  <input
-                    id='repetitions'
+                  <Field
+                    name='repetitions'
                     type='number'
                     min={1}
                     max={9999}
@@ -159,8 +172,8 @@ export const AddExerciseModal = () => {
               {type === RUN ? (
                 <div className='form-field distance'>
                   <label htmlFor='note'>Distance: </label>
-                  <input
-                    id='distance'
+                  <Field
+                    name='distance'
                     type='number'
                     placeholder='0.0'
                     step={0.1}
@@ -176,8 +189,8 @@ export const AddExerciseModal = () => {
 
               <div className='form-field note'>
                 <label htmlFor='note'>Note: </label>
-                <input
-                  id='note'
+                <Field
+                  name='note'
                   type='text'
                   placeholder='Felt great!'
                   onChange={handleChange}
