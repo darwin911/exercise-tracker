@@ -74,7 +74,7 @@ export const EditExerciseModal = ({ exercise }) => {
 
   const initValues = {
     date: moment.utc(date).format(moment.HTML5_FMT.DATE),
-    time: moment().format(moment.HTML5_FMT.TIME),
+    time: moment(time, 'Hmm').format(moment.HTML5_FMT.TIME),
     duration: duration,
     distance: distance,
     repetitions: repetitions,
