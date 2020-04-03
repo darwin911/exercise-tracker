@@ -103,6 +103,7 @@ export const EditExerciseModal = ({ exercise }) => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={date}
+                  disabled={isSubmitting}
                   required
                 />
               </div>
@@ -114,6 +115,7 @@ export const EditExerciseModal = ({ exercise }) => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={time}
+                  disabled={isSubmitting}
                   required
                 />
               </div>
@@ -129,8 +131,9 @@ export const EditExerciseModal = ({ exercise }) => {
                     max={360}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    required
                     value={duration}
+                    disabled={isSubmitting}
+                    required
                   />
                   <label htmlFor='duration'>min{duration > 1 && 's'}</label>
                 </div>
@@ -144,8 +147,9 @@ export const EditExerciseModal = ({ exercise }) => {
                     max={9999}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    required
                     value={repetitions}
+                    disabled={isSubmitting}
+                    required
                   />
                 </div>
               )}
@@ -161,6 +165,7 @@ export const EditExerciseModal = ({ exercise }) => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={distance}
+                    disabled={isSubmitting}
                     required
                   />
                   <label htmlFor='distance'>mi</label>
@@ -175,8 +180,9 @@ export const EditExerciseModal = ({ exercise }) => {
                     placeholder='Felt great!'
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    required
                     value={note}
+                    disabled={isSubmitting}
+                    required
                   />
                 </div>
               )}
