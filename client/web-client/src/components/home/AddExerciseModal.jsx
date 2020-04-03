@@ -60,7 +60,8 @@ export const AddExerciseModal = () => {
   };
 
   const validationSchema = Yup.object({
-    type: Yup.string().required('Required'),
+    type: Yup.string().required('Pick One'),
+    duration: Yup.number().required('Really?'),
   });
 
   return createPortal(
@@ -77,10 +78,10 @@ export const AddExerciseModal = () => {
           const { type, date, duration, distance, note, repetitions, time } = values;
           const addButtonDisabledState =
             loading ||
+            !type ||
             (type !== PUSH_UPS && !duration) ||
             (type === PUSH_UPS && !repetitions) ||
             (type === RUN && !distance);
-          console.log(errors, touched);
           return (
             <form className='add-exercise' onSubmit={handleSubmit}>
               <h2>Log New Exercise</h2>
@@ -93,6 +94,8 @@ export const AddExerciseModal = () => {
                   {msg => <span className='error'>{msg}</span>}
                 </ErrorMessage>
                 <Field
+                  className={`${errors.type && touched.type ? 'input-error' : null}`}
+                  autoFocus
                   as='select'
                   id='type'
                   name='type'
@@ -139,7 +142,11 @@ export const AddExerciseModal = () => {
               {type !== PUSH_UPS ? (
                 <div className='form-field duration'>
                   <label htmlFor='duration'>Duration: </label>
+                  <ErrorMessage name='duration'>
+                    {msg => <span className='error'>{msg}</span>}
+                  </ErrorMessage>
                   <Field
+                    className={`${errors.duration && touched.duration ? 'input-error' : null}`}
                     name='duration'
                     type='number'
                     inputMode='numeric'

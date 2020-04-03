@@ -947,6 +947,13 @@ a:hover {
           box-shadow: 0px 0px 1px 3px rgba(0, 132, 255, 0.85);
 }
 
+.add-exercise .form-field input.input-error,
+.add-exercise .form-field select.input-error,
+.edit-exercise .form-field input.input-error,
+.edit-exercise .form-field select.input-error {
+  border-color: red;
+}
+
 .add-exercise .form-field.duration, .add-exercise .form-field.distance,
 .edit-exercise .form-field.duration,
 .edit-exercise .form-field.distance {
