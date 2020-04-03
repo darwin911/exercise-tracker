@@ -1013,10 +1013,17 @@ a:hover {
 .add-exercise .buttons-container,
 .edit-exercise .buttons-container {
   margin-bottom: 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -webkit-column-gap: 1rem;
+          column-gap: 1rem;
 }
 
 .add-exercise .buttons-container button,
 .edit-exercise .buttons-container button {
+  margin: 0;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;

@@ -18,19 +18,13 @@ export const AddExerciseModal = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async ({ date, distance, duration, time, type, repetitions, note }) => {
+  const handleSubmit = async values => {
     setLoading(true);
 
     const newExercise = await addExercise({
-      duration,
       userId: user.id,
-      note,
-      date,
       username: user.username,
-      repetitions,
-      type,
-      time,
-      distance,
+      ...values,
     });
 
     if (newExercise) {
@@ -91,7 +85,14 @@ export const AddExerciseModal = () => {
               <div className='form-field type'>
                 <label htmlFor='type'>Type:</label>
                 <ErrorMessage name='type'>
-                  {msg => <span className='error'>{msg}</span>}
+                  {msg => (
+                    <motion.span
+                      initial={{ transform: 'rotate3d(1, 0, 0, 0.25turn)' }}
+                      animate={{ transform: 'rotate3d(1, 0, 0, 0turn)' }}
+                      className='error'>
+                      {msg}
+                    </motion.span>
+                  )}
                 </ErrorMessage>
                 <Field
                   className={`${errors.type && touched.type ? 'input-error' : null}`}
@@ -143,7 +144,14 @@ export const AddExerciseModal = () => {
                 <div className='form-field duration'>
                   <label htmlFor='duration'>Duration: </label>
                   <ErrorMessage name='duration'>
-                    {msg => <span className='error'>{msg}</span>}
+                    {msg => (
+                      <motion.span
+                        initial={{ transform: 'rotate3d(1, 0, 0, 0.25turn)' }}
+                        animate={{ transform: 'rotate3d(1, 0, 0, 0turn)' }}
+                        className='error'>
+                        {msg}
+                      </motion.span>
+                    )}
                   </ErrorMessage>
                   <Field
                     className={`${errors.duration && touched.duration ? 'input-error' : null}`}
@@ -207,20 +215,20 @@ export const AddExerciseModal = () => {
                 />
               </div>
 
-              <div className='form-field buttons-container'>
-                <button
-                  type='submit'
-                  className='btn add'
-                  onClick={handleSubmit}
-                  disabled={addButtonDisabledState}>
-                  {loading ? <div className='loader' /> : 'Add'}
-                </button>
+              <div className='form-field `buttons`-container'>
                 <button
                   type='button'
                   className='btn cancel'
                   onClick={() => closeModal()}
                   disabled={loading}>
                   Cancel
+                </button>
+                <button
+                  type='submit'
+                  className='btn add'
+                  onClick={handleSubmit}
+                  disabled={addButtonDisabledState}>
+                  {loading ? <div className='loader' /> : 'Add'}
                 </button>
               </div>
             </form>

@@ -413,7 +413,11 @@
 
   .buttons-container {
     margin-bottom: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1rem;
     button {
+      margin: 0;
       flex-grow: 1;
       font-size: 1em;
       font-weight: bold;
