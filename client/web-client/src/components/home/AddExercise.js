@@ -37,13 +37,8 @@ export const AddExercise = () => {
     }
 
     dispatch({ type: TOGGLE_MODAL });
-    resetForm();
-    history.push('/home');
-  };
-
-  const resetForm = () => {
     setLoading(false);
-    // setDate(moment().format(moment.HTML5_FMT.DATE));
+    history.push('/home');
   };
 
   const closeModal = () => {
@@ -51,7 +46,16 @@ export const AddExercise = () => {
       dispatch({ type: TOGGLE_MODAL });
     }
     history.push('/home');
-    resetForm();
+  };
+
+  const initValues = {
+    date: moment().format(moment.HTML5_FMT.DATE),
+    time: moment().format(moment.HTML5_FMT.TIME),
+    type: '',
+    duration: '',
+    distance: '',
+    repetitions: '',
+    note: '',
   };
 
   return createPortal(
@@ -60,17 +64,7 @@ export const AddExercise = () => {
       initial={{ x: '-10%', opacity: 0.15 }}
       animate={{ x: '0', opacity: 1 }}
       transition={TRANSITIONS.SPRING}>
-      <Formik
-        initialValues={{
-          date: moment().format(moment.HTML5_FMT.DATE),
-          time: moment().format(moment.HTML5_FMT.TIME),
-          type: '',
-          duration: '',
-          distance: '',
-          repetitions: '',
-          note: '',
-        }}
-        onSubmit={handleSubmit}>
+      <Formik initialValues={initValues} onSubmit={handleSubmit}>
         {({ values, errors, touched, handleSubmit, handleChange, handleBlur, isSubmitting }) => {
           const { type, date, duration, distance, note, repetitions, time } = values;
           const addButtonDisabledState =
