@@ -10,7 +10,7 @@ import { Formik } from 'formik';
 const { ADD_EXERCISE, TOGGLE_MODAL } = CONSTANTS;
 const { PUSH_UPS, RUN } = EXERCISE_TYPES;
 
-export const AddExercise = () => {
+export const AddExerciseModal = () => {
   const [state, dispatch] = useContext(AuthContext);
   const { user, modalOpen } = state;
   const history = useHistory();
