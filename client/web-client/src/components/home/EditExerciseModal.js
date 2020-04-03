@@ -6,126 +6,42 @@ import { motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import moment from 'moment';
 import { useHistory } from 'react-router-dom';
+import { Formik } from 'formik';
+const { PUSH_UPS } = EXERCISE_TYPES;
 const { UPDATE_EXERCISE, TOGGLE_MODAL } = CONSTANTS;
 
 const DOMRoot = document.querySelector('#root');
 
-const DurationField = ({ input, update }) => (
-  <div className='form-field duration'>
-    <label htmlFor='duration'>Duration: </label>
-    <input
-      id='duration'
-      type='number'
-      inputMode='numeric'
-      placeholder='0'
-      min={1}
-      max={360}
-      onChange={e => update(e.target.value)}
-      required
-      value={input}
-    />
-    <label htmlFor='duration'>min{input > 1 && 's'}</label>
-  </div>
-);
-
-const RepetitionsField = ({ input, update }) => (
-  <div className='form-field repetitions'>
-    <label htmlFor='repetitions'>Repetitions: </label>
-    <input
-      id='repetitions'
-      type='number'
-      min={1}
-      max={9999}
-      onChange={e => update(e.target.value)}
-      required
-      value={input}
-    />
-  </div>
-);
-
-const DateField = ({ input, update }) => (
-  <div className='form-field date'>
-    <label htmlFor='date'>Date:</label>
-    <input
-      id='date'
-      type='date'
-      pattern='\d{4}-\d{2}-\d{2}'
-      onChange={e => update(e.target.value)}
-      value={input}
-      required
-    />
-  </div>
-);
-
-const TimeField = ({ input, update }) => (
-  <div className='form-field time'>
-    <label htmlFor='time'>Time:</label>
-    <input id='time' type='time' onChange={e => update(e.target.value)} value={input} required />
-  </div>
-);
-
-const DistanceField = ({ input, update }) => (
-  <div className='form-field distance'>
-    <label htmlFor='note'>Distance: </label>
-    <input
-      id='distance'
-      type='number'
-      placeholder='0.0'
-      step={0.1}
-      min={0.1}
-      onChange={e => update(e.target.value)}
-      value={input}
-      required
-    />
-    <label htmlFor='distance'>mi</label>
-  </div>
-);
-
-const NoteField = ({ input, update }) => (
-  <div className='form-field note'>
-    <label htmlFor='note'>Note: </label>
-    <input
-      id='note'
-      type='text'
-      placeholder='Felt great!'
-      onChange={e => update(e.target.value)}
-      required
-      value={input}
-    />
-  </div>
-);
-
 export const EditExerciseModal = ({ exercise }) => {
   const { id, date, time, duration, note, distance, type, repetitions } = exercise;
   const [{ user }, dispatch] = useContext(AuthContext);
+
   const history = useHistory();
-  const [inputDistance, editDistance] = useState(distance); // miles
-  const [inputDate, editDate] = useState(moment.utc(date).format(moment.HTML5_FMT.DATE));
-  const [inputTime, editTime] = useState(moment(time, 'Hmm').format(moment.HTML5_FMT.TIME));
-  const [inputDuration, editDuration] = useState(duration);
-  const [inputRepetitions, editRepetitions] = useState(repetitions);
-  const [inputNote, editNote] = useState(note);
+
   const [loading, setLoading] = useState(false);
 
-  const handleEdit = async e => {
-    e.preventDefault();
+  const handleEdit = async values => {
+    const { date, distance, duration, note, repetitions, time } = values;
     setLoading(true);
 
-    const updatedExercise = await editExercise(id, {
-      duration: inputDuration,
+    const objectE = {
+      date: moment(date).format(moment.HTML5_FMT.DATE),
+      distance,
+      duration,
+      note,
       userId: user.id,
-      note: inputNote,
-      date: moment(inputDate).format(moment.HTML5_FMT.DATE),
       username: user.username,
-      repetitions: inputRepetitions,
-      time: inputTime,
-      distance: inputDistance,
-    });
+      repetitions,
+      time,
+    };
+
+    const updatedExercise = await editExercise(id, objectE);
 
     if (updatedExercise) {
       handleSuccess(updatedExercise);
     } else {
       console.error('Error updating => ', updatedExercise);
+      setLoading(false);
     }
   };
 
@@ -144,11 +60,6 @@ export const EditExerciseModal = ({ exercise }) => {
 
   const resetForm = () => {
     setLoading(false);
-    setLoading(false);
-    editDate(moment(exercise.date).format(moment.HTML5_FMT.DATE));
-    editDuration('');
-    editNote('');
-    editDistance('');
   };
 
   const Header = () => (
@@ -161,43 +72,137 @@ export const EditExerciseModal = ({ exercise }) => {
     </>
   );
 
-  const ButtonsContainer = () => (
-    <div className='form-field buttons-container'>
-      <button
-        className='btn edit'
-        onClick={e => handleEdit(e)}
-        disabled={
-          loading ||
-          (type !== EXERCISE_TYPES.PUSH_UPS && !duration) ||
-          (type === EXERCISE_TYPES.PUSH_UPS && !repetitions)
-        }>
-        {loading ? <div className='loader' /> : 'Save'}
-      </button>
-      <button type='button' className='btn cancel' onClick={() => handleClose()} disabled={loading}>
-        Cancel
-      </button>
-    </div>
-  );
+  const initValues = {
+    date: moment.utc(date).format(moment.HTML5_FMT.DATE),
+    time: moment().format(moment.HTML5_FMT.TIME),
+    duration: duration,
+    distance: distance,
+    repetitions: repetitions,
+    note: note,
+  };
 
   return createPortal(
-    <aside className='edit-exercise__modal'>
-      <motion.form
-        className={`edit-exercise ${exercise.type.toLowerCase()}`}
-        initial={{ y: 0 }}
-        animate={{ y: 10 }}>
-        <Header />
-        <DateField input={inputDate} update={editDate} />
-        <TimeField input={inputTime} update={editTime} />
-        {type !== EXERCISE_TYPES.PUSH_UPS ? (
-          <DurationField input={inputDuration} update={editDuration} />
-        ) : (
-          <RepetitionsField input={inputRepetitions} update={editRepetitions} />
-        )}
-        {distance && <DistanceField input={inputDistance} update={editDistance} />}
-        <NoteField input={inputNote} update={editNote} />
-        <ButtonsContainer />
-      </motion.form>
-    </aside>,
+    <motion.aside
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className='edit-exercise__modal'>
+      <Formik initialValues={initValues} onSubmit={handleEdit}>
+        {({ values, errors, touched, handleSubmit, handleChange, handleBlur, isSubmitting }) => {
+          const { date, duration, distance, note, repetitions, time } = values;
+          return (
+            <form
+              className={`edit-exercise ${exercise.type.toLowerCase()}`}
+              onSubmit={handleSubmit}>
+              <Header />
+              <div className='form-field date'>
+                <label htmlFor='date'>Date:</label>
+                <input
+                  id='date'
+                  type='date'
+                  pattern='\d{4}-\d{2}-\d{2}'
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={date}
+                  required
+                />
+              </div>
+              <div className='form-field time'>
+                <label htmlFor='time'>Time:</label>
+                <input
+                  id='time'
+                  type='time'
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={time}
+                  required
+                />
+              </div>
+              {exercise.type !== PUSH_UPS ? (
+                <div className='form-field duration'>
+                  <label htmlFor='duration'>Duration: </label>
+                  <input
+                    id='duration'
+                    type='number'
+                    inputMode='numeric'
+                    placeholder='0'
+                    min={1}
+                    max={360}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    required
+                    value={duration}
+                  />
+                  <label htmlFor='duration'>min{duration > 1 && 's'}</label>
+                </div>
+              ) : (
+                <div className='form-field repetitions'>
+                  <label htmlFor='repetitions'>Repetitions: </label>
+                  <input
+                    id='repetitions'
+                    type='number'
+                    min={1}
+                    max={9999}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    required
+                    value={repetitions}
+                  />
+                </div>
+              )}
+              {distance && (
+                <div className='form-field distance'>
+                  <label htmlFor='note'>Distance: </label>
+                  <input
+                    id='distance'
+                    type='number'
+                    placeholder='0.0'
+                    step={0.1}
+                    min={0.1}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={distance}
+                    required
+                  />
+                  <label htmlFor='distance'>mi</label>
+                </div>
+              )}
+              {note && (
+                <div className='form-field note'>
+                  <label htmlFor='note'>Note: </label>
+                  <input
+                    id='note'
+                    type='text'
+                    placeholder='Felt great!'
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    required
+                    value={note}
+                  />
+                </div>
+              )}
+              <div className='form-field buttons-container'>
+                <button
+                  className='btn edit'
+                  disabled={
+                    loading ||
+                    (type !== PUSH_UPS && !duration) ||
+                    (type === PUSH_UPS && !repetitions)
+                  }>
+                  {loading ? <div className='loader' /> : 'Save'}
+                </button>
+                <button
+                  type='button'
+                  className='btn cancel'
+                  onClick={() => handleClose()}
+                  disabled={loading}>
+                  Cancel
+                </button>
+              </div>
+            </form>
+          );
+        }}
+      </Formik>
+    </motion.aside>,
     DOMRoot
   );
 };
