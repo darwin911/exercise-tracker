@@ -78,6 +78,25 @@ export const AddExerciseModal = () => {
               <br />
               <hr className='divider' />
 
+              <div className='form-field type'>
+                <label htmlFor='type'>Type:</label>
+                <select
+                  id='type'
+                  name='type'
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={type}>
+                  <option value='' disabled>
+                    Choose...
+                  </option>
+                  {Object.values(EXERCISE_TYPES).map(option => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
               <div className='form-field date'>
                 <label htmlFor='date'>Date:</label>
                 <input
@@ -102,25 +121,6 @@ export const AddExerciseModal = () => {
                   value={time}
                   required
                 />
-              </div>
-
-              <div className='form-field type'>
-                <label htmlFor='type'>Type:</label>
-                <select
-                  id='type'
-                  name='type'
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={type}>
-                  <option value='' disabled>
-                    Choose...
-                  </option>
-                  {Object.values(EXERCISE_TYPES).map(option => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
               </div>
 
               {type !== PUSH_UPS ? (
