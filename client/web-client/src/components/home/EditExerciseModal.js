@@ -6,7 +6,8 @@ import { motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import moment from 'moment';
 import { useHistory } from 'react-router-dom';
-import { Formik } from 'formik';
+import { Form, Formik, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 const { PUSH_UPS } = EXERCISE_TYPES;
 const { UPDATE_EXERCISE, TOGGLE_MODAL } = CONSTANTS;
 
@@ -21,18 +22,12 @@ export const EditExerciseModal = ({ exercise }) => {
   const [loading, setLoading] = useState(false);
 
   const handleEdit = async values => {
-    const { date, distance, duration, note, repetitions, time } = values;
     setLoading(true);
 
     const objectE = {
-      date: moment(date).format(moment.HTML5_FMT.DATE),
-      distance,
-      duration,
-      note,
       userId: user.id,
       username: user.username,
-      repetitions,
-      time,
+      ...values,
     };
 
     const updatedExercise = await editExercise(id, objectE);
@@ -77,8 +72,8 @@ export const EditExerciseModal = ({ exercise }) => {
     time: moment(time, 'Hmm').format(moment.HTML5_FMT.TIME),
     duration: duration,
     distance: distance,
-    repetitions: repetitions,
-    note: note,
+    repetitions,
+    note,
   };
 
   return createPortal(
@@ -90,14 +85,14 @@ export const EditExerciseModal = ({ exercise }) => {
         {({ values, errors, touched, handleSubmit, handleChange, handleBlur, isSubmitting }) => {
           const { date, duration, distance, note, repetitions, time } = values;
           return (
-            <form
+            <Form
               className={`edit-exercise ${exercise.type.toLowerCase()}`}
               onSubmit={handleSubmit}>
               <Header />
               <div className='form-field date'>
                 <label htmlFor='date'>Date:</label>
-                <input
-                  id='date'
+                <Field
+                  name='date'
                   type='date'
                   pattern='\d{4}-\d{2}-\d{2}'
                   onChange={handleChange}
@@ -109,8 +104,8 @@ export const EditExerciseModal = ({ exercise }) => {
               </div>
               <div className='form-field time'>
                 <label htmlFor='time'>Time:</label>
-                <input
-                  id='time'
+                <Field
+                  name='time'
                   type='time'
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -122,13 +117,13 @@ export const EditExerciseModal = ({ exercise }) => {
               {exercise.type !== PUSH_UPS ? (
                 <div className='form-field duration'>
                   <label htmlFor='duration'>Duration: </label>
-                  <input
-                    id='duration'
+                  <Field
+                    name='duration'
                     type='number'
                     inputMode='numeric'
                     placeholder='0'
                     min={1}
-                    max={360}
+                    max={9999}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={duration}
@@ -140,11 +135,12 @@ export const EditExerciseModal = ({ exercise }) => {
               ) : (
                 <div className='form-field repetitions'>
                   <label htmlFor='repetitions'>Repetitions: </label>
-                  <input
-                    id='repetitions'
+                  <ErrorMessage name='repetitions'>
+                    {msg => <span className='input-error'>{msg}</span>}
+                  </ErrorMessage>
+                  <Field
+                    name='repetitions'
                     type='number'
-                    min={1}
-                    max={9999}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={repetitions}
@@ -156,8 +152,8 @@ export const EditExerciseModal = ({ exercise }) => {
               {distance && (
                 <div className='form-field distance'>
                   <label htmlFor='note'>Distance: </label>
-                  <input
-                    id='distance'
+                  <Field
+                    name='distance'
                     type='number'
                     placeholder='0.0'
                     step={0.1}
@@ -174,8 +170,8 @@ export const EditExerciseModal = ({ exercise }) => {
               {note && (
                 <div className='form-field note'>
                   <label htmlFor='note'>Note: </label>
-                  <input
-                    id='note'
+                  <Field
+                    name='note'
                     type='text'
                     placeholder='Felt great!'
                     onChange={handleChange}
@@ -204,7 +200,7 @@ export const EditExerciseModal = ({ exercise }) => {
                   Cancel
                 </button>
               </div>
-            </form>
+            </Form>
           );
         }}
       </Formik>
