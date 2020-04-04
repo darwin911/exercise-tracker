@@ -6,7 +6,7 @@ const BASE_URL = `https://exercise-tracker-express.herokuapp.com`;
 
 // Exercises
 
-const getUserExercises = async userId => {
+const getUserExercises = async (userId) => {
   try {
     const resp = await axios.get(`${BASE_URL}/exercises/${userId}`);
     return resp.data;
@@ -15,7 +15,7 @@ const getUserExercises = async userId => {
   }
 };
 
-const addExercise = async data => {
+const addExercise = async (data) => {
   try {
     const resp = await axios.post(`${BASE_URL}/exercises/add`, data);
     return resp.data;
@@ -24,7 +24,7 @@ const addExercise = async data => {
   }
 };
 
-const deleteExercise = async id => {
+const deleteExercise = async (id) => {
   try {
     const resp = await axios.delete(`${BASE_URL}/exercises/${id}`);
     return resp.data;
@@ -44,7 +44,7 @@ const editExercise = async (id, data) => {
 
 // Authentication
 
-const loginUser = async data => {
+const loginUser = async (data) => {
   try {
     const resp = await axios.post(`${BASE_URL}/users/login`, data);
     return resp.data;
@@ -54,7 +54,7 @@ const loginUser = async data => {
   }
 };
 
-const registerUser = async data => {
+const registerUser = async (data) => {
   try {
     const resp = await axios.post(`${BASE_URL}/users/register`, data);
     return resp.data;
@@ -64,9 +64,18 @@ const registerUser = async data => {
   }
 };
 
-const verifyToken = async data => {
+const verifyToken = async (data) => {
   try {
     const resp = await axios.post(`${BASE_URL}/users/verify`, data);
+    return resp.data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const deleteUser = async (id) => {
+  try {
+    const resp = await axios.delete(`${BASE_URL}/users/${id}`);
     return resp.data;
   } catch (err) {
     console.error(err);
@@ -81,4 +90,5 @@ export {
   loginUser,
   registerUser,
   verifyToken,
+  deleteUser,
 };

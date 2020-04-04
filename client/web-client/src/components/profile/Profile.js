@@ -2,6 +2,10 @@ import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../Store';
 import { Loader } from '../Loader';
 import { Header } from '../Header';
+import { deleteUser } from '../../helper';
+import { useHistory } from 'react-router-dom';
+import { CONSTANTS } from '../../constants';
+const { LOGOUT } = CONSTANTS;
 
 export const Profile = ({ isOpen, setMenuOpen }) => {
   const [{ user }] = useContext(AuthContext);
@@ -22,8 +26,16 @@ export const Profile = ({ isOpen, setMenuOpen }) => {
 };
 
 const ProfileCard = () => {
-  const [{ user }] = useContext(AuthContext);
+  const [{ user }, dispatch] = useContext(AuthContext);
+  const history = useHistory();
   const [weight] = useState(175);
+
+  const handleDeleteAccount = async () => {
+    await deleteUser(user.id);
+    dispatch({ type: LOGOUT });
+    history.push('/auth/login');
+  };
+
   const size = 48;
   return (
     <div className='profile__card'>
@@ -39,6 +51,7 @@ const ProfileCard = () => {
       <p>Email: {user.email}</p>
       <p>Weight: {weight}lbs</p>
       {user.unitSystem && <p>Units: {user.unitSystem}</p>}
+      <button onClick={() => handleDeleteAccount()}>Delete Account</button>
     </div>
   );
 };
