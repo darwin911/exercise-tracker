@@ -18,7 +18,7 @@ export const AddExerciseModal = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async values => {
+  const handleSubmit = async (values) => {
     setLoading(true);
 
     const newExercise = await addExercise({
@@ -85,7 +85,7 @@ export const AddExerciseModal = () => {
               <div className='form-field type'>
                 <label htmlFor='type'>Type:</label>
                 <ErrorMessage name='type'>
-                  {msg => (
+                  {(msg) => (
                     <motion.span
                       initial={{ transform: 'rotate3d(1, 0, 0, 0.25turn)' }}
                       animate={{ transform: 'rotate3d(1, 0, 0, 0turn)' }}
@@ -106,7 +106,7 @@ export const AddExerciseModal = () => {
                   <option value='' disabled>
                     Choose...
                   </option>
-                  {Object.values(EXERCISE_TYPES).map(option => (
+                  {Object.values(EXERCISE_TYPES).map((option) => (
                     <option key={option} value={option}>
                       {option}
                     </option>
@@ -144,7 +144,7 @@ export const AddExerciseModal = () => {
                 <div className='form-field duration'>
                   <label htmlFor='duration'>Duration: </label>
                   <ErrorMessage name='duration'>
-                    {msg => (
+                    {(msg) => (
                       <motion.span
                         initial={{ transform: 'rotate3d(1, 0, 0, 0.25turn)' }}
                         animate={{ transform: 'rotate3d(1, 0, 0, 0turn)' }}
@@ -215,7 +215,7 @@ export const AddExerciseModal = () => {
                 />
               </div>
 
-              <div className='form-field `buttons`-container'>
+              <div className='form-field buttons-container'>
                 <button
                   type='button'
                   className='btn cancel'

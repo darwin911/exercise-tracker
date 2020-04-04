@@ -23,7 +23,7 @@ export const App = withRouter(({ location }) => {
   useEffect(() => {
     let token = localStorage.getItem('token');
 
-    const loadCredentials = async token => {
+    const loadCredentials = async (token) => {
       dispatch({ type: TOGGLE_LOADING });
       const verifiedUser = await verifyToken({ token });
       if (verifiedUser) {
@@ -36,7 +36,7 @@ export const App = withRouter(({ location }) => {
   }, [history, dispatch]);
 
   useEffect(() => {
-    const loadExercises = async userId => {
+    const loadExercises = async (userId) => {
       dispatch({ type: TOGGLE_LOADING });
       const { exercises } = await getUserExercises(userId);
       dispatch({ type: SET_EXERCISES, payload: exercises });
@@ -48,10 +48,10 @@ export const App = withRouter(({ location }) => {
   const openModal = location.pathname.includes('/add') || location.pathname.includes('/edit');
 
   return (
-    <div className={`App${openModal ? ' modal-open' : ''}`}>
+    <div className={`App${openModal ? ' modal-open' : ''} ${menuOpen ? ' menu-open' : ''}`}>
       <Route path='/home'>
         <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
-        <main className={`container${menuOpen ? ' menu-open' : ''}`}>
+        <main className={`container`}>
           <ActivityTypes />
           <UserExercises />
         </main>
@@ -60,7 +60,7 @@ export const App = withRouter(({ location }) => {
           path='/home/edit/:exerciseId'
           render={({ match }) => {
             const { exerciseId } = match.params;
-            const [editExercise] = exercises.filter(ex => ex.id === exerciseId);
+            const [editExercise] = exercises.filter((ex) => ex.id === exerciseId);
             if (!editExercise) return null;
             return <EditExerciseModal exercise={editExercise} />;
           }}
