@@ -9,7 +9,7 @@ import { Auth } from './components/auth/Auth';
 import { UserExercises } from './components/home/UserExercises';
 import { AddExerciseModal } from './components/home/AddExerciseModal';
 import { EditExerciseModal } from './components/home/EditExerciseModal';
-import { ActivityTypes } from './components/home/ActivityTypes';
+// import { ActivityTypes } from './components/home/ActivityTypes';
 import { Profile } from './components/profile/Profile';
 const { SET_USER, SET_EXERCISES, TOGGLE_LOADING } = CONSTANTS;
 
@@ -18,21 +18,25 @@ export const App = withRouter(({ location }) => {
   const { exercises, user } = state;
   const [menuOpen, setMenuOpen] = useState(false);
   const history = useHistory();
-  const pushToHome = location.pathname.includes('auth') || location.pathname === '/';
+  const openModal = location.pathname.includes('/add') || location.pathname.includes('/edit');
 
   useEffect(() => {
+    dispatch({ type: TOGGLE_LOADING });
+
     let token = localStorage.getItem('token');
 
-    const loadCredentials = async (token) => {
-      dispatch({ type: TOGGLE_LOADING });
+    const handleAutoLogin = async (token) => {
+      const pushToHome = location.pathname.includes('auth') || location.pathname === '/';
       const verifiedUser = await verifyToken({ token });
       if (verifiedUser) {
         dispatch({ type: SET_USER, payload: verifiedUser });
         history.push(pushToHome ? '/home' : location.pathname);
+      } else {
+        history.push('/auth/login');
       }
     };
 
-    token ? loadCredentials(token) : history.push('/auth/login');
+    token ? handleAutoLogin(token) : history.push('/auth/login');
   }, [history, dispatch]);
 
   useEffect(() => {
@@ -45,14 +49,11 @@ export const App = withRouter(({ location }) => {
     if (user) loadExercises(user.id);
   }, [user, dispatch]);
 
-  const openModal = location.pathname.includes('/add') || location.pathname.includes('/edit');
-
   return (
     <div className={`App${openModal ? ' modal-open' : ''} ${menuOpen ? ' menu-open' : ''}`}>
       <Route path='/home'>
         <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <main className={`container`}>
-          <ActivityTypes />
           <UserExercises />
         </main>
         <Route path='/home/add' render={() => <AddExerciseModal />} />
