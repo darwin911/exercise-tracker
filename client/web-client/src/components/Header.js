@@ -7,11 +7,11 @@ export const Header = ({ isOpen, setMenuOpen }) => {
     <header className={`header`}>
       <nav>
         <MainHeading />
-        <button className='hamburger-btn' onClick={() => setMenuOpen(val => !val)}>
+        <button className='hamburger-btn' onClick={() => setMenuOpen((val) => !val)}>
           <span />
         </button>
       </nav>
-      {isOpen && <NavMenu isOpen={isOpen} setMenuOpen={setMenuOpen} />}
+      <NavMenu isOpen={isOpen} setMenuOpen={setMenuOpen} />
     </header>
   );
 };

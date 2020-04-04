@@ -11,34 +11,57 @@ const spring = {
   stiffness: 600,
 };
 
-export const NavMenu = ({ setMenuOpen }) => {
+export const NavMenu = ({ isOpen, setMenuOpen }) => {
   const [{ user }, dispatch] = useContext(AuthContext);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    setMenuOpen(isOpen => !isOpen);
+    setMenuOpen((isOpen) => !isOpen);
     dispatch({ type: LOGOUT });
   };
+
+  const variants = {
+    open: {
+      opacity: 1,
+      scale: 1,
+      display: 'flex',
+    },
+    closed: {
+      opacity: 0.5,
+      scale: 2,
+      transitionEnd: {
+        display: 'none',
+      },
+    },
+  };
+
+  if (!user) return null;
 
   return (
     <motion.div
       className='nav-menu'
       transition={spring}
-      initial={{ y: '-20%', opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ y: -5, opacity: 0.5 }}>
-      <Link to='/home' onClick={() => setMenuOpen(isOpen => !isOpen)} className='btn home'>
-        Home
-      </Link>
-      <Link
-        to={`/profile/${user.id}`}
-        onClick={() => setMenuOpen(isOpen => !isOpen)}
-        className='btn profile'>
-        Profile
-      </Link>
-      <Link to='/auth/login' onClick={() => handleLogout()} className='btn logout'>
-        Logout
-      </Link>
+      variants={variants}
+      initial={'closed'}
+      animate={isOpen ? 'open' : 'closed'}>
+      <div className='nav-link-wrapper'>
+        <Link to='/home' onClick={() => setMenuOpen((isOpen) => !isOpen)} className='nav-link home'>
+          Home
+        </Link>
+      </div>
+      <div className='nav-link-wrapper'>
+        <Link
+          to={`/profile/${user.id}`}
+          onClick={() => setMenuOpen((isOpen) => !isOpen)}
+          className='nav-link profile'>
+          Profile
+        </Link>
+      </div>
+      <div className='nav-link-wrapper'>
+        <Link to='/auth/login' onClick={() => handleLogout()} className='nav-link logout'>
+          Logout
+        </Link>
+      </div>
     </motion.div>
   );
 };
