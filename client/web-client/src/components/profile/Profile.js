@@ -56,7 +56,9 @@ const ProfileCard = () => {
       <p>Email: {user.email}</p>
       <p>Weight: {weight}lbs</p>
       {user.unitSystem && <p>Units: {user.unitSystem}</p>}
-      <button onClick={() => handleDeleteAccount()}>Delete Account</button>
+      <button className='profile__delete-account-btn btn' onClick={() => handleDeleteAccount()}>
+        Delete Account
+      </button>
     </div>
   );
 };

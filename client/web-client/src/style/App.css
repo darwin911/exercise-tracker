@@ -63,11 +63,8 @@ select {
 
 button {
   font-weight: bold;
-  background: #1fff8f;
   border: none;
   cursor: pointer;
-  -webkit-box-shadow: 0px 5px 10px -5px #1fff8fe1;
-          box-shadow: 0px 5px 10px -5px #1fff8fe1;
 }
 
 hr {
@@ -1121,6 +1118,11 @@ a:hover {
   font-size: 1.2em;
   font-weight: 300;
   margin-bottom: 1rem;
+}
+
+.profile__delete-account-btn {
+  color: white;
+  background-color: crimson;
 }
 
 .header {
