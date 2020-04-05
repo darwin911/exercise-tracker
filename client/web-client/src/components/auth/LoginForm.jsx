@@ -13,14 +13,12 @@ export const LoginForm = () => {
   const dispatch = useContext(AuthContext)[1];
   const history = useHistory();
 
-  const handleLogin = async ({ email, password }) => {
+  // arg1: values , arg2: actions
+  const handleLogin = async ({ email, password }, { setFieldError }) => {
     const authenticatedUser = await loginUser({ email, password });
-
-    if (authenticatedUser) {
-      if (authenticatedUser.error) {
-        alert(authenticatedUser.error);
-        return;
-      }
+    if (authenticatedUser.error) {
+      setFieldError('email', authenticatedUser.error);
+    } else {
       dispatch({ type: SET_USER, payload: authenticatedUser });
       localStorage.setItem('token', authenticatedUser.token);
       history.push('/home');
@@ -28,12 +26,8 @@ export const LoginForm = () => {
   };
 
   const loginValidation = Yup.object({
-    email: Yup.string()
-      .email('Invalid email address')
-      .required('Required'),
-    password: Yup.string()
-      .min(4, 'Must be 4 characters or more')
-      .required('Required'),
+    email: Yup.string().email('Invalid email').required('Required'),
+    password: Yup.string().min(4, 'Must be 4 characters or more').required('Required'),
   });
 
   return (
@@ -44,30 +38,41 @@ export const LoginForm = () => {
       }}
       validationSchema={loginValidation}
       onSubmit={handleLogin}>
-      {({ values, errors, touched, handleSubmit, handleChange, handleBlur, isSubmitting }) => (
-        <form onSubmit={handleSubmit}>
-          <h2>Login</h2>
-          <br />
-          <FormField
-            inputType='email'
-            value={values.email}
-            handleChange={handleChange}
-            handleBlur={handleBlur}
-            error={touched.email && errors.email}
-            disabled={isSubmitting}
-          />
-          <FormField
-            inputType='password'
-            value={values.password}
-            handleChange={handleChange}
-            handleBlur={handleBlur}
-            error={touched.password && errors.password}
-            disabled={isSubmitting}
-          />
-          <button type='submit'>{isSubmitting ? <div className='loader' /> : 'Submit'}</button>
-          <AuthLink path='register' />
-        </form>
-      )}
+      {({
+        errors,
+        values,
+        isSubmitting,
+        handleBlur,
+        handleChange,
+        handleSubmit,
+        touched,
+        status,
+      }) => {
+        return (
+          <form onSubmit={handleSubmit}>
+            <h2>Login</h2>
+            <br />
+            <FormField
+              inputType='email'
+              value={values.email}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              error={(touched.email && errors.email) || (status && status.email)}
+              disabled={isSubmitting}
+            />
+            <FormField
+              inputType='password'
+              value={values.password}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              error={touched.password && errors.password}
+              disabled={isSubmitting}
+            />
+            <button type='submit'>{isSubmitting ? <div className='loader' /> : 'Submit'}</button>
+            <AuthLink path='register' />
+          </form>
+        );
+      }}
     </Formik>
   );
 };

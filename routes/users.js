@@ -34,7 +34,7 @@ router.route('/login').post(async (req, res) => {
 
     if (!user) {
       return res.status(401).json({
-        error: 'Invalid Credentials: No account with this email has been found',
+        error: 'Invalid Credentials', //  No account with this email has been found
       });
     } else {
       const isAuthenticated = await user.isValidPassword(password);
