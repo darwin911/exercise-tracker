@@ -31,9 +31,14 @@ const ProfileCard = () => {
   const [weight] = useState(175);
 
   const handleDeleteAccount = async () => {
-    await deleteUser(user.id);
-    dispatch({ type: LOGOUT });
-    history.push('/auth/login');
+    // TODO Create Custom Confirmation Modal
+    // eslint-disable-next-line no-restricted-globals
+    const confirmation = confirm('This will delete all your account information. Continue?');
+    if (confirmation) {
+      await deleteUser(user.id);
+      dispatch({ type: LOGOUT });
+      history.push('/auth/login');
+    }
   };
 
   const size = 48;
