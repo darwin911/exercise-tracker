@@ -5,6 +5,9 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
+    name: {
+      type: String,
+    },
     username: {
       type: String,
       required: true,
@@ -31,28 +34,30 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-userSchema.methods.isValidPassword = async function(password) {
+userSchema.methods.isValidPassword = async function (password) {
   const isValid = await compare(password, this.passwordDigest);
   return isValid;
 };
 
-userSchema.methods.setPassword = async function(password) {
+userSchema.methods.setPassword = async function (password) {
   const digest = await hash(password);
   this.passwordDigest = digest;
 };
 
-userSchema.methods.toAuthJSON = async function() {
+userSchema.methods.toAuthJSON = async function () {
   return {
     id: this._id,
+    name: this.name,
     username: this.username,
     email: this.email,
     token: await this.generateJWT(),
   };
 };
 
-userSchema.methods.toClient = async function() {
+userSchema.methods.toClient = async function () {
   return {
     id: this._id,
+    name: this.name,
     username: this.username,
     email: this.email,
     unitSystem: this.unitSystem,
@@ -60,7 +65,7 @@ userSchema.methods.toClient = async function() {
   };
 };
 
-userSchema.methods.generateJWT = async function() {
+userSchema.methods.generateJWT = async function () {
   const data = {
     id: this._id,
     username: this.username,

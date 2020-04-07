@@ -22,8 +22,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deployDev": "npm run build && cd build && echo '/login / \n/register /\n /home /' >> _redirects && netlify deploy -d ./ -o",
-    "deployProd": "npm run build && cd build && echo '/login / \n/register /\n /home /' >> _redirects && netlify deploy --prod -d ./ -o"
+    "deployDev": "npm run build && cd build && echo '/auth/login/ /\n/auth/register/ /\n /home /\n /profile/ /' >> _redirects && netlify deploy -d ./ -o",
+    "deployProd": "npm run build && cd build && echo '/auth/login/ /\n/auth/register/ /\n /home /\n /profile/ /' >> _redirects && netlify deploy --prod -d ./ -o"
   },
   "eslintConfig": {
     "extends": "react-app"

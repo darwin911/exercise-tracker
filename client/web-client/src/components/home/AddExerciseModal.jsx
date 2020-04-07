@@ -26,7 +26,7 @@ export const AddExerciseModal = () => {
       username: user.username,
       ...values,
     });
-
+    debugger;
     if (newExercise) {
       dispatch({ type: ADD_EXERCISE, payload: newExercise });
     }
@@ -55,7 +55,6 @@ export const AddExerciseModal = () => {
 
   const validationSchema = Yup.object({
     type: Yup.string().required('Pick One'),
-    duration: Yup.number().required('Really?'),
   });
 
   return createPortal(
