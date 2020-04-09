@@ -55,7 +55,17 @@ const ProfileCard = () => {
       <p>Name: {user.name}</p>
       <p>Email: {user.email}</p>
       <p>Weight: {weight}lbs</p>
-      {user.unitSystem && <p>Units: {user.unitSystem}</p>}
+      <div className='form-field unit-system'>
+        <p>Units:</p>
+        <label>
+          Imperial
+          <input type='radio' name='unit-system' id='unit-system' value='Imperial' />
+        </label>
+        <label>
+          Metric
+          <input type='radio' name='unit-system' id='unit-system' value='Metric' />
+        </label>
+      </div>
       <button className='profile__delete-account-btn btn' onClick={() => handleDeleteAccount()}>
         Delete Account
       </button>
