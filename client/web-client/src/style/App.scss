@@ -467,4 +467,38 @@ a:hover {
   @media screen and (max-width: 500px) {
     display: none;
   }
+
+  &__filter {
+    background: #20201d;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+    justify-content: space-evenly;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    margin: 1rem 0;
+  }
+
+  label {
+    opacity: 0.2;
+    font-weight: 600;
+    margin-left: 0.25em;
+  }
+
+  input[type='checkbox'] {
+    &:checked + label {
+      opacity: 1;
+    }
+  }
+}
+
+.custom-tooltip {
+  background: rgba(255, 255, 255, 0.8);
+  color: black;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  p {
+    font-size: 0.8em;
+  }
 }
