@@ -11,7 +11,7 @@ export const ExerciseList = ({ exercises }) => {
   return (
     <article className='exercises__container'>
       <AnimatePresence>
-        {exercises.map(exercise => (
+        {exercises.map((exercise) => (
           <Exercise key={exercise.id} exercise={exercise} />
         ))}
       </AnimatePresence>
