@@ -11,6 +11,7 @@ import { AddExerciseModal } from './components/home/AddExerciseModal';
 import { EditExerciseModal } from './components/home/EditExerciseModal';
 // import { ActivityTypes } from './components/home/ActivityTypes';
 import { Profile } from './components/profile/Profile';
+import { Chart } from './components/Chart';
 const { SET_USER, SET_EXERCISES, TOGGLE_LOADING } = CONSTANTS;
 
 export const App = withRouter(({ location }) => {
@@ -54,6 +55,7 @@ export const App = withRouter(({ location }) => {
       <Route path='/home'>
         <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <main className={`container`}>
+          <Chart />
           <UserExercises />
         </main>
         <Route path='/home/add' render={() => <AddExerciseModal />} />
