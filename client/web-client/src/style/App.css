@@ -1395,4 +1395,33 @@ a:hover {
   color: white;
   fill: white;
 }
+
+.modal {
+  color: black;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, transparent -40%, rgba(0, 0, 0, 0.3));
+}
+
+.delete-account {
+  background-color: white;
+  max-width: 500px;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.delete-account h2 {
+  margin-bottom: 1rem;
+}
+
+.delete-account p {
+  line-height: 1.4;
+  margin-bottom: 0.7rem;
+}
 /*# sourceMappingURL=App.css.map */

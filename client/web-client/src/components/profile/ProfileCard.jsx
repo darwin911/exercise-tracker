@@ -1,24 +1,14 @@
 import React, { useState, useContext } from 'react';
-import { deleteUser } from '../../helper';
 import { useHistory } from 'react-router-dom';
-import { CONSTANTS } from '../../constants';
 import { AuthContext } from '../../Store';
-const { LOGOUT } = CONSTANTS;
 
 export const ProfileCard = () => {
-  const [{ user }, dispatch] = useContext(AuthContext);
+  const [{ user }] = useContext(AuthContext);
   const history = useHistory();
   const [weight] = useState(175);
 
   const handleDeleteAccount = async () => {
-    // TODO Create Custom Confirmation Modal
-    // eslint-disable-next-line no-restricted-globals
-    const confirmation = confirm('This will delete all your account information. Continue?');
-    if (confirmation) {
-      await deleteUser(user.id);
-      dispatch({ type: LOGOUT });
-      history.push('/auth/login');
-    }
+    history.push('/profile/' + user.id + '/delete');
   };
 
   const size = 48;
