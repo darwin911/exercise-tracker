@@ -7,7 +7,7 @@ import { AddExerciseButton } from '../AddExerciseButton';
 import { AuthContext } from '../../Store';
 import { ACTIVITY_TYPES } from '../../constants';
 
-const activityTypes = Object.values(ACTIVITY_TYPES).map(type => type.title);
+const activityTypes = Object.values(ACTIVITY_TYPES).map((type) => type.title);
 
 export const UserExercises = () => {
   const { user, exercises, loading, filter } = useContext(AuthContext)[0];
@@ -61,20 +61,20 @@ export const UserExercises = () => {
 
 const filterExercisesByActivity = (value, exercisesArray) => {
   let val = value.toUpperCase().replace(/ /g, '_');
-  return exercisesArray.filter(ex => ex.activityType === val);
+  return exercisesArray.filter((ex) => ex.activityType === val);
 };
 
 const filterExercisesByType = (value = 'ALL', exercisesArray) =>
-  exercisesArray.filter(ex => ex.type.toUpperCase() === value.toUpperCase());
+  exercisesArray.filter((ex) => ex.type.toUpperCase() === value.toUpperCase());
 
-const getTotalMiles = exercisesArray => {
+const getTotalMiles = (exercisesArray) => {
   return (
     Math.round(
-      exercisesArray.reduce((acc, item) => (acc.distance ? acc + item.distance : acc), 0) * 100
+      exercisesArray.reduce((acc, item) => (item.distance ? acc + item.distance : acc), 0) * 100
     ) / 100
   );
 };
 
-const getTotalMinutes = exercisesArray => {
+const getTotalMinutes = (exercisesArray) => {
   return exercisesArray.reduce((acc, item) => (item.duration ? acc + item.duration : acc), 0);
 };
