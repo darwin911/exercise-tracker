@@ -47,13 +47,13 @@ export const Chart = () => {
   };
 
   const CustomTooltip = ({ active, payload }) => {
-    if (active && payload[0]) {
+    if (active && payload && payload[0].payload) {
       const { date, type } = payload[0].payload;
       return (
         <div className='custom-tooltip'>
-          <p className='date'>{moment(date).format('ddd, MMMM DD')}</p>
-          <p className='desc'>{`Type: ${type}`}</p>
-          <p className='intro'>{`Duration: ${payload[0].value} mins`}</p>
+          <p className='desc'>{`${type}`}</p>
+          {/* <p className='date'>{moment(date).format('ddd, MMMM DD')}</p> */}
+          <p className='intro'>{`${payload[0].value} mins`}</p>
         </div>
       );
     }
@@ -62,7 +62,7 @@ export const Chart = () => {
 
   return (
     <div className='chart'>
-      <h2>Chart!</h2>
+      <h2>Charts!</h2>
       <div className='chart__container'>
         <p>Select Exercises to Track:</p>
         <form className='chart__filter'>
@@ -80,18 +80,18 @@ export const Chart = () => {
           ))}
         </form>
       </div>
-      <ResponsiveContainer width={'100%'} height={300}>
+      <ResponsiveContainer width={'100%'} height={420}>
         <LineChart
           data={durationExercisesObjects.map((ex) => ({
             ...ex,
             date: moment(ex.date).format('DD MMM'),
           }))}
-          margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
-          <Line type='monotone' dataKey='duration' stroke='#a64eff' />
-          <CartesianGrid stroke='#cccccc80' strokeDasharray='2 2' />
-          <XAxis dataKey='date' />
-          <YAxis />
-          <Tooltip cursor={{ stroke: 'green', strokeWidth: 2 }} content={<CustomTooltip />} />
+          margin={{ top: 50, right: 30, left: 0, bottom: 50 }}>
+          <Line type='monotone' dataKey='duration' stroke='#a64eff' strokeWidth={1.5} />
+          <CartesianGrid stroke='rgba(255, 255, 255, 0.15)' strokeDasharray='2 2' />
+          <XAxis dataKey='date' stroke='rgba(255, 255, 255, 0.95)' />
+          <YAxis stroke='rgba(255, 255, 255, 0.95)' />
+          <Tooltip cursor={{ stroke: '#4B9BFC', strokeWidth: 1.5 }} content={<CustomTooltip />} />
         </LineChart>
       </ResponsiveContainer>
     </div>
