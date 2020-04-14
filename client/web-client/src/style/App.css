@@ -1,7 +1,6 @@
 html,
 body,
 #root {
-  background-color: black;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }

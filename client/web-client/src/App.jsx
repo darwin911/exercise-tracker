@@ -12,11 +12,12 @@ import { EditExerciseModal } from './components/home/EditExerciseModal';
 // import { ActivityTypes } from './components/home/ActivityTypes';
 import { Profile } from './components/profile/Profile';
 import { Chart } from './components/Chart';
+import { Loader } from './components/Loader';
 const { SET_USER, SET_EXERCISES, TOGGLE_LOADING } = CONSTANTS;
 
 export const App = withRouter(({ location }) => {
   const [state, dispatch] = useContext(AuthContext);
-  const { exercises, user } = state;
+  const { exercises, user, loading } = state;
   const [menuOpen, setMenuOpen] = useState(false);
   const history = useHistory();
   const openModal = location.pathname.includes('/add') || location.pathname.includes('/edit');
@@ -49,6 +50,10 @@ export const App = withRouter(({ location }) => {
 
     if (user) loadExercises(user.id);
   }, [user, dispatch]);
+
+  if (loading) {
+    return <Loader size={8} />;
+  }
 
   return (
     <div className={`App${openModal ? ' modal-open' : ''} ${menuOpen ? ' menu-open' : ''}`}>
