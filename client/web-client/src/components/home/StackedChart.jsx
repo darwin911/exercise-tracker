@@ -29,19 +29,6 @@ export const StackedChart = () => {
       return isBefore ? -1 : 1;
     });
 
-  const handleChange = (event) => {
-    const { name } = event.target;
-    const isIncluded = selectedExerciseTypes.includes(name);
-
-    setSelectedTypes((prevSelected) => {
-      if (isIncluded) {
-        return prevSelected.filter((item) => item !== name);
-      } else {
-        return [...prevSelected, name];
-      }
-    });
-  };
-
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload[0].payload) {
       const { date, type } = payload[0].payload;
@@ -69,6 +56,7 @@ export const StackedChart = () => {
           <XAxis dataKey='date' stroke='rgba(255, 255, 255, 0.95)' />
           <YAxis stroke='rgba(255, 255, 255, 0.95)' />
           <Tooltip cursor={{ stroke: '#4B9BFC', strokeWidth: 1.5 }} content={<CustomTooltip />} />
+          <Legend />
           <Bar dataKey='duration' stackId='duration' fill='#8884d8' />
           <Bar dataKey='duration' stackId='duration' fill='#82ca9d' />
         </BarChart>
@@ -76,18 +64,3 @@ export const StackedChart = () => {
     </div>
   );
 };
-
-// USE THIS DATA FOR NEW BAR CHART
-/* <Line type='monotone' dataKey='duration' stroke={COLORS.PRIMARY} strokeWidth={1.5} /> */
-
-{
-  /* <BarChart>
-  <CartesianGrid strokeDasharray='3 3' />
-  <XAxis dataKey='name' />
-  <YAxis />
-  <Tooltip />
-  <Legend />
-  <Bar dataKey='pv' stackId='a' fill='#8884d8' />
-  <Bar dataKey='uv' stackId='a' fill='#82ca9d' />
-</BarChart> */
-}

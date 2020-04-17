@@ -21,16 +21,14 @@ export const EditExerciseModal = ({ exercise }) => {
 
   const [loading, setLoading] = useState(false);
 
-  const handleEdit = async values => {
+  const handleEdit = async (values) => {
     setLoading(true);
 
-    const objectE = {
+    const updatedExercise = await editExercise(id, {
       userId: user.id,
       username: user.username,
       ...values,
-    };
-
-    const updatedExercise = await editExercise(id, objectE);
+    });
 
     if (updatedExercise) {
       handleSuccess(updatedExercise);
@@ -40,7 +38,7 @@ export const EditExerciseModal = ({ exercise }) => {
     }
   };
 
-  const handleSuccess = updatedExercise => {
+  const handleSuccess = (updatedExercise) => {
     dispatch({ type: UPDATE_EXERCISE, payload: updatedExercise });
     dispatch({ type: TOGGLE_MODAL });
     resetForm();
@@ -136,7 +134,7 @@ export const EditExerciseModal = ({ exercise }) => {
                 <div className='form-field repetitions'>
                   <label htmlFor='repetitions'>Repetitions: </label>
                   <ErrorMessage name='repetitions'>
-                    {msg => <span className='input-error'>{msg}</span>}
+                    {(msg) => <span className='input-error'>{msg}</span>}
                   </ErrorMessage>
                   <Field
                     name='repetitions'
