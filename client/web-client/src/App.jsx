@@ -13,6 +13,7 @@ import { EditExerciseModal } from './components/home/EditExerciseModal';
 import { Profile } from './components/profile/Profile';
 import { Chart } from './components/Chart';
 import { Loader } from './components/Loader';
+import { StackedChart } from './components/home/StackedChart';
 const { SET_USER, SET_EXERCISES, TOGGLE_LOADING } = CONSTANTS;
 
 export const App = withRouter(({ location }) => {
@@ -61,6 +62,7 @@ export const App = withRouter(({ location }) => {
         <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <main className={`container`}>
           <Chart />
+          <StackedChart />
           <UserExercises />
         </main>
         <Route path='/home/add' render={() => <AddExerciseModal />} />
