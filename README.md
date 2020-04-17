@@ -28,3 +28,8 @@
 - Rock Climbing
 - Swimming
 - Tennis
+
+# Charts - Recharts
+
+- LineCharts
+- BarChart
