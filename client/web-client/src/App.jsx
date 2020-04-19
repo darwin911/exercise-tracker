@@ -52,19 +52,19 @@ export const App = withRouter(({ location }) => {
     if (user) loadExercises(user.id);
   }, [user, dispatch]);
 
-  if (loading) {
-    return <Loader size={8} />;
-  }
-
   return (
     <div className={`App${openModal ? ' modal-open' : ''} ${menuOpen ? ' menu-open' : ''}`}>
       <Route path='/home'>
         <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
-        <main className={`container`}>
-          <Chart />
-          <StackedChart />
-          <UserExercises />
-        </main>
+        {user ? (
+          <main className={`container`}>
+            <Chart />
+            <StackedChart />
+            <UserExercises />
+          </main>
+        ) : (
+          <Loader size={8} />
+        )}
         <Route path='/home/add' render={() => <AddExerciseModal />} />
         <Route
           path='/home/edit/:exerciseId'
