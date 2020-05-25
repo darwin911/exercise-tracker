@@ -42,6 +42,15 @@ const editExercise = async (id, data) => {
   }
 };
 
+const getUserPushUpsData = async (userId) => {
+  try {
+    const resp = await axios.get(`${BASE_URL}/exercises/${userId}/push-ups/`);
+    return resp.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // Authentication
 
 const loginUser = async (data) => {
@@ -84,6 +93,7 @@ const deleteUser = async (id) => {
 
 export {
   getUserExercises,
+  getUserPushUpsData,
   addExercise,
   deleteExercise,
   editExercise,

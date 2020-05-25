@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './style/App.css';
-import { CONSTANTS } from './constants';
-import { getUserExercises, verifyToken } from './helper';
+import { CONSTANTS, EXERCISE_TYPES } from './constants';
+import { getUserExercises, verifyToken, getUserPushUpsData } from './helper';
 import { Route, useHistory, withRouter } from 'react-router-dom';
 import { AuthContext } from './Store';
 import { Header } from './components/Header';
@@ -14,11 +14,12 @@ import { Profile } from './components/profile/Profile';
 import { Chart } from './components/Chart';
 import { Loader } from './components/Loader';
 import { StackedChart } from './components/home/StackedChart';
+import { PushUpMonitor } from './components/home/PushUpMonitor';
 const { SET_USER, SET_EXERCISES, TOGGLE_LOADING } = CONSTANTS;
 
 export const App = withRouter(({ location }) => {
   const [state, dispatch] = useContext(AuthContext);
-  const { exercises, user, loading } = state;
+  const { exercises, user, loading, pushUpData } = state;
   const [menuOpen, setMenuOpen] = useState(false);
   const history = useHistory();
   const openModal = location.pathname.includes('/add') || location.pathname.includes('/edit');
@@ -49,7 +50,15 @@ export const App = withRouter(({ location }) => {
       dispatch({ type: SET_EXERCISES, payload: exercises });
     };
 
-    if (user) loadExercises(user.id);
+    const loadPushUpDataToState = async () => {
+      const data = await getUserPushUpsData(user.id);
+      dispatch({ type: 'LOAD_PUSH_UPS_DATA', payload: data });
+    };
+
+    if (user) {
+      loadExercises(user.id);
+      loadPushUpDataToState(user.id);
+    }
   }, [user, dispatch]);
 
   return (
@@ -58,8 +67,9 @@ export const App = withRouter(({ location }) => {
         <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
         {user ? (
           <main className={`container`}>
-            <Chart />
-            <StackedChart />
+            {/* <Chart /> */}
+            {/* <StackedChart /> */}
+            <PushUpMonitor data={pushUpData} />
             <UserExercises />
           </main>
         ) : (

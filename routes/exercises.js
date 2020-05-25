@@ -1,15 +1,27 @@
 const router = require('express').Router();
 let Exercise = require('../models/exercise.model');
 
+const EXERCISE_TYPES = {
+  GENERAL: 'General',
+  RUN: 'Run',
+  GYM: 'Gym',
+  YOGA: 'Yoga',
+  CYCLING: 'Cycling',
+  ROCK_CLIMBING: 'Rock Climbing',
+  SWIMMING: 'Swimming',
+  TENNIS: 'Tennis',
+  PUSH_UPS: 'Push-Ups',
+};
+
 // Get all Exercises from a User
 router.route('/:userId').get(async (req, res) => {
   try {
     let exercises = await Exercise.find({ userId: req.params.userId }).sort({
       date: 'descending',
     });
-    exercises = await Promise.all(exercises.map(exercise => exercise.toClient()));
+    exercises = await Promise.all(exercises.map((exercise) => exercise.toClient()));
     res.json({ exercises });
-  } catch (error) {
+  } catch (error) {˝
     console.log(error);
   }
 });
@@ -62,8 +74,8 @@ router.route('/add').post(async (req, res) => {
 // =======================
 router.route('/:id').get((req, res) => {
   Exercise.findById(req.params.id)
-    .then(exercise => res.json(exercise))
-    .catch(err => res.status(400).json('Error: ' + err));
+    .then((exercise) => res.json(exercise))
+    .catch((err) => res.status(400).json('Error: ' + err));
 });
 
 // Delete Exercise
@@ -71,8 +83,8 @@ router.route('/:id').get((req, res) => {
 router.route('/:id').delete((req, res) => {
   try {
     Exercise.findByIdAndDelete(req.params.id)
-      .then(exercise => res.json(`Exercise ${exercise.id} deleted.`))
-      .catch(err => res.status(400).json('Error: ' + err));
+      .then((exercise) => res.json(`Exercise ${exercise.id} deleted.`))
+      .catch((err) => res.status(400).json('Error: ' + err));
   } catch (error) {
     console.log(error);
   }
@@ -98,6 +110,34 @@ router.route('/update/:id').put(async (req, res) => {
     });
     const exerciseData = await exercise.toClient();
     return res.json(exerciseData);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// Get User Push-Ups Data
+router.route('/:userId/push-ups').get(async (req, res) => {
+  try {
+    let pushUps = await Exercise.find({
+      userId: req.params.userId,
+      type: EXERCISE_TYPES.PUSH_UPS,
+    });
+
+    pushUps = pushUps.map(({ repetitions, date }) => ({ repetitions, date }));
+
+    // All Time
+
+    const allTimeTotal = pushUps.reduce((acc, item) => acc + item.repetitions, 0);
+    const allTime = { average: (allTimeTotal / pushUps.length).toFixed(1), total: allTimeTotal };
+
+    // Monthly
+    const weekTotal = pushUps
+      .filter((ex) => moment(ex.date).isBefore())
+      .reduce((acc, item) => acc + item.repetitions, 0);
+
+    // Weekly
+
+    res.json({ week: { average: 0, total: 0 }, month: { average: 0, total: 0 }, allTime });
   } catch (error) {
     console.log(error);
   }
