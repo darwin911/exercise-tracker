@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './style/App.css';
 import { CONSTANTS, EXERCISE_TYPES } from './constants';
-import { getUserExercises, verifyToken, getUserPushUpsData } from './helper';
+import { getUserExercises, verifyToken, getUserPushUpsData, getUser } from './helper';
 import { Route, useHistory, withRouter } from 'react-router-dom';
 import { AuthContext } from './Store';
 import { Header } from './components/Header';
@@ -33,7 +33,9 @@ export const App = withRouter(({ location }) => {
       const pushToHome = location.pathname.includes('auth') || location.pathname === '/';
       const verifiedUser = await verifyToken({ token });
       if (verifiedUser) {
-        dispatch({ type: SET_USER, payload: verifiedUser });
+        const id = verifiedUser.id;
+        const user = await getUser(id);
+        dispatch({ type: SET_USER, payload: user });
         history.push(pushToHome ? '/home' : location.pathname);
       } else {
         history.push('/auth/login');
