@@ -1124,6 +1124,37 @@ a:hover {
   background-color: crimson;
 }
 
+.profile__field-input {
+  padding: 0.25rem 0.5rem;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+  font-size: 0.85em;
+  font-weight: 500;
+  margin: 0 0.25rem;
+  text-align: center;
+  border-radius: 6px;
+  border: 2px solid rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0px 0px 3px 0px black;
+          box-shadow: 0px 0px 3px 0px black;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.profile__field-input:disabled {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.05);
+}
+
+.profile__edit-field-button {
+  border-radius: 3px;
+}
+
+.profile__confirm-field-button, .profile__cancel-field-button {
+  border-radius: 3px;
+  color: white;
+  margin-right: 0.5rem;
+}
+
 .header {
   pointer-events: initial;
   position: relative;
