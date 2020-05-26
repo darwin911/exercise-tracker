@@ -47,7 +47,7 @@ const getUserPushUpsData = async (userId) => {
     const resp = await axios.get(`${BASE_URL}/exercises/${userId}/push-ups/`);
     return resp.data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -91,6 +91,24 @@ const deleteUser = async (id) => {
   }
 };
 
+const updateUser = async (id, data) => {
+  try {
+    const resp = await axios.put(`${BASE_URL}/users/${id}/update`, data);
+    return resp.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const getUser = async (id) => {
+  try {
+    const resp = await axios.get(`${BASE_URL}/users/${id}`);
+    return resp.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export {
   getUserExercises,
   getUserPushUpsData,
@@ -101,4 +119,6 @@ export {
   registerUser,
   verifyToken,
   deleteUser,
+  updateUser,
+  getUser,
 };
