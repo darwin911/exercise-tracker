@@ -1,3 +1,4 @@
+const moment = require('moment');
 const router = require('express').Router();
 let Exercise = require('../models/exercise.model');
 
@@ -21,8 +22,8 @@ router.route('/:userId').get(async (req, res) => {
     });
     exercises = await Promise.all(exercises.map((exercise) => exercise.toClient()));
     res.json({ exercises });
-  } catch (error) {˝
-    console.log(error);
+  } catch (error) {
+    console.error(error);
   }
 });
 
@@ -66,7 +67,7 @@ router.route('/add').post(async (req, res) => {
 
     return res.json(exerciseData);
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 });
 
@@ -86,7 +87,7 @@ router.route('/:id').delete((req, res) => {
       .then((exercise) => res.json(`Exercise ${exercise.id} deleted.`))
       .catch((err) => res.status(400).json('Error: ' + err));
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 });
 
@@ -111,7 +112,7 @@ router.route('/update/:id').put(async (req, res) => {
     const exerciseData = await exercise.toClient();
     return res.json(exerciseData);
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 });
 
@@ -139,7 +140,7 @@ router.route('/:userId/push-ups').get(async (req, res) => {
 
     res.json({ week: { average: 0, total: 0 }, month: { average: 0, total: 0 }, allTime });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 });
 

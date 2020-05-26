@@ -54,7 +54,7 @@ userSchema.methods.toAuthJSON = async function () {
   };
 };
 
-userSchema.methods.toClient = async function () {
+userSchema.methods.toClient = function () {
   return {
     id: this._id,
     name: this.name,
@@ -68,7 +68,6 @@ userSchema.methods.toClient = async function () {
 userSchema.methods.generateJWT = async function () {
   const data = {
     id: this._id,
-    username: this.username,
     passwordDigest: this.passwordDigest,
   };
   return await encode(data);

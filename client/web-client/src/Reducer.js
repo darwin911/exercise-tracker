@@ -1,25 +1,27 @@
 import { CONSTANTS } from './constants';
 import moment from 'moment';
 
-export const Reducer = (state, action) => {
-  const {
-    SET_USER,
-    LOGOUT,
-    TOGGLE_LOADING,
-    SET_EXERCISES,
-    REMOVE_EXERCISE,
-    ADD_EXERCISE,
-    TOGGLE_MODAL,
-    FILTER_ALL,
-    FILTER_CURRENT_MONTH,
-    FILTER_CURRENT_WEEK,
-    UPDATE_EXERCISE,
-    SET_FILTER,
-    TOGGLE_MENU,
-  } = CONSTANTS;
+const {
+  SET_USER,
+  LOGOUT,
+  TOGGLE_LOADING,
+  SET_EXERCISES,
+  REMOVE_EXERCISE,
+  ADD_EXERCISE,
+  TOGGLE_MODAL,
+  LOAD_PUSH_UPS_DATA,
+  FILTER_ALL,
+  FILTER_CURRENT_MONTH,
+  FILTER_CURRENT_WEEK,
+  UPDATE_EXERCISE,
+  SET_FILTER,
+  TOGGLE_MENU,
+} = CONSTANTS;
 
+export const Reducer = (state, action) => {
   switch (action.type) {
     case SET_USER:
+      console.info('Setting User: ', action.payload);
       return {
         ...state,
         user: action.payload,
@@ -106,8 +108,7 @@ export const Reducer = (state, action) => {
         filter: action.payload,
       };
     }
-    case 'LOAD_PUSH_UPS_DATA': {
-      debugger;
+    case LOAD_PUSH_UPS_DATA: {
       return {
         ...state,
         pushUpData: action.payload,

@@ -26,7 +26,7 @@ export const AddExerciseModal = () => {
       username: user.username,
       ...values,
     });
-    debugger;
+
     if (newExercise) {
       dispatch({ type: ADD_EXERCISE, payload: newExercise });
     }
