@@ -1,17 +1,19 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../Store';
+import { ProfileField } from './ProfileField';
+import { ProfileUnitsField } from './ProfileUnitsField';
 
 export const ProfileCard = () => {
   const [{ user }] = useContext(AuthContext);
   const history = useHistory();
-  const [weight] = useState(175);
 
   const handleDeleteAccount = async () => {
     history.push('/profile/' + user.id + '/delete');
   };
 
   const size = 48;
+
   return (
     <div className='profile__card'>
       <header className='profile__card__header'>
@@ -22,20 +24,14 @@ export const ProfileCard = () => {
           style={{ minWidth: size, minHeight: size }}
         />
       </header>
-      <p>Name: {user.name}</p>
-      <p>Email: {user.email}</p>
-      <p>Weight: {weight}lbs</p>
-      <div className='form-field unit-system'>
-        <p>Units:</p>
-        <label>
-          Imperial
-          <input type='radio' name='unit-system' id='unit-system' value='Imperial' />
-        </label>
-        <label>
-          Metric
-          <input type='radio' name='unit-system' id='unit-system' value='Metric' />
-        </label>
+      <ProfileField field='name' />
+      <div>
+        <strong>Email: </strong> <span>{user.email}</span>
       </div>
+      <br />
+      <ProfileField field='weight' />
+      <ProfileUnitsField />
+      <br />
       <button className='profile__delete-account-btn btn' onClick={() => handleDeleteAccount()}>
         Delete Account
       </button>
