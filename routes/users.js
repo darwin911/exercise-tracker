@@ -9,7 +9,7 @@ router.route('/').get(async (req, res) => {
     users = await Promise.all(users.map((user) => user.toClient()));
     res.json({ users });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 });
 
@@ -23,7 +23,27 @@ router.route('/:id').get(async (req, res) => {
       return res.status(404).json({ error: { message: 'User not found', code: 404 } });
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
+  }
+});
+
+// Update User Data
+router.route('/:id/update').put(async (req, res) => {
+  try {
+    let user = await User.findById(req.params.id);
+    if (user) {
+      for (let key in req.body) {
+        let value = req.body[key];
+        user[key] = value;
+      }
+      user.save();
+      const updatedUser = user.toClient();
+      return res.json(updatedUser);
+    } else {
+      return res.status(404).json({ error: { message: 'User not found', code: 404 } });
+    }
+  } catch (error) {
+    console.error(error);
   }
 });
 
@@ -47,7 +67,7 @@ router.route('/login').post(async (req, res) => {
       return res.json(userData);
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 });
 
@@ -65,7 +85,7 @@ router.route('/register').post(async (req, res) => {
     const userData = await newUser.toAuthJSON();
     return res.json(userData);
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 });
 
@@ -78,13 +98,13 @@ router.route('/verify').post(async (req, res) => {
         const userData = await user.toClient();
         return res.json(userData);
       } else {
-        return res.status(401).json({ errror: { message: 'Unauthorized', code: 401 } }); // 401 // Unauthorized
+        return res.status(401).json({ error: { message: 'Unauthorized', code: 401 } }); // 401 // Unauthorized
       }
     } else {
-      return res.status(401).json({ errror: { message: 'Unauthorized', code: 401 } });
+      return res.status(401).json({ error: { message: 'Unauthorized', code: 401 } });
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 });
 
@@ -99,7 +119,7 @@ router.route('/:id').delete(async (req, res) => {
     }
     return res.status(404).json({ error: { message: 'User Not Found', code: 404 } });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 });
 
