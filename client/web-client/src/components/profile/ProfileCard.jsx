@@ -7,6 +7,7 @@ import { ProfileUnitsField } from './ProfileUnitsField';
 export const ProfileCard = () => {
   const [{ user }] = useContext(AuthContext);
   const history = useHistory();
+  const [isHovered, setHovered] = React.useState(false);
 
   const handleDeleteAccount = async () => {
     history.push('/profile/' + user.id + '/delete');
@@ -15,8 +16,9 @@ export const ProfileCard = () => {
   const size = 48;
 
   return (
-    <div className='profile__card'>
-      <header className='profile__card__header'>
+    <section className='profile__component'>
+      <h1>Profile</h1>
+      <header className='profile__component__header'>
         <h3>{user.username}</h3>
         <img
           src={`https://picsum.photos/${size}`}
@@ -24,17 +26,24 @@ export const ProfileCard = () => {
           style={{ minWidth: size, minHeight: size }}
         />
       </header>
-      <ProfileField field='name' />
-      <div>
-        <strong>Email: </strong> <span>{user.email}</span>
-      </div>
-      <br />
-      <ProfileField field='weight' />
-      <ProfileUnitsField />
-      <br />
-      <button className='profile__delete-account-btn btn' onClick={() => handleDeleteAccount()}>
-        Delete Account
-      </button>
-    </div>
+      <article>
+        <ProfileField field='name' />
+        <div>
+          <strong>Email: </strong> <span>{user.email}</span>
+        </div>
+        <ProfileField field='weight' />
+        <ProfileUnitsField />
+      </article>
+      <footer className='profile__component__footer'>
+        <button
+          className='profile__delete-account-btn'
+          onMouseOver={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+          onClick={() => handleDeleteAccount()}>
+          Delete Account
+        </button>
+        {isHovered && <span style={{ marginLeft: '1rem' }}>Are you sure?</span>}
+      </footer>
+    </section>
   );
 };
