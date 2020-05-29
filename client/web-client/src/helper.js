@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 // const BASE_URL = `http://localhost:5000`;
-// http://localhost:5000/api/auth/google/callback
 const BASE_URL = `https://exercise-tracker-express.herokuapp.com`;
 
 // Exercises
@@ -109,6 +108,15 @@ const getUser = async (id) => {
   }
 };
 
+const getAllUsers = async () => {
+  try {
+    const resp = await axios.get(`${BASE_URL}/users`);
+    return resp.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export {
   getUserExercises,
   getUserPushUpsData,
@@ -121,4 +129,5 @@ export {
   deleteUser,
   updateUser,
   getUser,
+  getAllUsers,
 };
