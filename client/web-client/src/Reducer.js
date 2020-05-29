@@ -16,6 +16,8 @@ const {
   UPDATE_EXERCISE,
   SET_FILTER,
   TOGGLE_MENU,
+  SET_FRIEND_SEARCH_RESULT,
+  SET_FILTERED_FRIENDS_RESULT,
 } = CONSTANTS;
 
 export const Reducer = (state, action) => {
@@ -112,6 +114,18 @@ export const Reducer = (state, action) => {
       return {
         ...state,
         pushUpData: action.payload,
+      };
+    }
+    case SET_FRIEND_SEARCH_RESULT: {
+      return {
+        ...state,
+        allUsers: action.payload.users,
+      };
+    }
+    case SET_FILTERED_FRIENDS_RESULT: {
+      return {
+        ...state,
+        filteredFriendSearch: action.payload,
       };
     }
     default:

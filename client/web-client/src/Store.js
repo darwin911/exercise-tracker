@@ -8,6 +8,8 @@ const initialState = {
   modalOpen: false,
   navMenuIsOpen: false,
   filter: 'ALL',
+  allUsers: [],
+  filteredFriendSearch: [],
 };
 
 export const AuthContext = createContext(initialState);
