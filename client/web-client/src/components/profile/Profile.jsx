@@ -5,6 +5,7 @@ import { Loader } from '../Loader';
 import { Header } from '../Header';
 import { ProfileCard } from './ProfileCard';
 import { ConfirmDeleteAccountModal } from './ConfirmDeleteAccountModal';
+import { Friends } from './Friends';
 
 export const Profile = ({ isOpen, setMenuOpen }) => {
   const [{ user }] = useContext(AuthContext);
@@ -16,8 +17,8 @@ export const Profile = ({ isOpen, setMenuOpen }) => {
       <Header isOpen={isOpen} setMenuOpen={setMenuOpen} />
       <main className='container'>
         <div className='profile'>
-          <h1>Profile</h1>
           <ProfileCard />
+          <Friends />
         </div>
         <Route
           path='/profile/:id/delete'

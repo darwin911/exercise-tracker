@@ -7,7 +7,7 @@ import { createPortal } from 'react-dom';
 import moment from 'moment';
 import { useHistory } from 'react-router-dom';
 import { Form, Formik, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+// import * as Yup from 'yup';
 const { PUSH_UPS } = EXERCISE_TYPES;
 const { UPDATE_EXERCISE, TOGGLE_MODAL } = CONSTANTS;
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './style/App.css';
-import { CONSTANTS, EXERCISE_TYPES } from './constants';
+import { CONSTANTS } from './constants';
 import { getUserExercises, verifyToken, getUserPushUpsData, getUser } from './helper';
 import { Route, useHistory, withRouter } from 'react-router-dom';
 import { AuthContext } from './Store';
@@ -11,15 +11,15 @@ import { AddExerciseModal } from './components/home/AddExerciseModal';
 import { EditExerciseModal } from './components/home/EditExerciseModal';
 // import { ActivityTypes } from './components/home/ActivityTypes';
 import { Profile } from './components/profile/Profile';
-import { Chart } from './components/Chart';
+// import { Chart } from './components/Chart';
 import { Loader } from './components/Loader';
-import { StackedChart } from './components/home/StackedChart';
-import { PushUpMonitor } from './components/home/PushUpMonitor';
+// import { StackedChart } from './components/home/StackedChart';
+// import { PushUpMonitor } from './components/home/PushUpMonitor';
 const { SET_USER, SET_EXERCISES, TOGGLE_LOADING } = CONSTANTS;
 
 export const App = withRouter(({ location }) => {
   const [state, dispatch] = useContext(AuthContext);
-  const { exercises, user, loading, pushUpData } = state;
+  const { exercises, user } = state;
   const [menuOpen, setMenuOpen] = useState(false);
   const history = useHistory();
   const openModal = location.pathname.includes('/add') || location.pathname.includes('/edit');
@@ -49,17 +49,20 @@ export const App = withRouter(({ location }) => {
     const loadExercises = async (userId) => {
       dispatch({ type: TOGGLE_LOADING });
       const { exercises } = await getUserExercises(userId);
+      console.info('UseEffect\nLoading Exercises');
       dispatch({ type: SET_EXERCISES, payload: exercises });
     };
 
-    const loadPushUpDataToState = async () => {
+    const loadPushUpChartDataToState = async () => {
       const data = await getUserPushUpsData(user.id);
+      console.info('UseEffect\nLoading Push Ups');
+      console.log(data);
       dispatch({ type: 'LOAD_PUSH_UPS_DATA', payload: data });
     };
 
     if (user) {
       loadExercises(user.id);
-      loadPushUpDataToState(user.id);
+      loadPushUpChartDataToState(user.id);
     }
   }, [user, dispatch]);
 
@@ -71,7 +74,7 @@ export const App = withRouter(({ location }) => {
           <main className={`container`}>
             {/* <Chart /> */}
             {/* <StackedChart /> */}
-            <PushUpMonitor data={pushUpData} />
+            {/* <PushUpMonitor data={pushUpData} /> */}
             <UserExercises />
           </main>
         ) : (

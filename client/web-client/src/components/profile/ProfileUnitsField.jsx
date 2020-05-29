@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { AuthContext } from '../../Store';
 import { CONSTANTS } from '../../constants';
 import { updateUser } from '../../helper';
