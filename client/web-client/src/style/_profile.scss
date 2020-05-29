@@ -9,13 +9,19 @@
     border: 0.1em solid rgba(255, 255, 255, 0.5);
   }
 
-  &__card {
+  &__component {
+    max-width: 600px;
     border-radius: 1rem;
     padding: 1rem;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.75);
 
     box-shadow: 6px 6px 16px -6px rgba(0, 0, 0, 0.9);
-    border: 6px solid rgba(0, 0, 0, 0.75);
+    border: 4px solid rgba(0, 0, 0, 0.75);
+    margin-bottom: 2rem;
+
+    & * {
+      // outline: 1px solid rgba(yellow, 0.1);
+    }
 
     &__header {
       display: flex;
@@ -35,8 +41,18 @@
   }
 
   &__delete-account-btn {
+    margin-top: 2rem;
     color: white;
-    background-color: crimson;
+    padding: 0.5rem;
+    font-size: 0.8em;
+    background-color: transparentize($color: crimson, $amount: 0.6);
+    border: 2px solid rgba(crimson, 0.25);
+    border-radius: 3px;
+    transition: background-color 200ms ease-out;
+    &:focus,
+    &:hover {
+      background-color: crimson;
+    }
   }
 
   &__field-input {
