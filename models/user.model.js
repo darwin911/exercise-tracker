@@ -30,6 +30,8 @@ const userSchema = new Schema(
       type: String,
       default: 'IMPERIAL',
     },
+    friends: [String],
+    friendRequests: [String],
   },
   { timestamps: true }
 );
@@ -45,11 +47,9 @@ userSchema.methods.setPassword = async function (password) {
 };
 
 userSchema.methods.toAuthJSON = async function () {
+  const user = this.toClient();
   return {
-    id: this._id,
-    name: this.name,
-    username: this.username,
-    email: this.email,
+    ...user,
     token: await this.generateJWT(),
   };
 };
@@ -62,6 +62,8 @@ userSchema.methods.toClient = function () {
     email: this.email,
     unitSystem: this.unitSystem,
     weight: this.weight,
+    friends: this.friends,
+    friendRequests: this.friendRequests,
   };
 };
 
@@ -71,6 +73,11 @@ userSchema.methods.generateJWT = async function () {
     passwordDigest: this.passwordDigest,
   };
   return await encode(data);
+};
+
+userSchema.methods.addFriendRequest = function (requesterId) {
+  this.friendRequests.push(requesterId);
+  return this.toClient();
 };
 
 const User = mongoose.model('User', userSchema);
