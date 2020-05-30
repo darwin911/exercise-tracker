@@ -16,8 +16,7 @@ export const ProfileUnitsField = () => {
 
   return (
     <div className='form-field unit-system'>
-      <strong>Units: </strong>
-      <br />
+      <h4>Units</h4>
       <label>
         <input
           type='radio'

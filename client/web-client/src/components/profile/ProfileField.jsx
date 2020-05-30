@@ -52,17 +52,15 @@ export const ProfileField = ({ field }) => {
     </button>
   );
 
-  const fieldKey = field.charAt(0).toUpperCase() + field.slice(1);
-
   return (
     <div className='profile__field'>
-      <strong>{fieldKey}: </strong>
+      <h4>{fieldKey}</h4>
       <input
         className='profile__field-input'
-        type='text'
+        type={isWeightField}
         disabled={!isEditing}
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => handleChange(e)}
       />
       <div>
         {!isEditing ? <EditButton /> : <CancelButton />}
