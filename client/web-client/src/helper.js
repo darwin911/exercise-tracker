@@ -117,6 +117,42 @@ const getAllUsers = async () => {
   }
 };
 
+const sendFriendRequest = async (id, data) => {
+  try {
+    const resp = await axios.post(`${BASE_URL}/users/${id}/add-friend`, data);
+    return resp.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const acceptFriendRequest = async (id, data) => {
+  try {
+    const resp = await axios.post(`${BASE_URL}/users/${id}/accept-friend`, data);
+    return resp.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const declineFriendRequest = async (id, targetId) => {
+  try {
+    const resp = await axios.delete(`${BASE_URL}/users/${id}/decline-friend/${targetId}`);
+    return resp.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const removeFriend = async (id, targetId) => {
+  try {
+    const resp = await axios.delete(`${BASE_URL}/users/${id}/remove-friend/${targetId}`);
+    return resp.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export {
   getUserExercises,
   getUserPushUpsData,
@@ -130,4 +166,8 @@ export {
   updateUser,
   getUser,
   getAllUsers,
+  sendFriendRequest,
+  acceptFriendRequest,
+  declineFriendRequest,
+  removeFriend,
 };
