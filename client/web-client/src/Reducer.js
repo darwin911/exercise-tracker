@@ -18,6 +18,7 @@ const {
   TOGGLE_MENU,
   SET_FRIEND_SEARCH_RESULT,
   SET_FILTERED_FRIENDS_RESULT,
+  DECLINE_FRIEND_REQUEST,
 } = CONSTANTS;
 
 export const Reducer = (state, action) => {
@@ -126,6 +127,15 @@ export const Reducer = (state, action) => {
       return {
         ...state,
         filteredFriendSearch: action.payload,
+      };
+    }
+    case DECLINE_FRIEND_REQUEST: {
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          friendRequests: [...state.user.friendRequests.filter((req) => req !== action.payload)],
+        },
       };
     }
     default:

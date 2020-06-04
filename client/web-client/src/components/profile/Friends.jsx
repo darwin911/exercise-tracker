@@ -1,107 +1,91 @@
-import React, { useState, useContext } from 'react';
-import { Debug } from '../Debug';
-import { getAllUsers } from '../../helper';
+import React, { useContext } from 'react';
 import { AuthContext } from '../../Store';
 import { CONSTANTS } from '../../constants';
+import { acceptFriendRequest, declineFriendRequest, removeFriend } from '../../helper';
+import { FriendSearch } from './FriendSearch';
 
-import PropTypes from 'prop-types';
-
-//  propTypes = {
-//   options: PropTypes.instanceOf(Array).isRequired
-// };
-
-const { SET_FRIEND_SEARCH_RESULT, SET_FILTERED_FRIENDS_RESULT } = CONSTANTS;
-const styles = {
-  friendSection: {
-    position: 'relative',
-  },
-  friendCard: {
-    backgroundColor: 'rgba(255, 255, 255, 0.3',
-  },
-  friendList: {
-    padding: 0,
-    margin: 0,
-    position: 'absolute',
-    top: '100%',
-  },
-};
+const { DECLINE_FRIEND_REQUEST, SET_USER } = CONSTANTS;
 
 export const Friends = () => {
   const [state] = useContext(AuthContext);
   const { filteredFriendSearch } = state;
+
   return (
-    <section className='profile__component' style={styles.friendSection}>
+    <section className='profile__component friends'>
+      <FriendRequests />
       <FriendSearch userList={filteredFriendSearch} />
-      <ul style={styles.friendList}>
-        <FriendList />
-      </ul>
     </section>
   );
 };
 
-const FriendList = () => {
-  const [state] = useContext(AuthContext);
-  const { filteredFriendSearch: userList } = state;
-  console.log('userList', userList);
-  if (!userList) return null;
-  return userList.map((friend) => {
+const FriendRequests = () => {
+  const [{ user }, dispatch] = useContext(AuthContext);
+  const { friendRequests, friends } = user;
+  console.log(friendRequests);
+  const friendRequestsPending = user.friendRequests ? user.friendRequests.length : 0;
+
+  const handleAcceptFriendRequest = async (targetId) => {
+    const updatedUser = await acceptFriendRequest(user.id, { targetId });
+    dispatch({ type: SET_USER, payload: updatedUser });
+  };
+
+  const handleDeclineFriendRequest = async (targetId) => {
+    const response = await declineFriendRequest(user.id, targetId);
+    if (response.success) {
+      dispatch({ type: DECLINE_FRIEND_REQUEST, payload: targetId });
+      alert(response.message);
+    }
+  };
+
+  const handleRemoveFriend = async (targetId) => {
+    const response = await removeFriend(user.id, targetId);
+    if (response && response.success) {
+      dispatch({ type: SET_USER, payload: response.updatedUser });
+      alert(response.message);
+    }
+  };
+
+  const FriendRequests = () => {
+    if (!friendRequests) return null;
     return (
-      <li key={friend.id}>
-        <div style={styles.friendCard}>
-          <p>{friend.username}</p>
-          <button>Add</button>
-        </div>
-      </li>
+      <div className='friend-requests'>
+        {friendRequests.map((userId) => (
+          <div className='friend-request' key={userId}>
+            <p>Id: {userId}</p>
+            <button onClick={() => handleAcceptFriendRequest(userId)}>Accept</button>
+            <button onClick={() => handleDeclineFriendRequest(userId)}>Decline</button>
+          </div>
+        ))}
+      </div>
     );
-  });
-};
-
-const FriendSearch = () => {
-  const [state, dispatch] = React.useContext(AuthContext);
-  const { allUsers } = state;
-  const [searchValue, setSearchValue] = React.useState('');
-  const [count, setCount] = React.useState(0);
-
-  const handleChange = (e) => {
-    const { value } = e.target;
-    setSearchValue(value);
-    if (allUsers && value.length > 0) {
-      const users = filterLoadedUsers(value);
-      console.info(' filtered ->', users);
-      dispatch({ type: SET_FILTERED_FRIENDS_RESULT, payload: users });
-    }
-    if (value.length === 0) {
-      dispatch({ type: SET_FILTERED_FRIENDS_RESULT, payload: [] });
-    }
   };
 
-  const handleFocus = async (e) => {
-    console.info(`I have been focused ${count} times`);
-    setCount((prevVal) => prevVal + 1);
-    // make call to api only if first focus
-    if (count >= 1) return;
-    const allUsers = await getAllUsers();
-    dispatch({ type: SET_FRIEND_SEARCH_RESULT, payload: allUsers });
-  };
+  const FriendList = ({ friends }) => {
+    const friendList =
+      friends &&
+      friends.map((friend) => (
+        <div key={friend}>
+          <p>{friend}</p>
+          <button onClick={() => handleRemoveFriend(friend)}>Remove Friend</button>
+        </div>
+      ));
 
-  const filterLoadedUsers = (input) => {
-    console.info(`Filtering ${allUsers.length} users => ${input}`);
-    const userList = allUsers.filter((user) => {
-      return user.email.includes(input);
-    });
-    return userList;
+    return (
+      <div className='friend-list'>
+        <p>You have {friends ? friends.length : 0} friends</p>
+        {friendList}
+        <br />
+      </div>
+    );
   };
 
   return (
-    <div className='friends__search'>
-      <p>Search for friends!</p>
-      <input
-        type='text'
-        value={searchValue}
-        onChange={(e) => handleChange(e)}
-        onFocus={(e) => handleFocus(e)}
-        autoComplete='off'
-      />
+    <div>
+      <p>You have {friendRequestsPending} friend requests</p>
+      <br />
+      <FriendRequests />
+      <br />
+      <FriendList friends={friends} />
     </div>
   );
 };

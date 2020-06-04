@@ -25,6 +25,15 @@ export const ProfileField = ({ field }) => {
     setValue(user[`${field}`]);
   };
 
+  const fieldKey = field.charAt(0).toUpperCase() + field.slice(1);
+  const isWeightField = field !== 'weight' ? 'text' : 'number';
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+    // Todo: handle confirmation of change
+    if (field === 'weight') return;
+  };
+
   const EditButton = () => (
     <button
       className='profile__edit-field-button'

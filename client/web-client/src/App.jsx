@@ -9,10 +9,10 @@ import { Auth } from './components/auth/Auth';
 import { UserExercises } from './components/home/UserExercises';
 import { AddExerciseModal } from './components/home/AddExerciseModal';
 import { EditExerciseModal } from './components/home/EditExerciseModal';
-// import { ActivityTypes } from './components/home/ActivityTypes';
 import { Profile } from './components/profile/Profile';
-// import { Chart } from './components/Chart';
 import { Loader } from './components/Loader';
+// import { ActivityTypes } from './components/home/ActivityTypes';
+// import { Chart } from './components/Chart';
 // import { StackedChart } from './components/home/StackedChart';
 // import { PushUpMonitor } from './components/home/PushUpMonitor';
 const { SET_USER, SET_EXERCISES, TOGGLE_LOADING } = CONSTANTS;
@@ -80,6 +80,7 @@ export const App = withRouter(({ location }) => {
         ) : (
           <Loader size={8} />
         )}
+
         <Route path='/home/add' render={() => <AddExerciseModal />} />
         <Route
           path='/home/edit/:exerciseId'
@@ -96,6 +97,14 @@ export const App = withRouter(({ location }) => {
         render={() => <Profile isOpen={menuOpen} setMenuOpen={setMenuOpen} />}
       />
       <Route path='/auth' component={Auth} />
+      <footer className='footer'>
+        <div className='container'>
+          <br />
+          <strong>Created by &copy; Darwin Smith</strong>
+          <span> {new Date().getFullYear()}</span>
+          <br />
+        </div>
+      </footer>
     </div>
   );
 });
