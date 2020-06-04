@@ -135,6 +135,7 @@ a:hover {
   flex-direction: column;
   background: $app-bg;
   height: 100%;
+  position: relative;
 
   &.modal-open {
     filter: $blur;
@@ -151,6 +152,21 @@ a:hover {
     max-width: $container-max-width;
     margin: 0 auto;
     position: relative;
+  }
+
+  footer > .container {
+    width: 90vw;
+    max-width: $container-max-width;
+    margin: 0 auto;
+  }
+
+  .footer {
+    position: relative;
+    bottom: 0;
+    background: black;
+    color: white;
+    padding: 2rem;
+    margin-top: auto;
   }
 
   .btn {
