@@ -32,6 +32,7 @@ const userSchema = new Schema(
     },
     friends: [String],
     friendRequests: [String],
+    friendRequestsSent: [String],
   },
   { timestamps: true }
 );
@@ -64,9 +65,18 @@ userSchema.methods.toClient = function () {
     weight: this.weight,
     friends: this.friends,
     friendRequests: this.friendRequests,
+    friendRequestsSent: this.friendRequestsSent,
   };
 };
 
+userSchema.methods.toFriendData = function () {
+  return {
+    id: this._id,
+    name: this.name,
+    username: this.username,
+  };
+};
+// TODO REMOVE ASYNC/AWAIT
 userSchema.methods.generateJWT = async function () {
   const data = {
     id: this._id,
