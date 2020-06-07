@@ -156,6 +156,11 @@
     position: relative;
     display: flex;
     flex-direction: column;
+
+    &__heading {
+      margin-bottom: 0.5rem;
+    }
+
     input {
       background: rgba(255, 255, 255, 0.9);
       border: 1px solid #707070;
@@ -238,19 +243,37 @@
   font-weight: 500;
 }
 
+.friend-list {
+  margin-bottom: 2rem;
+}
+
+.friend-requests {
+  margin-bottom: 2rem;
+  &__header {
+    margin-bottom: 0.5rem;
+  }
+  &__heading {
+    margin-bottom: 0.25rem;
+  }
+  &__subheading {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+  }
+}
+
 .friend-request {
   background: royalblue;
-  display: flex;
-  padding: 0.5rem;
   border-radius: 0.5rem;
+  margin-bottom: 1rem;
 
   &__data {
-    background: crimson;
   }
 
   &__buttons {
-    background: yellow;
     button {
+      border-radius: 3px;
+      margin-right: 0.25rem;
       &:hover {
         background-color: blueviolet;
       }
@@ -280,8 +303,13 @@
 }
 
 .friend-list {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   &__header {
     margin-bottom: 0.5rem;
+  }
+  &__subheading {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
   }
 }

@@ -17,7 +17,6 @@ export const FriendList = ({ id }) => {
   const handleRemoveFriend = async (targetId) => {
     console.info('handleRemoveFriend', targetId);
     const response = await removeFriend(currentUser.id, targetId);
-    debugger;
     if (response && response.success) {
       dispatch({ type: SET_USER, payload: response.updatedUser });
       toast(response.message);
@@ -50,14 +49,16 @@ export const FriendList = ({ id }) => {
   };
 
   const FriendListHeader = () => (
-    <h5 className='friend-list__header'>You have {friendData ? friendData.length : 0} friends</h5>
+    <header className='friend-list__header'>
+      <h5 className='friend-list__subheading'>
+        You have {friendData ? friendData.length : 0} friend{friendData.length !== 1 && 's'}
+      </h5>
+    </header>
   );
-  console.log('friendDAta', friendData);
   return (
     <div className='friend-list'>
       <FriendListHeader />
       {friendData.map((friend) => {
-        console.log(friend);
         return <FriendCard key={friend.id} targetUser={friend} />;
       })}
     </div>

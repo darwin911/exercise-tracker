@@ -44,7 +44,7 @@ export const FriendSearch = () => {
 
   return (
     <div className='search-wrapper'>
-      <h4>Friend Lookup</h4>
+      <h3 className='search-wrapper__heading'>Friend Lookup</h3>
       <input
         type='text'
         placeholder='user@mail.com'

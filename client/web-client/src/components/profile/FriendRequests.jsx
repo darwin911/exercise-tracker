@@ -4,6 +4,7 @@ import { CONSTANTS } from '../../constants';
 import { acceptFriendRequest, declineFriendRequest, getMultipleUsers } from '../../helper';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
+import { Avatar } from './Avatar';
 
 const { SET_USER, DECLINE_FRIEND_REQUEST } = CONSTANTS;
 
@@ -12,10 +13,9 @@ toast.configure();
 export const FriendRequests = () => {
   const [{ user }, dispatch] = useContext(AuthContext);
   const { friendRequests } = user;
-
   const [friendRequestData, setFriendRequestData] = React.useState([]);
-
   const pendingFriendRequests = user.friendRequests ? user.friendRequests.length : 0;
+  const className = 'friend-requests';
 
   const handleAcceptFriendRequest = async (targetId) => {
     const updatedUser = await acceptFriendRequest(user.id, { targetId });
@@ -45,20 +45,23 @@ export const FriendRequests = () => {
 
   if (!friendRequests) return null;
 
-  const FriendRequestHeader = () => <h5>You have {pendingFriendRequests} friend requests</h5>;
+  const FriendRequestHeader = () => {
+    return (
+      <header className={`${className}__header`}>
+        <h3 className={`${className}__heading`}>Friend Requests</h3>
+        <h5 className={`${className}__subheading`}>
+          You have {pendingFriendRequests} friend requests
+        </h5>
+      </header>
+    );
+  };
 
-  return (
-    <div className='friend-requests'>
-      <h3>Friend Requests</h3>
-      <FriendRequestHeader />
-      <br />
-      {friendRequestData.map((user) => (
-        <div className='friend-request' key={user.id}>
-          <div className='friend-request__data'>
-            <p>Name: {user.name}</p>
-            <p>Username: {user.username}</p>
-            <p>Email: {user.email}</p>
-          </div>
+  const FriendRequestList = () =>
+    friendRequestData.map((user) => (
+      <div className='friend-request' key={user.id}>
+        <div className='friend-request__data friend-card'>
+          <Avatar name={user.username} />
+          <p>{user.username}</p>
           <div className='friend-request__buttons'>
             <button style={{ color: 'green' }} onClick={() => handleAcceptFriendRequest(user.id)}>
               &#10003;
@@ -68,7 +71,13 @@ export const FriendRequests = () => {
             </button>
           </div>
         </div>
-      ))}
+      </div>
+    ));
+
+  return (
+    <div className={className}>
+      <FriendRequestHeader />
+      <FriendRequestList />
     </div>
   );
 };

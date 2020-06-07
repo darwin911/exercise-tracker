@@ -1263,6 +1263,10 @@ a:hover {
           flex-direction: column;
 }
 
+.profile__component.friends .search-wrapper__heading {
+  margin-bottom: 0.5rem;
+}
+
 .profile__component.friends .search-wrapper input {
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid #707070;
@@ -1363,21 +1367,37 @@ a:hover {
   font-weight: 500;
 }
 
+.friend-list {
+  margin-bottom: 2rem;
+}
+
+.friend-requests {
+  margin-bottom: 2rem;
+}
+
+.friend-requests__header {
+  margin-bottom: 0.5rem;
+}
+
+.friend-requests__heading {
+  margin-bottom: 0.25rem;
+}
+
+.friend-requests__subheading {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+}
+
 .friend-request {
   background: royalblue;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  padding: 0.5rem;
   border-radius: 0.5rem;
+  margin-bottom: 1rem;
 }
 
-.friend-request__data {
-  background: crimson;
-}
-
-.friend-request__buttons {
-  background: yellow;
+.friend-request__buttons button {
+  border-radius: 3px;
+  margin-right: 0.25rem;
 }
 
 .friend-request__buttons button:hover {
@@ -1409,11 +1429,17 @@ a:hover {
 }
 
 .friend-list {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .friend-list__header {
   margin-bottom: 0.5rem;
+}
+
+.friend-list__subheading {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
 }
 
 .header {
