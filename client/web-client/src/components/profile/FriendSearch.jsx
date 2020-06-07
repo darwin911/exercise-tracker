@@ -2,11 +2,16 @@ import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../Store';
 import { CONSTANTS } from '../../constants';
 import { getAllUsers, sendFriendRequest } from '../../helper';
+import { Avatar } from './Avatar';
+import { toast } from 'react-toastify';
 
-const { SET_FILTERED_FRIENDS_RESULT, SET_FRIEND_SEARCH_RESULT } = CONSTANTS;
+const { SET_FILTERED_FRIENDS_RESULT, SET_ALL_USERS } = CONSTANTS;
+
+toast.configure();
 
 export const FriendSearch = () => {
-  const [{ allUsers, user }, dispatch] = useContext(AuthContext);
+  const [state, dispatch] = useContext(AuthContext);
+  const { allUsers, user } = state;
   const [searchValue, setSearchValue] = useState('');
   const [count, setCount] = useState(0);
 
@@ -16,7 +21,7 @@ export const FriendSearch = () => {
     if (allUsers && value.length > 0) {
       const users = filterLoadedUsers(allUsers, value, user.id);
       dispatch({ type: SET_FILTERED_FRIENDS_RESULT, payload: users });
-    } else if (value.length === 0) {
+    } else if (value.length < 1) {
       dispatch({ type: SET_FILTERED_FRIENDS_RESULT, payload: [] });
     }
   };
@@ -25,7 +30,16 @@ export const FriendSearch = () => {
     setCount((prevVal) => prevVal + 1);
     if (count >= 1) return;
     const allUsers = await getAllUsers();
-    dispatch({ type: SET_FRIEND_SEARCH_RESULT, payload: allUsers });
+    dispatch({ type: SET_ALL_USERS, payload: allUsers });
+  };
+
+  const filterLoadedUsers = (users, input, userId) => {
+    const { friendRequestsSent } = user;
+
+    return users.filter((user) => {
+      const hasBeenRequested = !friendRequestsSent.includes(user.id);
+      return user.email.includes(input) && user.id !== userId && hasBeenRequested;
+    });
   };
 
   return (
@@ -44,47 +58,45 @@ export const FriendSearch = () => {
   );
 };
 
-const filterLoadedUsers = (users, input, userId) => {
-  return users.filter((user) => user.email.includes(input) && user.id !== userId);
-};
-
 const AutoCompleteUserList = ({ setSearchValue }) => {
-  const [{ user }, dispatch] = useContext(AuthContext);
   const [{ filteredFriendSearch: userList }] = useContext(AuthContext);
 
   if (!userList) return null;
 
+  return (
+    <ul className='auto-complete-list'>
+      {userList.map((user) => (
+        <AutoCompleteUserCard user={user} key={user.id} setValue={setSearchValue} />
+      ))}
+    </ul>
+  );
+};
+
+const AutoCompleteUserCard = ({ user, setValue }) => {
+  const [{ user: currentUser }] = useContext(AuthContext);
+  console.log(user);
+  const dispatch = useContext(AuthContext)[1];
+
   const handleAddFriend = async (targetId) => {
-    const resp = await sendFriendRequest(user.id, { targetId });
+    const resp = await sendFriendRequest(currentUser.id, { targetId });
     if (resp && resp.success) {
-      alert(resp.message);
-      setSearchValue('');
+      toast.info(resp.message);
+      setValue('');
       dispatch({ type: SET_FILTERED_FRIENDS_RESULT, payload: [] });
+    } else {
+      toast.error(`Error: ${resp.error}`);
     }
   };
 
   return (
-    <ul className='auto-complete-list'>
-      {userList.map((user) => {
-        return (
-          <li key={user.id}>
-            <div className='auto-complete-item'>
-              <div className='auto-complete-item__avatar'>
-                <p className='auto-complete-item__initials'>
-                  {user.name
-                    ? user.name.charAt(0).toUpperCase()
-                    : user.username.charAt(0).toUpperCase()}
-                </p>
-              </div>
-              <p className='auto-complete-item__username'>{user.username}</p>
-              <p className='auto-complete-item__email'>{user.email.slice(0, 20)}</p>
-              <button className='auto-complete-item__add' onClick={() => handleAddFriend(user.id)}>
-                Add
-              </button>
-            </div>
-          </li>
-        );
-      })}
-    </ul>
+    <li>
+      <div className='auto-complete-item'>
+        <Avatar name={user.username} className={'auto-complete-item'} />
+        <p className='auto-complete-item__username'>{user.username}</p>
+        <button className='auto-complete-item__add' onClick={() => handleAddFriend(user.id)}>
+          Add
+        </button>
+      </div>
+    </li>
   );
 };
