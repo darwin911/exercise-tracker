@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../Store';
 import { ProfileField } from './ProfileField';
 import { ProfileUnitsField } from './ProfileUnitsField';
+import { Avatar } from './Avatar';
 
 export const ProfileCard = () => {
   const [{ user }] = useContext(AuthContext);
@@ -13,20 +14,16 @@ export const ProfileCard = () => {
     history.push('/profile/' + user.id + '/delete');
   };
 
-  const size = 48;
+  const className = 'profile__component';
 
   return (
-    <section className='profile__component'>
-      <header className='profile__component__header'>
-        <h1 className='profile__component__header__title'> Profile</h1>
-        <img
-          src={`https://picsum.photos/${size}`}
-          alt='img'
-          style={{ minWidth: size, minHeight: size }}
-        />
-        <h3>{user.username}</h3>
+    <section className={className}>
+      <header className={`${className}__header`}>
+        <h2 className={`${className}__header__title`}>Profile</h2>
+        <Avatar name={user.username} className={className} />
+        <h3 className={`${className}__username`}>{user.username}</h3>
       </header>
-      <article className='profile__component__body'>
+      <article className={`${className}__body`}>
         <ProfileField field='name' />
         <div>
           <h4>Email</h4>
@@ -36,7 +33,7 @@ export const ProfileCard = () => {
         <ProfileField field='weight' />
         <ProfileUnitsField />
       </article>
-      <footer className='profile__component__footer'>
+      <footer className={`${className}__footer`}>
         <button
           className='delete-account-btn'
           onMouseOver={() => setHovered(true)}
