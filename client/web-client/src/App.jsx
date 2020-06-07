@@ -49,14 +49,11 @@ export const App = withRouter(({ location }) => {
     const loadExercises = async (userId) => {
       dispatch({ type: TOGGLE_LOADING });
       const { exercises } = await getUserExercises(userId);
-      console.info('UseEffect\nLoading Exercises');
       dispatch({ type: SET_EXERCISES, payload: exercises });
     };
 
     const loadPushUpChartDataToState = async () => {
       const data = await getUserPushUpsData(user.id);
-      console.info('UseEffect\nLoading Push Ups');
-      console.log(data);
       dispatch({ type: 'LOAD_PUSH_UPS_DATA', payload: data });
     };
 
