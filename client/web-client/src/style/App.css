@@ -1094,6 +1094,28 @@ a:hover {
   color: white;
 }
 
+[class$='__avatar'] {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 50%;
+  height: 1em;
+  width: 1em;
+  border: 2px solid #707070;
+  background-color: #262626;
+}
+
+[class$='__initials'] {
+  font-size: 0.7em;
+  font-weight: bold;
+}
+
 @media screen and (min-width: 800px) {
   .profile.wrapper {
     display: -ms-grid;
@@ -1122,29 +1144,46 @@ a:hover {
   background: rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 2px 2px 12px -4px rgba(2, 2, 2, 0.637);
           box-shadow: 2px 2px 12px -4px rgba(2, 2, 2, 0.637);
-  border: 4px solid rgba(0, 0, 0, 0.75);
+  border: 2px solid rgba(37, 103, 201, 0.85);
   margin-bottom: 2rem;
 }
 
-.profile__component__header {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin-bottom: 1rem;
+.profile__component__avatar {
+  width: 3em;
+  height: 3em;
+  -ms-grid-column-align: end;
+      justify-self: end;
 }
 
-.profile__component__header img {
+.profile__component__initials {
+  font-size: 1.5em;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+.profile__component__header {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
   margin-bottom: 1rem;
+  gap: 1em;
+}
+
+.profile__component__header__title {
+  text-align: center;
+  grid-column: 1/-1;
+}
+
+.profile__component__username {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 
 .profile__component__body h4,
@@ -1204,8 +1243,24 @@ a:hover {
   margin-bottom: 0.5rem;
 }
 
+.profile__component.friends {
+  background: rgba(63, 63, 63, 0.85);
+  border-color: #666;
+}
+
+.profile__component.friends h2 {
+  margin-bottom: 1rem;
+}
+
 .profile__component.friends .search-wrapper {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .profile__component.friends .search-wrapper input {
@@ -1213,7 +1268,7 @@ a:hover {
   border: 1px solid #707070;
   font-size: 0.8em;
   font-weight: 500;
-  width: 100%;
+  border-radius: 8px;
 }
 
 .profile__component.friends .search-wrapper input::-webkit-input-placeholder {
@@ -1236,29 +1291,30 @@ a:hover {
   padding: 0;
   margin: 0;
   position: absolute;
-  top: 100%;
-  right: 0;
+  top: 105%;
+  right: 5%;
+  left: 5%;
   list-style: none;
   z-index: 3;
 }
 
 .profile__component.friends .auto-complete-item {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 3px;
+  background: black;
+  border-radius: 8px;
   margin-bottom: 4px;
   font-size: 0.85em;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: auto 1fr auto;
-      grid-template-columns: auto 1fr auto;
-  -ms-grid-rows: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
+  -ms-grid-columns: 1fr 3fr 1fr;
+      grid-template-columns: 1fr 3fr 1fr;
   -webkit-column-gap: 0.25em;
           column-gap: 0.25em;
-  padding: 0.25em;
+  padding: 0.75em;
   opacity: 0.8;
   -webkit-transition: opacity 200ms ease-out;
   transition: opacity 200ms ease-out;
+  -webkit-box-shadow: 1px 2px 8px -1px rgba(0, 0, 0, 0.7);
+          box-shadow: 1px 2px 8px -1px rgba(0, 0, 0, 0.7);
 }
 
 .profile__component.friends .auto-complete-item:hover {
@@ -1266,38 +1322,32 @@ a:hover {
 }
 
 .profile__component.friends .auto-complete-item__avatar {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  border-radius: 50%;
-  height: 1.75em;
   width: 1.75em;
-  border: 2px solid #707070;
-  background-color: #262626;
+  height: 1.75em;
   -ms-grid-column: 1;
   grid-column: 1;
   grid-row: 1 / -1;
 }
 
-.profile__component.friends .auto-complete-item__initials {
-  font-size: 0.7em;
-  font-weight: bold;
-}
-
 .profile__component.friends .auto-complete-item__add {
   color: white;
-  border-radius: 3px;
+  border-radius: 0.5rem;
   grid-column-end: -1;
   grid-row: 1 / -1;
   background: #30a315;
-  border: 1px solid #1c7900;
-  width: 45px;
+  background: transparent;
+  background-color: rgba(48, 163, 21, 0.85);
+  border: 2px solid #1c7900;
+  width: 35px;
+  font-size: 0.8em;
+  -webkit-transition: 140ms ease-out transform, 120ms ease-in-out background-color;
+  transition: 140ms ease-out transform, 120ms ease-in-out background-color;
+}
+
+.profile__component.friends .auto-complete-item__add:hover, .profile__component.friends .auto-complete-item__add:focus {
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+  background: #30a315;
 }
 
 .profile__component.friends .auto-complete-item__username {
@@ -1306,6 +1356,64 @@ a:hover {
 
 .profile__component.friends .auto-complete-item__email {
   font-size: 0.9em;
+}
+
+.friend-list p,
+.friend-requests p {
+  font-weight: 500;
+}
+
+.friend-request {
+  background: royalblue;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.friend-request__data {
+  background: crimson;
+}
+
+.friend-request__buttons {
+  background: yellow;
+}
+
+.friend-request__buttons button:hover {
+  background-color: blueviolet;
+}
+
+.friend-card {
+  padding: 0.8rem;
+  border-radius: 8px;
+  background: #222;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 3fr auto;
+      grid-template-columns: 1fr 3fr auto;
+  max-width: 300px;
+}
+
+.friend-card__delete-friend {
+  font-size: 0.5em;
+  border-radius: 3px;
+  background-color: rgba(220, 20, 60, 0.8);
+  color: white;
+  -webkit-transition: background-color 300ms ease-out;
+  transition: background-color 300ms ease-out;
+}
+
+.friend-card__delete-friend:hover {
+  background-color: crimson;
+}
+
+.friend-list {
+  margin-bottom: 1rem;
+}
+
+.friend-list__header {
+  margin-bottom: 0.5rem;
 }
 
 .header {
