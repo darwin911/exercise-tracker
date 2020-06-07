@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const BASE_URL = `http://localhost:5000`;
-const BASE_URL = `https://exercise-tracker-express.herokuapp.com`;
+const BASE_URL = `http://localhost:5000`;
+// const BASE_URL = `https://exercise-tracker-express.herokuapp.com`;
 
 // Exercises
 
@@ -117,9 +117,18 @@ const getAllUsers = async () => {
   }
 };
 
+const getMultipleUsers = async (id, data) => {
+  try {
+    const resp = await axios.get(`${BASE_URL}/users/${id}/friend-requests`, data);
+    return resp.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const sendFriendRequest = async (id, data) => {
   try {
-    const resp = await axios.post(`${BASE_URL}/users/${id}/add-friend`, data);
+    const resp = await axios.post(`${BASE_URL}/users/${id}/send-friend-request`, data);
     return resp.data;
   } catch (error) {
     console.error(error);
@@ -153,6 +162,15 @@ const removeFriend = async (id, targetId) => {
   }
 };
 
+const getFriendsData = async (id, friendIds) => {
+  try {
+    const resp = await axios.post(`${BASE_URL}/users/${id}/get-friends-data`, { friendIds });
+    return resp.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export {
   getUserExercises,
   getUserPushUpsData,
@@ -170,4 +188,6 @@ export {
   acceptFriendRequest,
   declineFriendRequest,
   removeFriend,
+  getMultipleUsers,
+  getFriendsData,
 };
