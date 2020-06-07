@@ -3,6 +3,7 @@ let User = require('../models/user.model');
 let Exercise = require('../models/exercise.model');
 const { verify } = require('../auth');
 
+// Get All Users
 router.route('/').get(async (req, res) => {
   try {
     let users = await User.find();
@@ -20,6 +21,25 @@ router.route('/:id').get(async (req, res) => {
     if (user) {
       user = await user.toClient();
       return res.json(user);
+    } else {
+      return res.status(404).json({ error: { message: 'User not found', code: 404 } });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+// Get Multiple Users by id
+router.route('/:id/friend-requests').get(async (req, res) => {
+  try {
+    let user = await User.findById(req.params.id);
+    if (user) {
+      if (user.friendRequests.length > 0) {
+        let users = await User.find({ _id: { $in: user.friendRequests } });
+        users = await Promise.all(users.map((user) => user.toClient()));
+        return res.json(users);
+      }
+      return res.json([]);
     } else {
       return res.status(404).json({ error: { message: 'User not found', code: 404 } });
     }
@@ -48,24 +68,23 @@ router.route('/:id/update').put(async (req, res) => {
   }
 });
 
-router.route('/:id/add-friend').post(async (req, res) => {
+router.route('/:id/send-friend-request').post(async (req, res) => {
   const { targetId } = req.body;
   const { id } = req.params;
   try {
-    let user = await User.findById(id);
-    if (user) {
+    let currentUser = await User.findById(id);
+    if (currentUser) {
       if (targetId) {
         let targetUser = await User.findById(targetId);
 
-        console.log(`\n${user.username} is sending friend request to ${targetUser.username}\n`);
-
-        const friendReqs = targetUser.friendRequests;
-        if (!friendReqs.includes(id)) {
-          friendReqs.push(id);
+        if (!targetUser.friendRequests.includes(id)) {
+          targetUser.friendRequests.push(id);
           targetUser.save();
+          currentUser.friendRequestsSent.push(targetId);
+          currentUser.save();
           return res.json({
             success: true,
-            message: `Friend request for user with Id ${targetId}`,
+            message: `${currentUser.username} requests ${targetUser.username} to be Friends`,
           });
         } else {
           return res.status(409).json({
@@ -96,8 +115,9 @@ router.route('/:id/accept-friend').post(async (req, res) => {
         // add to friends array
         user.friends.push(targetId);
         targetUser.friends.push(id);
+        targetUser.friendRequestsSent.pull(id);
         const updatedUser = user.toClient();
-        const updateTargetUser = targetUser.toClient();
+        // const updateTargetUser = targetUser.toClient();
         user.save();
         targetUser.save();
         // return updated user object with update friends and friendReqs
@@ -119,9 +139,12 @@ router.route('/:id/decline-friend/:targetId').delete(async (req, res) => {
       if (user.friendRequests) {
         const index = user.friendRequests.indexOf(targetId);
         const exists = index !== -1;
+        let targetUser = await User.findById(targetId);
         if (exists) {
           user.friendRequests.pull(targetId);
+          targetUser.friendRequestsSent.pull(id);
           user.save();
+          targetUser.save();
           return res.status(200).json({
             success: true,
             message: `Friend request for user with Id ${targetId} has been declined successfully.`,
@@ -234,6 +257,24 @@ router.route('/:id').delete(async (req, res) => {
       await Exercise.deleteMany({ userId: id });
       user = await User.findByIdAndDelete(id);
       return res.status(204).json({ user }); // 204 : No Content
+    }
+    return res.status(404).json({ error: { message: 'User Not Found', code: 404 } });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+router.route('/:id/get-friends-data').post(async (req, res) => {
+  try {
+    console.log('POST users/get-friends-data/');
+
+    const { id } = req.params;
+    let user = await User.findById(id);
+    const { friendIds } = req.body;
+    if (user) {
+      let friendUsers = await User.find().where('_id').in(friendIds).exec();
+      friendUsers = await Promise.all(friendUsers.map((user) => user.toFriendData()));
+      return res.json(friendUsers);
     }
     return res.status(404).json({ error: { message: 'User Not Found', code: 404 } });
   } catch (error) {
