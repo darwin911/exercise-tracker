@@ -16,7 +16,7 @@ const {
   UPDATE_EXERCISE,
   SET_FILTER,
   TOGGLE_MENU,
-  SET_FRIEND_SEARCH_RESULT,
+  SET_ALL_USERS,
   SET_FILTERED_FRIENDS_RESULT,
   DECLINE_FRIEND_REQUEST,
 } = CONSTANTS;
@@ -117,7 +117,7 @@ export const Reducer = (state, action) => {
         pushUpData: action.payload,
       };
     }
-    case SET_FRIEND_SEARCH_RESULT: {
+    case SET_ALL_USERS: {
       return {
         ...state,
         allUsers: action.payload.users,
