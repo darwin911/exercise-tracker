@@ -27,8 +27,8 @@ export const NavMenu = ({ isOpen, setMenuOpen }) => {
       display: 'flex',
     },
     closed: {
-      opacity: 0.5,
-      scale: 2,
+      opacity: 0,
+      scale: 1.15,
       transitionEnd: {
         display: 'none',
       },
