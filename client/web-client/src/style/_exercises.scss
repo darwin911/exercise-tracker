@@ -344,7 +344,12 @@
     }
 
     input,
-    select {
+    select,
+    textarea {
+      min-height: 30px;
+      max-height: 200px;
+      font-family: inherit;
+      border-radius: 0.5rem;
       color: black;
       flex-grow: 1;
       border: 2px solid rgba(0, 0, 0, 0.15);

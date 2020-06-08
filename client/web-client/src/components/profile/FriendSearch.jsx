@@ -74,7 +74,7 @@ const AutoCompleteUserList = ({ setSearchValue }) => {
 
 const AutoCompleteUserCard = ({ user, setValue }) => {
   const [{ user: currentUser }] = useContext(AuthContext);
-  console.log(user);
+
   const dispatch = useContext(AuthContext)[1];
 
   const handleAddFriend = async (targetId) => {

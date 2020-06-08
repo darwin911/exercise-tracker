@@ -931,8 +931,14 @@ a:hover {
 
 .add-exercise .form-field input,
 .add-exercise .form-field select,
+.add-exercise .form-field textarea,
 .edit-exercise .form-field input,
-.edit-exercise .form-field select {
+.edit-exercise .form-field select,
+.edit-exercise .form-field textarea {
+  min-height: 30px;
+  max-height: 200px;
+  font-family: inherit;
+  border-radius: 0.5rem;
   color: black;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
@@ -952,8 +958,10 @@ a:hover {
 
 .add-exercise .form-field input:focus,
 .add-exercise .form-field select:focus,
+.add-exercise .form-field textarea:focus,
 .edit-exercise .form-field input:focus,
-.edit-exercise .form-field select:focus {
+.edit-exercise .form-field select:focus,
+.edit-exercise .form-field textarea:focus {
   outline: none;
   -webkit-box-shadow: 0px 0px 1px 3px rgba(0, 132, 255, 0.85);
           box-shadow: 0px 0px 1px 3px rgba(0, 132, 255, 0.85);
@@ -961,8 +969,10 @@ a:hover {
 
 .add-exercise .form-field input.input-error,
 .add-exercise .form-field select.input-error,
+.add-exercise .form-field textarea.input-error,
 .edit-exercise .form-field input.input-error,
-.edit-exercise .form-field select.input-error {
+.edit-exercise .form-field select.input-error,
+.edit-exercise .form-field textarea.input-error {
   border-color: red;
 }
 

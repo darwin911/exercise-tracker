@@ -90,6 +90,7 @@ export const EditExerciseModal = ({ exercise }) => {
               <div className='form-field date'>
                 <label htmlFor='date'>Date:</label>
                 <Field
+                  id='date'
                   name='date'
                   type='date'
                   pattern='\d{4}-\d{2}-\d{2}'
@@ -103,6 +104,7 @@ export const EditExerciseModal = ({ exercise }) => {
               <div className='form-field time'>
                 <label htmlFor='time'>Time:</label>
                 <Field
+                  id='time'
                   name='time'
                   type='time'
                   onChange={handleChange}
@@ -116,6 +118,7 @@ export const EditExerciseModal = ({ exercise }) => {
                 <div className='form-field duration'>
                   <label htmlFor='duration'>Duration: </label>
                   <Field
+                    id='duration'
                     name='duration'
                     type='number'
                     inputMode='numeric'
@@ -137,6 +140,7 @@ export const EditExerciseModal = ({ exercise }) => {
                     {(msg) => <span className='input-error'>{msg}</span>}
                   </ErrorMessage>
                   <Field
+                    id='repetitions'
                     name='repetitions'
                     type='number'
                     onChange={handleChange}
@@ -151,6 +155,7 @@ export const EditExerciseModal = ({ exercise }) => {
                 <div className='form-field distance'>
                   <label htmlFor='note'>Distance: </label>
                   <Field
+                    id='distance'
                     name='distance'
                     type='number'
                     placeholder='0.0'
@@ -169,6 +174,9 @@ export const EditExerciseModal = ({ exercise }) => {
                 <div className='form-field note'>
                   <label htmlFor='note'>Note: </label>
                   <Field
+                    as='textarea'
+                    rows='2'
+                    id='note'
                     name='note'
                     type='text'
                     placeholder='Felt great!'

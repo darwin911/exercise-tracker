@@ -116,6 +116,7 @@ export const AddExerciseModal = () => {
               <div className='form-field date'>
                 <label htmlFor='date'>Date:</label>
                 <Field
+                  id='date'
                   name='date'
                   type='date'
                   pattern='\d{4}-\d{2}-\d{2}'
@@ -130,6 +131,7 @@ export const AddExerciseModal = () => {
               <div className='form-field time'>
                 <label htmlFor='time'>Time:</label>
                 <Field
+                  id='time'
                   name='time'
                   type='time'
                   onChange={handleChange}
@@ -154,6 +156,7 @@ export const AddExerciseModal = () => {
                   </ErrorMessage>
                   <Field
                     className={`${errors.duration && touched.duration ? 'input-error' : null}`}
+                    id='duration'
                     name='duration'
                     type='number'
                     inputMode='numeric'
@@ -171,6 +174,7 @@ export const AddExerciseModal = () => {
                 <div className='form-field repetitions'>
                   <label htmlFor='repetitions'>Repetitions: </label>
                   <Field
+                    id='repetitions'
                     name='repetitions'
                     type='number'
                     min={1}
@@ -185,7 +189,7 @@ export const AddExerciseModal = () => {
 
               {type === RUN ? (
                 <div className='form-field distance'>
-                  <label htmlFor='note'>Distance: </label>
+                  <label htmlFor='distance'>Distance: </label>
                   <Field
                     name='distance'
                     type='number'
@@ -204,6 +208,10 @@ export const AddExerciseModal = () => {
               <div className='form-field note'>
                 <label htmlFor='note'>Note: </label>
                 <Field
+                  id='note'
+                  as='textarea'
+                  rows='2'
+                  maxlength='999'
                   name='note'
                   type='text'
                   placeholder='Felt great!'

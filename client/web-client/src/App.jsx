@@ -30,6 +30,7 @@ export const App = withRouter(({ location }) => {
     let token = localStorage.getItem('token');
 
     const handleAutoLogin = async (token) => {
+      console.info('handleAutoLogin');
       const pushToHome = location.pathname.includes('auth') || location.pathname === '/';
       const verifiedUser = await verifyToken({ token });
       if (verifiedUser) {
@@ -43,7 +44,7 @@ export const App = withRouter(({ location }) => {
     };
 
     token ? handleAutoLogin(token) : history.push('/auth/login');
-  }, [history, dispatch]);
+  }, []);
 
   useEffect(() => {
     const loadExercises = async (userId) => {
