@@ -191,6 +191,7 @@ export const AddExerciseModal = () => {
                 <div className='form-field distance'>
                   <label htmlFor='distance'>Distance: </label>
                   <Field
+                    id='distance'
                     name='distance'
                     type='number'
                     placeholder='0.0'

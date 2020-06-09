@@ -1152,11 +1152,22 @@ a:hover {
   max-width: 600px;
   border-radius: 1rem;
   padding: 2em;
-  background: rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: 2px 2px 12px -4px rgba(2, 2, 2, 0.637);
-          box-shadow: 2px 2px 12px -4px rgba(2, 2, 2, 0.637);
-  border: 2px solid rgba(37, 103, 201, 0.85);
+  -webkit-box-shadow: 0px 0px 12px -4px rgba(2, 2, 2, 0.719);
+          box-shadow: 0px 0px 12px -4px rgba(2, 2, 2, 0.719);
   margin-bottom: 2rem;
+}
+
+.profile__component.profile-card {
+  border: 2px solid rgba(37, 103, 201, 0.85);
+}
+
+@media screen and (min-width: 484px) {
+  .profile__component.profile-card .profile__component__body {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
 }
 
 .profile__component__avatar {

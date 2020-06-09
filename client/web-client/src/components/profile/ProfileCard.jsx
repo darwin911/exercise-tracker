@@ -17,7 +17,7 @@ export const ProfileCard = () => {
   const className = 'profile__component';
 
   return (
-    <section className={className}>
+    <section className={`${className} profile-card`}>
       <header className={`${className}__header`}>
         <h2 className={`${className}__header__title`}>Profile</h2>
         <Avatar name={user.username} className={className} />
@@ -29,7 +29,6 @@ export const ProfileCard = () => {
           <h4>Email</h4>
           <span>{user.email}</span>
         </div>
-        <br />
         <ProfileField field='weight' />
         <ProfileUnitsField />
       </article>

@@ -5,6 +5,8 @@ import { CONSTANTS } from '../../constants';
 
 const { SET_USER, UNITS } = CONSTANTS;
 
+const convertToKg = (lbs) => Number(lbs / 2.2046).toFixed(1);
+
 export const ProfileField = ({ field }) => {
   const [{ user }, dispatch] = useContext(AuthContext);
   const userfieldVal = user[`${field}`];
@@ -79,7 +81,7 @@ export const ProfileField = ({ field }) => {
         className='profile__field-input'
         type={isWeightField ? 'number' : 'text'}
         disabled={!isEditing}
-        value={value}
+        value={isWeightField && user.unitSystem === UNITS.METRIC ? convertToKg(value) : value}
         onChange={(e) => handleChange(e)}
       />
       <div>
