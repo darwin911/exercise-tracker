@@ -89,11 +89,6 @@ export const Reducer = (state, action) => {
         }),
       };
     }
-    case TOGGLE_MODAL:
-      return {
-        ...state,
-        modalOpen: !state.modalOpen,
-      };
     case TOGGLE_MENU:
       return {
         ...state,

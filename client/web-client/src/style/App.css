@@ -771,6 +771,10 @@ a:hover {
           box-shadow: 0px 0px 1px 3px #147bdc;
 }
 
+.user-exercises {
+  margin-bottom: 2rem;
+}
+
 .user-exercises__summary {
   display: -ms-grid;
   display: grid;
@@ -869,7 +873,8 @@ a:hover {
 }
 
 .add-exercise,
-.edit-exercise {
+.edit-exercise,
+.create-workout {
   border-radius: 0.75rem;
   background: #fcfcfc;
   color: black;
@@ -886,7 +891,8 @@ a:hover {
 }
 
 .add-exercise__modal,
-.edit-exercise__modal {
+.edit-exercise__modal,
+.create-workout__modal {
   color: black;
   display: -ms-grid;
   display: grid;
@@ -900,7 +906,8 @@ a:hover {
 }
 
 .add-exercise__modal .divider,
-.edit-exercise__modal .divider {
+.edit-exercise__modal .divider,
+.create-workout__modal .divider {
   width: 100%;
   border-bottom-color: rgba(0, 0, 0, 0.15);
   -webkit-box-shadow: 0px 1px 3px -1px rgba(0, 0, 0, 0.2);
@@ -908,7 +915,8 @@ a:hover {
 }
 
 .add-exercise .form-field,
-.edit-exercise .form-field {
+.edit-exercise .form-field,
+.create-workout .form-field {
   position: relative;
   color: black;
   margin-bottom: 0.75rem;
@@ -921,7 +929,8 @@ a:hover {
 }
 
 .add-exercise .form-field label,
-.edit-exercise .form-field label {
+.edit-exercise .form-field label,
+.create-workout .form-field label {
   -webkit-box-flex: 2;
       -ms-flex-positive: 2;
           flex-grow: 2;
@@ -935,7 +944,10 @@ a:hover {
 .add-exercise .form-field textarea,
 .edit-exercise .form-field input,
 .edit-exercise .form-field select,
-.edit-exercise .form-field textarea {
+.edit-exercise .form-field textarea,
+.create-workout .form-field input,
+.create-workout .form-field select,
+.create-workout .form-field textarea {
   min-height: 30px;
   max-height: 200px;
   font-family: inherit;
@@ -962,7 +974,10 @@ a:hover {
 .add-exercise .form-field textarea:focus,
 .edit-exercise .form-field input:focus,
 .edit-exercise .form-field select:focus,
-.edit-exercise .form-field textarea:focus {
+.edit-exercise .form-field textarea:focus,
+.create-workout .form-field input:focus,
+.create-workout .form-field select:focus,
+.create-workout .form-field textarea:focus {
   outline: none;
   -webkit-box-shadow: 0px 0px 1px 3px rgba(0, 132, 255, 0.85);
           box-shadow: 0px 0px 1px 3px rgba(0, 132, 255, 0.85);
@@ -973,25 +988,34 @@ a:hover {
 .add-exercise .form-field textarea.input-error,
 .edit-exercise .form-field input.input-error,
 .edit-exercise .form-field select.input-error,
-.edit-exercise .form-field textarea.input-error {
+.edit-exercise .form-field textarea.input-error,
+.create-workout .form-field input.input-error,
+.create-workout .form-field select.input-error,
+.create-workout .form-field textarea.input-error {
   border-color: red;
 }
 
 .add-exercise .form-field.duration, .add-exercise .form-field.distance,
 .edit-exercise .form-field.duration,
-.edit-exercise .form-field.distance {
+.edit-exercise .form-field.distance,
+.create-workout .form-field.duration,
+.create-workout .form-field.distance {
   position: relative;
 }
 
 .add-exercise .form-field.duration input, .add-exercise .form-field.distance input,
 .edit-exercise .form-field.duration input,
-.edit-exercise .form-field.distance input {
+.edit-exercise .form-field.distance input,
+.create-workout .form-field.duration input,
+.create-workout .form-field.distance input {
   max-width: 80px;
 }
 
 .add-exercise .form-field.duration label:last-of-type, .add-exercise .form-field.distance label:last-of-type,
 .edit-exercise .form-field.duration label:last-of-type,
-.edit-exercise .form-field.distance label:last-of-type {
+.edit-exercise .form-field.distance label:last-of-type,
+.create-workout .form-field.duration label:last-of-type,
+.create-workout .form-field.distance label:last-of-type {
   color: rgba(0, 0, 0, 0.5);
   font-weight: 500;
   position: absolute;
@@ -999,7 +1023,8 @@ a:hover {
 }
 
 .add-exercise .form-field .error,
-.edit-exercise .form-field .error {
+.edit-exercise .form-field .error,
+.create-workout .form-field .error {
   position: absolute;
   color: white;
   font-weight: 700;
@@ -1013,7 +1038,8 @@ a:hover {
 }
 
 .add-exercise .btn,
-.edit-exercise .btn {
+.edit-exercise .btn,
+.create-workout .btn {
   margin-right: 0.5rem;
   padding: 0.4rem;
   border-radius: 4px;
@@ -1022,19 +1048,22 @@ a:hover {
 }
 
 .add-exercise .btn.add,
-.edit-exercise .btn.add {
+.edit-exercise .btn.add,
+.create-workout .btn.add {
   color: white;
   background: #4caf50;
 }
 
 .add-exercise .btn.add:disabled,
-.edit-exercise .btn.add:disabled {
+.edit-exercise .btn.add:disabled,
+.create-workout .btn.add:disabled {
   opacity: 0.5;
   cursor: default;
 }
 
 .add-exercise .buttons-container,
-.edit-exercise .buttons-container {
+.edit-exercise .buttons-container,
+.create-workout .buttons-container {
   margin-bottom: 0;
   display: -ms-grid;
   display: grid;
@@ -1045,7 +1074,8 @@ a:hover {
 }
 
 .add-exercise .buttons-container button,
-.edit-exercise .buttons-container button {
+.edit-exercise .buttons-container button,
+.create-workout .buttons-container button {
   margin: 0;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
@@ -1057,7 +1087,8 @@ a:hover {
 }
 
 .add-exercise .buttons-container button.cancel,
-.edit-exercise .buttons-container button.cancel {
+.edit-exercise .buttons-container button.cancel,
+.create-workout .buttons-container button.cancel {
   background: #eb0d11;
   color: white;
 }

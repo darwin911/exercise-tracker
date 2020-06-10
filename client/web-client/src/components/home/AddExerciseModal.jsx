@@ -11,9 +11,11 @@ import * as Yup from 'yup';
 const { ADD_EXERCISE, TOGGLE_MODAL } = CONSTANTS;
 const { PUSH_UPS, RUN } = EXERCISE_TYPES;
 
+const DOMRoot = document.querySelector('#root');
+
 export const AddExerciseModal = () => {
   const [state, dispatch] = useContext(AuthContext);
-  const { user, modalOpen } = state;
+  const { user } = state;
   const history = useHistory();
 
   const [loading, setLoading] = useState(false);
@@ -37,9 +39,6 @@ export const AddExerciseModal = () => {
   };
 
   const closeModal = () => {
-    if (modalOpen) {
-      dispatch({ type: TOGGLE_MODAL });
-    }
     history.push('/home');
   };
 
@@ -212,7 +211,7 @@ export const AddExerciseModal = () => {
                   id='note'
                   as='textarea'
                   rows='2'
-                  maxlength='999'
+                  maxLength='999'
                   name='note'
                   type='text'
                   placeholder='Felt great!'
@@ -244,6 +243,6 @@ export const AddExerciseModal = () => {
         }}
       </Formik>
     </motion.aside>,
-    document.body
+    DOMRoot
   );
 };

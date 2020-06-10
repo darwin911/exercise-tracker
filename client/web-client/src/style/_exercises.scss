@@ -217,6 +217,10 @@
   }
 }
 
+.user-exercises {
+  margin-bottom: 2rem;
+}
+
 .user-exercises__summary {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -301,7 +305,8 @@
 }
 
 .add-exercise,
-.edit-exercise {
+.edit-exercise,
+.create-workout {
   border-radius: 0.75rem;
   background: hsl(0, 0%, 99%);
   color: black;

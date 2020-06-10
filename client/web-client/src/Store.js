@@ -5,8 +5,6 @@ const initialState = {
   user: null,
   loading: false,
   exercises: [],
-  modalOpen: false,
-  navMenuIsOpen: false,
   filter: 'ALL',
   allUsers: [],
   filteredFriendSearch: [],
