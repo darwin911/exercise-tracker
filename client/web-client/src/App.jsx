@@ -6,20 +6,14 @@ import { Route, useHistory, withRouter } from 'react-router-dom';
 import { AuthContext } from './Store';
 import { Header } from './components/Header';
 import { Auth } from './components/auth/Auth';
-import { UserExercises } from './components/home/UserExercises';
-import { AddExerciseModal } from './components/home/AddExerciseModal';
-import { EditExerciseModal } from './components/home/EditExerciseModal';
 import { Profile } from './components/profile/Profile';
-import { Loader } from './components/Loader';
-// import { ActivityTypes } from './components/home/ActivityTypes';
-// import { Chart } from './components/Chart';
-// import { StackedChart } from './components/home/StackedChart';
-// import { PushUpMonitor } from './components/home/PushUpMonitor';
+import { Home } from './components/home/Home';
+import { Footer } from './components/Footer';
 const { SET_USER, SET_EXERCISES, TOGGLE_LOADING } = CONSTANTS;
 
 export const App = withRouter(({ location }) => {
   const [state, dispatch] = useContext(AuthContext);
-  const { exercises, user } = state;
+  const { user } = state;
   const [menuOpen, setMenuOpen] = useState(false);
   const history = useHistory();
   const openModal = location.pathname.includes('/add') || location.pathname.includes('/edit');
@@ -66,43 +60,14 @@ export const App = withRouter(({ location }) => {
 
   return (
     <div className={`App${openModal ? ' modal-open' : ''} ${menuOpen ? ' menu-open' : ''}`}>
-      <Route path='/home'>
-        <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
-        {user ? (
-          <main className={`container`}>
-            {/* <Chart /> */}
-            {/* <StackedChart /> */}
-            {/* <PushUpMonitor data={pushUpData} /> */}
-            <UserExercises />
-          </main>
-        ) : (
-          <Loader size={8} />
-        )}
-
-        <Route path='/home/add' render={() => <AddExerciseModal />} />
-        <Route
-          path='/home/edit/:exerciseId'
-          render={({ match }) => {
-            const { exerciseId } = match.params;
-            const [editExercise] = exercises.filter((ex) => ex.id === exerciseId);
-            if (!editExercise) return null;
-            return <EditExerciseModal exercise={editExercise} />;
-          }}
-        />
-      </Route>
+      <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <Route path='/home' render={() => <Home />} />
       <Route
         path='/profile'
         render={() => <Profile isOpen={menuOpen} setMenuOpen={setMenuOpen} />}
       />
       <Route path='/auth' component={Auth} />
-      <footer className='footer'>
-        <div className='container'>
-          <br />
-          <strong>Created by &copy; Darwin Smith</strong>
-          <span> {new Date().getFullYear()}</span>
-          <br />
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 });

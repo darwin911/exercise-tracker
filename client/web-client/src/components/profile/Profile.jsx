@@ -14,7 +14,6 @@ export const Profile = ({ isOpen, setMenuOpen }) => {
 
   return (
     <>
-      <Header isOpen={isOpen} setMenuOpen={setMenuOpen} />
       <main className='container'>
         <div className='profile wrapper'>
           <ProfileCard />
