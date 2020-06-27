@@ -4,11 +4,11 @@ import { CONSTANTS } from './constants';
 import { getUserExercises, verifyToken, getUserPushUpsData, getUser } from './helper';
 import { Route, useHistory, withRouter } from 'react-router-dom';
 import { AuthContext } from './Store';
-import { Header } from './components/Header';
-import { Auth } from './components/auth/Auth';
-import { Profile } from './components/profile/Profile';
-import { Home } from './components/home/Home';
-import { Footer } from './components/Footer';
+import { Header } from './Components/Header';
+import { Auth } from './Components/Auth/Auth';
+import { Profile } from './Components/Profile/Profile';
+import { Home } from './Components/Home/Home';
+import { Footer } from './Components/Footer';
 const { SET_USER, SET_EXERCISES, TOGGLE_LOADING } = CONSTANTS;
 
 export const App = withRouter(({ location }) => {
