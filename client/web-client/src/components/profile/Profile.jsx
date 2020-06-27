@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../Store';
 import { Route } from 'react-router-dom';
 import { Loader } from '../Loader';
-import { Header } from '../Header';
 import { ProfileCard } from './ProfileCard';
 import { ConfirmDeleteAccountModal } from './ConfirmDeleteAccountModal';
 import { Friends } from './Friends';
+import { WeightTracker } from './WeightTracker';
 
 export const Profile = ({ isOpen, setMenuOpen }) => {
   const [{ user }] = useContext(AuthContext);
@@ -18,6 +18,7 @@ export const Profile = ({ isOpen, setMenuOpen }) => {
         <div className='profile wrapper'>
           <ProfileCard />
           <Friends />
+          <WeightTracker />
         </div>
         <Route
           path='/profile/:id/delete'
