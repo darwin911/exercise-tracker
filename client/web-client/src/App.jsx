@@ -61,7 +61,7 @@ export const App = withRouter(({ location }) => {
   return (
     <div className={`App${openModal ? ' modal-open' : ''} ${menuOpen ? ' menu-open' : ''}`}>
       <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      <Route path='/home' render={() => <Home />} />
+      <Route path='/home' component={Home} />
       <Route
         path='/profile'
         render={() => <Profile isOpen={menuOpen} setMenuOpen={setMenuOpen} />}

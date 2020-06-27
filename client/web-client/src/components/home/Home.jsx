@@ -4,7 +4,7 @@ import { AddExerciseModal } from './AddExerciseModal';
 import { EditExerciseModal } from './EditExerciseModal';
 import { CreateWorkoutModal } from './CreateWorkoutModal';
 import { Loader } from '../Loader';
-import { Workouts } from './Workouts';
+// import { Workouts } from './Workouts';
 import { Route } from 'react-router-dom';
 import { AuthContext } from '../../Store';
 
@@ -12,7 +12,7 @@ export const Home = () => {
   const [{ user, exercises }] = useContext(AuthContext);
   return user ? (
     <main className={`container`}>
-      <Workouts />
+      {/* <Workouts /> */}
       <UserExercises />
       <Route path='/home/add' render={() => <AddExerciseModal />} />
       <Route
