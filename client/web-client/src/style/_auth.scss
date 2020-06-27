@@ -16,23 +16,36 @@
   }
 
   form {
-    max-width: 80vw;
-    margin: 0 auto;
-    width: 500px;
-    padding: 2rem 1rem;
+    font-size: 1.15em;
+    min-width: 220px;
+    max-width: 90vw;
+    margin: 0;
+    padding: 2rem 1.25rem;
     border-radius: 14px;
     color: white;
     background: linear-gradient(to bottom right, #263238, hsla(200, 19%, 10%, 1));
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0px 4px 1rem -2px rgba(0, 0, 0, 0.7);
 
+    @media screen and (min-width: 768px) {
+      min-width: 500px;
+      margin: 0 auto;
+    }
+    @media screen and (min-width: 1200px) {
+      font-size: 1.2em;
+      width: 600px;
+    }
+
     h2 {
       text-shadow: 3px 3px 3px rgba(0, 0, 0, 1), 0px 0px 8px rgba(0, 0, 0, 0.9);
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(white, 0.1);
+      margin-bottom: 1rem;
     }
 
     .form-field {
       position: relative;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       display: flex;
       flex-direction: column;
 
@@ -102,7 +115,7 @@
       width: 100%;
       font-weight: bold;
       transition: 200ms ease-in-out;
-      margin-bottom: 1rem;
+      margin-bottom: 3rem;
       &:focus {
         outline: none;
         box-shadow: 0px 0px 1px 3px rgba(0, 132, 255, 0.85);

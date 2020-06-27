@@ -7,7 +7,7 @@ export const AuthLink = ({ path }) => {
     <p>
       {isLogin ? "Don't " : 'Already '}
       have an account?{' '}
-      <Link to={`/auth/${path}`} style={{ textTransform: 'capitalize' }}>
+      <Link to={`/auth/${path}`} style={{ textTransform: 'capitalize', fontWeight: 'bold' }}>
         {path}
       </Link>
     </p>

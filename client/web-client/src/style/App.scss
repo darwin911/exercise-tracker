@@ -137,22 +137,19 @@ a:hover {
   background: $app-bg;
   height: 100%;
   position: relative;
+  box-sizing: border-box;
 
   &.modal-open {
     filter: $blur;
-  }
-
-  header.header {
-    width: 90vw;
-    max-width: $container-max-width;
-    margin: 0 auto 5vh;
   }
 
   main.container {
     width: 90vw;
     max-width: $container-max-width;
     margin: 0 auto;
+    padding: 2rem 0;
     position: relative;
+    flex-grow: 1;
   }
 
   footer > .container {
@@ -236,13 +233,16 @@ a:hover {
 .header {
   pointer-events: initial;
   position: relative;
-  padding: 1rem 0;
-  margin-bottom: 1rem;
+  padding: 1.5rem 0;
+  width: 100%;
+
   nav {
+    width: 90vw;
+    max-width: $container-max-width;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: $xl;
     margin: 0 auto;
   }
 }
@@ -308,6 +308,11 @@ a:hover {
   align-items: center;
   position: relative;
   z-index: 1000;
+  transition: opacity 125ms ease-out;
+  &:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+  }
 
   span {
     $width: 1.25rem;
