@@ -15,8 +15,8 @@ export const RegisterForm = () => {
   const registerValidation = Yup.object({
     name: Yup.string().max(255, 'Must be 255 characters or less'),
     username: Yup.string().min(3, 'Too Short!').max(50, 'Too Long!'),
-    email: Yup.string().email('Invalid email address').required('Required'),
-    password: Yup.string().min(4, 'Must be 4 characters or more').required('Required'),
+    email: Yup.string().email('Invalid email address').required('Email Required'),
+    password: Yup.string().min(4, 'Must be 4 characters or more').required('Password Required'),
   });
 
   const handleRegister = async (values) => {
@@ -45,11 +45,21 @@ export const RegisterForm = () => {
       }}
       validationSchema={registerValidation}
       onSubmit={handleRegister}>
-      {({ values, errors, touched, handleSubmit, handleChange, handleBlur, isSubmitting }) => (
+      {({
+        values,
+        errors,
+        touched,
+        handleSubmit,
+        handleChange,
+        handleBlur,
+        isSubmitting,
+        isValid,
+      }) => (
         <form onSubmit={handleSubmit}>
-          <h2>Register</h2>
-          <br />
-
+          <header>
+            <h2>Register</h2>
+            <img src={process.env.PUBLIC_URL + '/images/user.svg'} alt='Register' />
+          </header>
           <FormField
             inputType='name'
             value={values.name}
@@ -86,7 +96,9 @@ export const RegisterForm = () => {
             disabled={isSubmitting}
           />
 
-          <button type='submit'>{isSubmitting ? <div className='loader' /> : 'Submit'}</button>
+          <button type='submit' disabled={!isValid}>
+            {isSubmitting ? <div className='loader' /> : 'Submit'}
+          </button>
 
           <AuthLink path='login' />
         </form>

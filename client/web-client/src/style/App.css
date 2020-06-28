@@ -329,16 +329,32 @@ a:hover {
   }
 }
 
-.auth form h2 {
-  text-shadow: 3px 3px 3px black, 0px 0px 8px rgba(0, 0, 0, 0.9);
-  padding-bottom: 0.75rem;
+.auth form header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   margin-bottom: 1rem;
+  padding-bottom: 0.5em;
+}
+
+.auth form header img {
+  height: 4rem;
+}
+
+.auth form h2 {
+  text-shadow: 3px 3px 3px black, 0px 0px 8px rgba(0, 0, 0, 0.9);
 }
 
 .auth form .form-field {
   position: relative;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -359,7 +375,7 @@ a:hover {
 
 .auth form label {
   display: block;
-  font-size: 0.75em;
+  font-size: 1em;
   font-weight: 500;
   margin-bottom: 0.5em;
 }
@@ -367,56 +383,45 @@ a:hover {
 .auth form input,
 .auth form button {
   font-weight: 500;
-  border-radius: 6px;
-  padding: 0.5rem;
-  font-size: 0.9em;
-}
-
-.auth form input:disabled,
-.auth form button:disabled {
-  background: rgba(83, 83, 83, 0.5);
-  opacity: 0.5;
-}
-
-.auth form input:disabled:hover,
-.auth form button:disabled:hover {
-  cursor: not-allowed;
+  border-radius: 10px;
+  padding: 0.65rem;
+  font-size: 1em;
 }
 
 .auth form input {
+  font-size: 0.9em;
   background: rgba(255, 255, 255, 0.05);
   color: white;
-  -webkit-transition: 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  transition: 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -webkit-transition: 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   -webkit-box-shadow: 0px 1px 0.3rem -0.1rem rgba(0, 0, 0, 0.6), 0px 0px 0.6rem -0.1rem rgba(0, 0, 0, 0.2);
           box-shadow: 0px 1px 0.3rem -0.1rem rgba(0, 0, 0, 0.6), 0px 0px 0.6rem -0.1rem rgba(0, 0, 0, 0.2);
 }
 
 .auth form input:focus {
-  padding-top: 0.7rem;
-  padding-bottom: 0.7rem;
+  padding: 0.85em;
   color: black;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   outline: none;
   -webkit-box-shadow: inset 0px 0px 0px 2px rgba(0, 132, 255, 0.85), 0px 1px 0.3rem -0.1rem rgba(0, 0, 0, 0.6), 0px 0px 0.6rem -0.1rem rgba(0, 0, 0, 0.2);
           box-shadow: inset 0px 0px 0px 2px rgba(0, 132, 255, 0.85), 0px 1px 0.3rem -0.1rem rgba(0, 0, 0, 0.6), 0px 0px 0.6rem -0.1rem rgba(0, 0, 0, 0.2);
 }
 
 .auth form input:focus::-webkit-input-placeholder {
-  color: black;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .auth form input:focus:-ms-input-placeholder {
-  color: black;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .auth form input:focus::-ms-input-placeholder {
-  color: black;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .auth form input:focus::placeholder {
-  color: black;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .auth form input.has-error {
@@ -441,21 +446,46 @@ a:hover {
 }
 
 .auth form button {
+  display: block;
   color: white;
-  background: #10ac44;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  background: -webkit-gradient(linear, right bottom, left top, from(#0a702c), to(#10ac44));
+  background: linear-gradient(to top left, #0a702c, #10ac44);
+  -webkit-box-shadow: 0px 1px 0.5rem -0.1rem rgba(0, 0, 0, 0.93), 0px 0px 1rem -0.1rem rgba(0, 0, 0, 0.68);
+          box-shadow: 0px 1px 0.5rem -0.1rem rgba(0, 0, 0, 0.93), 0px 0px 1rem -0.1rem rgba(0, 0, 0, 0.68);
   width: 100%;
   font-weight: bold;
-  -webkit-transition: 200ms ease-in-out;
-  transition: 200ms ease-in-out;
-  margin-bottom: 3rem;
+  -webkit-transition: 120ms ease-out;
+  transition: 120ms ease-out;
+  margin: 0 auto 3rem;
+  padding: 1rem;
 }
 
 .auth form button:focus {
   outline: none;
   -webkit-box-shadow: 0px 0px 1px 3px rgba(0, 132, 255, 0.85);
           box-shadow: 0px 0px 1px 3px rgba(0, 132, 255, 0.85);
+}
+
+.auth form button:hover:not(:disabled) {
+  -webkit-transform: translateY(-3px);
+          transform: translateY(-3px);
+  color: #ddd;
+}
+
+.auth form button:active {
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+}
+
+.auth form button:disabled {
+  background: rgba(83, 83, 83, 0.65);
+  opacity: 0.5;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.auth form button:disabled:hover {
+  cursor: not-allowed;
 }
 
 .auth .error {

@@ -26,8 +26,8 @@ export const LoginForm = () => {
   };
 
   const loginValidation = Yup.object({
-    email: Yup.string().email('Invalid email').required('Required'),
-    password: Yup.string().min(4, 'Must be 4 characters or more').required('Required'),
+    email: Yup.string().email('Invalid email').required('Email Address Required'),
+    password: Yup.string().min(4, 'Must be 4 characters or more').required('Password Required'),
   });
 
   return (
@@ -37,7 +37,9 @@ export const LoginForm = () => {
         password: '',
       }}
       validationSchema={loginValidation}
-      onSubmit={handleLogin}>
+      onSubmit={handleLogin}
+      validateOnBlur
+      isInitialValid={false}>
       {({
         errors,
         values,
@@ -47,10 +49,14 @@ export const LoginForm = () => {
         handleSubmit,
         touched,
         status,
+        isValid,
       }) => {
         return (
           <form onSubmit={handleSubmit}>
-            <h2>Login</h2>
+            <header>
+              <h2>Login</h2>
+              <img src={process.env.PUBLIC_URL + '/images/verification-login.svg'} alt='Login' />
+            </header>
             <br />
             <FormField
               inputType='email'
@@ -68,7 +74,9 @@ export const LoginForm = () => {
               error={touched.password && errors.password}
               disabled={isSubmitting}
             />
-            <button type='submit'>{isSubmitting ? <div className='loader' /> : 'Submit'}</button>
+            <button type='submit' disabled={!isValid}>
+              {isSubmitting ? <div className='loader' /> : 'Submit'}
+            </button>
             <AuthLink path='register' />
           </form>
         );
