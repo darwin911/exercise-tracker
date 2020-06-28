@@ -158,15 +158,6 @@ a:hover {
     margin: 0 auto;
   }
 
-  .footer {
-    position: relative;
-    bottom: 0;
-    background: black;
-    color: white;
-    padding: 2rem;
-    margin-top: auto;
-  }
-
   .btn {
     border-radius: 0.5rem;
     padding: 0.5rem;
@@ -227,13 +218,14 @@ a:hover {
 @import './auth';
 @import './exercises';
 @import './profile';
+@import './footer';
 
 // Header
 
 .header {
   pointer-events: initial;
   position: relative;
-  padding: 1.5rem 0;
+  padding-top: 1.5rem;
   width: 100%;
 
   nav {
