@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from 'react';
 import { ExercisesSummary } from './ExercisesSummary';
 import { FilterExercises } from '../FilterExercises';
 import { ExerciseList } from './ExerciseList';
-import { Loader } from '../Loader';
 import { AddExerciseButton } from '../AddExerciseButton';
 import { AuthContext } from '../../Store';
 import { ACTIVITY_TYPES } from '../../constants';
@@ -29,6 +28,8 @@ export const UserExercises = () => {
     setFilteredExercises(exercisesToUpdate);
   }, [filter, exercises]);
 
+  if (loading) return null;
+
   const minutes = getTotalMinutes(filteredExercises);
   const count = filteredExercises.length;
   const miles = getTotalMiles(filteredExercises);
@@ -48,15 +49,12 @@ export const UserExercises = () => {
     </aside>
   );
 
-  if (!loading) {
-    return (
-      <section className='user-exercises'>
-        <Dashboard />
-        <ExerciseList exercises={filteredExercises} />
-      </section>
-    );
-  }
-  return <Loader size={4} />;
+  return (
+    <section className='user-exercises'>
+      <Dashboard />
+      <ExerciseList exercises={filteredExercises} />
+    </section>
+  );
 };
 
 const filterExercisesByActivity = (value, exercisesArray) => {
