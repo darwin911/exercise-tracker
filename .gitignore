@@ -6,3 +6,4 @@
 
 *.css.map
 .eslintrc.json
+netlify.toml
