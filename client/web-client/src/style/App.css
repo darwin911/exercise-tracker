@@ -1135,7 +1135,8 @@ a:hover {
   color: white;
 }
 
-.filter {
+.filter-by-type,
+.filter-by-date {
   border: none;
   border-radius: 50rem;
   background: #e7e7e7;
@@ -1166,10 +1167,40 @@ a:hover {
   margin-bottom: 2rem;
 }
 
+.filter__wrapper {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.filter__wrapper div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.filter__wrapper div:not(:last-child) {
+  margin-bottom: 1em;
+}
+
 .filter:focus {
   outline: none;
   -webkit-box-shadow: 0px 0px 1px 3px rgba(181, 53, 255, 0.9);
           box-shadow: 0px 0px 1px 3px rgba(181, 53, 255, 0.9);
+}
+
+.empty-filter-result {
+  font-size: 1.25em;
+}
+
+.empty-filter-result h3 {
+  margin-bottom: 1rem;
 }
 
 .cancel-svg {
@@ -1769,9 +1800,9 @@ a:hover {
     background: #1f201d;
   }
   .dashboard .user-exercises__summary {
-    -webkit-box-flex: 5;
-        -ms-flex-positive: 5;
-            flex-grow: 5;
+    -webkit-box-flex: 3;
+        -ms-flex-positive: 3;
+            flex-grow: 3;
     margin: 0;
   }
   .dashboard .filter__container {

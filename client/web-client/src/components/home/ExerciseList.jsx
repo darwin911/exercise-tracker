@@ -4,9 +4,10 @@ import { AnimatePresence } from 'framer-motion';
 import { AuthContext } from '../../Store';
 
 export const ExerciseList = ({ exercises }) => {
-  const { filter } = useContext(AuthContext)[0];
+  const { filterByType, filterByDate } = useContext(AuthContext)[0];
 
-  if (!exercises.length) return <EmptyFilterResult selectValue={filter} />;
+  if (!exercises.length)
+    return <EmptyFilterResult typeFilter={filterByType} dateFilter={filterByDate} />;
 
   return (
     <article className='exercises__container'>
@@ -19,9 +20,12 @@ export const ExerciseList = ({ exercises }) => {
   );
 };
 
-const EmptyFilterResult = ({ selectValue }) => (
-  <div>
-    <h3>Sorry</h3>
-    <p>No{selectValue === 'ALL' ? '' : ` ${selectValue}`} exercises found.</p>
-  </div>
+const EmptyFilterResult = ({ typeFilter, dateFilter }) => (
+  <article className='empty-filter-result'>
+    <h3>No Results</h3>
+    <p>
+      No{typeFilter === 'ALL' ? '' : ` ${typeFilter}`} exercises found in {dateFilter.toLowerCase()}
+      .
+    </p>
+  </article>
 );

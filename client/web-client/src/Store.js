@@ -5,7 +5,8 @@ const initialState = {
   user: null,
   loading: false,
   exercises: [],
-  filter: 'ALL',
+  filterByType: 'ALL',
+  filterByDate: 'All Time',
   allUsers: [],
   filteredFriendSearch: [],
 };

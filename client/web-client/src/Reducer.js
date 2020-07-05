@@ -8,17 +8,17 @@ const {
   SET_EXERCISES,
   REMOVE_EXERCISE,
   ADD_EXERCISE,
-  TOGGLE_MODAL,
   LOAD_PUSH_UPS_DATA,
   FILTER_ALL,
   FILTER_CURRENT_MONTH,
   FILTER_CURRENT_WEEK,
   UPDATE_EXERCISE,
-  SET_FILTER,
+  SET_FILTER_BY_TYPE,
   TOGGLE_MENU,
   SET_ALL_USERS,
   SET_FILTERED_FRIENDS_RESULT,
   DECLINE_FRIEND_REQUEST,
+  SET_FILTER_BY_DATE,
 } = CONSTANTS;
 
 export const Reducer = (state, action) => {
@@ -100,10 +100,10 @@ export const Reducer = (state, action) => {
         ...state,
         loading: !state.loading,
       };
-    case SET_FILTER: {
+    case SET_FILTER_BY_TYPE: {
       return {
         ...state,
-        filter: action.payload,
+        filterByType: action.payload,
       };
     }
     case LOAD_PUSH_UPS_DATA: {
@@ -131,6 +131,12 @@ export const Reducer = (state, action) => {
           ...state.user,
           friendRequests: [...state.user.friendRequests.filter((req) => req !== action.payload)],
         },
+      };
+    }
+    case SET_FILTER_BY_DATE: {
+      return {
+        ...state,
+        filterByDate: action.payload,
       };
     }
     default:
