@@ -4,6 +4,7 @@ import { FilterExercises } from '../FilterExercises';
 import { ExerciseList } from './ExerciseList';
 import { AddExerciseButton } from '../AddExerciseButton';
 import { AuthContext } from '../../Store';
+import { Loader } from '../Loader';
 import { ACTIVITY_TYPES } from '../../constants';
 
 const activityTypes = Object.values(ACTIVITY_TYPES).map((type) => type.title);
@@ -48,6 +49,10 @@ export const UserExercises = () => {
       </div>
     </aside>
   );
+
+  if (!filteredExercises.length) {
+    return <Loader size={8} />;
+  }
 
   return (
     <section className='user-exercises'>
