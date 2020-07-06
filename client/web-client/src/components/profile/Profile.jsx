@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../../Store';
+import { AppContext } from '../../Store';
 import { Route } from 'react-router-dom';
 import { Loader } from '../Loader';
 import { ProfileCard } from './ProfileCard';
@@ -7,8 +7,8 @@ import { ConfirmDeleteAccountModal } from './ConfirmDeleteAccountModal';
 import { Friends } from './Friends';
 import { WeightTracker } from './WeightTracker';
 
-export const Profile = ({ isOpen, setMenuOpen }) => {
-  const [{ user }] = useContext(AuthContext);
+export const Profile = () => {
+  const [{ user }] = useContext(AppContext);
 
   if (!user) return <Loader size={4} />;
 

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { deleteExercise } from '../../helper';
 import moment from 'moment';
-import { AuthContext } from '../../Store';
+import { AppContext } from '../../Store';
 import { CONSTANTS, EXERCISE_TYPES, TRANSITIONS } from '../../constants';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -9,12 +9,12 @@ import { CancelSVG } from '../CancelSVG';
 const { REMOVE_EXERCISE, TOGGLE_MODAL } = CONSTANTS;
 
 export const Exercise = ({ exercise }) => {
-  const dispatch = useContext(AuthContext)[1];
+  const dispatch = useContext(AppContext)[1];
 
   const [deleting, setDeleting] = useState(false);
   const { id, note, duration, date, time, type, distance, repetitions } = exercise;
 
-  const handleDelete = async id => {
+  const handleDelete = async (id) => {
     setDeleting(true);
     await deleteExercise(id);
     setDeleting(false);

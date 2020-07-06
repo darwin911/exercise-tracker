@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ACTIVITY_TYPES, EXERCISE_TYPES, CONSTANTS } from '../constants';
-import { AuthContext } from '../Store';
+import { AppContext } from '../Store';
 const { SET_FILTER_BY_TYPE, SET_FILTER_BY_DATE } = CONSTANTS;
 const activityTypes = Object.values(ACTIVITY_TYPES).map((type) => type.title);
 const exerciseTypeValues = Object.values(EXERCISE_TYPES);
 
 export const FilterExercises = () => {
-  const [{ filterByType, filterByDate }, dispatch] = React.useContext(AuthContext);
+  const [{ filterByType, filterByDate }, dispatch] = useContext(AppContext);
 
   const handleSetFilterByType = (e) => {
     const inputValueFilter = e.target.value;

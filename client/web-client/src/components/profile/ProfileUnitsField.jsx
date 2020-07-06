@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../../Store';
+import { AppContext } from '../../Store';
 import { CONSTANTS } from '../../constants';
 import { updateUser } from '../../helper';
 
 export const ProfileUnitsField = () => {
-  const [{ user }, dispatch] = useContext(AuthContext);
+  const [{ user }, dispatch] = useContext(AppContext);
   const { SET_USER, UNITS } = CONSTANTS;
 
   const handleChangeUnits = async (e) => {

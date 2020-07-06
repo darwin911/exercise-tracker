@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { AuthContext } from '../../Store';
+import { AppContext } from '../../Store';
 import { updateUser } from '../../helper';
 import { CONSTANTS } from '../../constants';
 
@@ -8,7 +8,7 @@ const { SET_USER, UNITS } = CONSTANTS;
 const convertToKg = (lbs) => Number(lbs / 2.2046).toFixed(1);
 
 export const ProfileField = ({ field }) => {
-  const [{ user }, dispatch] = useContext(AuthContext);
+  const [{ user }, dispatch] = useContext(AppContext);
   const userfieldVal = user[`${field}`];
 
   const [value, setValue] = useState(userfieldVal);

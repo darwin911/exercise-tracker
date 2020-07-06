@@ -3,7 +3,7 @@ import { ExercisesSummary } from './ExercisesSummary';
 import { FilterExercises } from '../FilterExercises';
 import { ExerciseList } from './ExerciseList';
 import { AddExerciseButton } from '../AddExerciseButton';
-import { AuthContext } from '../../Store';
+import { AppContext } from '../../Store';
 import { Loader } from '../Loader';
 import { ACTIVITY_TYPES } from '../../constants';
 import moment from 'moment';
@@ -11,7 +11,7 @@ import moment from 'moment';
 const activityTypes = Object.values(ACTIVITY_TYPES).map((type) => type.title);
 
 export const UserExercises = () => {
-  const { user, exercises, loading, filterByType, filterByDate } = useContext(AuthContext)[0];
+  const { user, exercises, loading, filterByType, filterByDate } = useContext(AppContext)[0];
 
   const [filteredExercises, setFilteredExercises] = useState(exercises);
 

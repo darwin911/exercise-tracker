@@ -11,10 +11,10 @@ const initialState = {
   filteredFriendSearch: [],
 };
 
-export const AuthContext = createContext(initialState);
+export const AppContext = createContext(initialState);
 
 export const Store = ({ children }) => {
   const [state, dispatch] = useReducer(Reducer, initialState);
 
-  return <AuthContext.Provider value={[state, dispatch]}>{children}</AuthContext.Provider>;
+  return <AppContext.Provider value={[state, dispatch]}>{children}</AppContext.Provider>;
 };

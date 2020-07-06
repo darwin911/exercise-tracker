@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../Store';
+import { AppContext } from '../Store';
 import { Link } from 'react-router-dom';
 import { CONSTANTS } from '../constants';
 import { motion } from 'framer-motion';
@@ -12,7 +12,7 @@ const spring = {
 };
 
 export const NavMenu = ({ isOpen, setMenuOpen }) => {
-  const [{ user }, dispatch] = useContext(AuthContext);
+  const [{ user }, dispatch] = useContext(AppContext);
 
   const handleLogout = () => {
     localStorage.removeItem('token');

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { AuthContext } from '../../Store';
+import { AppContext } from '../../Store';
 import { CONSTANTS } from '../../constants';
 import { getAllUsers, sendFriendRequest } from '../../helper';
 import { Avatar } from './Avatar';
@@ -10,7 +10,7 @@ const { SET_FILTERED_FRIENDS_RESULT, SET_ALL_USERS } = CONSTANTS;
 toast.configure();
 
 export const FriendSearch = () => {
-  const [state, dispatch] = useContext(AuthContext);
+  const [state, dispatch] = useContext(AppContext);
   const { allUsers, user } = state;
   const [searchValue, setSearchValue] = useState('');
   const [count, setCount] = useState(0);
@@ -59,7 +59,7 @@ export const FriendSearch = () => {
 };
 
 const AutoCompleteUserList = ({ setSearchValue }) => {
-  const [{ filteredFriendSearch: userList }] = useContext(AuthContext);
+  const [{ filteredFriendSearch: userList }] = useContext(AppContext);
 
   if (!userList) return null;
 
@@ -73,9 +73,7 @@ const AutoCompleteUserList = ({ setSearchValue }) => {
 };
 
 const AutoCompleteUserCard = ({ user, setValue }) => {
-  const [{ user: currentUser }] = useContext(AuthContext);
-
-  const dispatch = useContext(AuthContext)[1];
+  const [{ user: currentUser }, dispatch] = useContext(AppContext);
 
   const handleAddFriend = async (targetId) => {
     const resp = await sendFriendRequest(currentUser.id, { targetId });

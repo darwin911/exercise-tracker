@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AuthLink, FormField } from './index';
 import { useHistory } from 'react-router-dom';
 import { registerUser } from '../../helper';
-import { AuthContext } from '../../Store';
+import { AppContext } from '../../Store';
 import { CONSTANTS } from '../../constants';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -10,7 +10,7 @@ import * as Yup from 'yup';
 const { SET_USER } = CONSTANTS;
 
 export const RegisterForm = () => {
-  const dispatch = useContext(AuthContext)[1];
+  const dispatch = useContext(AppContext)[1];
   const history = useHistory();
   const registerValidation = Yup.object({
     name: Yup.string().max(255, 'Must be 255 characters or less'),

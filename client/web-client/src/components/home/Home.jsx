@@ -5,11 +5,11 @@ import { EditExerciseModal } from './EditExerciseModal';
 import { CreateWorkoutModal } from './CreateWorkoutModal';
 // import { Workouts } from './Workouts';
 import { Route } from 'react-router-dom';
-import { AuthContext } from '../../Store';
+import { AppContext } from '../../Store';
 import { Loader } from '../Loader';
 
 export const Home = () => {
-  const [{ exercises, loading }] = useContext(AuthContext);
+  const [{ exercises, loading }] = useContext(AppContext);
   return !loading ? (
     <main className={`container`}>
       {/* <Workouts /> */}

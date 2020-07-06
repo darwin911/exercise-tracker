@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { AuthContext } from '../../Store';
+import { AppContext } from '../../Store';
 import { removeFriend, getFriendsData } from '../../helper';
 import { CONSTANTS } from '../../constants';
 import { toast } from 'react-toastify';
@@ -10,7 +10,7 @@ const { SET_USER } = CONSTANTS;
 toast.configure();
 
 export const FriendList = ({ id }) => {
-  const [{ user: currentUser }, dispatch] = useContext(AuthContext);
+  const [{ user: currentUser }, dispatch] = useContext(AppContext);
   const { friends } = currentUser;
   const [friendData, setFriendData] = useState([]);
 

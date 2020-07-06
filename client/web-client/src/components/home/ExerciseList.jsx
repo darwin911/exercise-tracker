@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { Exercise } from './Exercise';
 import { AnimatePresence } from 'framer-motion';
-import { AuthContext } from '../../Store';
+import { AppContext } from '../../Store';
 
 export const ExerciseList = ({ exercises }) => {
-  const { filterByType, filterByDate } = useContext(AuthContext)[0];
+  const { filterByType, filterByDate } = useContext(AppContext)[0];
 
   if (!exercises.length)
     return <EmptyFilterResult typeFilter={filterByType} dateFilter={filterByDate} />;

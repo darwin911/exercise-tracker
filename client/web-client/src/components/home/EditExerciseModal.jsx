@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { editExercise } from '../../helper';
-import { AuthContext } from '../../Store';
+import { AppContext } from '../../Store';
 import { CONSTANTS, EXERCISE_TYPES } from '../../constants';
 import { motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
@@ -15,7 +15,7 @@ const DOMRoot = document.querySelector('#root');
 
 export const EditExerciseModal = ({ exercise }) => {
   const { id, date, time, duration, note, distance, type, repetitions } = exercise;
-  const [{ user }, dispatch] = useContext(AuthContext);
+  const [{ user }, dispatch] = useContext(AppContext);
 
   const history = useHistory();
 

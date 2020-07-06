@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { AuthContext } from '../../Store';
+import { AppContext } from '../../Store';
 import { ProfileField } from './ProfileField';
 import { ProfileUnitsField } from './ProfileUnitsField';
 import { Avatar } from './Avatar';
 
 export const ProfileCard = () => {
-  const [{ user }] = useContext(AuthContext);
+  const [{ user }] = useContext(AppContext);
   const history = useHistory();
   const [isHovered, setHovered] = React.useState(false);
 

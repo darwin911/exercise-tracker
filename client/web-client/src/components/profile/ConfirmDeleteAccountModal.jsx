@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { deleteUser } from '../../helper';
-import { AuthContext } from '../../Store';
+import { AppContext } from '../../Store';
 import { CONSTANTS, TRANSITIONS } from '../../constants';
 import { motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 const { LOGOUT } = CONSTANTS;
 
 export const ConfirmDeleteAccountModal = ({ userId }) => {
-  const [{ user }, dispatch] = useContext(AuthContext);
+  const [{ user }, dispatch] = useContext(AppContext);
   const history = useHistory();
 
   const handleCancel = () => {

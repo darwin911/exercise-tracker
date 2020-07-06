@@ -3,7 +3,7 @@ import './style/App.css';
 import { CONSTANTS } from './constants';
 import { getUserExercises, verifyToken, getUserPushUpsData, getUser } from './helper';
 import { Route, useHistory, withRouter } from 'react-router-dom';
-import { AuthContext } from './Store';
+import { AppContext } from './Store';
 import { Header } from './Components/Header';
 import { Auth } from './Components/Auth/Auth';
 import { Profile } from './Components/Profile/Profile';
@@ -13,7 +13,7 @@ import { Footer } from './Components/Footer';
 const { SET_USER, SET_EXERCISES, TOGGLE_LOADING } = CONSTANTS;
 
 export const App = withRouter(({ location }) => {
-  const [state, dispatch] = useContext(AuthContext);
+  const [state, dispatch] = useContext(AppContext);
   const { user, loading } = state;
   const [menuOpen, setMenuOpen] = useState(false);
   const history = useHistory();

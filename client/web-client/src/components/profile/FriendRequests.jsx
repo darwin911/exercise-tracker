@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { AuthContext } from '../../Store';
+import { AppContext } from '../../Store';
 import { CONSTANTS } from '../../constants';
 import { acceptFriendRequest, declineFriendRequest, getMultipleUsers } from '../../helper';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,7 +11,7 @@ const { SET_USER, DECLINE_FRIEND_REQUEST } = CONSTANTS;
 toast.configure();
 
 export const FriendRequests = () => {
-  const [{ user }, dispatch] = useContext(AuthContext);
+  const [{ user }, dispatch] = useContext(AppContext);
   const { friendRequests } = user;
   const [friendRequestData, setFriendRequestData] = React.useState([]);
   const pendingFriendRequests = user.friendRequests ? user.friendRequests.length : 0;
