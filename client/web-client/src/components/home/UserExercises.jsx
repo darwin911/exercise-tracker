@@ -91,13 +91,29 @@ const filterExercisesByDate = (exercises, dateFilter) => {
   let thirtyDaysAgo = moment().subtract(30, 'day').format('YYYY-MM-DD');
   let sevenDaysAgo = moment().subtract(7, 'day').format('YYYY-MM-DD');
   let threeDaysAgo = moment().subtract(3, 'day').format('YYYY-MM-DD');
+  let yesterday = moment().subtract(1, 'day').format('YYYY-MM-DD');
+  let today = moment().format('YYYY-MM-DD');
   switch (dateFilter) {
     case 'Last 30 Days':
-      return exercises.filter((exercise) => moment(exercise.date).isAfter(thirtyDaysAgo));
+      return exercises.filter((exercise) =>
+        moment(exercise.date, 'YYYY-MM-DD').isSameOrAfter(thirtyDaysAgo)
+      );
     case 'Last 7 Days':
-      return exercises.filter((exercise) => moment(exercise.date).isAfter(sevenDaysAgo));
+      return exercises.filter((exercise) =>
+        moment(exercise.date, 'YYYY-MM-DD').isSameOrAfter(sevenDaysAgo)
+      );
     case 'Last 3 Days':
-      return exercises.filter((exercise) => moment(exercise.date).isAfter(threeDaysAgo));
+      return exercises.filter((exercise) =>
+        moment(exercise.date, 'YYYY-MM-DD').isSameOrAfter(threeDaysAgo)
+      );
+    case 'Yesterday':
+      return exercises.filter((exercise) =>
+        moment(exercise.date, 'YYYY-MM-DD').isSameOrAfter(yesterday)
+      );
+    case 'Today':
+      return exercises.filter((exercise) =>
+        moment(exercise.date, 'YYYY-MM-DD').isSameOrAfter(today)
+      );
     default:
       return exercises;
   }
