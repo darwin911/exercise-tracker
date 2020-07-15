@@ -31,7 +31,7 @@ export const FriendList = ({ id }) => {
     if (currentUser) {
       loadFriendsData(currentUser.id, friends);
     }
-  }, [currentUser]);
+  }, [currentUser, friends]);
 
   const FriendCard = ({ targetUser }) => {
     const className = 'friend-card';

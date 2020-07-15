@@ -67,7 +67,7 @@ export const CreateWorkoutModal = () => {
         onSubmit={handleSubmit}
         validationSchema={validationSchema}>
         {({ values, errors, touched, handleSubmit, handleChange, handleBlur, isSubmitting }) => {
-          const { type, date, duration, distance, note, repetitions, time } = values;
+          const { type, duration, distance, repetitions } = values;
           const addButtonDisabledState =
             loading ||
             !type ||

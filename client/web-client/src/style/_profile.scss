@@ -139,12 +139,6 @@
     color: white;
     margin-right: 0.5rem;
   }
-
-  &__confirm-field-button {
-  }
-
-  &__cancel-field-button {
-  }
 }
 
 .form-field.unit-system > label {
@@ -215,9 +209,6 @@
       grid-row: 1 / -1;
     }
 
-    &__initials {
-    }
-
     &__add {
       color: white;
       border-radius: 0.5rem;
@@ -276,9 +267,6 @@
   border-radius: 0.5rem;
   margin-bottom: 1rem;
 
-  &__data {
-  }
-
   &__buttons {
     button {
       border-radius: 3px;
@@ -292,6 +280,7 @@
 
 .friend-card {
   padding: 0.8rem;
+  margin-bottom: 0.5em;
   border-radius: 8px;
   background: #222;
   display: grid;
