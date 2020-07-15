@@ -43,7 +43,7 @@ export const App = withRouter(({ location }) => {
       dispatch({ type: TOGGLE_LOADING });
     }
     dispatch({ type: TOGGLE_LOADING });
-  }, []);
+  }, [dispatch, location.pathname, history]);
 
   useEffect(() => {
     dispatch({ type: TOGGLE_LOADING });
