@@ -31,7 +31,7 @@ export const App = withRouter(({ location }) => {
         const id = verifiedUser.id;
         const user = await getUser(id);
         dispatch({ type: SET_USER, payload: user });
-        history.push(pushToHome ? '/home' : location.pathname);
+        history.push(pushToHome ? `/home/${user.id}` : location.pathname);
       } else {
         history.push('/auth/login');
       }
@@ -67,16 +67,16 @@ export const App = withRouter(({ location }) => {
   return (
     <div className={`App${openModal ? ' modal-open' : ''} ${menuOpen ? ' menu-open' : ''}`}>
       <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      {!loading ? (
+      {loading || (!user && !location.pathname.includes('/auth')) ? (
+        <Loader size={8} />
+      ) : (
         <>
-          <Route path='/home' component={Home} />
+          <Route path='/home/:id' component={Home} />
           <Route
             path='/profile'
             render={() => <Profile isOpen={menuOpen} setMenuOpen={setMenuOpen} />}
           />
         </>
-      ) : (
-        <Loader size={8} />
       )}
       <Route path='/auth' component={Auth} />
       <Footer />

@@ -22,16 +22,16 @@ export const RegisterForm = () => {
   const handleRegister = async (values) => {
     const { email, username, password } = values;
 
-    const authenticatedUser = await registerUser({ username, email, password });
+    const data = await registerUser({ username, email, password });
 
-    if (authenticatedUser) {
-      if (authenticatedUser.error) {
-        alert(authenticatedUser.error);
+    if (data) {
+      if (data.error) {
+        alert(data.error);
         return;
       }
-      dispatch({ type: SET_USER, payload: authenticatedUser });
-      localStorage.setItem('token', authenticatedUser.token);
-      history.push('/home');
+      dispatch({ type: SET_USER, payload: data });
+      localStorage.setItem('token', data.token);
+      history.push(`/home/${data.id}`);
     }
   };
 

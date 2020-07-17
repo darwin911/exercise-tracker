@@ -45,7 +45,10 @@ export const NavMenu = ({ isOpen, setMenuOpen }) => {
       initial={'closed'}
       animate={isOpen ? 'open' : 'closed'}>
       <div className='nav-link-wrapper'>
-        <Link to='/home' onClick={() => setMenuOpen((isOpen) => !isOpen)} className='nav-link home'>
+        <Link
+          to={`/home/${user.id}`}
+          onClick={() => setMenuOpen((isOpen) => !isOpen)}
+          className='nav-link home'>
           Home
         </Link>
       </div>

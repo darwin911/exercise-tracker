@@ -15,13 +15,13 @@ export const LoginForm = () => {
 
   // arg1: values , arg2: actions
   const handleLogin = async ({ email, password }, { setFieldError }) => {
-    const authenticatedUser = await loginUser({ email, password });
-    if (authenticatedUser.error) {
-      setFieldError('email', authenticatedUser.error);
+    const data = await loginUser({ email, password });
+    if (data.error) {
+      setFieldError('email', data.error);
     } else {
-      dispatch({ type: SET_USER, payload: authenticatedUser });
-      localStorage.setItem('token', authenticatedUser.token);
-      history.push('/home');
+      dispatch({ type: SET_USER, payload: data });
+      localStorage.setItem('token', data.token);
+      history.push(`/home/${data.id}`);
     }
   };
 
