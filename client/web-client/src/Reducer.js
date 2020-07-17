@@ -24,7 +24,6 @@ const {
 export const Reducer = (state, action) => {
   switch (action.type) {
     case SET_USER:
-      console.info('Setting User: ', action.payload);
       return {
         ...state,
         user: action.payload,

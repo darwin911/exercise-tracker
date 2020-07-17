@@ -24,7 +24,6 @@ export const App = withRouter(({ location }) => {
 
     const handleAutoLogin = async (token) => {
       dispatch({ type: TOGGLE_LOADING });
-      console.info('handleAutoLogin');
       const pushToHome = location.pathname.includes('auth') || location.pathname === '/';
       const verifiedUser = await verifyToken({ token });
       if (verifiedUser) {
