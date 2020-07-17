@@ -35,11 +35,11 @@ export const AddExerciseModal = () => {
 
     dispatch({ type: TOGGLE_MODAL });
     setLoading(false);
-    history.push('/home');
+    history.push(`/home/${user.id}`);
   };
 
   const closeModal = () => {
-    history.push('/home');
+    history.push(`/home/${user.id}`);
   };
 
   const initValues = {

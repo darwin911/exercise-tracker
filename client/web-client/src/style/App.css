@@ -548,14 +548,16 @@ a:hover {
   -ms-grid-columns: 5fr 1fr;
       grid-template-columns: 5fr 1fr;
   padding: 0.8rem;
-  -webkit-transition: background-color 200ms ease-in-out;
-  transition: background-color 200ms ease-in-out;
+  -webkit-transition: background-color 200ms ease-in-out, -webkit-box-shadow 120ms ease-in;
+  transition: background-color 200ms ease-in-out, -webkit-box-shadow 120ms ease-in;
+  transition: background-color 200ms ease-in-out, box-shadow 120ms ease-in;
+  transition: background-color 200ms ease-in-out, box-shadow 120ms ease-in, -webkit-box-shadow 120ms ease-in;
 }
 
 .exercise:focus {
   outline: none;
-  -webkit-box-shadow: 0px 0px 1px 4px red;
-          box-shadow: 0px 0px 1px 4px red;
+  -webkit-box-shadow: 0px 0px 0px 3px rgba(255, 255, 255, 0.55);
+          box-shadow: 0px 0px 0px 3px rgba(255, 255, 255, 0.55);
 }
 
 @media screen and (min-width: 414px) {
@@ -585,13 +587,13 @@ a:hover {
 }
 
 .exercise.yoga {
-  background: rgba(233, 30, 99, 0.9);
-  background: linear-gradient(0.35turn, rgba(233, 30, 99, 0.9), rgba(233, 30, 99, 0.625));
-  border: 2px solid rgba(233, 30, 99, 0.85);
+  background: rgba(143, 42, 188, 0.9);
+  background: linear-gradient(0.35turn, rgba(143, 42, 188, 0.9), rgba(143, 42, 188, 0.625));
+  border: 2px solid rgba(143, 42, 188, 0.85);
 }
 
 .exercise.yoga:hover {
-  background-color: rgba(233, 30, 99, 0.8);
+  background-color: rgba(143, 42, 188, 0.8);
 }
 
 .exercise.tennis {
@@ -636,14 +638,14 @@ a:hover {
 }
 
 .exercise.push-ups {
-  background: rgba(136, 36, 18, 0.9);
-  background: linear-gradient(0.35turn, rgba(136, 36, 18, 0.9), rgba(136, 36, 18, 0.625));
-  border: 2px solid rgba(136, 36, 18, 0.85);
+  background: rgba(0, 80, 100, 0.9);
+  background: linear-gradient(0.35turn, rgba(0, 80, 100, 0.9), rgba(0, 80, 100, 0.625));
+  border: 2px solid rgba(0, 80, 100, 0.85);
   color: white;
 }
 
 .exercise.push-ups:hover {
-  background-color: rgba(136, 36, 18, 0.8);
+  background-color: rgba(0, 80, 100, 0.8);
 }
 
 .exercise__duration, .exercise__repetitions {
@@ -895,8 +897,8 @@ a:hover {
 }
 
 .edit-exercise.yoga .type::after {
-  background: rgba(233, 30, 99, 0.8);
-  border: 2px solid #e91e63;
+  background: rgba(143, 42, 188, 0.8);
+  border: 2px solid #8f2abc;
 }
 
 .edit-exercise.run .type::after {
@@ -1965,7 +1967,7 @@ a:hover {
 }
 
 .push-up-monitor {
-  border: 2px solid rgba(136, 36, 18, 0.9);
+  border: 2px solid rgba(0, 80, 100, 0.9);
   background: rgba(255, 255, 255, 0.4);
   padding: 1rem;
   border-radius: 10px;

@@ -42,12 +42,12 @@ export const EditExerciseModal = ({ exercise }) => {
     dispatch({ type: UPDATE_EXERCISE, payload: updatedExercise });
     dispatch({ type: TOGGLE_MODAL });
     resetForm();
-    history.push('/home');
+    history.push(`/home/${user.id}`);
   };
 
   const handleClose = () => {
     dispatch({ type: TOGGLE_MODAL });
-    history.push('/home');
+    history.push(`/home/${user.id}`);
     resetForm();
   };
 
