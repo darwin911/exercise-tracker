@@ -7,6 +7,37 @@
   }
 }
 
+.dashboard {
+  display: flex;
+  flex-direction: column;
+
+  .user-exercises__summary {
+    margin-bottom: 2em;
+
+    p:not(:last-of-type) {
+      border-right: 1px solid rgba(white, 0.2);
+    }
+  }
+
+  @media screen and (min-width: $md) {
+    margin-bottom: 2rem;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-radius: 1rem;
+    background: rgb(31, 32, 29);
+    padding: 1.5em;
+
+    .user-exercises__summary {
+      flex-grow: 3;
+      margin: 0 0 2em 0;
+    }
+
+    .filter__container {
+      flex-grow: 1;
+      margin: 0;
+    }
+  }
+}
+
 .exercises__container {
   align-items: stretch;
   column-gap: 1rem;
@@ -223,7 +254,7 @@
 
 .user-exercises__summary {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   position: relative;
   font-size: 1.2em;
 
@@ -241,9 +272,14 @@
 
   &__total-exercises,
   &__total-mins,
-  &__total-miles {
-    font-size: 2.25em;
+  &__total-miles,
+  &__total-pushups {
+    font-size: 1.75em;
     text-align: center;
+
+    @media screen and (min-width: $md) {
+      font-size: 2.25em;
+    }
 
     span {
       display: block;
@@ -265,6 +301,10 @@
   }
 
   &__total-miles {
+    grid-row: 2;
+  }
+
+  &__total-pushups {
     grid-row: 2;
   }
 }
@@ -442,36 +482,39 @@
 
 .filter-by-type,
 .filter-by-date {
-  border: none;
   border-radius: 50rem;
   background: rgb(231, 231, 231);
   color: black;
   font-size: 1em;
   font-weight: 500;
-  grid-row: 1;
-  grid-column: 3;
-  justify-self: self-end;
   max-width: 200px;
   transition: 150ms ease-in;
+  margin-left: 1em;
 }
 
 .filter {
   &__container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     margin-bottom: 2rem;
+    @media screen and (min-width: $md) {
+      justify-content: center;
+    }
   }
 
   &__wrapper {
-    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
     div {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      &:not(:last-child) {
-        margin-bottom: 1em;
-      }
+      padding: 0.25em 0;
+      margin-right: 1rem;
+      // &:not(:last-child) {
+      // }
     }
   }
 
