@@ -4,6 +4,13 @@ import { AppContext } from '../../Store';
 import { Loader } from '../Loader';
 import { Dashboard } from './Dashboard';
 import { ACTIVITY_TYPES } from '../../constants';
+import {
+  getTotalPushups,
+  getTotalMinutes,
+  getTotalMiles,
+  filterExercisesByActivity,
+  filterExercisesByType,
+} from '../../util/exercises-helper';
 import moment from 'moment';
 
 const activityTypes = Object.values(ACTIVITY_TYPES).map((type) => type.title);
@@ -37,10 +44,12 @@ export const UserExercises = () => {
   const minutes = getTotalMinutes(filteredExercises);
   const count = filteredExercises.length;
   const miles = getTotalMiles(filteredExercises);
+  const pushUps = getTotalPushups(filteredExercises);
   const data = {
     minutes,
     count,
     miles,
+    pushUps,
   };
 
   if (!exercises.length) {
@@ -53,26 +62,6 @@ export const UserExercises = () => {
       <ExerciseList exercises={filteredExercises} />
     </section>
   );
-};
-
-const filterExercisesByActivity = (value, exercisesArray) => {
-  let val = value.toUpperCase().replace(/ /g, '_');
-  return exercisesArray.filter((ex) => ex.activityType === val);
-};
-
-const filterExercisesByType = (value, exercisesArray) =>
-  exercisesArray.filter((ex) => ex.type.toUpperCase() === value.toUpperCase());
-
-const getTotalMiles = (exercisesArray) => {
-  return (
-    Math.round(
-      exercisesArray.reduce((acc, item) => (item.distance ? acc + item.distance : acc), 0) * 100
-    ) / 100
-  );
-};
-
-const getTotalMinutes = (exercisesArray) => {
-  return exercisesArray.reduce((acc, item) => (item.duration ? acc + item.duration : acc), 0);
 };
 
 const filterExercisesByDate = (exercises, dateFilter) => {
