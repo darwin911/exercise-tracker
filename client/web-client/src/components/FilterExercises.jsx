@@ -20,7 +20,7 @@ export const FilterExercises = () => {
 
   const FilterByType = () => (
     <div>
-      <label htmlFor='filter-by-type'>Exercise Type: </label>
+      <label htmlFor='filter-by-type'>Filter: </label>
       <select
         id='filter-by-type'
         className='filter-by-type'
