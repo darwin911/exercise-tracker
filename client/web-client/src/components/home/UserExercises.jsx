@@ -1,17 +1,15 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { ExercisesSummary } from './ExercisesSummary';
-import { FilterExercises } from '../FilterExercises';
 import { ExerciseList } from './ExerciseList';
-import { AddExerciseButton } from '../AddExerciseButton';
 import { AppContext } from '../../Store';
 import { Loader } from '../Loader';
+import { Dashboard } from './Dashboard';
 import { ACTIVITY_TYPES } from '../../constants';
 import moment from 'moment';
 
 const activityTypes = Object.values(ACTIVITY_TYPES).map((type) => type.title);
 
 export const UserExercises = () => {
-  const { user, exercises, loading, filterByType, filterByDate } = useContext(AppContext)[0];
+  const { exercises, loading, filterByType, filterByDate } = useContext(AppContext)[0];
 
   const [filteredExercises, setFilteredExercises] = useState(exercises);
 
@@ -45,23 +43,13 @@ export const UserExercises = () => {
     miles,
   };
 
-  const Dashboard = () => (
-    <aside className='dashboard'>
-      <ExercisesSummary username={user ? user.username : 'Guest'} {...data} />
-      <div className='filter__container'>
-        <FilterExercises />
-        <AddExerciseButton />
-      </div>
-    </aside>
-  );
-
   if (!exercises.length) {
     return <Loader size={8} />;
   }
 
   return (
     <section className='user-exercises'>
-      <Dashboard />
+      <Dashboard data={data} />
       <ExerciseList exercises={filteredExercises} />
     </section>
   );
