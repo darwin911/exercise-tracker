@@ -20,8 +20,8 @@ export const App = withRouter(({ location }) => {
   const openModal = location.pathname.includes('/add') || location.pathname.includes('/edit');
 
   useEffect(() => {
+    if (user) return;
     let token = localStorage.getItem('token');
-
     const handleAutoLogin = async (token) => {
       dispatch({ type: TOGGLE_LOADING });
       const pushToHome = location.pathname.includes('auth') || location.pathname === '/';
@@ -42,7 +42,7 @@ export const App = withRouter(({ location }) => {
       dispatch({ type: TOGGLE_LOADING });
     }
     dispatch({ type: TOGGLE_LOADING });
-  }, [dispatch, location.pathname, history]);
+  }, [dispatch, location.pathname, history, user]);
 
   useEffect(() => {
     dispatch({ type: TOGGLE_LOADING });
