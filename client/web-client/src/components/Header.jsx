@@ -25,8 +25,11 @@ export const Header = ({ isOpen, setMenuOpen }) => {
 
   useEffect(() => {
     const debouncedHandleResize = debounce(function handleResize() {
+      if (isOpen && innerWidth <= 414 && window.innerWidth > 414) {
+        setMenuOpen(false);
+      }
       setInnerWidth(window.innerWidth);
-    }, 300);
+    }, 200);
     window.addEventListener('resize', debouncedHandleResize);
     return () => window.removeEventListener('resize', debouncedHandleResize);
   });
