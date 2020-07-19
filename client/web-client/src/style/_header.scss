@@ -3,9 +3,9 @@
 .header {
   pointer-events: initial;
   position: relative;
-  padding-top: 1.5rem;
+  padding: 1rem 0;
   width: 100%;
-
+  background: linear-gradient(to bottom right, #242424, #333333);
   nav {
     width: 90vw;
     max-width: $container-max-width;
@@ -44,14 +44,19 @@
   }
 }
 
-.nav-link-wrapper {
+.header:not(.header-mobile) .nav-link-wrapper {
   font-weight: bold;
   text-transform: uppercase;
   border: 1px dotted rgba(white, 0.2);
   transition: border-color 200ms ease-in;
+  margin: 0 0 0 1rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+
   &:hover {
     border-color: rgba(white, 0.5);
   }
+
   a {
     padding: 0.5em;
     display: inline-block;
@@ -61,7 +66,6 @@
     border-color: $purple;
     border-color: purple;
     background: purple;
-    border-radius: 4px;
   }
 }
 
