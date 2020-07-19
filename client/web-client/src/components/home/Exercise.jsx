@@ -25,6 +25,23 @@ export const Exercise = ({ exercise }) => {
     dispatch({ type: TOGGLE_MODAL });
   };
 
+  const getEmoji = (type) => {
+    switch (type) {
+      case EXERCISE_TYPES.PUSH_UPS:
+        return '💪';
+      case EXERCISE_TYPES.YOGA:
+        return '🧘';
+      case EXERCISE_TYPES.RUN:
+        return '🏃';
+      case EXERCISE_TYPES.CYCLING:
+        return '🚴🏻';
+      case EXERCISE_TYPES.SWIMMING:
+        return '🏊';
+      default:
+        return '';
+    }
+  };
+
   const ExerciseDuration = () =>
     type !== EXERCISE_TYPES.PUSH_UPS ? (
       <p className='exercise__duration'>
@@ -36,7 +53,12 @@ export const Exercise = ({ exercise }) => {
       </p>
     );
 
-  const ExerciseType = () => <p className='exercise__type'>{type}</p>;
+  const ExerciseType = () => (
+    <p className='exercise__type'>
+      {type}
+      <span>{getEmoji(type)}</span>
+    </p>
+  );
 
   const ExerciseNote = () => {
     if (!note) return null;

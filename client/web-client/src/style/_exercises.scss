@@ -170,6 +170,18 @@
     font-size: $big;
     font-weight: 500;
     text-shadow: $cool-text-shadow;
+
+    span {
+      margin-left: 0.5em;
+      font-size: 0.8em;
+      opacity: 0.3;
+      transition: opacity 200ms ease-in;
+    }
+  }
+
+  &:hover .exercise__type span,
+  &:focus .exercise__type span {
+    opacity: 1;
   }
 
   &__note {

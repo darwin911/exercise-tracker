@@ -943,6 +943,19 @@ a:hover {
   text-shadow: rgba(0, 0, 0, 0.2) 1px 4px 2px, rgba(0, 0, 0, 0.2) -2px 3px 8px;
 }
 
+.exercise__type span {
+  margin-left: 0.5em;
+  font-size: 0.8em;
+  opacity: 0.3;
+  -webkit-transition: opacity 200ms ease-in;
+  transition: opacity 200ms ease-in;
+}
+
+.exercise:hover .exercise__type span,
+.exercise:focus .exercise__type span {
+  opacity: 1;
+}
+
 .exercise__note {
   font-size: 0.8em;
   color: #bbb;
