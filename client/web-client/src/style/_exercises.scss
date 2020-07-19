@@ -80,12 +80,7 @@
   grid-auto-rows: max-content;
   grid-template-columns: 5fr 1fr;
   padding: 0.8rem;
-  transition: background-color 200ms ease-in-out, box-shadow 120ms ease-in;
-
-  &:focus {
-    outline: none;
-    box-shadow: 0px 0px 0px 3px rgba(white, 0.55);
-  }
+  transition: background-color 120ms ease-in-out, box-shadow 120ms ease-in, font-size 120ms ease-out;
 
   @media screen and (min-width: 414px) {
     grid-column: span 1;

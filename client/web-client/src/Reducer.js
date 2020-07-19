@@ -1,4 +1,5 @@
 import { CONSTANTS } from './constants';
+import { initialState } from './Store';
 import moment from 'moment';
 
 const {
@@ -31,10 +32,7 @@ export const Reducer = (state, action) => {
       };
     case LOGOUT:
       return {
-        ...state,
-        user: null,
-        exercises: [],
-        loading: false,
+        ...initialState,
       };
     case SET_EXERCISES:
       return {
