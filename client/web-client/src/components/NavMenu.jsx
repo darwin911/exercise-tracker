@@ -16,7 +16,7 @@ export const NavMenu = ({ isOpen, setMenuOpen }) => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    setMenuOpen((isOpen) => !isOpen);
+    setMenuOpen(false);
     dispatch({ type: LOGOUT });
   };
 

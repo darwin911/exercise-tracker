@@ -3,20 +3,33 @@ import { NavMenu } from './NavMenu';
 import { MainHeading } from './MainHeading';
 import { Link } from 'react-router-dom';
 import { AppContext } from '../Store';
+import { CONSTANTS } from '../constants';
+const { LOGOUT } = CONSTANTS;
+
+// https://www.pluralsight.com/guides/re-render-react-component-on-window-resize
+function debounce(fn, ms) {
+  let timer;
+  return (_) => {
+    clearTimeout(timer);
+    timer = setTimeout((_) => {
+      timer = null;
+      fn.apply(this, arguments);
+    }, ms);
+  };
+}
 
 export const Header = ({ isOpen, setMenuOpen }) => {
-  const [{ user }] = useContext(AppContext);
+  const [{ user }, dispatch] = useContext(AppContext);
   const isAuth = window.location.pathname.toLowerCase().startsWith('/auth');
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    function handleResize() {
-      setInnerWidth(window.innerWidth);
-    }
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  });
 
-  console.log(innerWidth);
+  useEffect(() => {
+    const debouncedHandleResize = debounce(function handleResize() {
+      setInnerWidth(window.innerWidth);
+    }, 300);
+    window.addEventListener('resize', debouncedHandleResize);
+    return () => window.removeEventListener('resize', debouncedHandleResize);
+  });
 
   const smallBreakpoint = innerWidth <= 414;
 
@@ -29,6 +42,14 @@ export const Header = ({ isOpen, setMenuOpen }) => {
         <span />
       </button>
     ) : null;
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setMenuOpen(false);
+    dispatch({ type: LOGOUT });
+  };
+
+  if (!user) return null;
 
   return (
     <header className={`header ${smallBreakpoint ? 'header-mobile' : ''}`}>
@@ -55,7 +76,7 @@ export const Header = ({ isOpen, setMenuOpen }) => {
               </Link>
             </div>
             <div className='nav-link-wrapper'>
-              <Link to='/auth/login' className='nav-link logout'>
+              <Link to='/auth/login' className='nav-link logout' onClick={() => handleLogout()}>
                 Logout
               </Link>
             </div>
