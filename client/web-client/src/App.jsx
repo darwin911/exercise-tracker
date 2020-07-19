@@ -37,11 +37,9 @@ export const App = withRouter(({ location }) => {
     };
 
     if (token) handleAutoLogin(token);
-    else {
+    else if (!location.pathname.includes('register')) {
       history.push('/auth/login');
-      dispatch({ type: TOGGLE_LOADING });
     }
-    dispatch({ type: TOGGLE_LOADING });
   }, [dispatch, location.pathname, history, user]);
 
   useEffect(() => {
