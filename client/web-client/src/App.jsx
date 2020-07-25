@@ -10,7 +10,7 @@ import { Profile } from './Components/Profile/Profile';
 import { Home } from './Components/Home/Home';
 import { Loader } from './Components/Loader';
 import { Footer } from './Components/Footer';
-const { SET_USER, SET_EXERCISES, TOGGLE_LOADING } = CONSTANTS;
+const { SET_USER, SET_EXERCISES, TOGGLE_LOADING, LOAD_PUSH_UPS_DATA } = CONSTANTS;
 
 export const App = withRouter(({ location }) => {
   const [state, dispatch] = useContext(AppContext);
@@ -51,7 +51,7 @@ export const App = withRouter(({ location }) => {
 
     const loadPushUpChartDataToState = async () => {
       const data = await getUserPushUpsData(user.id);
-      dispatch({ type: 'LOAD_PUSH_UPS_DATA', payload: data });
+      dispatch({ type: LOAD_PUSH_UPS_DATA, payload: data });
     };
 
     if (user) {
