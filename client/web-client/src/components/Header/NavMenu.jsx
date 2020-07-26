@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { AppContext } from '../Store';
+import { AppContext } from '../../Store';
 import { Link } from 'react-router-dom';
-import { CONSTANTS } from '../constants';
+import { CONSTANTS } from '../../constants';
 import { motion } from 'framer-motion';
 const { LOGOUT } = CONSTANTS;
 

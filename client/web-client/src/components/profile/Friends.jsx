@@ -1,7 +1,5 @@
 import React from 'react';
-import { FriendSearch } from './FriendSearch';
-import { FriendList } from './FriendList';
-import { FriendRequests } from './FriendRequests';
+import { FriendSearch, FriendList, FriendRequests } from './index';
 
 export const Friends = () => {
   return (

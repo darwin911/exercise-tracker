@@ -1,12 +1,9 @@
 import React, { useContext } from 'react';
-import { UserExercises } from './UserExercises';
-import { AddExerciseModal } from './AddExerciseModal';
-import { EditExerciseModal } from './EditExerciseModal';
-import { CreateWorkoutModal } from './CreateWorkoutModal';
-// import { Workouts } from './Workouts';
 import { Route } from 'react-router-dom';
 import { AppContext } from '../../Store';
-import { Loader } from '../Loader';
+import { AddExerciseModal, EditExerciseModal, CreateWorkoutModal, UserExercises } from './index';
+// import { Workouts } from './Workouts';
+import { Loader } from '../shared/index';
 
 export const Home = () => {
   const [{ exercises, loading }] = useContext(AppContext);

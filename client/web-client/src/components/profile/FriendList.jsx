@@ -4,7 +4,7 @@ import { removeFriend, getFriendsData } from '../../helper';
 import { CONSTANTS } from '../../constants';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
-import { Avatar } from './Avatar';
+import { Avatar } from './index';
 const { SET_USER } = CONSTANTS;
 
 toast.configure();

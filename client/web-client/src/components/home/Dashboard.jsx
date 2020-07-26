@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
-import { ExercisesSummary } from './ExercisesSummary';
-import { FilterExercises } from '../FilterExercises';
-import { AddExerciseButton } from '../AddExerciseButton';
+import { ExercisesSummary, FilterExercises } from './index';
+import { AddExerciseButton } from '../shared/index';
 import { AppContext } from '../../Store';
 
 export const Dashboard = ({ data }) => {

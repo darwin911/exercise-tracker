@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { ACTIVITY_TYPES, EXERCISE_TYPES, CONSTANTS } from '../constants';
-import { AppContext } from '../Store';
+import { ACTIVITY_TYPES, EXERCISE_TYPES, CONSTANTS } from '../../constants';
+import { AppContext } from '../../Store';
 const { SET_FILTER_BY_TYPE, SET_FILTER_BY_DATE } = CONSTANTS;
 const activityTypes = Object.values(ACTIVITY_TYPES).map((type) => type.title);
 const exerciseTypeValues = Object.values(EXERCISE_TYPES);

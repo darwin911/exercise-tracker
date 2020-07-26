@@ -1,8 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { ExerciseList } from './ExerciseList';
 import { AppContext } from '../../Store';
-import { Loader } from '../Loader';
-import { Dashboard } from './Dashboard';
+import { ExerciseList, Dashboard } from './index';
+import { Loader } from '../shared/index';
 import { ACTIVITY_TYPES } from '../../constants';
 import {
   getTotalPushups,

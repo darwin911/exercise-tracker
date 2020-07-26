@@ -1,11 +1,8 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../Store';
 import { Route } from 'react-router-dom';
-import { Loader } from '../Loader';
-import { ProfileCard } from './ProfileCard';
-import { ConfirmDeleteAccountModal } from './ConfirmDeleteAccountModal';
-import { Friends } from './Friends';
-import { WeightTracker } from './WeightTracker';
+import { Loader } from '../shared/index';
+import { ProfileCard, ConfirmDeleteAccountModal, Friends, WeightTracker } from './index';
 
 export const Profile = () => {
   const [{ user }] = useContext(AppContext);

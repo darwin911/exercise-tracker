@@ -8,14 +8,13 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import { AuthContext } from '../Store';
-import { EXERCISE_TYPES } from '../constants';
-import { Debug } from './Debug';
+import { AppContext } from '../../Store';
+import { EXERCISE_TYPES } from '../../constants';
 import moment from 'moment';
 const exerciseTypes = Object.values(EXERCISE_TYPES);
 
 export const Chart = () => {
-  const [state] = useContext(AuthContext);
+  const [state] = useContext(AppContext);
 
   const [selectedExerciseTypes, setSelectedTypes] = useState(exerciseTypes);
 
@@ -52,7 +51,7 @@ export const Chart = () => {
       return (
         <div className='custom-tooltip'>
           <p className='desc'>{`${type}`}</p>
-          {/* <p className='date'>{moment(date).format('ddd, MMMM DD')}</p> */}
+          <p className='date'>{moment(date).format('ddd, MMMM DD')}</p>
           <p className='intro'>{`${payload[0].value} mins`}</p>
         </div>
       );

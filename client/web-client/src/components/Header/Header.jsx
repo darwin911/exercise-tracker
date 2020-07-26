@@ -1,22 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { NavMenu } from './NavMenu';
-import { MainHeading } from './MainHeading';
+import { NavMenu } from './index';
+import { MainHeading } from '../shared/index';
 import { Link } from 'react-router-dom';
-import { AppContext } from '../Store';
-import { CONSTANTS } from '../constants';
+import { AppContext } from '../../Store';
+import { CONSTANTS } from '../../constants';
+import { debounce } from '../../util/debounce';
 const { LOGOUT } = CONSTANTS;
-
-// https://www.pluralsight.com/guides/re-render-react-component-on-window-resize
-function debounce(fn, ms) {
-  let timer;
-  return (_) => {
-    clearTimeout(timer);
-    timer = setTimeout((_) => {
-      timer = null;
-      fn.apply(this, arguments);
-    }, ms);
-  };
-}
 
 export const Header = ({ isOpen, setMenuOpen }) => {
   const [{ user }, dispatch] = useContext(AppContext);

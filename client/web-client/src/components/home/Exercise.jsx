@@ -5,7 +5,7 @@ import { AppContext } from '../../Store';
 import { CONSTANTS, EXERCISE_TYPES, TRANSITIONS } from '../../constants';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { CancelSVG } from '../CancelSVG';
+import { CancelSVG } from '../shared/index';
 const { REMOVE_EXERCISE, TOGGLE_MODAL } = CONSTANTS;
 
 export const Exercise = ({ exercise }) => {

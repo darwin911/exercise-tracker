@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './style/App.css';
-import { CONSTANTS } from './constants';
-import { getUserExercises, verifyToken, getUserPushUpsData, getUser } from './helper';
 import { Route, useHistory, withRouter } from 'react-router-dom';
+import { getUserExercises, verifyToken, getUserPushUpsData, getUser } from './helper';
 import { AppContext } from './Store';
-import { Header } from './Components/Header';
-import { Auth } from './Components/Auth/Auth';
-import { Profile } from './Components/Profile/Profile';
-import { Home } from './Components/Home/Home';
-import { Loader } from './Components/Loader';
-import { Footer } from './Components/Footer';
+import { Loader, Footer } from './Components/shared/index';
+import { Auth } from './Components/Auth/index';
+import { Header } from './Components/Header/Header';
+import { Profile } from './Components/Profile/index';
+import { Home } from './Components/Home/index';
+import { CONSTANTS } from './constants';
 const { SET_USER, SET_EXERCISES, TOGGLE_LOADING, LOAD_PUSH_UPS_DATA } = CONSTANTS;
 
 export const App = withRouter(({ location }) => {

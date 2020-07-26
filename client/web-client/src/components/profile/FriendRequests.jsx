@@ -4,7 +4,7 @@ import { CONSTANTS } from '../../constants';
 import { acceptFriendRequest, declineFriendRequest, getMultipleUsers } from '../../helper';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
-import { Avatar } from './Avatar';
+import { Avatar } from './index';
 
 const { SET_USER, DECLINE_FRIEND_REQUEST } = CONSTANTS;
 

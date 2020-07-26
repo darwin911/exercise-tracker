@@ -1,9 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../Store';
-import { ProfileField } from './ProfileField';
-import { ProfileUnitsField } from './ProfileUnitsField';
-import { Avatar } from './Avatar';
+import { ProfileField, ProfileUnitsField, Avatar } from './index';
 
 export const ProfileCard = () => {
   const [{ user }] = useContext(AppContext);

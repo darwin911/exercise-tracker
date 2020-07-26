@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { AppContext } from '../../Store';
 import { CONSTANTS } from '../../constants';
 import { getAllUsers, sendFriendRequest } from '../../helper';
-import { Avatar } from './Avatar';
+import { Avatar } from './index';
 import { toast } from 'react-toastify';
 
 const { SET_FILTERED_FRIENDS_RESULT, SET_ALL_USERS } = CONSTANTS;

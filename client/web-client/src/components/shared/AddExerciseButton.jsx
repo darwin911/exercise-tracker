@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { AddSVG } from './AddSVG';
+import { AddSVG } from './index';
 
 export const AddExerciseButton = () => {
   const history = useHistory();

@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import {
   BarChart,
   Bar,
-  Cell,
+  // Cell,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -10,16 +10,18 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
-import { AuthContext } from '../../Store';
-import { EXERCISE_TYPES, COLORS } from '../../constants';
-import { Debug } from './../Debug';
+import { AppContext } from '../../Store';
+import {
+  EXERCISE_TYPES,
+  // COLORS
+} from '../../constants';
 import moment from 'moment';
 const exerciseTypes = Object.values(EXERCISE_TYPES);
 
 export const StackedChart = () => {
-  const [state] = useContext(AuthContext);
+  const [state] = useContext(AppContext);
 
-  const [selectedExerciseTypes, setSelectedTypes] = useState(exerciseTypes);
+  const [selectedExerciseTypes] = useState(exerciseTypes);
 
   const durationExercisesObjects = state.exercises
     .filter((ex) => ex.duration && selectedExerciseTypes.includes(ex.type))
