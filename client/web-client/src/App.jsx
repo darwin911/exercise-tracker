@@ -11,35 +11,35 @@ import { Home } from './Components/Home/index';
 import { CONSTANTS } from './constants';
 const { SET_USER, SET_EXERCISES, TOGGLE_LOADING, LOAD_PUSH_UPS_DATA } = CONSTANTS;
 
-export const App = withRouter(({ location }) => {
+export const App = withRouter(({ location: { pathname } }) => {
   const [state, dispatch] = useContext(AppContext);
   const { user, loading } = state;
   const [menuOpen, setMenuOpen] = useState(false);
   const history = useHistory();
-  const openModal = location.pathname.includes('/add') || location.pathname.includes('/edit');
+  const openModal = pathname.includes('/add') || pathname.includes('/edit');
 
   useEffect(() => {
     if (user) return;
     let token = localStorage.getItem('token');
     const handleAutoLogin = async (token) => {
       dispatch({ type: TOGGLE_LOADING });
-      const pushToHome = location.pathname.includes('auth') || location.pathname === '/';
+      const pushToHome = pathname.includes('auth') || pathname === '/';
       const verifiedUser = await verifyToken({ token });
       if (verifiedUser) {
-        const id = verifiedUser.id;
+        const { id } = verifiedUser;
         const user = await getUser(id);
         dispatch({ type: SET_USER, payload: user });
-        history.push(pushToHome ? `/home/${user.id}` : location.pathname);
+        history.push(pushToHome ? `/home/${user.id}` : pathname);
       } else {
         history.push('/auth/login');
       }
     };
 
     if (token) handleAutoLogin(token);
-    else if (!location.pathname.includes('register')) {
+    else if (!pathname.includes('register')) {
       history.push('/auth/login');
     }
-  }, [dispatch, location.pathname, history, user]);
+  }, [dispatch, pathname, history, user]);
 
   useEffect(() => {
     dispatch({ type: TOGGLE_LOADING });
@@ -63,7 +63,7 @@ export const App = withRouter(({ location }) => {
   return (
     <div className={`App${openModal ? ' modal-open' : ''} ${menuOpen ? ' menu-open' : ''}`}>
       <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      {loading || (!user && !location.pathname.includes('/auth')) ? (
+      {loading || (!user && !pathname.includes('/auth')) ? (
         <Loader size={8} />
       ) : (
         <>

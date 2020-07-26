@@ -705,8 +705,32 @@ a:hover {
           flex-direction: column;
 }
 
+.dashboard__header {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 1fr;
+      grid-template-columns: 2fr 1fr;
+  margin-bottom: 1.5em;
+}
+
+.dashboard__header h3,
+.dashboard__header h4 {
+  font-weight: 500;
+  text-shadow: rgba(0, 0, 0, 0.2) 1px 4px 2px, rgba(0, 0, 0, 0.2) -2px 3px 8px;
+  opacity: 0.9;
+  text-align: right;
+}
+
+.dashboard__header h3 {
+  font-size: 1em;
+}
+
+.dashboard__header h4 {
+  font-size: 0.9em;
+  grid-column: 1/ -1;
+}
+
 .dashboard__heading {
-  margin-bottom: 20px;
   font-weight: 500;
   text-shadow: rgba(0, 0, 0, 0.2) 1px 4px 2px, rgba(0, 0, 0, 0.2) -2px 3px 8px;
   opacity: 0.7;
