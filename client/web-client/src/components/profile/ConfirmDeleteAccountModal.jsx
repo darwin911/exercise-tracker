@@ -31,8 +31,8 @@ export const ConfirmDeleteAccountModal = ({ userId }) => {
       <div className='delete-account'>
         <h2>Confirm Account Deletion</h2>
         <p>
-          This action will delete all of your user account information, including your Profile and
-          Exercise data. This action will be permanent.
+          This action will delete all of your user account information <strong>permanently</strong>,
+          including your Profile and Exercise data.
         </p>
         <button onClick={() => handleCancel()}>Cancel</button>
         <button onClick={() => handleDelete()}>Delete</button>
