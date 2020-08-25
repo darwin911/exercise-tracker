@@ -31,6 +31,7 @@ export const App = withRouter(({ location: { pathname } }) => {
         dispatch({ type: SET_USER, payload: user });
         history.push(pushToHome ? `/home/${user.id}` : pathname);
       } else {
+        localStorage.removeItem('token');
         history.push('/auth/login');
       }
     };
@@ -63,7 +64,7 @@ export const App = withRouter(({ location: { pathname } }) => {
   return (
     <div className={`App${openModal ? ' modal-open' : ''} ${menuOpen ? ' menu-open' : ''}`}>
       <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      {loading || (!user && !pathname.includes('/auth')) ? (
+      {loading ? (
         <Loader size={8} />
       ) : (
         <>

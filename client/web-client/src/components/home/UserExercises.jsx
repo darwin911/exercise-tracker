@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AppContext } from '../../Store';
 import { ExerciseList, Dashboard } from './index';
-import { Loader } from '../shared/index';
+// import { Loader } from '../shared/index';
 import { ACTIVITY_TYPES } from '../../constants';
 import {
   getTotalPushups,
@@ -49,10 +49,6 @@ export const UserExercises = () => {
     miles,
     pushUps,
   };
-
-  if (!exercises.length) {
-    return <Loader size={8} />;
-  }
 
   return (
     <section className='user-exercises'>

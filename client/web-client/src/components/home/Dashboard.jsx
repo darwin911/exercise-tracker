@@ -11,7 +11,7 @@ export const Dashboard = ({ data }) => {
       <aside className='dashboard'>
         <header className='dashboard__header'>
           <h2 className='dashboard__heading'>Dashboard</h2>
-          <h3>Hi {user.username}!</h3>
+          <h3>Hi {user?.username}!</h3>
           <h4>{moment().format('dddd, MMMM Do, yyyy')}</h4>
         </header>
         <ExercisesSummary username={user ? user.username : 'Guest'} {...data} />
