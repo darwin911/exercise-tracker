@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
 import { ExercisesSummary, FilterExercises } from './index';
+import React, { useContext } from 'react';
+
 import { AddExerciseButton } from '../shared/index';
 import { AppContext } from '../../Store';
 import moment from 'moment';

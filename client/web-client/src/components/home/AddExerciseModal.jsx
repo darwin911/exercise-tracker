@@ -1,13 +1,15 @@
-import React, { useState, useContext } from 'react';
-import { addExercise } from '../../helper';
-import { AppContext } from '../../Store';
+import * as Yup from 'yup';
+
 import { CONSTANTS, EXERCISE_TYPES, TRANSITIONS } from '../../constants';
-import { motion } from 'framer-motion';
+import { ErrorMessage, Field, Formik } from 'formik';
+import React, { useContext, useState } from 'react';
+
+import { AppContext } from '../../Store';
+import { addExercise } from '../../helper';
 import { createPortal } from 'react-dom';
 import moment from 'moment';
+import { motion } from 'framer-motion';
 import { useHistory } from 'react-router-dom';
-import { Formik, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 const { ADD_EXERCISE, TOGGLE_MODAL } = CONSTANTS;
 const { PUSH_UPS, RUN } = EXERCISE_TYPES;
 
@@ -66,8 +68,24 @@ export const AddExerciseModal = () => {
         initialValues={initValues}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}>
-        {({ values, errors, touched, handleSubmit, handleChange, handleBlur, isSubmitting }) => {
-          const { type, date, duration, distance, note, repetitions, time } = values;
+        {({
+          values,
+          errors,
+          touched,
+          handleSubmit,
+          handleChange,
+          handleBlur,
+          isSubmitting,
+        }) => {
+          const {
+            type,
+            date,
+            duration,
+            distance,
+            note,
+            repetitions,
+            time,
+          } = values;
           const addButtonDisabledState =
             loading ||
             !type ||
@@ -93,7 +111,9 @@ export const AddExerciseModal = () => {
                   )}
                 </ErrorMessage>
                 <Field
-                  className={`${errors.type && touched.type ? 'input-error' : null}`}
+                  className={`${
+                    errors.type && touched.type ? 'input-error' : null
+                  }`}
                   autoFocus
                   as='select'
                   id='type'
@@ -154,7 +174,9 @@ export const AddExerciseModal = () => {
                     )}
                   </ErrorMessage>
                   <Field
-                    className={`${errors.duration && touched.duration ? 'input-error' : null}`}
+                    className={`${
+                      errors.duration && touched.duration ? 'input-error' : null
+                    }`}
                     id='duration'
                     name='duration'
                     type='number'

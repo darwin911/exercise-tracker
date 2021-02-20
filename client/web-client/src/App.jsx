@@ -1,15 +1,28 @@
-import React, { useState, useEffect, useContext } from 'react';
 import './style/App.css';
+
+import { Footer, Loader } from './Components/shared/index';
+import React, { useContext, useEffect, useState } from 'react';
 import { Route, useHistory, withRouter } from 'react-router-dom';
-import { getUserExercises, verifyToken, getUserPushUpsData, getUser } from './helper';
+import {
+  getUser,
+  getUserExercises,
+  getUserPushUpsData,
+  verifyToken,
+} from './helper';
+
 import { AppContext } from './Store';
-import { Loader, Footer } from './Components/shared/index';
 import { Auth } from './Components/Auth/index';
-import { Header } from './Components/Header/Header';
-import { Profile } from './Components/Profile/index';
-import { Home } from './Components/Home/index';
 import { CONSTANTS } from './constants';
-const { SET_USER, SET_EXERCISES, TOGGLE_LOADING, LOAD_PUSH_UPS_DATA } = CONSTANTS;
+import { Header } from './Components/Header/Header';
+import { Home } from './Components/Home/index';
+import { Profile } from './Components/Profile/index';
+
+const {
+  SET_USER,
+  SET_EXERCISES,
+  TOGGLE_LOADING,
+  LOAD_PUSH_UPS_DATA,
+} = CONSTANTS;
 
 export const App = withRouter(({ location: { pathname } }) => {
   const [state, dispatch] = useContext(AppContext);
@@ -62,7 +75,10 @@ export const App = withRouter(({ location: { pathname } }) => {
   }, [user, dispatch]);
 
   return (
-    <div className={`App${openModal ? ' modal-open' : ''} ${menuOpen ? ' menu-open' : ''}`}>
+    <div
+      className={`App${openModal ? ' modal-open' : ''} ${
+        menuOpen ? ' menu-open' : ''
+      }`}>
       <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
       {loading ? (
         <Loader size={8} />
@@ -71,7 +87,9 @@ export const App = withRouter(({ location: { pathname } }) => {
           <Route path='/home/:id' component={Home} />
           <Route
             path='/profile'
-            render={() => <Profile isOpen={menuOpen} setMenuOpen={setMenuOpen} />}
+            render={() => (
+              <Profile isOpen={menuOpen} setMenuOpen={setMenuOpen} />
+            )}
           />
         </>
       )}

@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { NavMenu } from './index';
-import { MainHeading } from '../shared/index';
-import { Link } from 'react-router-dom';
+
 import { AppContext } from '../../Store';
 import { CONSTANTS } from '../../constants';
+import { Link } from 'react-router-dom';
+import { MainHeading } from '../shared/index';
+import { NavMenu } from './index';
 import { debounce } from '../../util/debounce';
 const { LOGOUT } = CONSTANTS;
 
@@ -55,7 +56,9 @@ export const Header = ({ isOpen, setMenuOpen }) => {
               className={`nav-link-wrapper ${
                 window.location.pathname.includes('home') ? 'active' : ''
               }`}>
-              <Link to={`/home/${user ? user.id : ''}`} className='nav-link home'>
+              <Link
+                to={`/home/${user ? user.id : ''}`}
+                className='nav-link home'>
                 Home
               </Link>
             </div>
@@ -63,12 +66,17 @@ export const Header = ({ isOpen, setMenuOpen }) => {
               className={`nav-link-wrapper ${
                 window.location.pathname.includes('profile') ? 'active' : ''
               }`}>
-              <Link to={`/profile/${user ? user.id : ''}`} className='nav-link profile'>
+              <Link
+                to={`/profile/${user ? user.id : ''}`}
+                className='nav-link profile'>
                 Profile
               </Link>
             </div>
             <div className='nav-link-wrapper'>
-              <Link to='/auth/login' className='nav-link logout' onClick={() => handleLogout()}>
+              <Link
+                to='/auth/login'
+                className='nav-link logout'
+                onClick={() => handleLogout()}>
                 Logout
               </Link>
             </div>

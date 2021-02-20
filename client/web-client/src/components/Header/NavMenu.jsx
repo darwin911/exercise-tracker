@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
+
 import { AppContext } from '../../Store';
-import { Link } from 'react-router-dom';
 import { CONSTANTS } from '../../constants';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 const { LOGOUT } = CONSTANTS;
 
@@ -61,7 +62,10 @@ export const NavMenu = ({ isOpen, setMenuOpen }) => {
         </Link>
       </div>
       <div className='nav-link-wrapper'>
-        <Link to='/auth/login' onClick={() => handleLogout()} className='nav-link logout'>
+        <Link
+          to='/auth/login'
+          onClick={() => handleLogout()}
+          className='nav-link logout'>
           Logout
         </Link>
       </div>
