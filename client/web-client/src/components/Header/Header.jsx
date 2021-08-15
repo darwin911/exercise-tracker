@@ -49,7 +49,7 @@ export const Header = ({ isOpen, setMenuOpen }) => {
   return (
     <header className={`header ${smallBreakpoint ? 'header-mobile' : ''}`}>
       <nav>
-        <MainHeading />
+        <MainHeading userId={user.id} />
         {smallBreakpoint ? (
           <HamburgerButton />
         ) : (
