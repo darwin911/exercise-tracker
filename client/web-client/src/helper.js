@@ -1,10 +1,15 @@
 import axios from 'axios';
 
-// const BASE_URL = `http://localhost:5000`;
-const BASE_URL = `https://exercise-tracker-express.herokuapp.com`;
+const isDevelopment = process.env.NODE_ENV === 'development';
+const BASE_URL = isDevelopment
+  ? 'http://localhost:5000'
+  : `https://exercise-tracker-express.herokuapp.com`;
 
-// Exercises
-
+/**
+ *
+ * @param {*} userId
+ * @returns
+ */
 const getUserExercises = async (userId) => {
   try {
     const resp = await axios.get(`${BASE_URL}/exercises/${userId}`);
@@ -14,6 +19,11 @@ const getUserExercises = async (userId) => {
   }
 };
 
+/**
+ *
+ * @param {Object} data
+ * @returns
+ */
 const addExercise = async (data) => {
   try {
     const resp = await axios.post(`${BASE_URL}/exercises/add`, data);
@@ -119,7 +129,10 @@ const getAllUsers = async () => {
 
 const getMultipleUsers = async (id, data) => {
   try {
-    const resp = await axios.get(`${BASE_URL}/users/${id}/friend-requests`, data);
+    const resp = await axios.get(
+      `${BASE_URL}/users/${id}/friend-requests`,
+      data
+    );
     return resp.data;
   } catch (error) {
     console.error(error);
@@ -128,7 +141,10 @@ const getMultipleUsers = async (id, data) => {
 
 const sendFriendRequest = async (id, data) => {
   try {
-    const resp = await axios.post(`${BASE_URL}/users/${id}/send-friend-request`, data);
+    const resp = await axios.post(
+      `${BASE_URL}/users/${id}/send-friend-request`,
+      data
+    );
     return resp.data;
   } catch (error) {
     console.error(error);
@@ -137,7 +153,10 @@ const sendFriendRequest = async (id, data) => {
 
 const acceptFriendRequest = async (id, data) => {
   try {
-    const resp = await axios.post(`${BASE_URL}/users/${id}/accept-friend`, data);
+    const resp = await axios.post(
+      `${BASE_URL}/users/${id}/accept-friend`,
+      data
+    );
     return resp.data;
   } catch (error) {
     console.error(error);
@@ -146,7 +165,9 @@ const acceptFriendRequest = async (id, data) => {
 
 const declineFriendRequest = async (id, targetId) => {
   try {
-    const resp = await axios.delete(`${BASE_URL}/users/${id}/decline-friend/${targetId}`);
+    const resp = await axios.delete(
+      `${BASE_URL}/users/${id}/decline-friend/${targetId}`
+    );
     return resp.data;
   } catch (error) {
     console.error(error);
@@ -155,7 +176,9 @@ const declineFriendRequest = async (id, targetId) => {
 
 const removeFriend = async (id, targetId) => {
   try {
-    const resp = await axios.delete(`${BASE_URL}/users/${id}/remove-friend/${targetId}`);
+    const resp = await axios.delete(
+      `${BASE_URL}/users/${id}/remove-friend/${targetId}`
+    );
     return resp.data;
   } catch (error) {
     console.error(error);
@@ -164,7 +187,9 @@ const removeFriend = async (id, targetId) => {
 
 const getFriendsData = async (id, friendIds) => {
   try {
-    const resp = await axios.post(`${BASE_URL}/users/${id}/get-friends-data`, { friendIds });
+    const resp = await axios.post(`${BASE_URL}/users/${id}/get-friends-data`, {
+      friendIds,
+    });
     return resp.data;
   } catch (error) {
     console.error(error);
