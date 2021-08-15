@@ -53,7 +53,7 @@ export const FriendSearch = () => {
         placeholder='user@mail.com'
         value={searchValue}
         onChange={(e) => handleChange(e)}
-        onFocus={(e) => handleFocus(e)}
+        onFocus={handleFocus}
         autoComplete='off'
       />
       <AutoCompleteUserList setSearchValue={setSearchValue} />
@@ -84,7 +84,7 @@ const AutoCompleteUserCard = ({ user, setValue }) => {
 
   const handleAddFriend = async (targetId) => {
     const resp = await sendFriendRequest(currentUser.id, { targetId });
-    if (resp && resp.message) {
+    if (resp && !!resp.message) {
       toast.info(resp.message);
       setValue('');
       dispatch({ type: SET_FILTERED_FRIENDS_RESULT, payload: [] });
