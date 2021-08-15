@@ -17,12 +17,8 @@ import { Header } from './Components/Header/Header';
 import { Home } from './Components/Home/index';
 import { Profile } from './Components/Profile/index';
 
-const {
-  SET_USER,
-  SET_EXERCISES,
-  TOGGLE_LOADING,
-  LOAD_PUSH_UPS_DATA,
-} = CONSTANTS;
+const { SET_USER, SET_EXERCISES, TOGGLE_LOADING, LOAD_PUSH_UPS_DATA } =
+  CONSTANTS;
 
 export const App = withRouter(({ location: { pathname } }) => {
   const [state, dispatch] = useContext(AppContext);
@@ -62,8 +58,8 @@ export const App = withRouter(({ location: { pathname } }) => {
       dispatch({ type: SET_EXERCISES, payload: exercises });
     };
 
-    const loadPushUpChartDataToState = async () => {
-      const data = await getUserPushUpsData(user.id);
+    const loadPushUpChartDataToState = async (userId) => {
+      const data = await getUserPushUpsData(userId);
       dispatch({ type: LOAD_PUSH_UPS_DATA, payload: data });
     };
 

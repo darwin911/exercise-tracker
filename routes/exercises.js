@@ -20,7 +20,9 @@ router.route('/:userId').get(async (req, res) => {
     let exercises = await Exercise.find({ userId: req.params.userId }).sort({
       date: 'descending',
     });
-    exercises = await Promise.all(exercises.map((exercise) => exercise.toClient()));
+    exercises = await Promise.all(
+      exercises.map((exercise) => exercise.toClient())
+    );
     res.json({ exercises });
   } catch (error) {
     console.error(error);
@@ -106,9 +108,13 @@ router.route('/update/:id').put(async (req, res) => {
     if (time) {
       exerciseObj.time = Number(time.replace(/:/, '')); // min from midnight 00:00
     }
-    let exercise = await Exercise.findByIdAndUpdate(req.params.id, exerciseObj, {
-      new: true,
-    });
+    let exercise = await Exercise.findByIdAndUpdate(
+      req.params.id,
+      exerciseObj,
+      {
+        new: true,
+      }
+    );
     const exerciseData = await exercise.toClient();
     return res.json(exerciseData);
   } catch (error) {
@@ -128,17 +134,27 @@ router.route('/:userId/push-ups').get(async (req, res) => {
 
     // All Time
 
-    const allTimeTotal = pushUps.reduce((acc, item) => acc + item.repetitions, 0);
-    const allTime = { average: (allTimeTotal / pushUps.length).toFixed(1), total: allTimeTotal };
+    const allTimeTotal = pushUps.reduce(
+      (acc, item) => acc + item.repetitions,
+      0
+    );
+    const allTime = {
+      average: (allTimeTotal / pushUps.length).toFixed(1),
+      total: allTimeTotal,
+    };
 
     // Monthly
-    const weekTotal = pushUps
-      .filter((ex) => moment(ex.date).isBefore())
-      .reduce((acc, item) => acc + item.repetitions, 0);
+    // const weekTotal = pushUps
+    //   .filter((ex) => moment(ex.date).isBefore())
+    //   .reduce((acc, item) => acc + item.repetitions, 0);
 
     // Weekly
 
-    res.json({ week: { average: 0, total: 0 }, month: { average: 0, total: 0 }, allTime });
+    res.json({
+      week: { average: 0, total: 0 },
+      month: { average: 0, total: 0 },
+      allTime,
+    });
   } catch (error) {
     console.error(error);
   }

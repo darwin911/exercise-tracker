@@ -1,8 +1,9 @@
-import React, { useState, useContext } from 'react';
-import { AppContext } from '../../Store';
-import { CONSTANTS } from '../../constants';
+import React, { useContext, useState } from 'react';
 import { getAllUsers, sendFriendRequest } from '../../helper';
+
+import { AppContext } from '../../Store';
 import { Avatar } from './index';
+import { CONSTANTS } from '../../constants';
 import { toast } from 'react-toastify';
 
 const { SET_FILTERED_FRIENDS_RESULT, SET_ALL_USERS } = CONSTANTS;
@@ -26,7 +27,7 @@ export const FriendSearch = () => {
     }
   };
 
-  const handleFocus = async (e) => {
+  const handleFocus = async () => {
     setCount((prevVal) => prevVal + 1);
     if (count >= 1) return;
     const allUsers = await getAllUsers();
@@ -38,7 +39,9 @@ export const FriendSearch = () => {
 
     return users.filter((user) => {
       const hasBeenRequested = !friendRequestsSent.includes(user.id);
-      return user.email.includes(input) && user.id !== userId && hasBeenRequested;
+      return (
+        user.email.includes(input) && user.id !== userId && hasBeenRequested
+      );
     });
   };
 
@@ -66,7 +69,11 @@ const AutoCompleteUserList = ({ setSearchValue }) => {
   return (
     <ul className='auto-complete-list'>
       {userList.map((user) => (
-        <AutoCompleteUserCard user={user} key={user.id} setValue={setSearchValue} />
+        <AutoCompleteUserCard
+          user={user}
+          key={user.id}
+          setValue={setSearchValue}
+        />
       ))}
     </ul>
   );
@@ -77,7 +84,7 @@ const AutoCompleteUserCard = ({ user, setValue }) => {
 
   const handleAddFriend = async (targetId) => {
     const resp = await sendFriendRequest(currentUser.id, { targetId });
-    if (resp && resp.success) {
+    if (resp && resp.message) {
       toast.info(resp.message);
       setValue('');
       dispatch({ type: SET_FILTERED_FRIENDS_RESULT, payload: [] });
@@ -91,7 +98,9 @@ const AutoCompleteUserCard = ({ user, setValue }) => {
       <div className='auto-complete-item'>
         <Avatar name={user.username} className={'auto-complete-item'} />
         <p className='auto-complete-item__username'>{user.username}</p>
-        <button className='auto-complete-item__add' onClick={() => handleAddFriend(user.id)}>
+        <button
+          className='auto-complete-item__add'
+          onClick={() => handleAddFriend(user.id)}>
           Add
         </button>
       </div>

@@ -6,12 +6,14 @@ import { Link } from 'react-router-dom';
 import { MainHeading } from '../shared/index';
 import { NavMenu } from './index';
 import { debounce } from '../../util/debounce';
+
 const { LOGOUT } = CONSTANTS;
 
 export const Header = ({ isOpen, setMenuOpen }) => {
   const [{ user }, dispatch] = useContext(AppContext);
   const isAuth = window.location.pathname.toLowerCase().startsWith('/auth');
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+  const pathname = window.location.pathname;
 
   useEffect(() => {
     const debouncedHandleResize = debounce(function handleResize() {
@@ -54,21 +56,17 @@ export const Header = ({ isOpen, setMenuOpen }) => {
           <>
             <div
               className={`nav-link-wrapper ${
-                window.location.pathname.includes('home') ? 'active' : ''
+                pathname.includes('home') ? 'active' : ''
               }`}>
-              <Link
-                to={`/home/${user ? user.id : ''}`}
-                className='nav-link home'>
+              <Link to={`/home/${user.id}`} className='nav-link home'>
                 Home
               </Link>
             </div>
             <div
               className={`nav-link-wrapper ${
-                window.location.pathname.includes('profile') ? 'active' : ''
+                pathname.includes('profile') ? 'active' : ''
               }`}>
-              <Link
-                to={`/profile/${user ? user.id : ''}`}
-                className='nav-link profile'>
+              <Link to={`/profile/${user.id}`} className='nav-link profile'>
                 Profile
               </Link>
             </div>
