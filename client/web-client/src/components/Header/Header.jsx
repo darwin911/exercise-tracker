@@ -13,7 +13,8 @@ export const Header = ({ isOpen, setMenuOpen }) => {
   const [{ user }, dispatch] = useContext(AppContext);
   const isAuth = window.location.pathname.toLowerCase().startsWith('/auth');
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
-  const pathname = window.location.pathname;
+  const isMobile = innerWidth <= 414;
+  const { pathname } = window.location;
 
   useEffect(() => {
     const debouncedHandleResize = debounce(function handleResize() {
@@ -26,10 +27,8 @@ export const Header = ({ isOpen, setMenuOpen }) => {
     return () => window.removeEventListener('resize', debouncedHandleResize);
   });
 
-  const smallBreakpoint = innerWidth <= 414;
-
   const HamburgerButton = () =>
-    smallBreakpoint ? (
+    isMobile ? (
       <button
         disabled={isAuth}
         className='hamburger-btn'
@@ -47,10 +46,10 @@ export const Header = ({ isOpen, setMenuOpen }) => {
   if (!user) return null;
 
   return (
-    <header className={`header ${smallBreakpoint ? 'header-mobile' : ''}`}>
+    <header className={`header ${isMobile ? 'header-mobile' : ''}`}>
       <nav>
         <MainHeading userId={user.id} />
-        {smallBreakpoint ? (
+        {isMobile ? (
           <HamburgerButton />
         ) : (
           <>
