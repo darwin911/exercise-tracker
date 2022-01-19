@@ -1,17 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from "react";
 
-import { AppContext } from '../../Store';
-import { CONSTANTS } from '../../constants';
-import { Link } from 'react-router-dom';
-import { MainHeading } from '../shared/index';
-import { NavMenu } from './index';
-import { debounce } from '../../util/debounce';
+import { AppContext } from "../../Store";
+import { CONSTANTS } from "../../constants";
+import { Link } from "react-router-dom";
+import { MainHeading } from "../shared/index";
+import { NavMenu } from "./index";
+import { debounce } from "../../util/debounce";
 
 const { LOGOUT } = CONSTANTS;
 
 export const Header = ({ isOpen, setMenuOpen }) => {
   const [{ user }, dispatch] = useContext(AppContext);
-  const isAuth = window.location.pathname.toLowerCase().startsWith('/auth');
+  const isAuth = window.location.pathname.toLowerCase().startsWith("/auth");
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
   const isMobile = innerWidth <= 414;
   const { pathname } = window.location;
@@ -23,22 +23,23 @@ export const Header = ({ isOpen, setMenuOpen }) => {
       }
       setInnerWidth(window.innerWidth);
     }, 200);
-    window.addEventListener('resize', debouncedHandleResize);
-    return () => window.removeEventListener('resize', debouncedHandleResize);
+    window.addEventListener("resize", debouncedHandleResize);
+    return () => window.removeEventListener("resize", debouncedHandleResize);
   });
 
   const HamburgerButton = () =>
     isMobile ? (
       <button
         disabled={isAuth}
-        className='hamburger-btn'
-        onClick={() => setMenuOpen((val) => !val)}>
+        className="hamburger-btn"
+        onClick={() => setMenuOpen((val) => !val)}
+      >
         <span />
       </button>
     ) : null;
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     setMenuOpen(false);
     dispatch({ type: LOGOUT });
   };
@@ -46,7 +47,7 @@ export const Header = ({ isOpen, setMenuOpen }) => {
   if (!user) return null;
 
   return (
-    <header className={`header ${isMobile ? 'header-mobile' : ''}`}>
+    <header className={`header ${isMobile ? "header-mobile" : ""}`}>
       <nav>
         <MainHeading userId={user.id} />
         {isMobile ? (
@@ -55,25 +56,28 @@ export const Header = ({ isOpen, setMenuOpen }) => {
           <>
             <div
               className={`nav-link-wrapper ${
-                pathname.includes('home') ? 'active' : ''
-              }`}>
-              <Link to={`/home/${user.id}`} className='nav-link home'>
+                pathname.includes("home") ? "active" : ""
+              }`}
+            >
+              <Link to={`/home/${user.id}`} className="nav-link home">
                 Home
               </Link>
             </div>
             <div
               className={`nav-link-wrapper ${
-                pathname.includes('profile') ? 'active' : ''
-              }`}>
-              <Link to={`/profile/${user.id}`} className='nav-link profile'>
+                pathname.includes("profile") ? "active" : ""
+              }`}
+            >
+              <Link to={`/profile/${user.id}`} className="nav-link profile">
                 Profile
               </Link>
             </div>
-            <div className='nav-link-wrapper'>
+            <div className="nav-link-wrapper">
               <Link
-                to='/auth/login'
-                className='nav-link logout'
-                onClick={() => handleLogout()}>
+                to="/auth/login"
+                className="nav-link logout"
+                onClick={() => handleLogout()}
+              >
                 Logout
               </Link>
             </div>

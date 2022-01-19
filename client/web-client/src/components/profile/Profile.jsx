@@ -1,8 +1,14 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../../Store';
-import { Route } from 'react-router-dom';
-import { Loader } from '../shared/index';
-import { ProfileCard, ConfirmDeleteAccountModal, Friends, WeightTracker } from './index';
+import {
+  ConfirmDeleteAccountModal,
+  Friends,
+  ProfileCard,
+  WeightTracker,
+} from "./index";
+import React, { useContext } from "react";
+
+import { AppContext } from "../../Store";
+import { Loader } from "../shared/index";
+import { Route } from "react-router-dom";
 
 export const Profile = () => {
   const [{ user }] = useContext(AppContext);
@@ -11,14 +17,14 @@ export const Profile = () => {
 
   return (
     <>
-      <main className='container'>
-        <div className='profile wrapper'>
+      <main className="container">
+        <div className="profile wrapper">
           <ProfileCard />
           <Friends />
           <WeightTracker />
         </div>
         <Route
-          path='/profile/:id/delete'
+          path="/profile/:id/delete"
           render={({ match }) => {
             const { id } = match.params;
             return <ConfirmDeleteAccountModal userId={id} />;

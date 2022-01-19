@@ -1,21 +1,21 @@
-import './style/App.css';
+import "./style/App.css";
 
-import { Footer, Loader } from './Components/shared/index';
-import React, { useContext, useEffect, useState } from 'react';
-import { Route, useHistory, withRouter } from 'react-router-dom';
+import { Footer, Loader } from "./components/shared";
+import React, { useContext, useEffect, useState } from "react";
+import { Route, useHistory, withRouter } from "react-router-dom";
 import {
   getUser,
   getUserExercises,
   getUserPushUpsData,
   verifyToken,
-} from './helper';
+} from "./helper";
 
-import { AppContext } from './Store';
-import { Auth } from './Components/Auth/index';
-import { CONSTANTS } from './constants';
-import { Header } from './Components/Header/Header';
-import { Home } from './Components/Home/index';
-import { Profile } from './Components/Profile/index';
+import { AppContext } from "./Store";
+import { Auth } from "./components/auth";
+import { CONSTANTS } from "./constants";
+import { Header } from "./components/Header";
+import { Home } from "./components/home";
+import { Profile } from "./components/profile";
 
 const { SET_USER, SET_EXERCISES, TOGGLE_LOADING, LOAD_PUSH_UPS_DATA } =
   CONSTANTS;
@@ -25,14 +25,14 @@ export const App = withRouter(({ location: { pathname } }) => {
   const { user, loading } = state;
   const [menuOpen, setMenuOpen] = useState(false);
   const history = useHistory();
-  const openModal = pathname.includes('/add') || pathname.includes('/edit');
+  const openModal = pathname.includes("/add") || pathname.includes("/edit");
 
   useEffect(() => {
     if (user) return;
-    let token = localStorage.getItem('token');
+    let token = localStorage.getItem("token");
     const handleAutoLogin = async (token) => {
       dispatch({ type: TOGGLE_LOADING });
-      const pushToHome = pathname.includes('auth') || pathname === '/';
+      const pushToHome = pathname.includes("auth") || pathname === "/";
       const verifiedUser = await verifyToken({ token });
       if (verifiedUser) {
         const { id } = verifiedUser;
@@ -40,14 +40,14 @@ export const App = withRouter(({ location: { pathname } }) => {
         dispatch({ type: SET_USER, payload: user });
         history.push(pushToHome ? `/home/${user.id}` : pathname);
       } else {
-        localStorage.removeItem('token');
-        history.push('/auth/login');
+        localStorage.removeItem("token");
+        history.push("/auth/login");
       }
     };
 
     if (token) handleAutoLogin(token);
-    else if (!pathname.includes('register')) {
-      history.push('/auth/login');
+    else if (!pathname.includes("register")) {
+      history.push("/auth/login");
     }
   }, [dispatch, pathname, history, user]);
 
@@ -72,24 +72,25 @@ export const App = withRouter(({ location: { pathname } }) => {
 
   return (
     <div
-      className={`App${openModal ? ' modal-open' : ''} ${
-        menuOpen ? ' menu-open' : ''
-      }`}>
+      className={`App${openModal ? " modal-open" : ""} ${
+        menuOpen ? " menu-open" : ""
+      }`}
+    >
       <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
       {loading ? (
         <Loader size={8} />
       ) : (
         <>
-          <Route path='/home/:id' component={Home} />
+          <Route path="/home/:id" component={Home} />
           <Route
-            path='/profile'
+            path="/profile"
             render={() => (
               <Profile isOpen={menuOpen} setMenuOpen={setMenuOpen} />
             )}
           />
         </>
       )}
-      <Route path='/auth' component={Auth} />
+      <Route path="/auth" component={Auth} />
       <Footer />
     </div>
   );

@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const { hash, compare, encode } = require('../auth');
+const mongoose = require("mongoose");
+const { hash, compare, encode } = require("../auth");
 
 const Schema = mongoose.Schema;
 
@@ -28,7 +28,7 @@ const userSchema = new Schema(
     },
     unitSystem: {
       type: String,
-      default: 'IMPERIAL',
+      default: "IMPERIAL",
     },
     friends: [String],
     friendRequests: [String],
@@ -90,6 +90,6 @@ userSchema.methods.addFriendRequest = function (requesterId) {
   return this.toClient();
 };
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;

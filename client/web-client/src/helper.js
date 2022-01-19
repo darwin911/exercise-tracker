@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios from "axios";
 
-const isDevelopment = process.env.NODE_ENV === 'development';
+const isDevelopment = process.env.NODE_ENV === "development";
 const BASE_URL = isDevelopment
-  ? 'http://localhost:5000'
+  ? "http://localhost:5000"
   : `https://exercise-tracker-express.herokuapp.com`;
 
 /**

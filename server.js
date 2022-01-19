@@ -1,9 +1,9 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const passport = require('passport');
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const passport = require("passport");
 
-require('dotenv').config();
+require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -22,17 +22,17 @@ mongoose.connect(uri, {
 
 const connection = mongoose.connection;
 
-connection.once('open', () => {
-  console.log('*** MongoDB database connection established successfully ***');
+connection.once("open", () => {
+  console.log("*** MongoDB database connection established successfully ***");
 });
 
-const exerciseRouter = require('./routes/exercises');
-const userRouter = require('./routes/users');
+const exerciseRouter = require("./routes/exercises");
+const userRouter = require("./routes/users");
 
-app.use('/exercises', exerciseRouter);
-app.use('/users', userRouter);
+app.use("/exercises", exerciseRouter);
+app.use("/users", userRouter);
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
   res.json({ message: `Server is running on port: ${port}` });
 });
 
