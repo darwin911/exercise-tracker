@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
-import { AuthLink, FormField } from './index';
-import { useHistory } from 'react-router-dom';
-import { registerUser } from '../../helper';
-import { AppContext } from '../../Store';
-import { CONSTANTS } from '../../constants';
-import { Formik } from 'formik';
-import * as Yup from 'yup';
+import * as Yup from "yup";
+
+import { AuthLink, FormField } from "./index";
+import React, { useContext } from "react";
+
+import { AppContext } from "../../Store";
+import { CONSTANTS } from "../../constants";
+import { Formik } from "formik";
+import { registerUser } from "../../helper";
+import { useHistory } from "react-router-dom";
 
 const { SET_USER } = CONSTANTS;
 
@@ -13,38 +15,53 @@ export const RegisterForm = () => {
   const dispatch = useContext(AppContext)[1];
   const history = useHistory();
   const registerValidation = Yup.object({
-    name: Yup.string().max(255, 'Must be 255 characters or less'),
-    username: Yup.string().min(3, 'Too Short!').max(50, 'Too Long!'),
-    email: Yup.string().email('Invalid email address').required('Email Required'),
-    password: Yup.string().min(4, 'Must be 4 characters or more').required('Password Required'),
+    name: Yup.string()
+      .min(1, "At least 1 character")
+      .max(255, "Must be 255 characters or less")
+      .required("Name is Required"),
+    username: Yup.string()
+      .min(3, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Username is Required"),
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email Required"),
+    password: Yup.string()
+      .min(4, "Must be 4 characters or more")
+      .required("Password Required"),
   });
 
-  const handleRegister = async (values) => {
+  const handleRegister = async (values, { setFieldError }) => {
     const { email, username, password } = values;
 
     const data = await registerUser({ username, email, password });
 
     if (data) {
       if (data.error) {
-        alert(data.error);
-        return;
+        if (data.error) {
+          setFieldError("email", data.error);
+        }
+      } else {
+        dispatch({ type: SET_USER, payload: data });
+        localStorage.setItem("token", data.token);
+        history.push(`/home/${data.id}`);
       }
-      dispatch({ type: SET_USER, payload: data });
-      localStorage.setItem('token', data.token);
-      history.push(`/home/${data.id}`);
     }
   };
 
   return (
     <Formik
       initialValues={{
-        name: '',
-        username: '',
-        email: '',
-        password: '',
+        name: "",
+        username: "",
+        email: "",
+        password: "",
       }}
       validationSchema={registerValidation}
-      onSubmit={handleRegister}>
+      validateOnBlur
+      validateOnMount
+      onSubmit={handleRegister}
+    >
       {({
         values,
         errors,
@@ -55,13 +72,17 @@ export const RegisterForm = () => {
         isSubmitting,
         isValid,
       }) => (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} noValidate>
           <header>
             <h2>Register</h2>
-            <img src={process.env.PUBLIC_URL + '/images/user.svg'} alt='Register' />
+            <img
+              src={process.env.PUBLIC_URL + "/images/user.svg"}
+              alt="Register"
+            />
           </header>
+
           <FormField
-            inputType='name'
+            inputType="name"
             value={values.name}
             handleChange={handleChange}
             handleBlur={handleBlur}
@@ -70,7 +91,7 @@ export const RegisterForm = () => {
           />
 
           <FormField
-            inputType='username'
+            inputType="username"
             value={values.username}
             handleChange={handleChange}
             handleBlur={handleBlur}
@@ -79,7 +100,7 @@ export const RegisterForm = () => {
           />
 
           <FormField
-            inputType='email'
+            inputType="email"
             value={values.email}
             handleChange={handleChange}
             handleBlur={handleBlur}
@@ -88,7 +109,7 @@ export const RegisterForm = () => {
           />
 
           <FormField
-            inputType='password'
+            inputType="password"
             value={values.password}
             handleChange={handleChange}
             handleBlur={handleBlur}
@@ -96,11 +117,11 @@ export const RegisterForm = () => {
             disabled={isSubmitting}
           />
 
-          <button type='submit' disabled={!isValid}>
-            {isSubmitting ? <div className='loader' /> : 'Submit'}
+          <button type="submit" disabled={!isValid}>
+            {isSubmitting ? <div className="loader" /> : "Submit"}
           </button>
 
-          <AuthLink path='login' />
+          <AuthLink path="login" />
         </form>
       )}
     </Formik>

@@ -1,18 +1,25 @@
-import React from 'react';
-import { Field } from 'formik';
+import { Field } from "formik";
+import React from "react";
 
-export const FormField = ({ inputType, value, handleChange, handleBlur, error, disabled }) => {
+export const FormField = ({
+  inputType,
+  value,
+  handleChange,
+  handleBlur,
+  error,
+  disabled,
+}) => {
   switch (inputType) {
-    case 'name':
+    case "name":
       return (
-        <div className='form-field'>
-          <label htmlFor='name'>Name</label>
+        <div className="form-field">
+          <label htmlFor="name">Name</label>
           <Field
-            id={'name'}
-            className={error ? 'has-error' : null}
-            type={'text'}
-            name={'name'}
-            placeholder='John Doe'
+            id={"name"}
+            className={error ? "has-error" : null}
+            type={"text"}
+            name={"name"}
+            placeholder="John Doe"
             onChange={handleChange}
             onBlur={handleBlur}
             value={value}
@@ -20,64 +27,65 @@ export const FormField = ({ inputType, value, handleChange, handleBlur, error, d
             required
             disabled={disabled}
           />
-          <div className='form-field__error'>{error}</div>
+          <div className="form-field__error">{error}</div>
         </div>
       );
-    case 'email':
+    case "email":
       return (
-        <div className='form-field'>
-          <label htmlFor='email'>Email</label>
+        <div className="form-field">
+          <label htmlFor="email">Email</label>
           <Field
-            autoComplete='on'
+            autoComplete="on"
             id={inputType}
-            className={error ? 'has-error' : null}
+            className={error ? "has-error" : null}
             type={inputType}
             name={inputType}
-            placeholder='email@example.com'
+            placeholder="email@example.com"
             onChange={handleChange}
             onBlur={handleBlur}
             value={value}
             disabled={disabled}
           />
-          <div className='form-field__error'>{error}</div>
+          <div className="form-field__error">{error}</div>
         </div>
       );
-    case 'password':
+    case "password":
       return (
-        <div className='form-field'>
-          <label htmlFor='password'>Password</label>
+        <div className="form-field">
+          <label htmlFor="password">Password</label>
           <Field
-            id='password'
-            className={error ? 'has-error' : null}
-            type='password'
-            name='password'
-            autoComplete='current-password'
-            placeholder='p@s5w0rd'
+            id="password"
+            className={error ? "has-error" : null}
+            type="password"
+            name="password"
+            autoComplete="current-password"
+            placeholder="p@s5w0rd"
             onChange={handleChange}
             onBlur={handleBlur}
             value={value}
             required
             disabled={disabled}
           />
-          <div className='form-field__error'>{error}</div>
+          <div className="form-field__error">{error}</div>
         </div>
       );
-    case 'username':
+    case "username":
       return (
-        <div className='form-field'>
-          <label htmlFor='username'>Username</label>
+        <div className="form-field">
+          <label htmlFor="username">Username</label>
           <Field
-            id='username'
-            className={error ? 'has-error' : null}
-            type='text'
-            name='username'
-            placeholder='UsernameExample'
+            id="username"
+            className={error ? "has-error" : null}
+            type="text"
+            name="username"
+            placeholder="UsernameExample"
+            autoComplete="off"
             onChange={handleChange}
             value={value}
             required
             disabled={disabled}
           />
-          <div className='form-field__error'>{error}</div>
+          <div className="form-field__error">{error}</div>
         </div>
       );
     default:

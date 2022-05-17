@@ -45,7 +45,7 @@ export const LoginForm = () => {
       validationSchema={loginValidation}
       onSubmit={handleLogin}
       validateOnBlur
-      isInitialValid={false}
+      validateOnMount
     >
       {({
         errors,
