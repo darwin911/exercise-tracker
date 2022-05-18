@@ -5,16 +5,33 @@
 
 This web application is hobby project developed with a basic CRA (Create React App) for the Front-end, and an Express back-end API. The goal was to build up development experience and exemplify some of my skills with modern tooling, hopefully becoming an web app with a finished look that allowing for a quick way to demo/present my work.
 
-Exercise Tracker allows a user to Register and Log in with an email address and password. Currently the application's Authentication flow is very simple, but that is sufficient for this hooby project.
+Exercise Tracker allows a user to Register and Log in with an email address and password. Currently the application's Authentication flow is very simple, but that is sufficient for this hobby project. A user can then Add/Edit/Delete/View (CRUD), and also filter, exercises they create and want to track.
+
+### Front-End - UI
+
+- Framer Motion handles the nice animation on the exercise cards. Some of these are slighltly exaggerated for the purposes of demoing the features. For a production application, or a client, these would most likely be toned down.
+- Managing State with Context initially was a challenge, but served as a learning experience for the future, for what to do, and not to do, specifically, where and how to manage state (local or global).
+- Styling is important for me because I have a passion for things not only working well, but looking just as well to the user. My opinon is that non-technical users tend to judge an application by it's appeareance quite heavily. I agree that funcionality (features) need to work properly, however I also believe implementing the User Interfaces should not be ignored. Styling / CSS is all handrolled, which allows for custom work, but at the same time proves to be a hurdle when refactoring, or building more agnostic components. Refactor is needed.
+- In the image below we can see how the URL points us to how the a user is identified, `/home/:userId` `:userId` being the id in the database.
+
+![image](https://user-images.githubusercontent.com/22927002/169090567-3ca49c42-892f-4bdc-ab1d-9bdc0d5dfe4e.png)
+
+## Features
+
+- User can create new account with email and password (Auth)
+- User can login to previously created account (Auth)
+- User can add Exercises with duration and a note (Create)
+- User can edit an Exercise (Update)
+- User can delete an Exercise (Delete)
+- User can view all of his/her previoulsy added Exercises (Read)
+- User can filter by exercise type and exercise time
 
 ### API / Backend
 
 Once Logged in, a user is persisted on the browser, this is done via a JSON Web Token that stores a users identifiable information, which should only be parsed by the application (backend), and returned back to the Front-end. A users password is hashed when the request is received on the back-end, so we never store the users password, only a hashed version of it.
 
 ```JavaScript
-// Backend
-// Register Route
-
+// Backend - Register
 router.route('/register').post(async (req, res) => {
   const { username, email, password } = req.body;
   try {
@@ -34,7 +51,6 @@ router.route('/register').post(async (req, res) => {
 });
 
 // User Modal / Schema methods
-
 userSchema.methods.toClient = function () {
   return {
     id: this._id,
@@ -81,16 +97,6 @@ const verify = (token) => {
 };
 ```
 
-### Front-End - UI
-
-- Framer Motion handles the fancy animaition on the cards, as well as all the small subtle animations on buttons and modals. Some of these are slighltly exaggerated for the purposes of demoing the features. For a production application, or a client, these would most likely be toned down.
-- Managing State with Context initially was a challenge, but served as a learning experience for the future, for what to do, and not to do, specifically, where and how to manage state (local or global).
-- Styling is important for me because I have a passion for things not only working well, but looking just as well to the user. My opinon is that non-technical users tend to judge an application by it's appeareance quite heavily. I agree that funcionality (features) need to work properly, however I also believe implementing the User Interfaces should not be ignored.
-- Styling / CSS is all handrolled, which allows for custom work, but at the same time proves to be a hurdle when refactoring, or building more agnostic components. Refactor is needed.
-- In the image below we can see how the URL points us to how the a user is identified, `/home/:userId` `:userId` being the id in the database.
-
-![image](https://user-images.githubusercontent.com/22927002/169090567-3ca49c42-892f-4bdc-ab1d-9bdc0d5dfe4e.png)
-
 ## Libraries / Packages / Dependencies
 
 - Nodemon (local development)
@@ -101,16 +107,6 @@ const verify = (token) => {
 - Framer Motion - Animation
 - Formik + Yup (Forms / Validation)
 - Passport (not implemented)
-
-## Features
-
-- User can create new account with email and password (Auth)
-- User can login to previously created account (Auth)
-- User can add Exercises with duration and a note (Create)
-- User can edit an Exercise (Update)
-- User can delete an Exercise (Delete)
-- User can view all of his/her previoulsy added Exercises (Read)
-- User can filter by exercise type and exercise time
 
 ## Exercise Types
 
