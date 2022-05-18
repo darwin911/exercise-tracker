@@ -65,10 +65,19 @@ userSchema.methods.generateJWT = function () {
   return encode(data);
 };
 
-
 userSchema.methods.setPassword = async function (password) {
   const digest = await hash(password);
   this.passwordDigest = digest;
+};
+
+const encode = (data) => {
+ // SECRET is a string that can be stored as a env var
+  return jwt.sign(data, SECRET);
+};
+
+const verify = (token) => {
+     // SECRET is a string that can be stored as a env var
+  return jwt.verify(token, SECRET);
 };
 ```
 
