@@ -1,11 +1,23 @@
-# Exercise Tracker | React, Express, MongoDB, Mongoose
+## Exercise Tracker | React, Express, MongoDB, Mongoose
 
 - Authentication (Email/Pass) with JSONWebTokens + Bcrypt
 - Create, Read, Update, Delete (CRUD) API
 
-This web application is hobby project developed with a basic CRA (Create React App) for the Front-end, and an Express back-end API. The goal was to build up development experience and exemplify some of my skills with modern tooling, hopefully becoming an web app with a finished look that allowing for a quick way to demo/present my work.
+This web application is hobby project developed with a basic CRA (Create React App) for the Front-end, and an Express back-end API. The goal was to build up development experience and exemplify some of my skills with modern tooling, hopefully becoming a web app with a finished look, allowing for a quick way to demo/present my work and skills.
 
-Exercise Tracker allows a user to Register and Log in with an email address and password. Currently the application's Authentication flow is very simple, but that is sufficient for this hobby project. A user can then Add/Edit/Delete/View (CRUD), and also filter, exercises they create and want to track.
+### Summary
+- Exercise Tracker allows a user to Register and Log in with an email address and password. Currently the application's Authentication flow is very simple, but that is sufficient for this hobby project. A user can then Add/Edit/Delete/View (CRUD), and also filter, exercises they create and want to track.
+
+
+### Features / User Stories
+
+- User can create new account with email and password (Auth)
+- User can login to previously created account (Auth)
+- User can add Exercises with duration and a note (Create)
+- User can edit an Exercise (Update)
+- User can delete an Exercise (Delete)
+- User can view all of his/her previoulsy added Exercises (Read)
+- User can filter by exercise type and exercise time
 
 ### Front-End - UI
 
@@ -15,16 +27,6 @@ Exercise Tracker allows a user to Register and Log in with an email address and 
 - In the image below we can see how the URL points us to how the a user is identified, `/home/:userId` `:userId` being the id in the database.
 
 ![image](https://user-images.githubusercontent.com/22927002/169090567-3ca49c42-892f-4bdc-ab1d-9bdc0d5dfe4e.png)
-
-## Features
-
-- User can create new account with email and password (Auth)
-- User can login to previously created account (Auth)
-- User can add Exercises with duration and a note (Create)
-- User can edit an Exercise (Update)
-- User can delete an Exercise (Delete)
-- User can view all of his/her previoulsy added Exercises (Read)
-- User can filter by exercise type and exercise time
 
 ### API / Backend
 
@@ -97,7 +99,7 @@ const verify = (token) => {
 };
 ```
 
-## Libraries / Packages / Dependencies
+### Libraries / Packages / Dependencies
 
 - Nodemon (local development)
 - Moment.js - Formatting Time
@@ -108,7 +110,7 @@ const verify = (token) => {
 - Formik + Yup (Forms / Validation)
 - Passport (not implemented)
 
-## Exercise Types
+### Exercise Types
 
 - General
 - Run
@@ -119,7 +121,7 @@ const verify = (token) => {
 - Swimming
 - Tennis
 
-## Charts - Recharts (not implemented)
+### Charts - Recharts (not implemented)
 
 - LineCharts (Incomplete)
 - BarChart (Incomplete)
