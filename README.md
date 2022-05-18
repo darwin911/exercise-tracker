@@ -88,6 +88,8 @@ const verify = (token) => {
 - Styling is important for me because I have a passion for things not only working well, but looking just as well to the user. My opinon is that non-technical users tend to judge an application by it's appeareance quite heavily. I agree that funcionality (features) need to work properly, however I also believe implementing the User Interfaces should not be ignored.
 - Styling / CSS is all handrolled, which allows for custom work, but at the same time proves to be a hurdle when refactoring, or building more agnostic components. Refactor is needed.
 
+![image](https://user-images.githubusercontent.com/22927002/169090567-3ca49c42-892f-4bdc-ab1d-9bdc0d5dfe4e.png)
+
 ## Libraries / Packages / Dependencies
 
 - Nodemon (local development)
