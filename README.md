@@ -87,6 +87,7 @@ const verify = (token) => {
 - Managing State with Context initially was a challenge, but served as a learning experience for the future, for what to do, and not to do, specifically, where and how to manage state (local or global).
 - Styling is important for me because I have a passion for things not only working well, but looking just as well to the user. My opinon is that non-technical users tend to judge an application by it's appeareance quite heavily. I agree that funcionality (features) need to work properly, however I also believe implementing the User Interfaces should not be ignored.
 - Styling / CSS is all handrolled, which allows for custom work, but at the same time proves to be a hurdle when refactoring, or building more agnostic components. Refactor is needed.
+- In the image below we can see how the URL points us to how the a user is identified, `/home/:userId` `:userId` being the id in the database.
 
 ![image](https://user-images.githubusercontent.com/22927002/169090567-3ca49c42-892f-4bdc-ab1d-9bdc0d5dfe4e.png)
 
