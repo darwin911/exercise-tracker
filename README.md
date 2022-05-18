@@ -83,16 +83,21 @@ const verify = (token) => {
 
 ### Front-End - UI
 
+- Framer Motion handles the fancy animaition on the cards, as well as all the small subtle animations on buttons and modals. Some of these are slighltly exaggerated for the purposes of demoing the features. For a production application, or a client, these would most likely be toned down.
+- Managing State with Context initially was a challenge, but served as a learning experience for the future, for what to do, and not to do, specifically, where and how to manage state (local or global).
+- Styling is important for me because I have a passion for things not only working well, but looking just as well to the user. My opinon is that non-technical users tend to judge an application by it's appeareance quite heavily. I agree that funcionality (features) need to work properly, however I also believe implementing the User Interfaces should not be ignored.
+- Styling / CSS is all handrolled, which allows for custom work, but at the same time proves to be a hurdle when refactoring, or building more agnostic components. Refactor is needed.
+
 ## Libraries / Packages / Dependencies
 
-- Nodemon
-- Passport
+- Nodemon (local development)
 - Moment.js - Formatting Time
 - Axios - Wrapper for native fetch API, used for making requests to API's
 - React Router - User for routing to different sections of WebApp
 - MongoDb / Mongoose - NoSQL Database
 - Framer Motion - Animation
 - Formik + Yup (Forms / Validation)
+- Passport (not implemented)
 
 ## Features
 
