@@ -1,4 +1,4 @@
-@import './variables';
+@import "./variables";
 
 html,
 body,
@@ -117,7 +117,6 @@ a:hover {
 
   @media screen and (min-width: $xl) {
     margin: 0.25em 0;
-    opacity: 0.25;
   }
 
   b {
@@ -217,11 +216,11 @@ a:hover {
 }
 
 //
-@import './auth';
-@import './header';
-@import './exercises';
-@import './profile';
-@import './footer';
+@import "./auth";
+@import "./header";
+@import "./exercises";
+@import "./profile";
+@import "./footer";
 
 .activity-types {
   margin-bottom: 2rem;
@@ -305,7 +304,11 @@ a:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(ellipse at center, transparent -40%, rgba(0, 0, 0, 0.3));
+  background: radial-gradient(
+    ellipse at center,
+    transparent -40%,
+    rgba(0, 0, 0, 0.3)
+  );
 }
 
 .delete-account {
@@ -346,7 +349,7 @@ a:hover {
     margin-left: 0.25em;
   }
 
-  input[type='checkbox'] {
+  input[type="checkbox"] {
     &:checked + label {
       opacity: 1;
     }
