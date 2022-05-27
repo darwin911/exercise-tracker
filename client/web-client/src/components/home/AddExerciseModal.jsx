@@ -1,24 +1,25 @@
-import * as Yup from 'yup';
+import * as Yup from "yup";
 
-import { CONSTANTS, EXERCISE_TYPES, TRANSITIONS } from '../../constants';
-import { ErrorMessage, Field, Formik } from 'formik';
-import React, { useContext, useState } from 'react';
+import { CONSTANTS, EXERCISE_TYPES, TRANSITIONS } from "../../constants";
+import { ErrorMessage, Field, Formik } from "formik";
+import React, { useContext, useState } from "react";
 
-import { AppContext } from '../../Store';
-import { addExercise } from '../../helper';
-import { createPortal } from 'react-dom';
-import moment from 'moment';
-import { motion } from 'framer-motion';
-import { useHistory } from 'react-router-dom';
+import { AppContext } from "../../Store";
+import { addExercise } from "../../helper";
+import { createPortal } from "react-dom";
+import moment from "moment";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+
 const { ADD_EXERCISE, TOGGLE_MODAL } = CONSTANTS;
 const { PUSH_UPS, RUN } = EXERCISE_TYPES;
 
-const DOMRoot = document.querySelector('#root');
+const DOMRoot = document.querySelector("#root");
 
 export const AddExerciseModal = () => {
   const [state, dispatch] = useContext(AppContext);
   const { user } = state;
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
 
@@ -37,37 +38,39 @@ export const AddExerciseModal = () => {
 
     dispatch({ type: TOGGLE_MODAL });
     setLoading(false);
-    history.push(`/home/${user.id}`);
+    navigate(`/home/${user.id}`);
   };
 
   const closeModal = () => {
-    history.push(`/home/${user.id}`);
+    navigate(`/home/${user.id}`);
   };
 
   const initValues = {
     date: moment().format(moment.HTML5_FMT.DATE),
     time: moment().format(moment.HTML5_FMT.TIME),
-    type: '',
-    duration: '',
-    distance: '',
-    repetitions: '',
-    note: '',
+    type: "",
+    duration: "",
+    distance: "",
+    repetitions: "",
+    note: "",
   };
 
   const validationSchema = Yup.object({
-    type: Yup.string().required('Pick One'),
+    type: Yup.string().required("Pick One"),
   });
 
   return createPortal(
     <motion.aside
-      className='add-exercise__modal'
-      initial={{ x: '-10%', opacity: 0.15 }}
-      animate={{ x: '0', opacity: 1 }}
-      transition={TRANSITIONS.SPRING}>
+      className="add-exercise__modal"
+      initial={{ x: "-10%", opacity: 0.15 }}
+      animate={{ x: "0", opacity: 1 }}
+      transition={TRANSITIONS.SPRING}
+    >
       <Formik
         initialValues={initValues}
         onSubmit={handleSubmit}
-        validationSchema={validationSchema}>
+        validationSchema={validationSchema}
+      >
         {({
           values,
           errors,
@@ -77,15 +80,8 @@ export const AddExerciseModal = () => {
           handleBlur,
           isSubmitting,
         }) => {
-          const {
-            type,
-            date,
-            duration,
-            distance,
-            note,
-            repetitions,
-            time,
-          } = values;
+          const { type, date, duration, distance, note, repetitions, time } =
+            values;
           const addButtonDisabledState =
             loading ||
             !type ||
@@ -93,35 +89,37 @@ export const AddExerciseModal = () => {
             (type === PUSH_UPS && !repetitions) ||
             (type === RUN && !distance);
           return (
-            <form className='add-exercise' onSubmit={handleSubmit}>
+            <form className="add-exercise" onSubmit={handleSubmit}>
               <h2>Log New Exercise</h2>
               <br />
-              <hr className='divider' />
+              <hr className="divider" />
 
-              <div className='form-field type'>
-                <label htmlFor='type'>Type:</label>
-                <ErrorMessage name='type'>
+              <div className="form-field type">
+                <label htmlFor="type">Type:</label>
+                <ErrorMessage name="type">
                   {(msg) => (
                     <motion.span
-                      initial={{ transform: 'rotate3d(1, 0, 0, 0.25turn)' }}
-                      animate={{ transform: 'rotate3d(1, 0, 0, 0turn)' }}
-                      className='error'>
+                      initial={{ transform: "rotate3d(1, 0, 0, 0.25turn)" }}
+                      animate={{ transform: "rotate3d(1, 0, 0, 0turn)" }}
+                      className="error"
+                    >
                       {msg}
                     </motion.span>
                   )}
                 </ErrorMessage>
                 <Field
                   className={`${
-                    errors.type && touched.type ? 'input-error' : null
+                    errors.type && touched.type ? "input-error" : null
                   }`}
                   autoFocus
-                  as='select'
-                  id='type'
-                  name='type'
+                  as="select"
+                  id="type"
+                  name="type"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={type}>
-                  <option value='' disabled>
+                  value={type}
+                >
+                  <option value="" disabled>
                     Choose...
                   </option>
                   {Object.values(EXERCISE_TYPES).map((option) => (
@@ -132,13 +130,13 @@ export const AddExerciseModal = () => {
                 </Field>
               </div>
 
-              <div className='form-field date'>
-                <label htmlFor='date'>Date:</label>
+              <div className="form-field date">
+                <label htmlFor="date">Date:</label>
                 <Field
-                  id='date'
-                  name='date'
-                  type='date'
-                  pattern='\d{4}-\d{2}-\d{2}'
+                  id="date"
+                  name="date"
+                  type="date"
+                  pattern="\d{4}-\d{2}-\d{2}"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={date}
@@ -147,12 +145,12 @@ export const AddExerciseModal = () => {
                 />
               </div>
 
-              <div className='form-field time'>
-                <label htmlFor='time'>Time:</label>
+              <div className="form-field time">
+                <label htmlFor="time">Time:</label>
                 <Field
-                  id='time'
-                  name='time'
-                  type='time'
+                  id="time"
+                  name="time"
+                  type="time"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={time}
@@ -161,27 +159,28 @@ export const AddExerciseModal = () => {
               </div>
 
               {type !== PUSH_UPS ? (
-                <div className='form-field duration'>
-                  <label htmlFor='duration'>Duration: </label>
-                  <ErrorMessage name='duration'>
+                <div className="form-field duration">
+                  <label htmlFor="duration">Duration: </label>
+                  <ErrorMessage name="duration">
                     {(msg) => (
                       <motion.span
-                        initial={{ transform: 'rotate3d(1, 0, 0, 0.25turn)' }}
-                        animate={{ transform: 'rotate3d(1, 0, 0, 0turn)' }}
-                        className='error'>
+                        initial={{ transform: "rotate3d(1, 0, 0, 0.25turn)" }}
+                        animate={{ transform: "rotate3d(1, 0, 0, 0turn)" }}
+                        className="error"
+                      >
                         {msg}
                       </motion.span>
                     )}
                   </ErrorMessage>
                   <Field
                     className={`${
-                      errors.duration && touched.duration ? 'input-error' : null
+                      errors.duration && touched.duration ? "input-error" : null
                     }`}
-                    id='duration'
-                    name='duration'
-                    type='number'
-                    inputMode='numeric'
-                    placeholder='0'
+                    id="duration"
+                    name="duration"
+                    type="number"
+                    inputMode="numeric"
+                    placeholder="0"
                     min={1}
                     max={360}
                     onChange={handleChange}
@@ -189,15 +188,15 @@ export const AddExerciseModal = () => {
                     required
                     value={duration}
                   />
-                  <label htmlFor='duration'>min{duration > 1 && 's'}</label>
+                  <label htmlFor="duration">min{duration > 1 && "s"}</label>
                 </div>
               ) : (
-                <div className='form-field repetitions'>
-                  <label htmlFor='repetitions'>Repetitions: </label>
+                <div className="form-field repetitions">
+                  <label htmlFor="repetitions">Repetitions: </label>
                   <Field
-                    id='repetitions'
-                    name='repetitions'
-                    type='number'
+                    id="repetitions"
+                    name="repetitions"
+                    type="number"
                     min={1}
                     max={9999}
                     onChange={handleChange}
@@ -209,13 +208,13 @@ export const AddExerciseModal = () => {
               )}
 
               {type === RUN ? (
-                <div className='form-field distance'>
-                  <label htmlFor='distance'>Distance: </label>
+                <div className="form-field distance">
+                  <label htmlFor="distance">Distance: </label>
                   <Field
-                    id='distance'
-                    name='distance'
-                    type='number'
-                    placeholder='0.0'
+                    id="distance"
+                    name="distance"
+                    type="number"
+                    placeholder="0.0"
                     step={0.1}
                     min={0.1}
                     onChange={handleChange}
@@ -223,20 +222,20 @@ export const AddExerciseModal = () => {
                     value={distance}
                     required
                   />
-                  <label htmlFor='distance'>mi</label>
+                  <label htmlFor="distance">mi</label>
                 </div>
               ) : null}
 
-              <div className='form-field note'>
-                <label htmlFor='note'>Note: </label>
+              <div className="form-field note">
+                <label htmlFor="note">Note: </label>
                 <Field
-                  id='note'
-                  as='textarea'
-                  rows='2'
-                  maxLength='999'
-                  name='note'
-                  type='text'
-                  placeholder='Felt great!'
+                  id="note"
+                  as="textarea"
+                  rows="2"
+                  maxLength="999"
+                  name="note"
+                  type="text"
+                  placeholder="Felt great!"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   required
@@ -244,20 +243,22 @@ export const AddExerciseModal = () => {
                 />
               </div>
 
-              <div className='form-field buttons-container'>
+              <div className="form-field buttons-container">
                 <button
-                  type='button'
-                  className='btn cancel'
+                  type="button"
+                  className="btn cancel"
                   onClick={() => closeModal()}
-                  disabled={loading}>
+                  disabled={loading}
+                >
                   Cancel
                 </button>
                 <button
-                  type='submit'
-                  className='btn add'
+                  type="submit"
+                  className="btn add"
                   onClick={handleSubmit}
-                  disabled={addButtonDisabledState}>
-                  {loading ? <div className='loader' /> : 'Add'}
+                  disabled={addButtonDisabledState}
+                >
+                  {loading ? <div className="loader" /> : "Add"}
                 </button>
               </div>
             </form>

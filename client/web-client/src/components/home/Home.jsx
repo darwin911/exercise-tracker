@@ -1,27 +1,23 @@
-import React, { useContext } from 'react';
-import { Route } from 'react-router-dom';
-import { AppContext } from '../../Store';
-import { AddExerciseModal, EditExerciseModal, CreateWorkoutModal, UserExercises } from './index';
-// import { Workouts } from './Workouts';
-import { Loader } from '../shared/index';
+import React, { useContext } from "react";
+import { Route, Routes } from "react-router-dom";
+
+import { AddExerciseModal } from "./AddExerciseModal";
+import { AppContext } from "../../Store";
+// import { CreateWorkoutModal } from "./CreateWorkoutModal";
+import { EditExerciseModal } from "./EditExerciseModal";
+import { Loader } from "../shared/index";
+import { UserExercises } from "./index";
 
 export const Home = () => {
-  const [{ exercises, loading }] = useContext(AppContext);
+  const [{ loading }] = useContext(AppContext);
   return !loading ? (
-    <main className={`container`}>
-      {/* <Workouts /> */}
+    <main className="container">
       <UserExercises />
-      <Route path='/home/add' render={() => <AddExerciseModal />} />
-      <Route
-        path='/home/edit/:exerciseId'
-        render={({ match }) => {
-          const { exerciseId } = match.params;
-          const [editExercise] = exercises.filter((ex) => ex.id === exerciseId);
-          if (!editExercise) return null;
-          return <EditExerciseModal exercise={editExercise} />;
-        }}
-      />
-      <Route path='/home/create-workout' render={() => <CreateWorkoutModal />} />
+      <Routes>
+        <Route path="add" element={<AddExerciseModal />} />
+        <Route path="edit/:exerciseId" element={<EditExerciseModal />} />
+        {/* <Route path="create-workout" element={<CreateWorkoutModal />} /> */}
+      </Routes>
     </main>
   ) : (
     <Loader size={8} />

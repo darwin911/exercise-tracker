@@ -1,13 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 
-import { AppContext } from '../../Store';
-import { CONSTANTS } from '../../constants';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { AppContext } from "../../Store";
+import { CONSTANTS } from "../../constants";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
 const { LOGOUT } = CONSTANTS;
 
 const spring = {
-  type: 'spring',
+  type: "spring",
   damping: 50,
   stiffness: 600,
 };
@@ -16,7 +17,7 @@ export const NavMenu = ({ isOpen, setMenuOpen }) => {
   const [{ user }, dispatch] = useContext(AppContext);
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     setMenuOpen(false);
     dispatch({ type: LOGOUT });
   };
@@ -25,13 +26,13 @@ export const NavMenu = ({ isOpen, setMenuOpen }) => {
     open: {
       opacity: 1,
       scale: 1,
-      display: 'flex',
+      display: "flex",
     },
     closed: {
       opacity: 0,
       scale: 1.15,
       transitionEnd: {
-        display: 'none',
+        display: "none",
       },
     },
   };
@@ -40,32 +41,36 @@ export const NavMenu = ({ isOpen, setMenuOpen }) => {
 
   return (
     <motion.div
-      className='nav-menu'
+      className="nav-menu"
       transition={spring}
       variants={variants}
-      initial={'closed'}
-      animate={isOpen ? 'open' : 'closed'}>
-      <div className='nav-link-wrapper'>
+      initial={"closed"}
+      animate={isOpen ? "open" : "closed"}
+    >
+      <div className="nav-link-wrapper">
         <Link
           to={`/home/${user.id}`}
           onClick={() => setMenuOpen((isOpen) => !isOpen)}
-          className='nav-link home'>
+          className="nav-link home"
+        >
           Home
         </Link>
       </div>
-      <div className='nav-link-wrapper'>
+      <div className="nav-link-wrapper">
         <Link
           to={`/profile/${user.id}`}
           onClick={() => setMenuOpen((isOpen) => !isOpen)}
-          className='nav-link profile'>
+          className="nav-link profile"
+        >
           Profile
         </Link>
       </div>
-      <div className='nav-link-wrapper'>
+      <div className="nav-link-wrapper">
         <Link
-          to='/auth/login'
+          to="/login"
           onClick={() => handleLogout()}
-          className='nav-link logout'>
+          className="nav-link logout"
+        >
           Logout
         </Link>
       </div>

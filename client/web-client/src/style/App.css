@@ -498,6 +498,20 @@ a:hover {
   margin-bottom: 1em;
 }
 
+.auth-copy__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.auth-copy__text {
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
 .header {
   pointer-events: initial;
   position: relative;
@@ -660,7 +674,7 @@ a:hover {
 }
 
 .header-mobile .hamburger-btn span::before, .header-mobile .hamburger-btn span::after {
-  content: '';
+  content: "";
   display: block;
   border-radius: 3px;
   position: absolute;

@@ -1,15 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import React from "react";
 
 export const AuthLink = ({ path }) => {
-  const isLogin = window.location.pathname.includes('/login');
+  const isLogin = window.location.pathname.includes("/login");
   return (
-    <p>
-      {isLogin ? "Don't " : 'Already '}
-      have an account?{' '}
-      <Link to={`/auth/${path}`} style={{ textTransform: 'capitalize', fontWeight: 'bold' }}>
+    <div className="auth-copy__wrapper">
+      <p>
+        {isLogin ? "Don't " : "Already "}
+        have an account?
+      </p>
+      <Link to={`/${path}`} className="auth-copy__text">
         {path}
       </Link>
-    </p>
+    </div>
   );
 };

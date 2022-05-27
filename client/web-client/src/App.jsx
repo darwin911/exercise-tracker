@@ -1,8 +1,8 @@
 import "./style/App.css";
 
-import { Footer, Loader } from "./components/shared";
+import { LoginForm, RegisterForm } from "./components/auth";
 import React, { useContext, useEffect, useState } from "react";
-import { Route, useHistory, withRouter } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import {
   getUser,
   getUserExercises,
@@ -11,8 +11,8 @@ import {
 } from "./helper";
 
 import { AppContext } from "./Store";
-import { Auth } from "./components/auth";
 import { CONSTANTS } from "./constants";
+import { Footer } from "./components/shared";
 import { Header } from "./components/Header";
 import { Home } from "./components/home";
 import { Profile } from "./components/profile";
@@ -20,11 +20,11 @@ import { Profile } from "./components/profile";
 const { SET_USER, SET_EXERCISES, TOGGLE_LOADING, LOAD_PUSH_UPS_DATA } =
   CONSTANTS;
 
-export const App = withRouter(({ location: { pathname } }) => {
-  const [state, dispatch] = useContext(AppContext);
-  const { user, loading } = state;
+export const App = () => {
+  const [{ user }, dispatch] = useContext(AppContext);
   const [menuOpen, setMenuOpen] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   const openModal = pathname.includes("/add") || pathname.includes("/edit");
 
   useEffect(() => {
@@ -38,18 +38,18 @@ export const App = withRouter(({ location: { pathname } }) => {
         const { id } = verifiedUser;
         const user = await getUser(id);
         dispatch({ type: SET_USER, payload: user });
-        history.push(pushToHome ? `/home/${user.id}` : pathname);
+        navigate(pushToHome ? `/home/${user.id}` : pathname);
       } else {
         localStorage.removeItem("token");
-        history.push("/auth/login");
+        navigate("/login");
       }
     };
 
     if (token) handleAutoLogin(token);
     else if (!pathname.includes("register")) {
-      history.push("/auth/login");
+      navigate("/login");
     }
-  }, [dispatch, pathname, history, user]);
+  }, [dispatch, pathname, navigate, user]);
 
   useEffect(() => {
     dispatch({ type: TOGGLE_LOADING });
@@ -77,21 +77,17 @@ export const App = withRouter(({ location: { pathname } }) => {
       }`}
     >
       <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      {loading ? (
-        <Loader size={8} />
-      ) : (
-        <>
-          <Route path="/home/:id" component={Home} />
-          <Route
-            path="/profile"
-            render={() => (
-              <Profile isOpen={menuOpen} setMenuOpen={setMenuOpen} />
-            )}
-          />
-        </>
-      )}
-      <Route path="/auth" component={Auth} />
+      <Routes>
+        <Route path="/home/:id/*" element={<Home />} />
+        <Route
+          path="/profile/:userId/*"
+          element={<Profile isOpen={menuOpen} setMenuOpen={setMenuOpen} />}
+        />
+
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/register" element={<RegisterForm />} />
+      </Routes>
       <Footer />
     </div>
   );
-});
+};
