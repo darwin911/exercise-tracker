@@ -162,3 +162,15 @@
     margin-bottom: 1em;
   }
 }
+
+.auth-copy {
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__text {
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+}

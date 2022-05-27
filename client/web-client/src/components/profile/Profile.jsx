@@ -1,17 +1,14 @@
-import {
-  ConfirmDeleteAccountModal,
-  Friends,
-  ProfileCard,
-  WeightTracker,
-} from "./index";
+import { Friends, ProfileCard, WeightTracker } from "./index";
 import React, { useContext } from "react";
+import { Route, Routes, useParams } from "react-router-dom";
 
 import { AppContext } from "../../Store";
+import { ConfirmDeleteAccountModal } from "./ConfirmDeleteAccountModal";
 import { Loader } from "../shared/index";
-import { Route } from "react-router-dom";
 
 export const Profile = () => {
   const [{ user }] = useContext(AppContext);
+  let params = useParams();
 
   if (!user) return <Loader size={4} />;
 
@@ -23,13 +20,12 @@ export const Profile = () => {
           <Friends />
           <WeightTracker />
         </div>
-        <Route
-          path="/profile/:id/delete"
-          render={({ match }) => {
-            const { id } = match.params;
-            return <ConfirmDeleteAccountModal userId={id} />;
-          }}
-        />
+        <Routes>
+          <Route
+            path="delete"
+            element={<ConfirmDeleteAccountModal userId={params.userId} />}
+          />
+        </Routes>
       </main>
     </>
   );

@@ -44,22 +44,20 @@ export const Header = ({ isOpen, setMenuOpen }) => {
     dispatch({ type: LOGOUT });
   };
 
-  if (!user) return null;
-
   return (
     <header className={`header ${isMobile ? "header-mobile" : ""}`}>
       <nav>
-        <MainHeading userId={user.id} />
+        <MainHeading userId={user?.id} />
         {isMobile ? (
           <HamburgerButton />
-        ) : (
+        ) : user ? (
           <>
             <div
               className={`nav-link-wrapper ${
                 pathname.includes("home") ? "active" : ""
               }`}
             >
-              <Link to={`/home/${user.id}`} className="nav-link home">
+              <Link to={`/home/${user?.id}`} className="nav-link home">
                 Home
               </Link>
             </div>
@@ -68,13 +66,13 @@ export const Header = ({ isOpen, setMenuOpen }) => {
                 pathname.includes("profile") ? "active" : ""
               }`}
             >
-              <Link to={`/profile/${user.id}`} className="nav-link profile">
+              <Link to={`/profile/${user?.id}`} className="nav-link profile">
                 Profile
               </Link>
             </div>
             <div className="nav-link-wrapper">
               <Link
-                to="/auth/login"
+                to="/login"
                 className="nav-link logout"
                 onClick={() => handleLogout()}
               >
@@ -82,7 +80,7 @@ export const Header = ({ isOpen, setMenuOpen }) => {
               </Link>
             </div>
           </>
-        )}
+        ) : null}
       </nav>
       <NavMenu isOpen={isOpen} setMenuOpen={setMenuOpen} />
     </header>

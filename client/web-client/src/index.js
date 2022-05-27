@@ -1,15 +1,18 @@
-import React from 'react';
-import { render } from 'react-dom';
-import './style/index.css';
-import { App } from './App';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Store } from './Store';
+import "./style/index.css";
 
-render(
+import { App } from "./App";
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Store } from "./Store";
+import { createRoot } from "react-dom/client";
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+
+root.render(
   <Store>
     <Router>
       <App />
     </Router>
-  </Store>,
-  document.getElementById('root')
+  </Store>
 );

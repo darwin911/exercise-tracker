@@ -125,7 +125,7 @@
 
     &::before,
     &::after {
-      content: '';
+      content: "";
       display: block;
       border-radius: 3px;
       position: absolute;
@@ -153,7 +153,6 @@
 
 .menu-open {
   pointer-events: none;
-  // max-height: 100vh;
   overflow: hidden;
   user-select: none;
 }

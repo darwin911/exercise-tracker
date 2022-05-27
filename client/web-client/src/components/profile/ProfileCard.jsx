@@ -1,18 +1,19 @@
-import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import { AppContext } from '../../Store';
-import { ProfileField, ProfileUnitsField, Avatar } from './index';
+import { Avatar, ProfileField, ProfileUnitsField } from "./index";
+import React, { useContext } from "react";
+
+import { AppContext } from "../../Store";
+import { useNavigate } from "react-router-dom";
 
 export const ProfileCard = () => {
   const [{ user }] = useContext(AppContext);
-  const history = useHistory();
+  const navigate = useNavigate();
   const [isHovered, setHovered] = React.useState(false);
 
-  const handleDeleteAccount = async () => {
-    history.push('/profile/' + user.id + '/delete');
+  const handleDeleteAccount = () => {
+    navigate(`/profile/${user.id}/delete`);
   };
 
-  const className = 'profile__component';
+  const className = "profile__component";
 
   return (
     <section className={`${className} profile-card`}>
@@ -22,23 +23,24 @@ export const ProfileCard = () => {
         <h3 className={`${className}__username`}>{user.username}</h3>
       </header>
       <article className={`${className}__body`}>
-        <ProfileField field='name' />
+        <ProfileField field="name" />
         <div>
           <h4>Email</h4>
           <span>{user.email}</span>
         </div>
-        <ProfileField field='weight' />
+        <ProfileField field="weight" />
         <ProfileUnitsField />
       </article>
       <footer className={`${className}__footer`}>
         <button
-          className='delete-account-btn'
+          className="delete-account-btn"
           onMouseOver={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
-          onClick={() => handleDeleteAccount()}>
+          onClick={() => handleDeleteAccount()}
+        >
           Delete Account
         </button>
-        {isHovered && <span style={{ marginLeft: '1rem' }}>Are you sure?</span>}
+        {isHovered && <span style={{ marginLeft: "1rem" }}>Are you sure?</span>}
       </footer>
     </section>
   );

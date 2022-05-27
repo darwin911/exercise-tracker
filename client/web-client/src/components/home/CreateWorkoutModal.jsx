@@ -1,22 +1,25 @@
-import React, { useState, useContext } from 'react';
-import { addExercise } from '../../helper';
-import { AppContext } from '../../Store';
-import { CONSTANTS, EXERCISE_TYPES, TRANSITIONS } from '../../constants';
-import { motion } from 'framer-motion';
-import { createPortal } from 'react-dom';
-import moment from 'moment';
-import { useHistory } from 'react-router-dom';
-import { Formik, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import * as Yup from "yup";
+
+import { CONSTANTS, EXERCISE_TYPES, TRANSITIONS } from "../../constants";
+import { ErrorMessage, Field, Formik } from "formik";
+import React, { useContext, useState } from "react";
+
+import { AppContext } from "../../Store";
+import { addExercise } from "../../helper";
+import { createPortal } from "react-dom";
+import moment from "moment";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+
 const { ADD_EXERCISE, TOGGLE_MODAL } = CONSTANTS;
 const { PUSH_UPS, RUN } = EXERCISE_TYPES;
 
-const DOMRoot = document.querySelector('#root');
+const DOMRoot = document.querySelector("#root");
 
 export const CreateWorkoutModal = () => {
   const [state, dispatch] = useContext(AppContext);
   const { user } = state;
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
 
@@ -35,38 +38,48 @@ export const CreateWorkoutModal = () => {
 
     dispatch({ type: TOGGLE_MODAL });
     setLoading(false);
-    history.push('/home');
+    navigate("/home");
   };
 
   const closeModal = () => {
-    history.push('/home');
+    navigate("/home");
   };
 
   const initValues = {
     date: moment().format(moment.HTML5_FMT.DATE),
     time: moment().format(moment.HTML5_FMT.TIME),
-    type: '',
-    duration: '',
-    distance: '',
-    repetitions: '',
-    note: '',
+    type: "",
+    duration: "",
+    distance: "",
+    repetitions: "",
+    note: "",
   };
 
   const validationSchema = Yup.object({
-    type: Yup.string().required('Pick One'),
+    type: Yup.string().required("Pick One"),
   });
 
   return createPortal(
     <motion.aside
-      className='create-workout__modal'
-      initial={{ x: '-10%', opacity: 0.15 }}
-      animate={{ x: '0', opacity: 1 }}
-      transition={TRANSITIONS.SPRING}>
+      className="create-workout__modal"
+      initial={{ x: "-10%", opacity: 0.15 }}
+      animate={{ x: "0", opacity: 1 }}
+      transition={TRANSITIONS.SPRING}
+    >
       <Formik
         initialValues={initValues}
         onSubmit={handleSubmit}
-        validationSchema={validationSchema}>
-        {({ values, errors, touched, handleSubmit, handleChange, handleBlur, isSubmitting }) => {
+        validationSchema={validationSchema}
+      >
+        {({
+          values,
+          errors,
+          touched,
+          handleSubmit,
+          handleChange,
+          handleBlur,
+          isSubmitting,
+        }) => {
           const { type, duration, distance, repetitions } = values;
           const addButtonDisabledState =
             loading ||
@@ -75,33 +88,37 @@ export const CreateWorkoutModal = () => {
             (type === PUSH_UPS && !repetitions) ||
             (type === RUN && !distance);
           return (
-            <form className='create-workout' onSubmit={handleSubmit}>
+            <form className="create-workout" onSubmit={handleSubmit}>
               <h2>Create Workout</h2>
               <br />
-              <hr className='divider' />
+              <hr className="divider" />
 
-              <div className='form-field type'>
-                <label htmlFor='type'>Type:</label>
-                <ErrorMessage name='type'>
+              <div className="form-field type">
+                <label htmlFor="type">Type:</label>
+                <ErrorMessage name="type">
                   {(msg) => (
                     <motion.span
-                      initial={{ transform: 'rotate3d(1, 0, 0, 0.25turn)' }}
-                      animate={{ transform: 'rotate3d(1, 0, 0, 0turn)' }}
-                      className='error'>
+                      initial={{ transform: "rotate3d(1, 0, 0, 0.25turn)" }}
+                      animate={{ transform: "rotate3d(1, 0, 0, 0turn)" }}
+                      className="error"
+                    >
                       {msg}
                     </motion.span>
                   )}
                 </ErrorMessage>
                 <Field
-                  className={`${errors.type && touched.type ? 'input-error' : null}`}
+                  className={`${
+                    errors.type && touched.type ? "input-error" : null
+                  }`}
                   autoFocus
-                  as='select'
-                  id='type'
-                  name='type'
+                  as="select"
+                  id="type"
+                  name="type"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={type}>
-                  <option value='' disabled>
+                  value={type}
+                >
+                  <option value="" disabled>
                     Choose...
                   </option>
                   {Object.values(EXERCISE_TYPES).map((option) => (
@@ -223,20 +240,22 @@ export const CreateWorkoutModal = () => {
                 />
               </div> */}
 
-              <div className='form-field buttons-container'>
+              <div className="form-field buttons-container">
                 <button
-                  type='button'
-                  className='btn cancel'
+                  type="button"
+                  className="btn cancel"
                   onClick={() => closeModal()}
-                  disabled={loading}>
+                  disabled={loading}
+                >
                   Cancel
                 </button>
                 <button
-                  type='submit'
-                  className='btn add'
+                  type="submit"
+                  className="btn add"
                   onClick={handleSubmit}
-                  disabled={addButtonDisabledState}>
-                  {loading ? <div className='loader' /> : 'Create'}
+                  disabled={addButtonDisabledState}
+                >
+                  {loading ? <div className="loader" /> : "Create"}
                 </button>
               </div>
             </form>

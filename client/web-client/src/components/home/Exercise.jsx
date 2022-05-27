@@ -1,18 +1,18 @@
-import { CONSTANTS, EXERCISE_TYPES, TRANSITIONS } from '../../constants';
-import React, { useContext, useState } from 'react';
+import { CONSTANTS, EXERCISE_TYPES, TRANSITIONS } from "../../constants";
+import React, { useContext, useState } from "react";
 
-import { AppContext } from '../../Store';
-import { CancelSVG } from '../shared/index';
-import { Link } from 'react-router-dom';
-import { deleteExercise } from '../../helper';
-import kebabCase from 'lodash/kebabCase';
-import moment from 'moment';
-import { motion } from 'framer-motion';
+import { AppContext } from "../../Store";
+import { CancelSVG } from "../shared/index";
+import { Link } from "react-router-dom";
+import { deleteExercise } from "../../helper";
+import kebabCase from "lodash/kebabCase";
+import moment from "moment";
+import { motion } from "framer-motion";
 
 const { REMOVE_EXERCISE, TOGGLE_MODAL } = CONSTANTS;
 
 export const Exercise = ({ exercise }) => {
-  const dispatch = useContext(AppContext)[1];
+  const [{ user }, dispatch] = useContext(AppContext);
 
   const [deleting, setDeleting] = useState(false);
   const { id, note, duration, date, time, type, distance, repetitions } =
@@ -32,33 +32,33 @@ export const Exercise = ({ exercise }) => {
   const getEmoji = (type) => {
     switch (type) {
       case EXERCISE_TYPES.PUSH_UPS:
-        return '💪';
+        return "💪";
       case EXERCISE_TYPES.YOGA:
-        return '🧘';
+        return "🧘";
       case EXERCISE_TYPES.RUN:
-        return '🏃';
+        return "🏃";
       case EXERCISE_TYPES.CYCLING:
-        return '🚴🏻';
+        return "🚴🏻";
       case EXERCISE_TYPES.SWIMMING:
-        return '🏊';
+        return "🏊";
       default:
-        return '';
+        return "";
     }
   };
 
   const ExerciseDuration = () =>
     type !== EXERCISE_TYPES.PUSH_UPS ? (
-      <p className='exercise__duration'>
+      <p className="exercise__duration">
         {duration} <span>mins</span>
       </p>
     ) : (
-      <p className='exercise__repetitions'>
+      <p className="exercise__repetitions">
         {repetitions} <span>reps</span>
       </p>
     );
 
   const ExerciseType = () => (
-    <p className='exercise__type'>
+    <p className="exercise__type">
       {type}
       <span>{getEmoji(type)}</span>
     </p>
@@ -67,10 +67,10 @@ export const Exercise = ({ exercise }) => {
   const ExerciseNote = () => {
     if (!note) return null;
     return (
-      <p className='exercise__note'>
-        <span role='img' aria-label='Note'>
+      <p className="exercise__note">
+        <span role="img" aria-label="Note">
           📝
-        </span>{' '}
+        </span>{" "}
         {note}
       </p>
     );
@@ -79,7 +79,7 @@ export const Exercise = ({ exercise }) => {
   const ExerciseDistance = () => {
     if (!distance) return null;
     return (
-      <p className='exercise__distance'>
+      <p className="exercise__distance">
         {distance} <span>miles</span>
       </p>
     );
@@ -87,32 +87,34 @@ export const Exercise = ({ exercise }) => {
 
   const ExerciseDeleteButton = () => (
     <button
-      className='btn delete'
+      className="btn delete"
       onClick={() => handleDelete(id)}
-      disabled={deleting}>
-      {deleting ? <div className='loader' /> : <CancelSVG />}
+      disabled={deleting}
+    >
+      {deleting ? <div className="loader" /> : <CancelSVG />}
     </button>
   );
 
   const ExerciseEditButton = () => (
     <Link
-      className='btn edit'
+      className="btn edit"
       onClick={() => toggleEdit()}
-      to={`/home/edit/${id}`}>
+      to={`/home/${user.id}/edit/${id}`}
+    >
       ✎
     </Link>
   );
 
   const ExerciseDateAndTime = () => {
-    const exerciseDate = moment.utc(date).format('MMM D');
-    const exerciseTime = moment(time, 'Hmm').format('h:mm a');
+    const exerciseDate = moment.utc(date).format("MMM D");
+    const exerciseTime = moment(time, "Hmm").format("h:mm a");
     return (
       <>
-        <p className='exercise__day-of-week'>
-          {moment.utc(date).format('ddd')}
+        <p className="exercise__day-of-week">
+          {moment.utc(date).format("ddd")}
         </p>
-        <p className='exercise__date'>{exerciseDate}</p>
-        <p className='exercise__time'>{exerciseTime}</p>
+        <p className="exercise__date">{exerciseDate}</p>
+        <p className="exercise__time">{exerciseTime}</p>
       </>
     );
   };
@@ -124,15 +126,16 @@ export const Exercise = ({ exercise }) => {
       initial={{ y: -10, opacity: 0.15 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: -5, opacity: 0.15 }}
-      tabIndex={0}>
-      <div className='exercise__left-container'>
+      tabIndex={0}
+    >
+      <div className="exercise__left-container">
         <ExerciseDateAndTime />
         <ExerciseDuration />
         <ExerciseType />
         <ExerciseNote />
         <ExerciseDistance />
       </div>
-      <div className='exercise__right-container'>
+      <div className="exercise__right-container">
         <ExerciseDeleteButton
           id={id}
           deleting={deleting}
