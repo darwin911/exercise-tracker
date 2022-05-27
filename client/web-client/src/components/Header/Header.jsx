@@ -57,7 +57,7 @@ export const Header = ({ isOpen, setMenuOpen }) => {
                 pathname.includes("home") ? "active" : ""
               }`}
             >
-              <Link to={`/home/${user?.id}`} className="nav-link home">
+              <Link to={`/home/${user.id}`} className="nav-link home">
                 Home
               </Link>
             </div>
@@ -66,7 +66,7 @@ export const Header = ({ isOpen, setMenuOpen }) => {
                 pathname.includes("profile") ? "active" : ""
               }`}
             >
-              <Link to={`/profile/${user?.id}`} className="nav-link profile">
+              <Link to={`/profile/${user.id}`} className="nav-link profile">
                 Profile
               </Link>
             </div>
