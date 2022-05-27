@@ -11,8 +11,9 @@
     "framer-motion": "^1.11.1",
     "moment": "^2.29.2",
     "normalize.css": "^8.0.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "^3.3.1",
     "react-toastify": "^6.0.8",
     "recharts": "^2.0.0-beta.6",
@@ -23,8 +24,8 @@
     "build": "CI= react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deployDev": "npm run build && cd build && echo '/auth/login/ /\n/auth/register/ /\n /home /\n /profile/ /' >> _redirects && netlify deploy -d ./ -o",
-    "deployProd": "npm run build && cd build && echo '/auth/login/ /\n/auth/register/ /\n /home /\n /profile/ /' >> _redirects && netlify deploy --prod -d ./ -o"
+    "deployDev": "npm run build && cd build && echo '/login/ /\n/register/ /\n /home /\n /profile/ /' >> _redirects && netlify deploy -d ./ -o",
+    "deployProd": "npm run build && cd build && echo '/login/ /\n/register/ /\n /home /\n /profile/ /' >> _redirects && netlify deploy --prod -d ./ -o"
   },
   "eslintConfig": {
     "extends": "react-app"

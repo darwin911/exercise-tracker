@@ -21,11 +21,9 @@
     "moment": "^2.27.0",
     "mongoose": "^5.9.23",
     "nodemon": "^2.0.4",
-    "passport": "^0.4.1",
-    "react-router-dom": "^5.2.0"
+    "passport": "^0.4.1"
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.1.8",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-flowtype": "^4.7.0",
     "eslint-plugin-import": "^2.22.0",
