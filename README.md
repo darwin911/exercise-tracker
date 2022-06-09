@@ -125,3 +125,12 @@ const verify = (token) => {
 
 - LineCharts (Incomplete)
 - BarChart (Incomplete)
+
+
+## Setup
+Set a `.env` file as follows:
+
+```Environmental Variable
+MONGODB_URI="mongodb+srv://[username]:[password]@cluster0.quxbl.gcp.mongodb.net/test?retryWrites=true&w=majority"
+PORT=3001
+```
