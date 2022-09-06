@@ -1,11 +1,11 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
 const ACIVITY_TYPES = {
-  AEROBIC: 'AEROBIC',
-  FLEXIBILITY: 'FLEXIBILITY',
-  STRENGTH_TRAINING: 'STRENGTH_TRAINING',
+  AEROBIC: "AEROBIC",
+  FLEXIBILITY: "FLEXIBILITY",
+  STRENGTH_TRAINING: "STRENGTH_TRAINING",
 };
 
 const exerciseSchema = new Schema(
@@ -23,20 +23,20 @@ const exerciseSchema = new Schema(
   { timestamps: true }
 );
 
-exerciseSchema.methods.setActivityType = function(type) {
+exerciseSchema.methods.setActivityType = function (type) {
   switch (type.toLowerCase()) {
-    case 'run':
-    case 'cycling':
-    case 'rock climbing':
-    case 'swimming':
-    case 'tennis':
+    case "run":
+    case "cycling":
+    case "rock climbing":
+    case "swimming":
+    case "tennis":
       this.activityType = ACIVITY_TYPES.AEROBIC;
       break;
-    case 'yoga':
+    case "yoga":
       this.activityType = ACIVITY_TYPES.FLEXIBILITY;
       break;
-    case 'gym':
-    case 'push-ups':
+    case "gym":
+    case "push-ups":
       this.activityType = ACIVITY_TYPES.STRENGTH_TRAINING;
       break;
     default:
@@ -46,7 +46,7 @@ exerciseSchema.methods.setActivityType = function(type) {
   return this;
 };
 
-exerciseSchema.methods.toClient = function() {
+exerciseSchema.methods.toClient = function () {
   return {
     activityType: this.activityType,
     id: this._id,
@@ -61,6 +61,6 @@ exerciseSchema.methods.toClient = function() {
   };
 };
 
-const Exercise = mongoose.model('Exercise', exerciseSchema);
+const Exercise = mongoose.model("Exercise", exerciseSchema);
 
 module.exports = Exercise;

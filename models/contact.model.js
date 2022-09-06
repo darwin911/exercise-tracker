@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
@@ -10,7 +10,7 @@ const contactSchema = new Schema(
   { timestamps: true }
 );
 
-contactSchema.methods.toClient = function() {
+contactSchema.methods.toClient = function () {
   return {
     id: this._id,
     email: this.email,
@@ -18,6 +18,6 @@ contactSchema.methods.toClient = function() {
   };
 };
 
-const Contact = mongoose.model('Contact', contactSchema);
+const Contact = mongoose.model("Contact", contactSchema);
 
 module.exports = Contact;
