@@ -1,7 +1,7 @@
 import axios from "axios";
 const PORT = process.env.REACT_APP_API_PORT || 3001;
 const isDevelopment = process.env.NODE_ENV === "development";
-const BASE_URL = !isDevelopment
+const BASE_URL = isDevelopment
   ? `http://localhost:${PORT}`
   : process.env.REACT_APP_API_URL;
 
