@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 const { SET_USER } = CONSTANTS;
 
 export const LoginForm = () => {
-  const dispatch = useContext(AppContext)[1];
+  const [, dispatch] = useContext(AppContext);
   const navigate = useNavigate();
 
   // arg1: values , arg2: actions
