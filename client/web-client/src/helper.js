@@ -1,8 +1,9 @@
 import axios from "axios";
-const PORT = process.env.REACT_APP_API_PORT;
-const API_URL = process.env.REACT_APP_API_URL;
+const PORT = process.env.REACT_APP_API_PORT || 3001;
 const isDevelopment = process.env.NODE_ENV === "development";
-const BASE_URL = isDevelopment ? `http://localhost:${PORT}` : API_URL;
+const BASE_URL = !isDevelopment
+  ? `http://localhost:${PORT}`
+  : process.env.REACT_APP_API_URL;
 
 /**
  *
@@ -66,9 +67,6 @@ const loginUser = async (data) => {
     const resp = await axios.post(`${BASE_URL}/users/login`, data);
     return resp.data;
   } catch (err) {
-    if (err.response?.data) {
-      return err.response.data;
-    }
     return { error: err.toJSON().message };
   }
 };
@@ -78,10 +76,6 @@ const registerUser = async (data) => {
     const resp = await axios.post(`${BASE_URL}/users/register`, data);
     return resp.data;
   } catch (err) {
-    if (err.response?.data) {
-      return err.response.data;
-    }
-
     return { error: err.toJSON().message };
   }
 };
