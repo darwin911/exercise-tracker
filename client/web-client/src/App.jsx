@@ -83,7 +83,6 @@ export const App = () => {
           path="/profile/:userId/*"
           element={<Profile isOpen={menuOpen} setMenuOpen={setMenuOpen} />}
         />
-
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
       </Routes>

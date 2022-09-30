@@ -3,7 +3,6 @@
 html,
 body,
 #root {
-  // background-color: black;
   box-sizing: border-box;
 }
 
@@ -215,7 +214,6 @@ a:hover {
   }
 }
 
-//
 @import "./auth";
 @import "./header";
 @import "./exercises";
