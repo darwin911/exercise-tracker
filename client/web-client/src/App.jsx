@@ -66,6 +66,7 @@ export const App = () => {
     >
       <Header isOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <Routes>
+        <Route path="/home/*" element={<Home />} />
         <Route path="/home/:id/*" element={<Home />} />
         <Route
           path="/profile/:userId/*"
