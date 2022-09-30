@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
-import { ACTIVITY_TYPES, EXERCISE_TYPES, CONSTANTS } from '../../constants';
-import { AppContext } from '../../Store';
+import { ACTIVITY_TYPES, CONSTANTS, EXERCISE_TYPES } from "../../constants";
+import React, { useContext } from "react";
+
+import { AppContext } from "../../Store";
 const { SET_FILTER_BY_TYPE, SET_FILTER_BY_DATE } = CONSTANTS;
 const activityTypes = Object.values(ACTIVITY_TYPES).map((type) => type.title);
 const exerciseTypeValues = Object.values(EXERCISE_TYPES);
@@ -20,13 +21,14 @@ export const FilterExercises = () => {
 
   const FilterByType = () => (
     <div>
-      <label htmlFor='filter-by-type'>Filter: </label>
+      <label htmlFor="filter-by-type">Filter: </label>
       <select
-        id='filter-by-type'
-        className='filter-by-type'
+        id="filter-by-type"
+        className="filter-by-type"
         value={filterByType}
-        onChange={(e) => handleSetFilterByType(e)}>
-        <option value='ALL'>All Exercises</option>
+        onChange={(e) => handleSetFilterByType(e)}
+      >
+        <option value="ALL">All Exercises</option>
         <option disabled>--------</option>
         {activityTypes.map((type) => (
           <option key={type} value={type}>
@@ -45,15 +47,22 @@ export const FilterExercises = () => {
 
   const FilterByDate = () => (
     <div>
-      <label htmlFor='filter-by-date'>Date: </label>
+      <label htmlFor="filter-by-date">Date: </label>
       <select
-        id='filter-by-date'
-        className='filter-by-date'
+        id="filter-by-date"
+        className="filter-by-date"
         value={filterByDate}
-        onChange={(e) => handleSetFilterByDate(e)}>
-        <option value='All Time'>All Time</option>
+        onChange={(e) => handleSetFilterByDate(e)}
+      >
+        <option value="All Time">All Time</option>
         <option disabled>--------</option>
-        {['Last 30 Days', 'Last 7 Days', 'Last 3 Days', 'Yesterday', 'Today'].map((type) => (
+        {[
+          "Last 30 Days",
+          "Last 7 Days",
+          "Last 3 Days",
+          "Yesterday",
+          "Today",
+        ].map((type) => (
           <option key={type} value={type}>
             {type}
           </option>
@@ -63,7 +72,7 @@ export const FilterExercises = () => {
   );
 
   return (
-    <aside className='filter__wrapper'>
+    <aside className="filter__wrapper">
       <FilterByType />
       <FilterByDate />
     </aside>

@@ -8,8 +8,6 @@ import { ExerciseList } from "./ExerciseList";
 import { ExercisesSummary } from "./ExercisesSummary";
 import { FilterExercises } from "./FilterExercises";
 import { Home } from "./Home";
-import { PushUpMonitor } from "./PushUpMonitor";
-import { StackedChart } from "./StackedChart";
 import { UserExercises } from "./UserExercises";
 
 export {
@@ -23,7 +21,5 @@ export {
   ExercisesSummary,
   FilterExercises,
   Home,
-  PushUpMonitor,
-  StackedChart,
   UserExercises,
 };
