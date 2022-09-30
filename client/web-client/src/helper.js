@@ -51,15 +51,6 @@ const editExercise = async (id, data) => {
   }
 };
 
-const getUserPushUpsData = async (userId) => {
-  try {
-    const resp = await axios.get(`${BASE_URL}/exercises/${userId}/push-ups/`);
-    return resp.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 // Authentication
 
 const loginUser = async (data) => {
