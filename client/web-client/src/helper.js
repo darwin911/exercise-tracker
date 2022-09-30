@@ -187,7 +187,6 @@ const getFriendsData = async (id, friendIds) => {
 
 export {
   getUserExercises,
-  getUserPushUpsData,
   addExercise,
   deleteExercise,
   editExercise,
