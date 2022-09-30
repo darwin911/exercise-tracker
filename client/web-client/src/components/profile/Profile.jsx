@@ -1,4 +1,4 @@
-import { Friends, ProfileCard, WeightTracker } from "./index";
+import { Friends, ProfileCard } from "./index";
 import React, { useContext } from "react";
 import { Route, Routes, useParams } from "react-router-dom";
 
@@ -18,7 +18,6 @@ export const Profile = () => {
         <div className="profile wrapper">
           <ProfileCard />
           <Friends />
-          <WeightTracker />
         </div>
         <Routes>
           <Route
