@@ -6,8 +6,8 @@
 This web application is hobby project developed with a basic CRA (Create React App) for the Front-end, and an Express back-end API. The goal was to build up development experience and exemplify some of my skills with modern tooling, hopefully becoming a web app with a finished look, allowing for a quick way to demo/present my work and skills.
 
 ### Summary
-- Exercise Tracker allows a user to Register and Log in with an email address and password. Currently the application's Authentication flow is very simple, but that is sufficient for this hobby project. A user can then Add/Edit/Delete/View (CRUD), and also filter, exercises they create and want to track.
 
+- Exercise Tracker allows a user to Register and Log in with an email address and password. Currently the application's Authentication flow is very simple, but that is sufficient for this hobby project. A user can then Add/Edit/Delete/View (CRUD), and also filter, exercises they create and want to track.
 
 ### Features / User Stories
 
@@ -121,13 +121,8 @@ const verify = (token) => {
 - Swimming
 - Tennis
 
-### Charts - Recharts (not implemented)
-
-- LineCharts (Incomplete)
-- BarChart (Incomplete)
-
-
 ## Setup
+
 Set a `.env` file as follows:
 
 ```Environmental Variable
