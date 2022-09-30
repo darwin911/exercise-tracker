@@ -3,12 +3,7 @@ import "./style/App.css";
 import { LoginForm, RegisterForm } from "./components/auth";
 import React, { useContext, useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import {
-  getUser,
-  getUserExercises,
-  getUserPushUpsData,
-  verifyToken,
-} from "./helper";
+import { getUser, getUserExercises, verifyToken } from "./helper";
 
 import { AppContext } from "./Store";
 import { CONSTANTS } from "./constants";
@@ -17,8 +12,7 @@ import { Header } from "./components/Header";
 import { Home } from "./components/home";
 import { Profile } from "./components/profile";
 
-const { SET_USER, SET_EXERCISES, TOGGLE_LOADING, LOAD_PUSH_UPS_DATA } =
-  CONSTANTS;
+const { SET_USER, SET_EXERCISES, TOGGLE_LOADING } = CONSTANTS;
 
 export const App = () => {
   const [{ user }, dispatch] = useContext(AppContext);
@@ -58,14 +52,8 @@ export const App = () => {
       dispatch({ type: SET_EXERCISES, payload: exercises });
     };
 
-    const loadPushUpChartDataToState = async (userId) => {
-      const data = await getUserPushUpsData(userId);
-      dispatch({ type: LOAD_PUSH_UPS_DATA, payload: data });
-    };
-
     if (user) {
       loadExercises(user.id);
-      loadPushUpChartDataToState(user.id);
     }
     dispatch({ type: TOGGLE_LOADING });
   }, [user, dispatch]);

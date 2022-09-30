@@ -1,6 +1,6 @@
-import { CONSTANTS } from './constants';
-import { initialState } from './Store';
-import moment from 'moment';
+import { CONSTANTS } from "./constants";
+import { initialState } from "./Store";
+import moment from "moment";
 
 const {
   SET_USER,
@@ -9,7 +9,6 @@ const {
   SET_EXERCISES,
   REMOVE_EXERCISE,
   ADD_EXERCISE,
-  LOAD_PUSH_UPS_DATA,
   FILTER_ALL,
   FILTER_CURRENT_MONTH,
   FILTER_CURRENT_WEEK,
@@ -49,13 +48,17 @@ export const Reducer = (state, action) => {
     case REMOVE_EXERCISE:
       return {
         ...state,
-        exercises: state.exercises.filter((exercise) => exercise.id !== action.payload.id),
+        exercises: state.exercises.filter(
+          (exercise) => exercise.id !== action.payload.id
+        ),
         exerciseCount: state.exerciseCount - 1,
         loading: false,
       };
     case UPDATE_EXERCISE:
       // find index of exercise to update
-      const exerciseIdx = state.exercises.map((ex) => ex.id).indexOf(action.payload.id);
+      const exerciseIdx = state.exercises
+        .map((ex) => ex.id)
+        .indexOf(action.payload.id);
       const updatedExercise = action.payload;
       let updatedExercises = [...state.exercises];
       updatedExercises[exerciseIdx] = updatedExercise;
@@ -74,15 +77,17 @@ export const Reducer = (state, action) => {
       const currentWeek = moment().week();
       return {
         ...state,
-        filteredExercises: state.exercises.filter((ex) => moment(ex.date).week() === currentWeek),
+        filteredExercises: state.exercises.filter(
+          (ex) => moment(ex.date).week() === currentWeek
+        ),
       };
     }
     case FILTER_CURRENT_MONTH: {
-      const currentMonth = moment().format('MMMM');
+      const currentMonth = moment().format("MMMM");
       return {
         ...state,
         filteredExercises: state.exercises.filter((ex) => {
-          return moment(ex.date).format('MMMM') === currentMonth;
+          return moment(ex.date).format("MMMM") === currentMonth;
         }),
       };
     }
@@ -103,12 +108,6 @@ export const Reducer = (state, action) => {
         filterByType: action.payload,
       };
     }
-    case LOAD_PUSH_UPS_DATA: {
-      return {
-        ...state,
-        pushUpData: action.payload,
-      };
-    }
     case SET_ALL_USERS: {
       return {
         ...state,
@@ -126,7 +125,11 @@ export const Reducer = (state, action) => {
         ...state,
         user: {
           ...state.user,
-          friendRequests: [...state.user.friendRequests.filter((req) => req !== action.payload)],
+          friendRequests: [
+            ...state.user.friendRequests.filter(
+              (req) => req !== action.payload
+            ),
+          ],
         },
       };
     }
