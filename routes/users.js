@@ -232,15 +232,33 @@ router.route("/login").post(async (req, res) => {
 router.route("/register").post(async (req, res) => {
   const { username, email, password } = req.body;
   try {
-    const userExists = await User.find({ email });
+    const emailIsTaken = await User.findOne({ email });
 
-    if (userExists.length) {
-      return res.status(409).json({ error: "Email has already been taken" });
+    if (emailIsTaken) {
+      return res.json({
+        error: 409,
+        field: "email",
+        message: "Email has already been taken",
+      });
     }
+
+    const usernameIsTaken = await User.findOne({ username });
+
+    if (usernameIsTaken) {
+      return res.json({
+        error: 409,
+        field: "username",
+        message: "Username has already been taken",
+      });
+    }
+
     const newUser = new User({ username, email });
     await newUser.setPassword(password);
+
     newUser.save();
+
     const userData = await newUser.toAuthJSON();
+
     return res.json(userData);
   } catch (error) {
     console.error(error);

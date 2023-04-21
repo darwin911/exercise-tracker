@@ -38,10 +38,8 @@ export const RegisterForm = () => {
 
     if (data) {
       if (data.error) {
-        if (data.error) {
-          setFieldError("email", data.error);
-        }
-      } else {
+        setFieldError(data.field || "email", data.message);
+      } else if (data.id) {
         dispatch({ type: SET_USER, payload: data });
         localStorage.setItem("token", data.token);
         navigate(`/home/${data.id}`);
