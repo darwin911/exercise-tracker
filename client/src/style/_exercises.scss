@@ -1,10 +1,6 @@
-@mixin exercise-type($bg-color, $opacity) {
+@mixin exercise-type($bg-color) {
   background: $bg-color;
-  background: linear-gradient(0.35turn, $bg-color, rgba($bg-color, 0.625));
-  border: 2px solid rgba($bg-color, 0.85);
-  &:hover {
-    background-color: rgba($bg-color, $opacity);
-  }
+  border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .dashboard {
@@ -90,52 +86,54 @@
 }
 
 .exercise {
-  $hover-opacity: 0.8;
+  $hover-opacity: 1;
   background-color: #151512;
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5),
+    inset 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
   display: grid;
   grid-auto-rows: max-content;
   grid-template-columns: 5fr 1fr;
   padding: 0.8rem;
-  transition: background-color 120ms ease-in-out, box-shadow 120ms ease-in, font-size 120ms ease-out;
+  transition: background-color 120ms ease-in-out, box-shadow 120ms ease-in,
+    font-size 120ms ease-out;
 
   @media screen and (min-width: 414px) {
     grid-column: span 1;
   }
 
   &.gym {
-    @include exercise-type($gym-bg-color, $hover-opacity);
+    @include exercise-type($gym-bg-color);
   }
 
   &.run {
-    @include exercise-type($run-bg-color, $hover-opacity);
+    @include exercise-type($run-bg-color);
   }
 
   &.yoga {
-    @include exercise-type($yoga-bg-color, $hover-opacity);
+    @include exercise-type($yoga-bg-color);
   }
 
   &.tennis {
-    @include exercise-type($tennis-bg-color, $hover-opacity);
+    @include exercise-type($tennis-bg-color);
   }
 
   &.swimming {
-    @include exercise-type($swimming-bg-color, $hover-opacity);
+    @include exercise-type($swimming-bg-color);
   }
 
   &.rock-climbing {
-    @include exercise-type($rock-climbing-bg-color, $hover-opacity);
+    @include exercise-type($rock-climbing-bg-color);
   }
 
   &.cycling {
-    @include exercise-type($cycling-bg-color, $hover-opacity);
+    @include exercise-type($cycling-bg-color);
     color: black;
   }
 
   &.push-ups {
-    @include exercise-type($push-ups-bg-color, $hover-opacity);
+    @include exercise-type($push-ups-bg-color);
     color: rgb(255, 255, 255);
   }
 
@@ -263,12 +261,13 @@
     &:focus {
       outline: none;
       box-shadow: 0px 0px 1rem 4px rgba(rgb(0, 0, 0), 0.25);
-      transform: rotateZ(180deg);
+      transform: rotateZ(-0.085turn);
     }
   }
 
   .btn.delete {
-    background: rgba(183, 28, 28, 0.75);
+    background: rgba(255, 255, 255, 0.25);
+
     &:hover,
     &:focus {
       background: rgba(183, 28, 28, 0.8);
@@ -277,11 +276,11 @@
   }
 
   .btn.edit {
-    background: rgba(20, 123, 220, 0.75);
+    background: rgba(255, 255, 255, 0.25);
+
     &:hover,
     &:focus {
       background: rgba(20, 123, 220, 1);
-      transform: rotateY(180deg);
       box-shadow: 0px 0px 1px 3px rgb(20, 123, 220);
     }
   }
@@ -358,29 +357,13 @@
     font-weight: 400;
     position: relative;
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       right: 0;
       width: 1em;
       height: 1em;
       border-radius: 50%;
     }
-  }
-  &.yoga .type::after {
-    background: rgba($yoga-bg-color, 0.8);
-    border: 2px solid rgba($yoga-bg-color, 1);
-  }
-  &.run .type::after {
-    background: rgba($run-bg-color, 0.8);
-    border: 2px solid rgba($run-bg-color, 1);
-  }
-  &.gym .type::after {
-    background: rgba($gym-bg-color, 0.8);
-    border: 2px solid rgba($gym-bg-color, 1);
-  }
-  &.tennis .type::after {
-    background: rgba($tennis-bg-color, 0.8);
-    border: 2px solid rgba($tennis-bg-color, 1);
   }
 }
 
@@ -405,7 +388,11 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(ellipse at center, transparent -40%, rgba(0, 0, 0, 0.3));
+    background: radial-gradient(
+      ellipse at center,
+      transparent -40%,
+      rgba(0, 0, 0, 0.3)
+    );
 
     .divider {
       width: 100%;
