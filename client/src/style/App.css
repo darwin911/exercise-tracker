@@ -808,84 +808,44 @@ a:hover {
 
 .exercise.gym {
   background: rgba(0, 150, 136, 0.9);
-  background: linear-gradient(0.35turn, rgba(0, 150, 136, 0.9), rgba(0, 150, 136, 0.625));
-  border: 2px solid rgba(0, 150, 136, 0.85);
-}
-
-.exercise.gym:hover {
-  background-color: rgba(0, 150, 136, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .exercise.run {
   background: rgba(40, 53, 147, 0.9);
-  background: linear-gradient(0.35turn, rgba(40, 53, 147, 0.9), rgba(40, 53, 147, 0.625));
-  border: 2px solid rgba(40, 53, 147, 0.85);
-}
-
-.exercise.run:hover {
-  background-color: rgba(40, 53, 147, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .exercise.yoga {
   background: rgba(143, 42, 188, 0.9);
-  background: linear-gradient(0.35turn, rgba(143, 42, 188, 0.9), rgba(143, 42, 188, 0.625));
-  border: 2px solid rgba(143, 42, 188, 0.85);
-}
-
-.exercise.yoga:hover {
-  background-color: rgba(143, 42, 188, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .exercise.tennis {
   background: rgba(106, 170, 2, 0.9);
-  background: linear-gradient(0.35turn, rgba(106, 170, 2, 0.9), rgba(106, 170, 2, 0.625));
-  border: 2px solid rgba(106, 170, 2, 0.85);
-}
-
-.exercise.tennis:hover {
-  background-color: rgba(106, 170, 2, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .exercise.swimming {
   background: rgba(3, 169, 244, 0.9);
-  background: linear-gradient(0.35turn, rgba(3, 169, 244, 0.9), rgba(3, 169, 244, 0.625));
-  border: 2px solid rgba(3, 169, 244, 0.85);
-}
-
-.exercise.swimming:hover {
-  background-color: rgba(3, 169, 244, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .exercise.rock-climbing {
   background: rgba(82, 82, 82, 0.9);
-  background: linear-gradient(0.35turn, rgba(82, 82, 82, 0.9), rgba(82, 82, 82, 0.625));
-  border: 2px solid rgba(82, 82, 82, 0.85);
-}
-
-.exercise.rock-climbing:hover {
-  background-color: rgba(82, 82, 82, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .exercise.cycling {
   background: rgba(255, 251, 0, 0.9);
-  background: linear-gradient(0.35turn, rgba(255, 251, 0, 0.9), rgba(255, 251, 0, 0.625));
-  border: 2px solid rgba(255, 251, 0, 0.85);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   color: black;
-}
-
-.exercise.cycling:hover {
-  background-color: rgba(255, 251, 0, 0.8);
 }
 
 .exercise.push-ups {
   background: rgba(0, 80, 100, 0.9);
-  background: linear-gradient(0.35turn, rgba(0, 80, 100, 0.9), rgba(0, 80, 100, 0.625));
-  border: 2px solid rgba(0, 80, 100, 0.85);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   color: white;
-}
-
-.exercise.push-ups:hover {
-  background-color: rgba(0, 80, 100, 0.8);
 }
 
 .exercise__duration, .exercise__repetitions {
@@ -1044,12 +1004,12 @@ a:hover {
   outline: none;
   -webkit-box-shadow: 0px 0px 1rem 4px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 0px 1rem 4px rgba(0, 0, 0, 0.25);
-  -webkit-transform: rotateZ(180deg);
-          transform: rotateZ(180deg);
+  -webkit-transform: rotateZ(-0.085turn);
+          transform: rotateZ(-0.085turn);
 }
 
 .exercise .btn.delete {
-  background: rgba(183, 28, 28, 0.75);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .exercise .btn.delete:hover, .exercise .btn.delete:focus {
@@ -1059,13 +1019,11 @@ a:hover {
 }
 
 .exercise .btn.edit {
-  background: rgba(20, 123, 220, 0.75);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .exercise .btn.edit:hover, .exercise .btn.edit:focus {
   background: #147bdc;
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
   -webkit-box-shadow: 0px 0px 1px 3px #147bdc;
           box-shadow: 0px 0px 1px 3px #147bdc;
 }
@@ -1155,32 +1113,12 @@ a:hover {
 }
 
 .edit-exercise .type::after {
-  content: '';
+  content: "";
   position: absolute;
   right: 0;
   width: 1em;
   height: 1em;
   border-radius: 50%;
-}
-
-.edit-exercise.yoga .type::after {
-  background: rgba(143, 42, 188, 0.8);
-  border: 2px solid #8f2abc;
-}
-
-.edit-exercise.run .type::after {
-  background: rgba(40, 53, 147, 0.8);
-  border: 2px solid #283593;
-}
-
-.edit-exercise.gym .type::after {
-  background: rgba(0, 150, 136, 0.8);
-  border: 2px solid #009688;
-}
-
-.edit-exercise.tennis .type::after {
-  background: rgba(106, 170, 2, 0.8);
-  border: 2px solid #6aaa02;
 }
 
 .add-exercise,
