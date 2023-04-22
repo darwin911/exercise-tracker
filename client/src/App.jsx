@@ -28,11 +28,13 @@ export const App = () => {
       dispatch({ type: TOGGLE_LOADING });
       const pushToHome = pathname.includes("auth") || pathname === "/";
       const verifiedUser = await verifyToken({ token });
+
       if (verifiedUser) {
         const { id } = verifiedUser;
         const user = await getUser(id);
+
         dispatch({ type: SET_USER, payload: user });
-        navigate(pushToHome ? `/home/${user.id}` : pathname);
+        navigate(pushToHome ? `/home/${user.username}` : pathname);
       } else {
         localStorage.removeItem("token");
         navigate("/login");

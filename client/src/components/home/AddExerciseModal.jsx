@@ -38,11 +38,11 @@ export const AddExerciseModal = () => {
 
     dispatch({ type: TOGGLE_MODAL });
     setLoading(false);
-    navigate(`/home/${user.id}`);
+    navigate(`/home/${user.username}`);
   };
 
   const closeModal = () => {
-    navigate(`/home/${user.id}`);
+    navigate(`/home/${user.username}`);
   };
 
   const initValues = {

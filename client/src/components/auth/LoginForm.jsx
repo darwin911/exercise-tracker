@@ -23,7 +23,7 @@ export const LoginForm = () => {
     } else {
       dispatch({ type: SET_USER, payload: data });
       localStorage.setItem("token", data.token);
-      navigate(`/home/${data.id}`);
+      navigate(`/home/${data.username}`);
     }
   };
 

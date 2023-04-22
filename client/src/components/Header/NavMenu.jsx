@@ -49,7 +49,7 @@ export const NavMenu = ({ isOpen, setMenuOpen }) => {
     >
       <div className="nav-link-wrapper">
         <Link
-          to={`/home/${user.id}`}
+          to={`/home/${user.username}`}
           onClick={() => setMenuOpen((isOpen) => !isOpen)}
           className="nav-link home"
         >
@@ -58,7 +58,7 @@ export const NavMenu = ({ isOpen, setMenuOpen }) => {
       </div>
       <div className="nav-link-wrapper">
         <Link
-          to={`/profile/${user.id}`}
+          to={`/profile/${user.username}`}
           onClick={() => setMenuOpen((isOpen) => !isOpen)}
           className="nav-link profile"
         >

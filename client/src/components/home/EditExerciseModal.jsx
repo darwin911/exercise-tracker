@@ -50,12 +50,12 @@ export const EditExerciseModal = () => {
     dispatch({ type: UPDATE_EXERCISE, payload: updatedExercise });
     dispatch({ type: TOGGLE_MODAL });
     resetForm();
-    navigate(`/home/${user.id}`);
+    navigate(`/home/${user.username}`);
   };
 
   const handleClose = () => {
     dispatch({ type: TOGGLE_MODAL });
-    navigate(`/home/${user.id}`);
+    navigate(`/home/${user.username}`);
     resetForm();
   };
 

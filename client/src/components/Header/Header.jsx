@@ -47,7 +47,7 @@ export const Header = ({ isOpen, setMenuOpen }) => {
   return (
     <header className={`header ${isMobile ? "header-mobile" : ""}`}>
       <nav>
-        <MainHeading userId={user?.id} />
+        <MainHeading />
         {isMobile ? (
           <HamburgerButton />
         ) : user ? (
@@ -57,7 +57,7 @@ export const Header = ({ isOpen, setMenuOpen }) => {
                 pathname.includes("home") ? "active" : ""
               }`}
             >
-              <Link to={`/home/${user.id}`} className="nav-link home">
+              <Link to={`/home/${user.username}`} className="nav-link home">
                 Home
               </Link>
             </div>
@@ -66,7 +66,10 @@ export const Header = ({ isOpen, setMenuOpen }) => {
                 pathname.includes("profile") ? "active" : ""
               }`}
             >
-              <Link to={`/profile/${user.id}`} className="nav-link profile">
+              <Link
+                to={`/profile/${user.username}`}
+                className="nav-link profile"
+              >
                 Profile
               </Link>
             </div>

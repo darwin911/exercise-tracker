@@ -42,7 +42,7 @@ export const RegisterForm = () => {
       } else if (data.id) {
         dispatch({ type: SET_USER, payload: data });
         localStorage.setItem("token", data.token);
-        navigate(`/home/${data.id}`);
+        navigate(`/home/${data.username}`);
       }
     }
   };
